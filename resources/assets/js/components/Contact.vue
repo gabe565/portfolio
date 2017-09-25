@@ -2,6 +2,33 @@
     <section id="about" class="content-section text-center">
         <div class="container">
             <h1>Contact</h1>
+            <h3>Connect</h3>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <ul class="list-inline banner-social-buttons">
+                        <li class="list-inline-item">
+                            <a href="/to/twitter" class="btn btn-default btn-lg">
+                                <i class="fab fa-twitter fa-fw"></i>
+                                <span class="network-name">Twitter</span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="/to/github" class="btn btn-default btn-lg">
+                                <i class="fab fa-github fa-fw"></i>
+                                <span class="network-name">Github</span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="/to/linkedin" class="btn btn-default btn-lg">
+                                <i class="fab fa-linkedin fa-fw"></i>
+                                <span class="network-name">LinkedIn</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <h3>Email</h3>
             <div class="col-lg-6 col-md-8 mx-auto">
                 <form id="needs-validation" data-focus="false" method="post" action="email" role="form" novalidate>
                     <fieldset>

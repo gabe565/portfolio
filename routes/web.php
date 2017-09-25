@@ -11,4 +11,5 @@
 |
 */
 
+Route::get('/to/{handle}', 'RedirectController');
 Route::get('/{catchall?}', 'DashController')->where('catchall', '.*');
