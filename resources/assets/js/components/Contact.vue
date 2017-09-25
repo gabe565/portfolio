@@ -1,7 +1,7 @@
 <template>
     <section id="about" class="content-section text-center">
         <div class="container">
-            <h2>Contact</h2>
+            <h1>Contact</h1>
             <div class="col-lg-6 col-md-8 mx-auto">
                 <form id="needs-validation" data-focus="false" method="post" action="email" role="form" novalidate>
                     <fieldset>

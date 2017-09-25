@@ -1,7 +1,7 @@
 <template>
     <section id="about" class="content-section text-center">
         <div class="container">
-            <h2>About</h2>
+            <h1>About</h1>
             <div class="row">
                 <div class="col-3 col-lg-2 ml-lg-auto mx-auto">
                     <img class="img-fluid rounded" src="/img/me.jpg">

@@ -1,9 +1,9 @@
 <template>
     <section id="skills" class="content-section text-center">
         <div class="container">
-            <h2>Skills</h2>
+            <h1>Skills</h1>
             <span v-for="(skills, category) in skills">
-                <h4>{{ category }}</h4>
+                <h3>{{ category }}</h3>
                 <div class="row">
                     <div class="col-sm-8 col-lg-4 mx-auto" v-for="(list, key) in skills" :class="{ 'ml-lg-auto mr-lg-0': key == 0, 'mr-lg-auto ml-lg-0': key == 1 }">
                         <ul class="list-group list-group-inverse talent-list">
