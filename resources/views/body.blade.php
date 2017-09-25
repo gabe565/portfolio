@@ -28,13 +28,22 @@
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <router-link to="/about" class="nav-link">About</router-link>
+                                <router-link to="/about" class="nav-link">
+                                    <i class="far fa-info-circle fa-fw"></i>
+                                    About
+                                </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/skills" class="nav-link">Skills</router-link>
+                                <router-link to="/skills" class="nav-link">
+                                    <i class="far fa-list fa-fw"></i>
+                                    Skills
+                                </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/contact" class="nav-link">Contact</router-link>
+                                <router-link to="/contact" class="nav-link">
+                                    <i class="far fa-envelope fa-fw"></i>
+                                    Contact
+                                </router-link>
                             </li>
                         </ul>
                     </div>

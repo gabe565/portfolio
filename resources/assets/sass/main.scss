@@ -67,10 +67,12 @@ a {
 
     border-bottom: 1px solid fade-out(white, .7);
     background-color: black;
+
     @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
         background-color: rgba(0, 0, 0, 0.25);
         backdrop-filter: blur(10px);
     }
+
     .navbar-toggler {
         font-size: 14px;
 
@@ -82,22 +84,21 @@ a {
     .navbar-brand {
         font-family: $font-family-serif;
         font-weight: $font-weight-light;
+
+        &:hover {
+            color: $white;
+        }
     }
     a {
-        color: white;
+        color: $gray-400;
     }
     .navbar-nav {
         .nav-item {
-            transition: background 0.3s ease-in-out;
-            &:hover {
-                color: fade(white, 80%);
-                outline: none;
-                background-color: transparent;
-            }
-            &:active,
-            &:focus {
-                outline: none;
-                background-color: transparent;
+            a {
+                &:hover,
+               &.active {
+                    color: $white;
+                }
             }
         }
     }
