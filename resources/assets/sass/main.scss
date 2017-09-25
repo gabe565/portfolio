@@ -67,6 +67,10 @@ a {
 
     border-bottom: 1px solid fade-out(white, .7);
     background-color: black;
+    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+        background-color: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(10px);
+    }
     .navbar-toggler {
         font-size: 14px;
 
