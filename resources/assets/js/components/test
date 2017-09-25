@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <h2 id="{{ title|lower }}-heading">{{ title }}</h2>
+    </div>
+</div>
+<div class="row">
+    {% for key, col in arr | batch(arr|length / 2) %}
+        <div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-{{ (not key) ? '2' : '0' }}">
+            <ol class="list-group talent-list">
+                {% for e in col %}
+                    <li class="list-group-item">
+                        {{ e.title }}
+                        <div class="sr-only">
+                            {{ e.stars }} of 5
+                        </div>
+                        <div class="ability-score" aria-hidden="true" title="{{ e.stars }} Star{{ (e.stars != 1) ? 's' }}">
+                            {% for i in 1..5 %}
+                                <i class="fa fa-star{{ (i > e.stars) ? ' empty' }}" aria-hidden="true"></i>
+                            {% endfor %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    {% endfor %}
+</div>
