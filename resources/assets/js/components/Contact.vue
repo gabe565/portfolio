@@ -1,62 +1,65 @@
 <template>
     <section id="about" class="content-section text-center">
         <div class="container">
-            <h2>About</h2>
-            <form id="email-form" data-toggle="validator" data-focus="false" method="post"
-                                                                             action="email" role="form">
-                <fieldset>
-                    <div class="row">
+            <h2>Contact</h2>
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <form id="needs-validation" data-focus="false" method="post" action="email" role="form" novalidate>
+                    <fieldset>
                         <div class="col-md-8 mx-sm-auto">
                             <div class="messages"></div>
                         </div>
-                    </div>
-                    <!--Name-->
-                    <div class="row">
+                        <!--Name-->
                         <div class="form-group">
-                            <div class="col-md-6 mx-sm-auto inputGroupContainer">
-                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                    <input
-                                                                                                                      name="name" placeholder="Name" class="form-control" type="text" required>
-                                </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="far fa-user fa-fw" aria-hidden="true"></i>
+                                </span>
+                                <input name="name" placeholder="Name" class="form-control" type="text" required>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <!--Email-->
-                    <div class="row">
+                        <!--Email-->
                         <div class="form-group">
-                            <div class="col-md-6 mx-sm-auto inputGroupContainer">
-                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
-                                    <input
-                                                                                                                          name="email" placeholder="Email Address" class="form-control" type="email"
-                                                                                                                                                                                        required>
-                                </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="far fa-envelope fa-fw" aria-hidden="true"></i>
+                                </span>
+                                <input name="email" placeholder="Email Address" class="form-control" type="email" required>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <!--Message-->
-                    <div class="row">
+                        <!--Message-->
                         <div class="form-group">
-                            <div class="col-md-6 mx-sm-auto inputGroupContainer">
-                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-comment fa-fw" aria-hidden="true"></i></span>
-                                    <textarea
-                                                                                                                         class="form-control vertical" name="message" placeholder="Message" required></textarea>
-                                </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="far fa-comment fa-fw" aria-hidden="true"></i>
+                                </span>
+                                <textarea class="form-control vertical" name="message" placeholder="Message" required></textarea>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <!-- Button -->
-                    <div class="row">
+                        <!-- Button -->
                         <div class="form-group">
-                            <div class="col-md-6 mx-sm-auto">
-                                <button type="submit" class="btn btn-primary btn-raised"><i id="send-icon" class="fa fa-paper-plane fa-fw" aria-hidden="true"></i>&#xA0;&#xA0;Send</button>
-                            </div>
+                            <button type="submit" class="btn btn-primary btn-raised">
+                                <i id="send-icon" class="far fa-paper-plane fa-fw" aria-hidden="true"></i>
+                                &nbsp;Send
+                            </button>
                         </div>
-                    </div>
-                </fieldset>
-            </form>
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </section>
 </template>
+
+<script>
+export default {
+    mounted: function() {
+        var form = document.getElementById("needs-validation")
+        form.addEventListener("submit", function(e) {
+            if (form.checkValidity() == false) {
+                e.preventDefault()
+                e.stopPropagation()
+            }
+            form.classList.add('was-validated');
+        })
+    }
+}
+</script>
