@@ -73,7 +73,8 @@ a {
         border: 1px solid white;
     }
     .navbar-brand {
-        font-weight: 700;
+        font-family: $font-family-serif;
+        font-weight: $font-weight-light;
     }
     a {
         color: white;
