@@ -5,29 +5,28 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap')
-require('jquery.easing')
 
-window.Vue = require('vue')
+require('./bootstrap')
 
 require('./main')
 require('./map')
 
-import VueRouter from 'vue-router';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-const Home = require('./components/Home.vue')
-const About = require('./components/About.vue')
-const Skills = require('./components/Skills.vue')
-const Contact = require('./components/Contact.vue')
-const NotFound = require('./components/NotFound.vue')
+import Home from './components/Home.vue'
+import About from './components/About.vue'
+import Skills from './components/Skills.vue'
+import Contact from './components/Contact.vue'
+import NotFound from './components/NotFound.vue'
 
 const routes = [
-    { path: '/', component: Home },
-    { path: '/about', component: About },
-    { path: '/skills', component: Skills },
-    { path: '/contact', component: Contact },
-    { path: '*', component: NotFound },
+    { path: '/', component: Home, meta: { title: '' } },
+    { path: '/about', component: About, meta: { title: 'About' } },
+    { path: '/skills', component: Skills, meta: { title: 'Skills' } },
+    { path: '/contact', component: Contact, meta: { title: 'Contact' } },
+    { path: '*', component: NotFound, meta: { title: 'Not Found' } },
 ]
 
 const router = new VueRouter({
@@ -36,16 +35,15 @@ const router = new VueRouter({
     linkActiveClass: 'active'
 })
 
+router.beforeEach((to, from, next) => {
+    if (to.meta.title)
+        document.title = to.meta.title + ' | Gabe Cook'
+    else
+        document.title = 'Gabe Cook'
+    next()
+})
+
 const app = new Vue({
     el: '#app',
     router
 })
-
-$(function(){ 
-    var navMain = $(".navbar-collapse"); // avoid dependency on #id
-    // "a:not([data-toggle])" - to avoid issues caused
-    // when you have dropdown inside navbar
-    navMain.on("click", "a:not([data-toggle])", null, function () {
-        navMain.collapse('hide');
-    });
-});
