@@ -5,7 +5,7 @@
             <span v-for="(skills, category) in skills">
                 <h3>{{ category }}</h3>
                 <div class="row">
-                    <div class="col-sm-8 col-lg-4 mx-auto" v-for="(list, key) in skills" :class="{ 'ml-lg-auto mr-lg-0': key == 0, 'mr-lg-auto ml-lg-0': key == 1 }">
+                    <div class="col-sm-8 col-lg-4 mx-auto" v-for="(list, key) in skills" :class="[ key == 0 ? 'ml-lg-auto mr-lg-0' : 'mr-lg-auto ml-lg-0']">
                         <ul class="list-group list-group-inverse talent-list">
                             <li v-for="skill in list" class="list-group-item">
                                 <span>{{ skill.title }}</span>
