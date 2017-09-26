@@ -94,6 +94,8 @@ a {
     }
     .navbar-nav {
         .nav-item {
+            margin: auto 10px;
+
             a {
                 &:hover,
                &.active {
