@@ -36,10 +36,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.meta.title)
-        document.title = to.meta.title + ' | Gabe Cook'
-    else
-        document.title = 'Gabe Cook'
+    document.title = to.meta.title ? to.meta.title + ' · Gabe Cook' : 'Gabe Cook'
     next()
 })
 
