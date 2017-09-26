@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="far fa-envelope fa-fw" aria-hidden="true"></i>
+                                    <i class="far fa-at fa-fw" aria-hidden="true"></i>
                                 </span>
                                 <input name="email" placeholder="Email Address" class="form-control" type="email" required>
                             </div>
