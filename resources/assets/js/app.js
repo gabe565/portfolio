@@ -18,14 +18,14 @@ Vue.use(VueRouter)
 import Home from './components/Home.vue'
 import About from './components/About.vue'
 import Skills from './components/Skills.vue'
-import Contact from './components/Contact.vue'
+import Connect from './components/Connect.vue'
 import NotFound from './components/NotFound.vue'
 
 const routes = [
     { path: '/', component: Home, meta: { title: '' } },
     { path: '/about', component: About, meta: { title: 'About' } },
     { path: '/skills', component: Skills, meta: { title: 'Skills' } },
-    { path: '/contact', component: Contact, meta: { title: 'Contact' } },
+    { path: '/connect', component: Connect, meta: { title: 'Connect' } },
     { path: '*', component: NotFound, meta: { title: 'Not Found' } },
 ]
 

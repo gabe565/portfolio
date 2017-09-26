@@ -40,9 +40,9 @@
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/contact" class="nav-link">
+                                <router-link to="/connect" class="nav-link">
                                     <i class="far fa-envelope fa-fw"></i>
-                                    Contact
+                                    Connect
                                 </router-link>
                             </li>
                         </ul>

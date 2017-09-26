@@ -1,8 +1,8 @@
 <template>
     <section id="about" class="content-section text-center">
         <div class="container">
-            <h1>Contact</h1>
-            <h3>Connect</h3>
+            <h1>Connect</h1>
+            <h3>Accounts</h3>
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <ul class="list-inline banner-social-buttons">
