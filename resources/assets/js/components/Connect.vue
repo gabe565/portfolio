@@ -30,10 +30,10 @@
             <br>
             <h3>Email</h3>
             <div class="col-lg-6 col-md-8 mx-auto">
-                <form id="needs-validation" data-focus="false" method="post" action="email" role="form" novalidate>
+                <form id="needs-validation" data-focus="false" method="post" action="/api/mail" role="form" novalidate v-on:submit.prevent="sendmail">
                     <fieldset>
-                        <div class="col-md-8 mx-sm-auto">
-                            <div class="messages"></div>
+                        <div class="col">
+                            <div class="alert" v-if="showResponse" :class="[ successful ? 'alert-success' : 'alert-danger']">{{ message }}</div>
                         </div>
                         <!--Name-->
                         <div class="form-group">
@@ -41,7 +41,7 @@
                                 <span class="input-group-addon">
                                     <i class="far fa-user fa-fw" aria-hidden="true"></i>
                                 </span>
-                                <input name="name" placeholder="Name" class="form-control" type="text" required>
+                                <input v-model="name" name="name" placeholder="Name" class="form-control" type="text" required>
                             </div>
                         </div>
                         <!--Email-->
@@ -50,7 +50,7 @@
                                 <span class="input-group-addon">
                                     <i class="far fa-at fa-fw" aria-hidden="true"></i>
                                 </span>
-                                <input name="email" placeholder="Email Address" class="form-control" type="email" required>
+                                <input v-model="email" name="email" placeholder="Email Address" class="form-control" type="email" required>
                             </div>
                         </div>
                         <!--Message-->
@@ -59,13 +59,13 @@
                                 <span class="input-group-addon">
                                     <i class="far fa-comment fa-fw" aria-hidden="true"></i>
                                 </span>
-                                <textarea class="form-control vertical" name="message" placeholder="Message" required></textarea>
+                                <textarea v-model="text" class="form-control vertical" name="text" placeholder="Message" required></textarea>
                             </div>
                         </div>
                         <!-- Button -->
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-raised">
-                                <i id="send-icon" class="far fa-paper-plane fa-fw" aria-hidden="true"></i>
+                            <button class="btn btn-primary btn-raised">
+                                <i class="far fa-fw" :class="[ loading ? 'fa-sync fa-spin' : 'fa-paper-plane' ]" aria-hidden="true"></i>
                                 &nbsp;Send
                             </button>
                         </div>
@@ -78,15 +78,56 @@
 
 <script>
 export default {
-    mounted: function() {
-        var form = document.getElementById("needs-validation")
-        form.addEventListener("submit", function(e) {
-            if (form.checkValidity() == false) {
-                e.preventDefault()
-                e.stopPropagation()
+    data: function() {
+        return {
+            form: null,
+            name: '',
+            email: '',
+            text: '',
+            loading: false,
+            response: null,
+            showResponse: false
+        }
+    },
+    computed: {
+        message: function() {
+            if (this.response != null && this.response.status == 200)
+                return 'The message has been sent successfully. Thank you!'
+            else
+                return 'There was an error during submission'
+        },
+        successful: function() {
+            if (this.response != null && this.response.status == 200)
+                return true
+            else
+                return false
+        }
+    },
+    methods: {
+        sendmail: function() {
+            var valid = this.form.checkValidity()
+            this.form.classList.add('was-validated')
+            if (valid) {
+                this.loading = true
+                var vue = this
+                axios.post('/api/mail', {
+                    name: this.name,
+                    email: this.email,
+                    text: this.text
+                }).then(function(response) {
+                    vue.response = response
+                    vue.loading = false
+                    vue.showResponse = true
+                }).catch(function(error) {
+                    vue.respose = error
+                    vue.loading = false
+                    vue.showResponse = true
+                })
             }
-            form.classList.add('was-validated');
-        })
+        }
+    },
+    mounted: function() {
+        this.form = document.getElementById("needs-validation")
     }
 }
 </script>

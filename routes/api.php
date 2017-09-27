@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('bg', 'DashController@getBackground');
-Route::get('skills', 'SkillController@getSkills');
+Route::get('bg', 'DashController@getBackground')
+    ->middleware('throttle:20,1');
+
+Route::post('mail', 'MailController@sendmail')
+    ->middleware('throttle:2,1');
+
+Route::get('skills', 'SkillController@getSkills')
+    ->middleware('throttle:20,1');
 
