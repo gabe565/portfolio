@@ -33,7 +33,7 @@
         </table>
         <div style="background-color: #607d8b; color: #fff; width: 100%; text-align: center;">
             <a href="https://gabecook.com/">
-                <img src="{{ config('app.url') }}/img/logo-70x70.jpg" style="width: 48px;" alt="Gabe Cook Logo">
+                <img src="{{ config('app.url') }}/img/logo-70x70.png" style="width: 48px;" alt="Gabe Cook Logo">
             </a>
         </div>
     </body>
