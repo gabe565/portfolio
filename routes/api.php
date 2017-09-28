@@ -17,7 +17,7 @@ Route::get('bg', 'DashController@getBackground')
     ->middleware('throttle:20,1');
 
 Route::post('mail', 'MailController@sendmail')
-    ->middleware('throttle:2,1');
+    ->middleware('throttle:10,1');
 
 Route::get('skills', 'SkillController')
     ->middleware('throttle:20,1');
