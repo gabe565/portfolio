@@ -61,6 +61,10 @@ a {
 
 nav.navbar {
     background-color: rgba($gray-900, 0.75);
+    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+        background-color: rgba($gray-900, 0.25);
+        backdrop-filter: blur(10px);
+    }
 
     border-bottom: 1px solid fade-out(white, .7);
 
