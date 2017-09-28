@@ -1,5 +1,8 @@
 <template>
     <section id="about" class="content-section text-center">
+        <div id="map">
+            <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
+        </div>
         <div class="container">
             <h1>Connect</h1>
             <h3>Accounts</h3>
@@ -86,7 +89,28 @@ export default {
             text: '',
             loading: false,
             response: null,
-            showResponse: false
+            showResponse: false,
+            mapCenter: { lat:35.46756, lng:-97.516428 },
+            mapOptions: {
+                zoom: 11,
+                disableDefaultUI: true,
+                scrollwheel: false,
+                draggable: false,
+                disableDoubleClickZoom: true,
+                styles: [
+                    {
+                        "featureType":"all",
+                        "elementType":"all",
+                        "stylers":[
+                            { "invert_lightness":true },
+                            { "saturation":10 },
+                            { "lightness":30 },
+                            { "gamma":0.5 },
+                            { "hue":"#435158" }
+                        ]
+                    }
+                ],
+            },
         }
     },
     computed: {
@@ -128,6 +152,11 @@ export default {
     },
     mounted: function() {
         this.form = document.getElementById("needs-validation")
+
+        var vue = this
+        $(window).resize(_.throttle(function() {
+            vue.$refs.map.panTo(vue.mapCenter)
+        }, 250))
     }
 }
 </script>

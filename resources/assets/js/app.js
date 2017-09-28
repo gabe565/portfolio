@@ -10,7 +10,13 @@ require('./bootstrap')
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import * as VueGoogleMaps from 'vue2-google-maps'
 Vue.use(VueRouter)
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'AIzaSyD_X6EOD9nVWa8YDdb4_-8qIeyZUUjcGho'
+    }
+})
 
 import Home from './components/Home.vue'
 import About from './components/About.vue'
@@ -49,4 +55,3 @@ const app = new Vue({
 })
 
 require('./main')
-require('./map')

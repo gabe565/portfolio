@@ -1,14 +1,14 @@
 // Google Maps Scripts
 var map = null;
 // When the window has finished loading create our google map below
-google.maps.event.addDomListener(window, 'load', init);
+//google.maps.event.addDomListener(window, 'load', init);
 google.maps.event.addDomListener(window, 'resize', function(){
     setTimeout(function() {
         map.setCenter(new google.maps.LatLng(35.46756,-97.516428));
     }, 0)
 });
 
-function init() {
+//function init() {
     // Basic options for a simple Google Map
     // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
     var mapOptions = {
@@ -33,12 +33,11 @@ function init() {
 
     // Get the HTML DOM element that will contain your map
     // We are using a div with id="map" seen below in the <body>
-    var $map = $('#map');
+    var $map = document.getElementById('map');;
 
     // Create the Google Map using out element and options defined above
-    map = new google.maps.Map($map, mapOptions);
+    window.map = new google.maps.Map($map, mapOptions);
     var mapType = new google.maps.StyledMapType(mapStyle, styleOptions);
-    map.mapTypes.set("Cobalt", mapType);
-    map.setMapTypeId("Cobalt");
-};
-
+    window.map.mapTypes.set("Cobalt", mapType);
+    window.map.setMapTypeId("Cobalt");
+//};
