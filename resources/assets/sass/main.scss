@@ -58,7 +58,7 @@ a {
     &:hover {
         text-decoration: none;
 
-        color: darken($primary, 20%);
+        color: lighten($primary, 20%);
     }
 }
 

@@ -2,23 +2,22 @@
     <section id="skills" class="content-section text-center">
         <div class="container">
             <h1>Projects</h1>
-            <span v-for="(skills, category) in skills">
-                <h3>{{ category }}</h3>
-                <div class="row">
-                    <div class="col-sm-8 col-lg-4 mx-auto" v-for="(list, key) in skills" :class="[ key == 0 ? 'ml-lg-auto mr-lg-0' : 'mr-lg-auto ml-lg-0']">
-                        <ul class="list-group list-group-inverse talent-list">
-                            <li v-for="skill in list" class="list-group-item">
-                                <span>{{ skill.title }}</span>
-                                <div class="sr-only">{{ skill.rating }} of 5</div>
-                                <div class="ability-score" aria-hidden="true" :title="skill.rating + ' Stars'">
-                                    <i class="fa-star" aria-hidden="true" v-for="n in 5" :class="[ n <= skill.rating ? 'fas' : 'far empty']"></i>
-                                </div>
-                            </li>
-                        </ul>
+            <div class="card-deck">
+                <div class="card text-white bg-dark border-dark" v-for="project in projects">
+                    <a :href="project.url" class="card-link" target="_blank">
+                        <img :src="'images/projects/' + project.image_path" class="card-img-top" :alt="'Screenshot of ' + project.name">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.name }}</h5>
+                        <p class="card-description">{{ project.description }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a :href="project.url" class="card-link" target="_blank">
+                            View at <code>{{ project.url.replace(/^https?:\/\//,'') }}</code>
+                        </a>
                     </div>
                 </div>
-                <hr>
-            </span>
+            </div>
         </div>
     </section>
 </template>
@@ -27,14 +26,14 @@
 export default {
     data: function() {
         return {
-            skills: {},
+            projects: {},
         };
     },
     created: function() {
         var vue = this
-        axios.get('/api/skills')
+        axios.get('/api/projects')
             .then(function (response) {
-                vue.skills = response.data;
+                vue.projects = response.data;
             })
             .catch(function (response) {
             })
