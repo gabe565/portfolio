@@ -22,7 +22,6 @@ body {
     min-height: 100%;
     width: 100%;
 
-    padding-top: 100px;
     padding-bottom: 100px;
 }
 
@@ -206,6 +205,10 @@ footer {
             }
         }
     }
+}
+
+.content-section {
+    padding-top: 100px;
 }
 
 #map {
