@@ -327,3 +327,10 @@ body {
         opacity: 0.15;
     }
 }
+
+.card {
+    @media (max-width: 575px) {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
