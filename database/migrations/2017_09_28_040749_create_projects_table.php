@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('image_path', 255);
             $table->string('name', 30);
             $table->string('url', 255);
-            $table->string('description', 255);
+            $table->string('description', 500);
         });
     }
 

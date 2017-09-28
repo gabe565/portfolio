@@ -9,13 +9,13 @@
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ project.name }}</h5>
-                        <p class="card-description">{{ project.description }}</p>
+                        <p class="card-description" v-html="project.description"></p>
                     </div>
-                    <div class="card-footer">
-                        <a :href="project.url" class="card-link" target="_blank">
-                            View at <code>{{ project.url.replace(/^https?:\/\//,'') }}</code>
-                        </a>
-                    </div>
+                    <a :href="project.url" class="card-link" target="_blank">
+                        <div class="card-footer">
+                                View at <span class="mono">{{ project.url.replace(/^https?:\/\//,'') }}</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
