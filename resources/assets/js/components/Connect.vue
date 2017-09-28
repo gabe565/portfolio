@@ -8,19 +8,19 @@
                 <div class="col-lg-8 mx-auto">
                     <ul class="list-inline banner-social-buttons">
                         <li class="list-inline-item">
-                            <a href="/to/twitter" class="btn btn-default btn-lg">
+                            <a href="/to/twitter" class="btn btn-default btn-lg" target="_blank">
                                 <i class="fab fa-twitter fa-fw"></i>
                                 <span class="network-name">Twitter</span>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="/to/github" class="btn btn-default btn-lg">
+                            <a href="/to/github" class="btn btn-default btn-lg" target="_blank">
                                 <i class="fab fa-github fa-fw"></i>
                                 <span class="network-name">Github</span>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="/to/linkedin" class="btn btn-default btn-lg">
+                            <a href="/to/linkedin" class="btn btn-default btn-lg" target="_blank">
                                 <i class="fab fa-linkedin fa-fw"></i>
                                 <span class="network-name">LinkedIn</span>
                             </a>
