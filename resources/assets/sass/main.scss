@@ -3,26 +3,23 @@
 
 @import url("https://fonts.googleapis.com/css?family=Raleway:300|Roboto+Slab:300");
 
-body {
-    position: relative;
-
-    width: 100%;
-    height: 100%;
-
-    color: white;
-}
-
-html {
-    width: 100%;
-    height: 100%;
-}
-
 body, html {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
     background: url('../img/black-orchid.png') #222;
 }
 
+body {
+    color: white;
+}
+
 #app {
-    height: 100%;
+    position: relative;
+
+    min-height: 100%;
     width: 100%;
 }
 
@@ -62,16 +59,10 @@ a {
     }
 }
 
-#mainNav {
-    margin-bottom: 0;
+nav.navbar {
+    background-color: rgba($gray-900, 0.75);
 
     border-bottom: 1px solid fade-out(white, .7);
-    background-color: black;
-
-    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
-        background-color: rgba(0, 0, 0, 0.25);
-        backdrop-filter: blur(10px);
-    }
 
     .navbar-toggler {
         font-size: 14px;
@@ -84,10 +75,6 @@ a {
     .navbar-brand {
         font-family: $font-family-serif;
         font-weight: $font-weight-light;
-
-        &:hover {
-            color: $white;
-        }
     }
     a {
         color: $gray-400;
@@ -120,10 +107,10 @@ a {
             border-bottom: 1px solid fade-out(white, .7);
 
             @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
-                background: transparent;
+                background-color: rgba($gray-900, 0.25);
                 backdrop-filter: blur(10px);
             }
-            background: rgba(0, 0, 0, 0.75);
+            background-color: rgba($gray-900, 0.75);
         }
         .nav-link.active {
             outline: none;
@@ -135,7 +122,33 @@ a {
     }
 }
 
+#app.Home {
+    footer {
+        opacity: 0;
+    }
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+
+    background-color: $gray-900;
+
+    padding: 20px 0;
+    border-top: 1px solid fade-out(white, .7);
+
+    transition: opacity, 0.3s ease-in-out;
+
+    p {
+        font-size: 14px;
+
+        margin: 0;
+    }
+}
+
 .masthead {
+    position: fixed;
     display: table;
 
     width: 100%;
@@ -198,7 +211,8 @@ a {
 }
 
 .content-section {
-    padding-top: 150px;
+    padding-top: 50px;
+    padding-bottom: 65px;
 }
 
 .download-section {
@@ -216,7 +230,8 @@ a {
 }
 @media(min-width:992px) {
     .content-section {
-        padding-top: 200px;
+        padding-top: 100px;
+        padding-bottom: 65px;
     }
     #map {
         height: 350px;
@@ -262,15 +277,6 @@ ul.banner-social-buttons {
     }
 }
 
-footer {
-    padding: 50px 0;
-    p {
-        font-size: 14px;
-
-        margin: 0;
-    }
-}
-
 ::-moz-selection {
     background: #fcfcfc;
     background: fade-out(white, .8);
@@ -302,7 +308,7 @@ body {
     opacity: 0
 }
 .fade-enter {
-    margin-top: -50px;
+    opacity: 0;
 }
 
 #skills {

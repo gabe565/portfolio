@@ -20,7 +20,7 @@ import Connect from './components/Connect.vue'
 import NotFound from './components/NotFound.vue'
 
 const routes = [
-    { path: '/', component: Home, meta: { title: '' } },
+    { path: '/', component: Home, meta: { title: 'Home' } },
     { path: '/about', component: About, meta: { title: 'About' } },
     { path: '/skills', component: Skills, meta: { title: 'Skills' } },
     { path: '/projects', component: Projects, meta: { title: 'Projects' } },
@@ -34,9 +34,13 @@ const router = new VueRouter({
     linkActiveClass: 'active'
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(function (to, from, next) {
     document.title = to.meta.title ? to.meta.title + ' · Gabe Cook' : 'Gabe Cook'
     next()
+})
+
+router.afterEach(function(to, from) {
+    $('#app').removeClass(from.meta.title).addClass(to.meta.title)
 })
 
 const app = new Vue({

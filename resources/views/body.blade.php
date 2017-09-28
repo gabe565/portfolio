@@ -14,13 +14,11 @@
         <link href="{{ mix('css/font-awesome.css') }}" rel="stylesheet">
         <link href="{{ mix('css/main.css') }}" rel="stylesheet">
     </head>
-
-    <body id="page-top">
+    <body>
         <div id="app">
-            <!-- Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
                 <div class="container">
-                    <router-link to="/" class="navbar-brand js-scroll-trigger">{{ config('app.name') }}</router-link>
+                    <router-link to="/" class="navbar-brand">{{ config('app.name') }}</router-link>
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="far fa-bars"></i>
                         &nbsp;Menu
@@ -57,8 +55,21 @@
             </nav>
 
             <transition name="fade" mode="out-in" appear>
-                <router-view></router-view>
+            <router-view></router-view>
             </transition>
+
+            <footer>
+                <div class="container">
+                    <a href="https://github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank" class="float-left">
+                        <span>&copy; 2017 Gabe Cook</span>
+                    </a>
+                    <a href="https://github.com/gabe565/gabecook.com" target="_blank" class="float-right">
+                        <span>
+                            <i class="fab fa-github fa-fw"></i>&nbsp;View on GitHub
+                        </span>
+                    </a>
+                </div>
+            </footer>
 
         </div>
 
