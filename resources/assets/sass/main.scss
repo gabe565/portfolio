@@ -125,6 +125,7 @@ nav.navbar {
 #app.Home {
     footer {
         opacity: 0;
+        pointer-events: none;
     }
 }
 
