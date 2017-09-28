@@ -13,7 +13,7 @@
                     </div>
                     <a :href="project.url" class="card-link" target="_blank">
                         <div class="card-footer">
-                                View at <span class="mono">{{ project.url.replace(/^https?:\/\//,'') }}</span>
+                                View at <span class="mono">{{ project.url.replace(/(^\w+:|^)\/\//, '') }}</span>
                         </div>
                     </a>
                 </div>
