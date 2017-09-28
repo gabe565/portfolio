@@ -13,9 +13,9 @@
                 </div>
             </div>
             <hr>
-        </div>
-        <div id="map">
-            <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
+            <div id="map">
+                <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
+            </div>
         </div>
     </section>
 </template>
