@@ -1,8 +1,5 @@
 <template>
     <section id="about" class="content-section text-center">
-        <div id="map">
-            <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
-        </div>
         <div class="container">
             <h1>Connect</h1>
             <h3>Accounts</h3>
@@ -75,6 +72,10 @@
                     </fieldset>
                 </form>
             </div>
+            <hr>
+        </div>
+        <div id="map">
+            <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
         </div>
     </section>
 </template>
@@ -156,7 +157,7 @@ export default {
         var vue = this
         $(window).resize(_.throttle(function() {
             vue.$refs.map.panTo(vue.mapCenter)
-        }, 250))
+        }, 250, { leading: false }))
     }
 }
 </script>

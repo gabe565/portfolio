@@ -11,12 +11,12 @@
 
     // Collapse the navbar when page is scrolled
     var $navbar = $('.navbar')
-    $(window).scroll(function() {
-        if ($navbar.offset().top > 10) {
+    $(window).scroll(_.throttle(function() {
+        if ($navbar.offset().top > 0) {
             $navbar.addClass("navbar-shrink")
         } else {
             $navbar.removeClass("navbar-shrink")
         }
-    })
+    }, 250))
 
 })(jQuery) // End of use strict
