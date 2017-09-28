@@ -2,6 +2,7 @@
     <section id="about" class="content-section text-center">
         <div class="container">
             <h1>Connect</h1>
+            <hr>
             <h3>Accounts</h3>
             <div class="row">
                 <div class="col-lg-8 mx-auto">
@@ -28,6 +29,7 @@
                 </div>
             </div>
             <br>
+            <hr>
             <h3>Email</h3>
             <div class="col-lg-6 col-md-8 mx-auto">
                 <form id="needs-validation" data-focus="false" method="post" action="/api/mail" role="form" novalidate v-on:submit.prevent="sendmail">
@@ -64,7 +66,7 @@
                         </div>
                         <!-- Button -->
                         <div class="form-group">
-                            <button class="btn btn-primary btn-raised">
+                            <button class="btn btn-default">
                                 <i class="far fa-fw" :class="[ loading ? 'fa-sync fa-spin' : 'fa-paper-plane' ]" aria-hidden="true"></i>
                                 &nbsp;Send
                             </button>
@@ -72,10 +74,6 @@
                     </fieldset>
                 </form>
             </div>
-            <hr>
-        </div>
-        <div id="map">
-            <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
         </div>
     </section>
 </template>
@@ -91,27 +89,6 @@ export default {
             loading: false,
             response: null,
             showResponse: false,
-            mapCenter: { lat:35.46756, lng:-97.516428 },
-            mapOptions: {
-                zoom: 11,
-                disableDefaultUI: true,
-                scrollwheel: false,
-                draggable: false,
-                disableDoubleClickZoom: true,
-                styles: [
-                    {
-                        "featureType":"all",
-                        "elementType":"all",
-                        "stylers":[
-                            { "invert_lightness":true },
-                            { "saturation":10 },
-                            { "lightness":30 },
-                            { "gamma":0.5 },
-                            { "hue":"#435158" }
-                        ]
-                    }
-                ],
-            },
         }
     },
     computed: {
@@ -149,19 +126,10 @@ export default {
                     vue.showResponse = true
                 })
             }
-        },
-        centerMap: _.throttle(function() {
-            this.$refs.map.$mapObject.setCenter(this.mapCenter)
-        }, 100, { leading: false })
+        }
     },
     mounted: function() {
         this.form = document.getElementById("needs-validation")
-
-        var vue = this
-        $(window).resize(this.centerMap)
-    },
-    destroyed: function() {
-        $(window).off('resize', this.centerMap)
     }
 }
 </script>

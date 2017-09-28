@@ -2,6 +2,7 @@
     <section id="skills" class="content-section text-center">
         <div class="container">
             <h1>Projects</h1>
+            <hr>
             <div class="card-deck">
                 <div class="card text-white bg-dark border-dark" v-for="project in projects">
                     <a :href="project.url" class="card-link" target="_blank">

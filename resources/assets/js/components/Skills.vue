@@ -3,6 +3,7 @@
         <div class="container">
             <h1>Skills</h1>
             <span v-for="(skills, category) in skills">
+                <hr>
                 <h3>{{ category }}</h3>
                 <div class="row">
                     <div class="col-sm-8 col-lg-4 mx-auto" v-for="(list, key) in skills" :class="[ key == 0 ? 'ml-lg-auto mr-lg-0' : 'mr-lg-auto ml-lg-0']">
@@ -17,7 +18,6 @@
                         </ul>
                     </div>
                 </div>
-                <hr>
             </span>
         </div>
     </section>
