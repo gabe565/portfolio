@@ -149,15 +149,19 @@ export default {
                     vue.showResponse = true
                 })
             }
-        }
+        },
+        centerMap: _.throttle(function() {
+            this.$refs.map.$mapObject.setCenter(this.mapCenter)
+        }, 100, { leading: false })
     },
     mounted: function() {
         this.form = document.getElementById("needs-validation")
 
         var vue = this
-        $(window).resize(_.throttle(function() {
-            vue.$refs.map.panTo(vue.mapCenter)
-        }, 250, { leading: false }))
+        $(window).resize(this.centerMap)
+    },
+    destroyed: function() {
+        $(window).off('resize', this.centerMap)
     }
 }
 </script>
