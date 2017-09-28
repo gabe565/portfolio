@@ -40,6 +40,12 @@
                                 </router-link>
                             </li>
                             <li class="nav-item">
+                                <router-link to="/projects" class="nav-link">
+                                    <i class="far fa-file fa-fw"></i>
+                                    Projects
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
                                 <router-link to="/connect" class="nav-link">
                                     <i class="far fa-envelope fa-fw"></i>
                                     Connect

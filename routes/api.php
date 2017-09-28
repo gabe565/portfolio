@@ -19,6 +19,8 @@ Route::get('bg', 'DashController@getBackground')
 Route::post('mail', 'MailController@sendmail')
     ->middleware('throttle:2,1');
 
-Route::get('skills', 'SkillController@getSkills')
+Route::get('skills', 'SkillController')
     ->middleware('throttle:20,1');
 
+Route::get('projects', 'ProjectController')
+    ->middleware('throttle:20,1');

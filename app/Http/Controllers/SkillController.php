@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
-    public function getSkills() {
+    public function __invoke() {
         $skills = Skill::select('skills.title', 'skills.rating', 'headings.title as heading')
             ->join('headings', 'skills.heading', '=', 'headings.id')
             ->orderBy('headings.order', 'asc')
@@ -20,7 +20,7 @@ class SkillController extends Controller
             $count = $item->count();
             if ($count > 1) {
                 $chunk = ceil($count / 2);
-                return $item->chunk($chunk);
+                return $item->chunk($chunk, false);
             } else {
                 return $item;
             }
