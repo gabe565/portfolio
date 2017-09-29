@@ -6,7 +6,7 @@
             <div class="card-deck">
                 <div class="card text-white bg-dark border-dark" v-for="project in projects">
                     <a :href="project.url" class="card-link" target="_blank">
-                        <img :src="'images/projects/' + project.image_path" class="card-img-top" :alt="'Screenshot of ' + project.name">
+                        <img :src="project.image_path" class="card-img-top" :alt="'Screenshot of ' + project.name">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ project.name }}</h5>
