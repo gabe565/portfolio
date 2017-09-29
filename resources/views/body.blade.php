@@ -18,6 +18,7 @@
         <meta property='og:image' content='https://gabecook.com/images/thumb.png'/>
         <meta property='og:description' content='Portfolio website for Gabe Cook'/>
         <meta property='og:url' content='https://gabecook.com' />
+        <meta property="og:type" content="website" />
 
         <title>{{ config('app.name') }}</title>
 
