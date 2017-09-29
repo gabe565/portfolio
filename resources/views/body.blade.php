@@ -14,6 +14,11 @@
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#607d8b">
         <meta name="theme-color" content="#607d8b">
 
+        <meta property='og:title' content='Gabe Cook'/>
+        <meta property='og:image' content='https://gabecook.com/images/thumb.png'/>
+        <meta property='og:description' content='Portfolio website for Gabe Cook'/>
+        <meta property='og:url' content='https://gabecook.com' />
+
         <title>{{ config('app.name') }}</title>
 
         <!-- Bootstrap core CSS -->
