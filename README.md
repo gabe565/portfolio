@@ -6,4 +6,4 @@
 
 My single-page portfolio website build with [Laravel](https://laravel.com) and [Vue.js](https://vuejs.org).
 
-This site will be ready to be published to <https://gabecook.com> eventually. For now it is located at <https://dev.gabecook.com>
+This site is live at <https://gabecook.com>.
