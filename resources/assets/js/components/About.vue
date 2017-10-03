@@ -8,7 +8,7 @@
                     <img class="img-fluid rounded" src="/img/me.jpg">
                 </div>
                 <div class="col-lg-6 mr-auto">
-                    <p>I am a 22 year old computer programmer from Oklahoma City, OK. I am currently studying towards a B.S. in Computer Science at the University of Central Oklahoma.</p>
+                    <p>I am a <span>{{ age }}</span> year old computer programmer from Oklahoma City, OK. I am currently studying towards a B.S. in Computer Science at the University of Central Oklahoma.</p>
                     <p>I enjoy creating optimized programs which have an easy-to-use interface.</p>
                 </div>
             </div>
@@ -24,6 +24,7 @@
 export default {
     data: function() {
         return {
+            age : '',
             mapCenter: { lat:35.46756, lng:-97.516428 },
             mapOptions: {
                 zoom: 11,
@@ -51,6 +52,10 @@ export default {
         centerMap: _.throttle(function() {
             this.$refs.map.$mapObject.setCenter(this.mapCenter)
         }, 100, { leading: false })
+    },
+    created: function() {
+        var birthday = +new Date('1995-05-26');
+        this.age = ~~((Date.now() - birthday) / (31557600000));
     },
     mounted: function() {
         var vue = this
