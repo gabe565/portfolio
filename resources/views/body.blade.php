@@ -26,6 +26,17 @@
         <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ mix('css/font-awesome.css') }}" rel="stylesheet">
         <link href="{{ mix('css/main.css') }}" rel="stylesheet">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-81536605-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-81536605-1');
+        </script>
+
     </head>
     <body>
         <div id="app">
