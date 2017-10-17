@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://dev.gabecook.com/</loc>
+    
+    
+        <lastmod>2017-10-17T19:11:13+00:00</lastmod>
+    
+        <changefreq>daily</changefreq>
+    
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://dev.gabecook.com/about</loc>
+    
+    
+        <lastmod>2017-10-17T19:11:14+00:00</lastmod>
+    
+        <changefreq>daily</changefreq>
+    
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://dev.gabecook.com/connect</loc>
+    
+    
+        <lastmod>2017-10-17T19:11:19+00:00</lastmod>
+    
+        <changefreq>daily</changefreq>
+    
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://dev.gabecook.com/projects</loc>
+    
+    
+        <lastmod>2017-10-17T19:11:17+00:00</lastmod>
+    
+        <changefreq>daily</changefreq>
+    
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://dev.gabecook.com/skills</loc>
+    
+    
+        <lastmod>2017-10-17T19:11:16+00:00</lastmod>
+    
+        <changefreq>daily</changefreq>
+    
+        <priority>0.8</priority>
+    </url>
+</urlset>
