@@ -36,10 +36,6 @@
 
             gtag('config', 'UA-81536605-1');
         </script>
-
-        <script>
-            window.Promise||document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js"><\/script>')
-        </script>
     </head>
     <body>
         <div id="app">
@@ -100,6 +96,7 @@
 
         </div>
 
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?unknown=polyfill"></script>
         <script src="{{ mix('js/manifest.js') }}"></script>
         <script src="{{ mix('js/vendor.js') }}"></script>
         <script src="{{ mix('js/app.js') }}"></script>
