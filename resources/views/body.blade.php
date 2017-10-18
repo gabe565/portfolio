@@ -37,6 +37,9 @@
             gtag('config', 'UA-81536605-1');
         </script>
 
+        <script>
+            window.Promise||document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js"><\/script>')
+        </script>
     </head>
     <body>
         <div id="app">
