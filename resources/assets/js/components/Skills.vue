@@ -34,13 +34,19 @@ export default {
         };
     },
     created: function() {
+        this.$Progress.start()
+
         var vue = this
         axios.get('/api/skills')
             .then(function (response) {
+                vue.$Progress.finish()
                 vue.skills = response.data;
             })
             .catch(function (response) {
+                vue.$Progress.fail()
             })
+    },
+    mounted: function() {
     }
 }
 </script>

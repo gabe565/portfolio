@@ -10,8 +10,14 @@ require('./bootstrap')
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueProgressBar from 'vue-progressbar'
 import * as VueGoogleMaps from 'vue2-google-maps'
 Vue.use(VueRouter)
+Vue.use(VueProgressBar, {
+    color: '#8cb9df',
+    failedColor: 'red',
+    height: '2px'
+})
 Vue.use(VueGoogleMaps, {
     load: {
         key: 'AIzaSyD_X6EOD9nVWa8YDdb4_-8qIeyZUUjcGho'

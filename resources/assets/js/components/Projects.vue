@@ -37,12 +37,16 @@ export default {
         };
     },
     created: function() {
+        this.$Progress.start()
+
         var vue = this
         axios.get('/api/projects')
             .then(function (response) {
+                vue.$Progress.finish()
                 vue.projects = response.data;
             })
             .catch(function (response) {
+                vue.$Progress.fail()
             })
     }
 }

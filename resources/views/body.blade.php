@@ -78,8 +78,10 @@
             </nav>
 
             <transition name="fade" mode="out-in" appear>
-            <router-view></router-view>
+                <router-view></router-view>
             </transition>
+
+            <vue-progress-bar></vue-progress-bar>
 
             <footer>
                 <div class="container">
