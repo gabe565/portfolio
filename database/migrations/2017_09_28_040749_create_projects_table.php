@@ -19,6 +19,11 @@ class CreateProjectsTable extends Migration
             $table->string('name', 30);
             $table->string('url', 255);
             $table->string('description', 500);
+            $table->unsignedSmallInteger('heading');
+
+            $table->foreign('heading')
+                ->references('id')
+                ->on('project_headings');
         });
     }
 
