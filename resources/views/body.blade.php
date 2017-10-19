@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="description" content="Personal portfolio website for Gabe Cook">
+        <meta name="author" content="Gabe Cook">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -16,7 +16,7 @@
 
         <meta property='og:title' content='Gabe Cook'/>
         <meta property='og:image' content='https://gabecook.com/images/thumb.png'/>
-        <meta property='og:description' content='Portfolio website for Gabe Cook'/>
+        <meta property='og:description' content='Personal portfolio website for Gabe Cook'/>
         <meta property='og:url' content='https://gabecook.com' />
         <meta property="og:type" content="website" />
 
