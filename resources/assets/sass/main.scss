@@ -3,6 +3,8 @@
 
 @import url("https://fonts.googleapis.com/css?family=Raleway:300|Roboto+Slab:300");
 
+@import "svg";
+
 body, html {
     margin: 0;
     padding: 0;
@@ -91,7 +93,7 @@ nav.navbar {
 
             a {
                 &:hover,
-               &.active {
+                &.active {
                     color: $white;
                 }
             }

@@ -50,25 +50,25 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <router-link to="/about" class="nav-link">
-                                    <i class="far fa-info-circle fa-fw"></i>
+                                    <svgicon name="info-circle" class="svg-baseline"></svgicon>
                                     About
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="/skills" class="nav-link">
-                                    <i class="far fa-list fa-fw"></i>
+                                    <svgicon name="list-ul" class="svg-baseline"></svgicon>
                                     Skills
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="/projects" class="nav-link">
-                                    <i class="far fa-terminal fa-fw"></i>
+                                    <svgicon name="terminal" class="svg-baseline"></svgicon>
                                     Projects
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="/connect" class="nav-link">
-                                    <i class="far fa-envelope fa-fw"></i>
+                                    <svgicon name="envelope" class="svg-baseline"></svgicon>
                                     Connect
                                 </router-link>
                             </li>
@@ -90,7 +90,8 @@
                     </a>
                     <a href="https://github.com/gabe565/gabecook.com" target="_blank" class="float-right">
                         <span>
-                            <i class="fab fa-github fa-fw"></i>&nbsp;View on GitHub
+                            <svgicon name="github"></svgicon>
+                            &nbsp;View on GitHub
                         </span>
                     </a>
                 </div>

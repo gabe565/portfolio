@@ -15,7 +15,14 @@
                                 <span>{{ skill.title }}</span>
                                 <div class="sr-only">{{ skill.rating }} of 5</div>
                                 <div class="ability-score" aria-hidden="true" :title="skill.rating + ' Stars'">
-                                    <i class="fa-star" aria-hidden="true" v-for="n in 5" :class="[ n <= skill.rating ? 'fas' : 'far empty']"></i>
+                                    <span v-for="n in 5">
+                                        <template v-if="n <= skill.rating">
+                                            <svgicon name="star-full" class="star-full" aria-hidden="true"></svgicon>
+                                        </template>
+                                        <template v-else>
+                                            <svgicon name="star-empty" class="star-empty" aria-hidden="true"></svgicon>
+                                        </template>
+                                    </span>
                                 </div>
                             </li>
                         </ul>
@@ -27,6 +34,9 @@
 </template>
 
 <script>
+import '../svg/star-full'
+import '../svg/star-empty'
+
 export default {
     data: function() {
         return {

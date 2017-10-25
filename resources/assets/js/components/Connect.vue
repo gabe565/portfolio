@@ -13,19 +13,19 @@
                     <ul class="list-inline banner-social-buttons">
                         <li class="list-inline-item">
                             <a href="/to/twitter" class="btn btn-default btn-lg" target="_blank">
-                                <i class="fab fa-twitter fa-fw"></i>
+                                <svgicon name="twitter"></svgicon>
                                 <span class="network-name">Twitter</span>
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a href="/to/github" class="btn btn-default btn-lg" target="_blank">
-                                <i class="fab fa-github fa-fw"></i>
+                                <svgicon name="github"></svgicon>
                                 <span class="network-name">Github</span>
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a href="/to/linkedin" class="btn btn-default btn-lg" target="_blank">
-                                <i class="fab fa-linkedin fa-fw"></i>
+                                <svgicon name="linkedin"></svgicon>
                                 <span class="network-name">LinkedIn</span>
                             </a>
                         </li>
@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="far fa-user fa-fw" aria-hidden="true"></i>
+                                <svgicon name="user-alt"></svgicon>
                                 </span>
                                 <input v-model="name" name="name" placeholder="Name" class="form-control" type="text" required>
                             </div>
@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="far fa-at fa-fw" aria-hidden="true"></i>
+                                <svgicon name="at"></svgicon>
                                 </span>
                                 <input v-model="email" name="email" placeholder="Email Address" class="form-control" type="email" required>
                             </div>
@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="far fa-comment fa-fw" aria-hidden="true"></i>
+                                <svgicon name="comment"></svgicon>
                                 </span>
                                 <textarea v-model="text" class="form-control vertical" name="text" placeholder="Message" required></textarea>
                             </div>
@@ -71,7 +71,8 @@
                         <!-- Button -->
                         <div class="form-group">
                             <button class="btn btn-default">
-                                <i class="far fa-fw" :class="[ loading ? 'fa-sync fa-spin' : 'fa-paper-plane' ]" aria-hidden="true"></i>
+                                <svgicon name="paper-plane" v-if="!loading"></svgicon>
+                                <svgicon name="sync" class="svg-spin" v-if="loading"></svgicon>
                                 &nbsp;Send
                             </button>
                         </div>
@@ -83,6 +84,15 @@
 </template>
 
 <script>
+import '../svg/twitter'
+import '../svg/github'
+import '../svg/linkedin'
+import '../svg/user-alt'
+import '../svg/at'
+import '../svg/comment'
+import '../svg/paper-plane'
+import '../svg/sync'
+
 export default {
     data: function() {
         return {

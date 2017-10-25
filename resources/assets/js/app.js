@@ -11,13 +11,16 @@ require('./bootstrap')
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueProgressBar from 'vue-progressbar'
+import VueSVGIcon from 'vue-svgicon'
 import * as VueGoogleMaps from 'vue2-google-maps'
+
 Vue.use(VueRouter)
 Vue.use(VueProgressBar, {
     color: '#8cb9df',
     failedColor: 'red',
     height: '2px'
 })
+Vue.use(VueSVGIcon)
 Vue.use(VueGoogleMaps, {
     load: {
         key: 'AIzaSyD_X6EOD9nVWa8YDdb4_-8qIeyZUUjcGho'
@@ -30,6 +33,11 @@ import Skills from './components/Skills.vue'
 import Projects from './components/Projects.vue'
 import Connect from './components/Connect.vue'
 import NotFound from './components/NotFound.vue'
+
+import './svg/info-circle'
+import './svg/list-ul'
+import './svg/terminal'
+import './svg/envelope'
 
 const routes = [
     { path: '/', component: Home, meta: { title: 'Home' } },
