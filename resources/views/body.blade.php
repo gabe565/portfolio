@@ -43,32 +43,32 @@
                 <div class="container">
                     <router-link to="/" class="navbar-brand">{{ config('app.name') }}</router-link>
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="far fa-bars"></i>
+                        <svgicon name="bars"></svgicon>
                         &nbsp;Menu
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <router-link to="/about" class="nav-link">
-                                    <svgicon name="info-circle" class="svg-baseline"></svgicon>
+                                    <svgicon name="info-circle"></svgicon>
                                     About
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="/skills" class="nav-link">
-                                    <svgicon name="list-ul" class="svg-baseline"></svgicon>
+                                    <svgicon name="list-ul"></svgicon>
                                     Skills
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="/projects" class="nav-link">
-                                    <svgicon name="terminal" class="svg-baseline"></svgicon>
+                                    <svgicon name="terminal"></svgicon>
                                     Projects
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="/connect" class="nav-link">
-                                    <svgicon name="envelope" class="svg-baseline"></svgicon>
+                                    <svgicon name="envelope"></svgicon>
                                     Connect
                                 </router-link>
                             </li>

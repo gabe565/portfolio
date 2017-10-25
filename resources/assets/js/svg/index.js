@@ -1,5 +1,6 @@
 /* eslint-disable */
 require('./at')
+require('./bars')
 require('./comment')
 require('./envelope')
 require('./github')

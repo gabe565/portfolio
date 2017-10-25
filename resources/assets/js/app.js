@@ -34,6 +34,7 @@ import Projects from './components/Projects.vue'
 import Connect from './components/Connect.vue'
 import NotFound from './components/NotFound.vue'
 
+import './svg/bars'
 import './svg/info-circle'
 import './svg/list-ul'
 import './svg/terminal'
