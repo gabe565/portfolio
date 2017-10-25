@@ -24,7 +24,6 @@
 
         <!-- Bootstrap core CSS -->
         <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ mix('css/font-awesome.css') }}" rel="stylesheet">
         <link href="{{ mix('css/main.css') }}" rel="stylesheet">
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
