@@ -62,7 +62,7 @@
                             </li>
                             <li class="nav-item">
                                 <router-link to="/projects" class="nav-link">
-                                    <i class="far fa-file fa-fw"></i>
+                                    <i class="far fa-terminal fa-fw"></i>
                                     Projects
                                 </router-link>
                             </li>
