@@ -53,12 +53,9 @@ export default {
             this.$refs.map.$mapObject.setCenter(this.mapCenter)
         }, 100, { leading: false })
     },
-    created: function() {
+    mounted: function() {
         var birthday = +new Date('1995-05-26');
         this.age = ~~((Date.now() - birthday) / (31557600000));
-    },
-    mounted: function() {
-        var vue = this
         $(window).resize(this.centerMap)
     },
     destroyed: function() {

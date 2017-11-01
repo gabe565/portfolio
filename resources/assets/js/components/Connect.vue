@@ -107,16 +107,13 @@ export default {
     },
     computed: {
         message: function() {
-            if (this.response != null && this.response.status == 200)
+            if (this.successful)
                 return 'The message has been sent successfully. Thank you!'
             else
                 return 'There was an error during submission'
         },
         successful: function() {
-            if (this.response != null && this.response.status == 200)
-                return true
-            else
-                return false
+            return this.response != null && this.response.status == 200
         }
     },
     methods: {

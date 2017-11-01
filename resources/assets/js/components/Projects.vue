@@ -42,8 +42,8 @@ export default {
         var vue = this
         axios.get('/api/projects')
             .then(function (response) {
-                vue.$Progress.finish()
                 vue.projects = response.data;
+                vue.$Progress.finish()
             })
             .catch(function (response) {
                 vue.$Progress.fail()
