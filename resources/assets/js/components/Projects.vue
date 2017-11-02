@@ -10,7 +10,7 @@
                 <h3>{{ category }}</h3>
                 <div class="card-deck">
                     <div class="card text-white bg-dark border-dark" v-for="project in projects">
-                        <a :href="project.url" class="card-link" target="_blank">
+                        <a :href="project.url" class="card-link overflow-hidden" target="_blank" :style="{ height: cardHeight }">
                             <img :src="project.image_path" class="card-img-top" :alt="'Screenshot of ' + project.name">
                         </a>
                         <div class="card-body">
@@ -33,8 +33,14 @@
 export default {
     data: function() {
         return {
+            cardHeight: 0,
             projects: {},
         };
+    },
+    methods: {
+        cardEqHeight: function() {
+            this.cardHeight = $('.card-img-top').first().width() / 1.5 + "px"
+        }
     },
     created: function() {
         this.$Progress.start()
@@ -48,6 +54,13 @@ export default {
             .catch(function (response) {
                 vue.$Progress.fail()
             })
+    },
+    mounted: function() {
+        $(window).on('resize.projects', _.throttle(this.cardEqHeight, 50))
+        this.cardEqHeight()
+    },
+    destroyed: function() {
+        $(window).off('resize.projects')
     }
 }
 </script>

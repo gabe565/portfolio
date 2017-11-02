@@ -52,7 +52,7 @@ p {
 }
 
 a {
-    transition: all 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
     color: $primary;
     &:focus,
@@ -321,4 +321,8 @@ body {
 
 .mono {
     font-family: $font-family-monospace;
+}
+
+.overflow-hidden {
+    overflow: hidden;
 }
