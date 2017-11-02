@@ -11,7 +11,7 @@
                 <div class="card-deck">
                     <div class="card text-white bg-dark border-dark" v-for="project in projects">
                         <a :href="project.url" class="card-link overflow-hidden" target="_blank" :style="{ height: cardHeight }">
-                            <img :src="project.image_path" class="card-img-top" :alt="'Screenshot of ' + project.name">
+                            <img :src="project.image_path" class="card-img-top" :alt="'Screenshot of ' + project.name" v-on:load="cardEqHeight">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ project.name }}</h5>
@@ -56,8 +56,7 @@ export default {
             })
     },
     mounted: function() {
-        $(window).on('resize.projects', _.throttle(this.cardEqHeight, 50))
-        this.cardEqHeight()
+        $(window).on('resize.projects', _.throttle(this.cardEqHeight, 50, { leading: false, trailing: true }))
     },
     destroyed: function() {
         $(window).off('resize.projects')
