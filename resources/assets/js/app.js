@@ -54,26 +54,39 @@ const router = new VueRouter({
     routes,
     mode: 'history',
     linkActiveClass: 'active',
-    scrollBehavior (to, from, savedPosition) {
-        if (savedPosition)
-            return savedPosition
-        else
-            return { x: 0, y: 0 }
+    scrollBehavior(to, from, savedPosition) {
+        return new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                if (savedPosition)
+                    return savedPosition
+                else
+                    return { x: 0, y: 0 }
+            }, 200)
+        })
     }
 })
 
 router.beforeEach(function (to, from, next) {
     document.title = to.meta.title ? to.meta.title + ' · Gabe Cook' : 'Gabe Cook'
-    next()
-})
-
-router.afterEach(function(to, from) {
     $('#app').removeClass(from.meta.title).addClass(to.meta.title)
+    next()
 })
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    data: function() {
+        return {
+            transitionName: 'fade'
+        }
+    },
+    watch: {
+        '$route': function(to, from) {
+            var fromIndex = routes.findIndex(function(obj) { return obj.path == from.path })
+            var toIndex = routes.findIndex(function(obj) { return obj.path == to.path })
+            this.transitionName = (fromIndex < toIndex) ? 'slide-left' : 'slide-right'
+        }
+    }
 })
 
 require('./main')

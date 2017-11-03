@@ -11,18 +11,18 @@
         "svg": "vsvg -s ./resources/assets/svg -t ./resources/assets/js/svg"
     },
     "devDependencies": {
-        "axios": "^0.17.0",
-        "cross-env": "^5.1.1",
-        "jquery": "^3.2.1",
-        "laravel-mix": "^1.0",
-        "lodash": "^4.17.4",
-        "vue": "^2.1.10",
         "vue-svgicon": "^2.1.0"
     },
     "dependencies": {
+        "axios": "^0.17.0",
         "bootstrap": "4.0.0-beta",
+        "cross-env": "^5.1.1",
+        "jquery": "^3.2.1",
         "jquery.easing": "^1.4.1",
+        "laravel-mix": "^1.0",
+        "lodash": "^4.17.4",
         "popper.js": "^1.12.6",
+        "vue": "^2.1.10",
         "vue-progressbar": "^0.7.3",
         "vue-router": "^3.0.1",
         "vue2-google-maps": "^0.8.4"

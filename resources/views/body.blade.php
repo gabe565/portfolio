@@ -76,8 +76,8 @@
                 </div>
             </nav>
 
-            <transition name="fade" mode="out-in" appear>
-                <router-view></router-view>
+            <transition :name="transitionName" mode="out-in" appear>
+                <router-view class="child-view"></router-view>
             </transition>
 
             <vue-progress-bar></vue-progress-bar>
