@@ -2,15 +2,12 @@
     display: inline-block;
     font-size: inherit;
     height: 1em;
+    text-align: center;
+    width: 1.25em;
     color: inherit;
     fill: none;
     stroke: currentColor;
     vertical-align: -9%;
-
-    &.svg-fw {
-        text-align: center;
-        width: 1.25em;
-    }
 
     &.svg-fill {
         fill: currentColor;
