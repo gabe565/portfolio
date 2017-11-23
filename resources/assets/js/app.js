@@ -10,12 +10,12 @@ import 'vue-svgicon/dist/polyfill'
 require('./bootstrap')
 
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+//import VueRouter from 'vue-router'
 import VueProgressBar from 'vue-progressbar'
 import VueSVGIcon from 'vue-svgicon'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
-Vue.use(VueRouter)
+//Vue.use(VueRouter)
 Vue.use(VueProgressBar, {
     color: '#8cb9df',
     failedColor: 'red',
@@ -33,6 +33,7 @@ import About from './components/About.vue'
 import Skills from './components/Skills.vue'
 import Projects from './components/Projects.vue'
 import Connect from './components/Connect.vue'
+import Gmap from './components/Gmap.vue'
 import NotFound from './components/NotFound.vue'
 
 import './svg/bars'
@@ -41,51 +42,16 @@ import './svg/list-ul'
 import './svg/terminal'
 import './svg/envelope'
 
-const routes = [
-    { path: '/', component: Home, meta: { title: 'Home' } },
-    { path: '/about', component: About, meta: { title: 'About' } },
-    { path: '/skills', component: Skills, meta: { title: 'Skills' } },
-    { path: '/projects', component: Projects, meta: { title: 'Projects' } },
-    { path: '/connect', component: Connect, meta: { title: 'Connect' } },
-    { path: '*', component: NotFound, meta: { title: 'Not Found' } },
-]
-
-const router = new VueRouter({
-    routes,
-    mode: 'history',
-    linkActiveClass: 'active',
-    scrollBehavior(to, from, savedPosition) {
-        return new Promise(function(resolve, reject) {
-            setTimeout(function() {
-                if (savedPosition)
-                    return savedPosition
-                else
-                    return { x: 0, y: 0 }
-            }, 200)
-        })
-    }
-})
-
-router.beforeEach(function (to, from, next) {
-    document.title = to.meta.title ? to.meta.title + ' · Gabe Cook' : 'Gabe Cook'
-    $('#app').removeClass(from.meta.title).addClass(to.meta.title)
-    next()
-})
-
 const app = new Vue({
     el: '#app',
-    router,
-    data: function() {
-        return {
-            transitionName: 'fade'
-        }
-    },
-    watch: {
-        '$route': function(to, from) {
-            var fromIndex = routes.findIndex(function(obj) { return obj.path == from.path })
-            var toIndex = routes.findIndex(function(obj) { return obj.path == to.path })
-            this.transitionName = (fromIndex < toIndex) ? 'slide-left' : 'slide-right'
-        }
+    components: {
+        Home,
+        About,
+        Skills,
+        Projects,
+        Connect,
+        Gmap,
+        NotFound
     }
 })
 

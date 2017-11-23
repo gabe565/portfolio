@@ -1,7 +1,7 @@
 <template>
     <section id="about" class="content-section text-center">
         <div class="container">
-            <h1>Connect</h1>
+            <h1 class="display-4">Connect</h1>
             <p>
                 Here are links to my profiles on other relevant sites.<br>
                 The email form below will directly send to my personal email address. Feel free to contact me!

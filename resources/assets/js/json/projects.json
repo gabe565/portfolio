@@ -1,0 +1,16 @@
+{
+    "Web":[
+        {
+            "name":"Mnemonic Major Converter",
+            "image_path":"\/\/mnemonic.ninja\/images\/thumb.png",
+            "url":"\/\/mnemonic.ninja",
+            "description":"A system which can convert between corresponding numbers and words to aid in numeric memorization. Conversion is done based on pronunciation with a fallback to letter conversions. <a href=\"\/\/mnemonic.gabe565.com\/about\" target=\"_blank\">Read the about page for more detail.<\/a>"
+        },
+        {
+            "name":"Personal Startpage",
+            "image_path":"\/images\/projects\/gabe565.com.jpg",
+            "url":"\/\/gabe565.com",
+            "description":"Titled \u201c~\u201d, this is a personal portal which links together many of the self-hosted or external services that I use. It uses OAuth 2 authentication and LDAP authorization to disallow access to private services."
+        }
+    ]
+}

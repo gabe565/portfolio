@@ -18,20 +18,19 @@
 export default {
     data: function() {
         return {
-            style: {},
+            bgs: [
+                'anas-alshanti-169265.jpg',
+                'technology-785742.jpg'
+            ]
         };
     },
-    created: function() {
-        var vue = this
-        axios.get('/api/bg')
-            .then(function (response) {
-                vue.style = {
-                    'background-image':  'url(' + response.data + ')',
-                    'opacity': 0.5
-                };
-            })
-            .catch(function (response) {
-            })
+    computed: {
+        style: function() {
+            return {
+                'background-image':  'url(storage/bg/' + _.sample(this.bgs) + ')',
+                'opacity': 0.5
+            }
+        }
     }
 }
 </script>

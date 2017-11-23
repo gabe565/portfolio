@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
 @import "variables";
 
 @import url("https://fonts.googleapis.com/css?family=Raleway:300|Roboto+Slab:300");
@@ -21,10 +22,8 @@ body {
 #app {
     position: relative;
 
-    min-height: 100%;
+    height: 100%;
     width: 100%;
-
-    padding-bottom: 100px;
 }
 
 h1,
@@ -43,7 +42,8 @@ p {
     line-height: 1.5;
 
     margin: 0 0 25px;
-    @media(min-width: 768px) {
+
+    @include media-breakpoint-up(md) {
         font-size: 18px;
         line-height: 1.6;
 
@@ -99,7 +99,7 @@ nav.navbar {
             }
         }
     }
-    @media(min-width:768px) {
+    @include media-breakpoint-up(md) {
         padding-top: 20px;
         padding-bottom: 20px;
 
@@ -130,17 +130,8 @@ nav.navbar {
     }
 }
 
-#app.Home {
-    footer {
-        opacity: 0;
-        pointer-events: none;
-    }
-}
-
 footer {
-    position: absolute;
     width: 100%;
-    bottom: 0;
 
     background-color: $gray-900;
 
@@ -157,20 +148,16 @@ footer {
 }
 
 .masthead {
-    position: fixed;
     display: table;
 
+    height: auto;
     width: 100%;
-    height: 100%;
     padding: 200px 0;
 
     text-align: center;
 
-    color: white;
+    color: #fff;
     background-color: black;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     .intro-bg {
         background: #000 no-repeat bottom center scroll;
@@ -196,7 +183,8 @@ footer {
             font-size: 18px;
         }
     }
-    @media(min-width:768px) {
+    @include media-breakpoint-up(md) {
+        height: 100%;
         padding: 0;
         .intro-body {
             .brand-heading {
@@ -210,14 +198,14 @@ footer {
 }
 
 .content-section {
-    padding-top: 100px;
+    padding: 100px 0;
 }
 
 #map {
     width: 100%;
     height: 300px;
 
-    @media(min-width:992px) {
+    @include media-breakpoint-up(lg) {
         height: 350px;
     }
 }
@@ -241,10 +229,10 @@ footer {
 
 ul.banner-social-buttons {
     margin-top: 0;
-    @media(max-width: 1199px) {
+    @include media-breakpoint-down(lg) {
         margin-top: 15px;
     }
-    @media(max-width:767px) {
+    @include media-breakpoint-down(sm) {
         li {
             display: block;
 
@@ -257,12 +245,6 @@ ul.banner-social-buttons {
     }
 }
 
-::-moz-selection {
-    background: #fcfcfc;
-    background: fade-out(white, .8);
-    text-shadow: none;
-}
-
 ::selection {
     background: #fcfcfc;
     background: fade-out(white, .8);
@@ -270,10 +252,6 @@ ul.banner-social-buttons {
 }
 
 img::selection {
-    background: transparent;
-}
-
-img::-moz-selection {
     background: transparent;
 }
 
@@ -324,7 +302,7 @@ body {
 }
 
 .card {
-    @media (max-width: 575px) {
+    @include media-breakpoint-down(xs) {
         margin-top: 15px;
         margin-bottom: 15px;
     }

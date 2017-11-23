@@ -40,7 +40,7 @@
         <div id="app">
             <nav class="navbar navbar-expand-md fixed-top navbar-dark">
                 <div class="container">
-                    <router-link to="/" class="navbar-brand">{{ config('app.name') }}</router-link>
+                    <a to="/" class="navbar-brand">{{ config('app.name') }}</a>
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <svgicon name="bars"></svgicon>
                         &nbsp;Menu
@@ -48,41 +48,40 @@
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <router-link to="/about" class="nav-link">
+                                <a href="/about" class="nav-link">
                                     <svgicon name="info-circle"></svgicon>
                                     About
-                                </router-link>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/skills" class="nav-link">
+                                <a href="/skills" class="nav-link">
                                     <svgicon name="list-ul"></svgicon>
                                     Skills
-                                </router-link>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/projects" class="nav-link">
+                                <a href="/projects" class="nav-link">
                                     <svgicon name="terminal"></svgicon>
                                     Projects
-                                </router-link>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/connect" class="nav-link">
+                                <a href="/connect" class="nav-link">
                                     <svgicon name="envelope"></svgicon>
                                     Connect
-                                </router-link>
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
-            <transition :name="transitionName" mode="out-in" appear>
-                <keep-alive>
-                    <router-view class="child-view" keep-alive></router-view>
-                </keep-alive>
-            </transition>
-
-            <vue-progress-bar></vue-progress-bar>
+            <Home></Home>
+            <About></About>
+            <Skills></Skills>
+            <Projects></Projects>
+            <Connect></Connect>
+            <Gmap></Gmap>
 
             <footer>
                 <div class="container">
@@ -97,7 +96,6 @@
                     </a>
                 </div>
             </footer>
-
         </div>
 
         <script src="https://cdn.polyfill.io/v2/polyfill.js?unknown=polyfill&features=Object.assign|gated,Promise|gated"></script>

@@ -1,7 +1,7 @@
 <template>
     <section id="skills" class="content-section text-center">
         <div class="container">
-            <h1>Projects</h1>
+            <h1 class="display-4">Projects</h1>
             <p>
                 Below are links to the personal or collaborative projects that I can claim.
             </p>
@@ -34,26 +34,13 @@ export default {
     data: function() {
         return {
             cardHeight: 0,
-            projects: {},
+            projects: require('../json/projects.json'),
         };
     },
     methods: {
         cardEqHeight: function() {
             this.cardHeight = $('.card-img-top').first().width() / 1.5 + "px"
         }
-    },
-    created: function() {
-        this.$Progress.start()
-
-        var vue = this
-        axios.get('/api/projects')
-            .then(function (response) {
-                vue.projects = response.data;
-                vue.$Progress.finish()
-            })
-            .catch(function (response) {
-                vue.$Progress.fail()
-            })
     },
     mounted: function() {
         $(window).on('resize.projects', _.throttle(this.cardEqHeight, 50, { leading: false, trailing: true }))
