@@ -4,6 +4,6 @@
     <a href="https://github.com/gabe565/gabecook.com/blob/master/LICENSE"><img src="https://img.shields.io/github/license/gabe565/gabecook.com.svg" alt="License"></a>
 </p>
 
-My single-page portfolio website build with [Laravel](https://laravel.com) and [Vue.js](https://vuejs.org).
+My single-page portfolio website build with [Vue.js](https://vuejs.org).
 
 This site is live at <https://gabecook.com>.
