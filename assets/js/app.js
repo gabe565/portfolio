@@ -1,17 +1,21 @@
+import { has } from 'lodash'
+window._ = _
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+import jQuery from "jquery"
+window.$ = window.jQuery = jQuery
 
-import 'vue-svgicon/dist/polyfill'
+import 'popper.js/dist/umd/popper'
+import 'bootstrap'
 
-require('./bootstrap')
+import axios from 'axios'
+window.axios = axios
+
+import {TweenMax, Power2, TimelineLite} from "gsap";
+import ScrollMagic from 'ScrollMagic';
 
 import Vue from 'vue'
-//import VueRouter from 'vue-router'
 import VueProgressBar from 'vue-progressbar'
+import 'vue-svgicon/dist/polyfill'
 import VueSVGIcon from 'vue-svgicon'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
