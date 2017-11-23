@@ -1,0 +1,309 @@
+ody, html {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+    background: url('../images/black-orchid.png') #222;
+}
+
+body {
+    color: white;
+}
+
+#app {
+    position: relative;
+
+    height: 100%;
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 35px;
+
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+
+    margin: 0 0 25px;
+
+    @include media-breakpoint-up(md) {
+        font-size: 18px;
+        line-height: 1.6;
+
+        margin: 0 0 35px;
+    }
+}
+
+a {
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+
+    color: $primary;
+    &:focus,
+    &:hover {
+        text-decoration: none;
+
+        color: lighten($primary, 20%);
+    }
+}
+
+nav.navbar {
+    background-color: rgba($gray-900, 0.75);
+    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+        background-color: rgba($gray-900, 0.25);
+        backdrop-filter: blur(10px);
+    }
+
+    border-bottom: 1px solid fade-out(white, .7);
+
+    .navbar-toggler {
+        font-size: 14px;
+
+        padding: 11px;
+
+        color: white;
+        border: 1px solid white;
+    }
+    .navbar-brand {
+        font-family: $font-family-serif;
+        font-weight: $font-weight-light;
+    }
+    a {
+        color: $gray-400;
+    }
+    .navbar-nav {
+        .nav-item {
+            margin: auto 10px;
+
+            a {
+                &:hover,
+                &.active {
+                    color: $white;
+                }
+            }
+        }
+    }
+    @include media-breakpoint-up(md) {
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        transition: background 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s;
+        letter-spacing: 1px;
+
+        border-bottom: none;
+        background: transparent;
+        &.navbar-shrink {
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            border-bottom: 1px solid fade-out(white, .7);
+
+            @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+                background-color: rgba($gray-900, 0.25);
+                backdrop-filter: blur(10px);
+            }
+            background-color: rgba($gray-900, 0.75);
+        }
+        .nav-link.active {
+            outline: none;
+            background-color: rgba(white, .3);
+            &:hover {
+                color: white;
+            }
+        }
+    }
+}
+
+footer {
+    width: 100%;
+
+    background-color: $gray-900;
+
+    padding: 20px 0;
+    border-top: 1px solid fade-out(white, .7);
+
+    transition: opacity, 0.3s ease-in-out;
+
+    p {
+        font-size: 14px;
+
+        margin: 0;
+    }
+}
+
+.masthead {
+    display: table;
+
+    height: auto;
+    width: 100%;
+    padding: 200px 0;
+
+    text-align: center;
+
+    color: #fff;
+    background-color: black;
+    background-size: cover;
+    .intro-bg {
+        background: #000 no-repeat bottom center scroll;
+        background-color: black;
+        background-size: cover;
+        float: left;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+    .intro-body {
+        display: table-cell;
+
+        vertical-align: middle;
+        .brand-heading {
+            font-size: 50px;
+        }
+        .intro-text {
+            font-size: 18px;
+        }
+    }
+    @include media-breakpoint-up(md) {
+        height: 100%;
+        padding: 0;
+        .intro-body {
+            .brand-heading {
+                font-size: 100px;
+            }
+            .intro-text {
+                font-size: 22px;
+            }
+        }
+    }
+}
+
+.content-section {
+    padding: 100px 0;
+}
+
+#map {
+    width: 100%;
+    height: 300px;
+
+    @include media-breakpoint-up(lg) {
+        height: 350px;
+    }
+}
+
+.btn {
+    transition: all 0.3s ease-out;
+}
+
+.btn-default {
+    color: $primary;
+    border: 1px solid $primary;
+    background-color: $gray-900;
+    &:focus,
+    &:hover {
+        color: black;
+        border: 1px solid $primary;
+        outline: none;
+        background-color: $primary;
+    }
+}
+
+ul.banner-social-buttons {
+    margin-top: 0;
+    @include media-breakpoint-down(lg) {
+        margin-top: 15px;
+    }
+    @include media-breakpoint-down(sm) {
+        li {
+            display: block;
+
+            margin-bottom: 20px;
+            padding: 0;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+::selection {
+    background: #fcfcfc;
+    background: fade-out(white, .8);
+    text-shadow: none;
+}
+
+img::selection {
+    background: transparent;
+}
+
+body {
+    -webkit-tap-highlight-color: fade-out(white, .8);
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .2s cubic-bezier(.55,0,.1,1);
+}
+.fade-enter, .fade-leave-active {
+    opacity: 0;
+}
+.child-view {
+    transition: opacity .2s cubic-bezier(0.22, 0.61, 0.36, 1), transform .2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.slide-right-leave-active, .slide-left-leave-active {
+    transition: opacity .2s cubic-bezier(0.55, 0.06, 0.68, 0.19), transform .2s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+}
+.slide-left-enter, .slide-right-leave-active {
+    opacity: 0;
+    transform: translate(30px, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+    opacity: 0;
+    transform: translate(-30px, 0);
+}
+
+#skills {
+    .list-group .list-group-item {
+        background-color: transparent;
+        border: none;
+        text-align: left;
+    }
+
+    .ability-score {
+        float: right;
+    }
+
+    .fa-star {
+        color: $primary;
+        opacity: 1;
+    }
+    .fa-star.empty {
+        color: #fff;
+        opacity: 0.15;
+    }
+}
+
+.card {
+    @include media-breakpoint-down(xs) {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+.mono {
+    font-family: $font-family-monospace;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}

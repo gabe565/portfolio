@@ -1,8 +1,4 @@
 <IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
-    </IfModule>
-
     RewriteEngine On
 
     # Redirect Trailing Slashes If Not A Folder...
@@ -13,9 +9,12 @@
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
-
-    # Handle Authorization Header
-    RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteRule ^ index.html [L]
+</IfModule>
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 hour"
+    ExpiresByType application/javascript "access plus 1 hour"
+    ExpiresByType image/png "access plus 1 day"
+    ExpiresByType image/vnd.microsoft.icon "access plus 1 day"
 </IfModule>
