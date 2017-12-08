@@ -1,34 +1,14 @@
 .svg-icon {
+    box-sizing: border-box;
     display: inline-block;
     font-size: inherit;
     height: 1em;
     text-align: center;
     width: 1.25em;
     color: inherit;
-    fill: none;
-    stroke: currentColor;
-    vertical-align: -9%;
-
-    &.svg-fill {
-        fill: currentColor;
-        stroke: none;
-    }
-
-    &.svg-up {
-        transform: rotate(-90deg);
-    }
-
-    &.svg-right {
-        transform: rotate(0deg);
-    }
-
-    &.svg-down {
-        transform: rotate(90deg);
-    }
-
-    &.svg-left {
-        transform: rotate(180deg);
-    }
+    vertical-align: -.125em;
+    fill: currentColor;
+    stroke: none;
 
     &.star-full {
         fill: $primary;
