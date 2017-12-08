@@ -1,5 +1,5 @@
 <template>
-    <section id="about" class="content-section text-center">
+    <section id="connect" class="content-section text-center">
         <div class="container">
             <h1 class="display-4">Connect</h1>
             <p>

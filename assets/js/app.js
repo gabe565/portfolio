@@ -10,8 +10,12 @@ import 'bootstrap'
 import axios from 'axios'
 window.axios = axios
 
-import {TweenMax, Power2, TimelineLite} from "gsap";
-import ScrollMagic from 'ScrollMagic';
+import { TweenMax, Power2, TimelineMax } from "gsap"
+window.TweenMax = TweenMax
+window.TimelineMax = TimelineMax
+import * as ScrollMagic from 'scrollmagic'
+import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js'
+import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js'
 
 import Vue from 'vue'
 import VueProgressBar from 'vue-progressbar'
@@ -60,3 +64,29 @@ const app = new Vue({
 })
 
 require('./main')
+
+var selectors = [
+    '#about',
+    '#skills',
+    '#projects',
+    '#connect',
+]
+var locations = []
+$('.navbar-nav .nav-item').each(function(i) {
+    locations.push({
+        "left": $(this).position().left,
+        "width": $(this).outerWidth()
+    })
+})
+
+var controller = new ScrollMagic.Controller()
+_.forEach(locations, function(value, key) {
+    if (key === 0) return;
+
+    var tween = TweenMax.to('.navbar-nav .current', 1, { left: value.left, width: value.width, ease: Ease.easeInOut }, 0.15)
+    
+    new ScrollMagic.Scene({triggerElement: selectors[key - 1], duration: 300})
+        .setTween(tween)
+        .addIndicators({name: 'staggering'}) // add indicators (requires plugin)
+        .addTo(controller)
+})

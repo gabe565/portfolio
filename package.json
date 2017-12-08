@@ -17,6 +17,7 @@
         "bootstrap": "4.0.0-beta",
         "cross-env": "^5.1.1",
         "gsap": "^1.20.3",
+        "imports-loader": "^0.7.1",
         "jquery": "^3.2.1",
         "jquery.easing": "^1.4.1",
         "laravel-mix": "^1.0",
