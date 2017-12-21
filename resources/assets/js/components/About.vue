@@ -14,7 +14,7 @@
             </div>
             <hr>
             <div id="map">
-                <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
+                <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100% height: 100%"></gmap-map>
             </div>
         </div>
     </section>
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-    data: function() {
+    data() {
         return {
             age : '',
             mapCenter: { lat:35.46756, lng:-97.516428 },
@@ -34,14 +34,24 @@ export default {
                 disableDoubleClickZoom: true,
                 styles: [
                     {
-                        "featureType":"all",
-                        "elementType":"all",
-                        "stylers":[
-                            { "invert_lightness":true },
-                            { "saturation":10 },
-                            { "lightness":30 },
-                            { "gamma":0.5 },
-                            { "hue":"#435158" }
+                        "featureType": "all",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "invert_lightness": true
+                            },
+                            {
+                                "saturation": 10
+                            },
+                            {
+                                "lightness": 30
+                            },
+                            {
+                                "gamma": 0.5
+                            },
+                            {
+                                "hue": "#435158"
+                            }
                         ]
                     }
                 ],
@@ -53,12 +63,12 @@ export default {
             this.$refs.map.$mapObject.setCenter(this.mapCenter)
         }, 100, { leading: false })
     },
-    mounted: function() {
-        var birthday = +new Date('1995-05-26');
-        this.age = ~~((Date.now() - birthday) / (31557600000));
+    mounted() {
+        var birthday = +new Date('1995-05-26')
+        this.age = ~~((Date.now() - birthday) / (31557600000))
         $(window).resize(this.centerMap)
     },
-    destroyed: function() {
+    destroyed() {
         $(window).off('resize', this.centerMap)
     }
 }

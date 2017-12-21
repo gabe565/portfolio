@@ -1,3 +1,9 @@
+// import throttle from 'lodash/throttle'
+// import debounce from 'lodash/debounce'
+// window._ = {
+//     throttle,
+//     debounce
+// }
 import { has } from 'lodash'
 window._ = _
 

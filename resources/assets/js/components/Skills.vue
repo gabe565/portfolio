@@ -34,26 +34,22 @@
 </template>
 
 <script>
-import '../svg/star-full'
-import '../svg/star-empty'
-
 export default {
-    data: function() {
+    data() {
         return {
             skills: {},
-        };
+        }
     },
-    created: function() {
+    created() {
         this.$Progress.start()
 
-        var vue = this
         axios.get('/api/skills')
-            .then(function (response) {
-                vue.skills = response.data;
-                vue.$Progress.finish()
+            .then(response => {
+                this.skills = response.data
+                this.$Progress.finish()
             })
-            .catch(function (response) {
-                vue.$Progress.fail()
+            .catch(response => {
+                this.$Progress.fail()
             })
     }
 }

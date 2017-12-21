@@ -16,21 +16,20 @@
 
 <script>
 export default {
-    data: function() {
+    data() {
         return {
             style: {},
-        };
+        }
     },
-    created: function() {
-        var vue = this
+    created() {
         axios.get('/api/bg')
-            .then(function (response) {
-                vue.style = {
+            .then(response => {
+                this.style = {
                     'background-image':  'url(' + response.data + ')',
                     'opacity': 0.5
-                };
+                }
             })
-            .catch(function (response) {
+            .catch(response => {
             })
     }
 }
