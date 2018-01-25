@@ -84,17 +84,8 @@
 </template>
 
 <script>
-import '../svg/twitter'
-import '../svg/github'
-import '../svg/linkedin'
-import '../svg/user-alt'
-import '../svg/at'
-import '../svg/comment'
-import '../svg/paper-plane'
-import '../svg/sync'
-
 export default {
-    data: function() {
+    data() {
         return {
             form: null,
             name: '',
@@ -106,40 +97,39 @@ export default {
         }
     },
     computed: {
-        message: function() {
+        message() {
             if (this.successful)
                 return 'The message has been sent successfully. Thank you!'
             else
                 return 'There was an error during submission'
         },
-        successful: function() {
+        successful() {
             return this.response != null && this.response.status == 200
         }
     },
     methods: {
-        sendmail: function() {
-            var valid = this.form.checkValidity()
+        sendmail() {
+            let valid = this.form.checkValidity()
             this.form.classList.add('was-validated')
             if (valid) {
                 this.loading = true
-                var vue = this
                 axios.post('/api/mail', {
                     name: this.name,
                     email: this.email,
                     text: this.text
-                }).then(function(response) {
-                    vue.response = response
-                    vue.loading = false
-                    vue.showResponse = true
-                }).catch(function(error) {
-                    vue.respose = error
-                    vue.loading = false
-                    vue.showResponse = true
+                }).then(response => {
+                    this.response = response
+                    this.loading = false
+                    this.showResponse = true
+                }).catch(error => {
+                    this.respose = error
+                    this.loading = false
+                    this.showResponse = true
                 })
             }
         }
     },
-    mounted: function() {
+    mounted() {
         this.form = document.getElementById("needs-validation")
     }
 }

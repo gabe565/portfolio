@@ -31,34 +31,33 @@
 
 <script>
 export default {
-    data: function() {
+    data() {
         return {
             cardHeight: 0,
             projects: {},
-        };
+        }
     },
     methods: {
-        cardEqHeight: function() {
+        cardEqHeight() {
             this.cardHeight = $('.card-img-top').first().width() / 1.5 + "px"
         }
     },
-    created: function() {
+    created() {
         this.$Progress.start()
 
-        var vue = this
         axios.get('/api/projects')
-            .then(function (response) {
-                vue.projects = response.data;
-                vue.$Progress.finish()
+            .then(response => {
+                this.projects = response.data
+                this.$Progress.finish()
             })
-            .catch(function (response) {
-                vue.$Progress.fail()
+            .catch(response => {
+                this.$Progress.fail()
             })
     },
-    mounted: function() {
+    mounted() {
         $(window).on('resize.projects', _.throttle(this.cardEqHeight, 50, { leading: false, trailing: true }))
     },
-    destroyed: function() {
+    destroyed() {
         $(window).off('resize.projects')
     }
 }
