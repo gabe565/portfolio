@@ -44,27 +44,33 @@
                         <!--Name-->
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                <svgicon name="user-alt"></svgicon>
-                                </span>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <svgicon name="user-alt"></svgicon>
+                                    </div>
+                                </div>
                                 <input v-model="name" name="name" placeholder="Name" class="form-control" type="text" required>
                             </div>
                         </div>
                         <!--Email-->
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                <svgicon name="at"></svgicon>
-                                </span>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <svgicon name="at"></svgicon>
+                                    </div>
+                                </div>
                                 <input v-model="email" name="email" placeholder="Email Address" class="form-control" type="email" required>
                             </div>
                         </div>
                         <!--Message-->
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                <svgicon name="comment"></svgicon>
-                                </span>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <svgicon name="comment"></svgicon>
+                                    </div>
+                                </div>
                                 <textarea v-model="text" class="form-control vertical" name="text" placeholder="Message" required></textarea>
                             </div>
                         </div>
