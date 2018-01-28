@@ -71,7 +71,7 @@
                                         <svgicon name="comment"></svgicon>
                                     </div>
                                 </div>
-                                <textarea v-model="text" class="form-control vertical" name="text" placeholder="Message" required></textarea>
+                                <textarea v-model="text" class="form-control vertical" name="text" placeholder="Message" required style="min-height: 62px"></textarea>
                             </div>
                         </div>
                         <!-- Button -->
