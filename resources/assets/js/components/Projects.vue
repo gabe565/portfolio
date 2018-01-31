@@ -8,7 +8,7 @@
             <span v-for="(projects, category) in projects">
                 <hr>
                 <h3>{{ category }}</h3>
-                <div class="card-deck">
+                <div class="card-deck col-lg-10 mx-auto">
                     <div class="card text-white bg-dark border-dark" v-for="project in projects">
                         <a :href="project.url" class="card-link overflow-hidden" target="_blank" :style="{ height: cardHeight }">
                             <img :src="project.image_path" class="card-img-top" :alt="'Screenshot of ' + project.name" v-on:load="cardEqHeight">

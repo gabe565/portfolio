@@ -2,9 +2,9 @@
     <section id="skills" class="content-section text-center">
         <div class="container">
             <h1>Skills</h1>
-            <p>
+            <div class="col-md-9 mx-auto">
                 My development skills on a scale of 1-5 stars. Note that the scale is relative to the other languages that I have used, so a 5 star rating means that I am most familiar with that language (Not that I am “perfect” at it)!
-            </p>
+            </div>
             <span v-for="(skills, category) in skills">
                 <hr>
                 <h3>{{ category }}</h3>

@@ -4,7 +4,7 @@
             <h1>About</h1>
             <hr>
             <div class="row">
-                <div class="col-3 col-lg-2 ml-lg-auto mx-auto">
+                <div class="col-3 col-lg-2 mb-3 mx-auto ml-lg-auto mr-lg-0">
                     <img class="img-fluid rounded" src="/images/me.jpg">
                 </div>
                 <div class="col-lg-6 mr-auto">
