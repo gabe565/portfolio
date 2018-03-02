@@ -36,10 +36,10 @@
             <hr>
             <h3>Email</h3>
             <div class="col-lg-6 col-md-8 mx-auto">
-                <form id="needs-validation" data-focus="false" method="post" action="/api/mail" role="form" novalidate v-on:submit.prevent="sendmail">
+                <form id="needs-validation" data-focus="false" method="post" action="/api/mail" role="form" ref="form" novalidate v-on:submit.prevent="mail">
                     <fieldset>
                         <div class="col">
-                            <div class="alert" v-if="showResponse" :class="[ successful ? 'alert-success' : 'alert-danger']">{{ message }}</div>
+                            <div class="alert" v-if="response !== null" :class="[ successful ? 'alert-success' : 'alert-danger']">{{ message }}</div>
                         </div>
                         <!--Name-->
                         <div class="form-group">
@@ -93,13 +93,11 @@
 export default {
     data() {
         return {
-            form: null,
             name: '',
             email: '',
             text: '',
             loading: false,
-            response: null,
-            showResponse: false,
+            response: null
         }
     },
     computed: {
@@ -107,16 +105,16 @@ export default {
             if (this.successful)
                 return 'The message has been sent successfully. Thank you!'
             else
-                return 'There was an error during submission'
+                return 'There was an error during submission.'
         },
         successful() {
             return this.response != null && this.response.status == 200
         }
     },
     methods: {
-        sendmail() {
-            let valid = this.form.checkValidity()
-            this.form.classList.add('was-validated')
+        mail() {
+            let valid = this.$refs.form.checkValidity()
+            this.$refs.form.classList.add('was-validated')
             if (valid) {
                 this.loading = true
                 axios.post('/api/mail', {
@@ -124,19 +122,16 @@ export default {
                     email: this.email,
                     text: this.text
                 }).then(response => {
-                    this.response = response
-                    this.loading = false
-                    this.showResponse = true
+                    this.postSubmit(response)
                 }).catch(error => {
-                    this.respose = error
-                    this.loading = false
-                    this.showResponse = true
+                    this.postSubmit(error)
                 })
             }
+        },
+        postSubmit(response) {
+            this.response = response
+            this.loading = false
         }
-    },
-    mounted() {
-        this.form = document.getElementById("needs-validation")
     }
 }
 </script>

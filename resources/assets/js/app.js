@@ -13,7 +13,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueProgressBar from 'vue-progressbar'
 import VueSVGIcon from 'vue-svgicon'
-import * as VueGoogleMaps from 'vue2-google-maps'
+import * as VueGoogleMaps from 'vue2-google-maps/src/main'
 
 Vue.use(VueRouter)
 Vue.use(VueProgressBar, {
@@ -86,9 +86,8 @@ const router = new VueRouter({
     }
 })
 
-router.beforeEach(function (to, from, next) {
+router.beforeEach((to, from, next) => {
     document.title = to.meta.title ? to.meta.title + ' · Gabe Cook' : 'Gabe Cook'
-    $('#app').removeClass(from.meta.title).addClass(to.meta.title)
     next()
 })
 

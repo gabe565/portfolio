@@ -37,7 +37,7 @@
         </script>
     </head>
     <body>
-        <div id="app">
+        <div id="app" :class="$route.meta.title">
             <nav class="navbar navbar-expand-md fixed-top navbar-dark">
                 <div class="container">
                     <router-link to="/" class="navbar-brand">&lt; gabe.cook &gt;</router-link>
@@ -86,11 +86,11 @@
 
             <footer>
                 <div class="container">
-                    <div class="row">
-                        <div class="col">
+                    <div class="row text-center">
+                        <div class="col-sm text-sm-left">
                             <span>&lt;/ gabe.cook &gt;</span>
                         </div>
-                        <div class="col text-center">
+                        <div class="col-sm">
                             <a href="https://github.com/gabe565/gabecook.com" target="_blank">
                                 <span>
                                     <svgicon name="github"></svgicon>
@@ -98,7 +98,7 @@
                                 </span>
                             </a>
                         </div>
-                        <div class="col text-right">
+                        <div class="col-sm text-sm-right">
                             <a href="https:/github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank">
                                 &copy; 2017 Gabe Cook
                             </a>

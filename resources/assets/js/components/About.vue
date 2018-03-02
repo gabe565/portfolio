@@ -13,9 +13,9 @@
                 </div>
             </div>
             <hr>
-            <div id="map">
-                <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100% height: 100%"></gmap-map>
-            </div>
+        </div>
+        <div id="map">
+            <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
         </div>
     </section>
 </template>
@@ -25,7 +25,7 @@ export default {
     data() {
         return {
             age : '',
-            mapCenter: { lat:35.46756, lng:-97.516428 },
+            mapCenter: { lat: 35.46756, lng: -97.516428 },
             mapOptions: {
                 zoom: 11,
                 disableDefaultUI: true,
@@ -34,42 +34,108 @@ export default {
                 disableDoubleClickZoom: true,
                 styles: [
                     {
-                        "featureType": "all",
-                        "elementType": "all",
                         "stylers": [
                             {
-                                "invert_lightness": true
+                                "hue": "#607d8b"
                             },
                             {
                                 "saturation": 10
                             },
                             {
-                                "lightness": 30
+                                "invert_lightness": true
                             },
                             {
-                                "gamma": 0.5
+                                "lightness": 20
                             },
                             {
-                                "hue": "#435158"
+                                "gamma": 0.7
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.land_parcel",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels.text",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.business",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels.icon",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit",
+                        "stylers": [
+                            {
+                                "visibility": "off"
                             }
                         ]
                     }
-                ],
-            }
+                ]}
         }
-    },
-    methods: {
-        centerMap: _.throttle(function() {
-            this.$refs.map.$mapObject.setCenter(this.mapCenter)
-        }, 100, { leading: false })
     },
     mounted() {
         var birthday = +new Date('1995-05-26')
         this.age = ~~((Date.now() - birthday) / (31557600000))
-        $(window).resize(this.centerMap)
-    },
-    destroyed() {
-        $(window).off('resize', this.centerMap)
     }
 }
 </script>
