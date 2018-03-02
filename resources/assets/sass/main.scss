@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
 @import "variables";
 
 @import url("https://fonts.googleapis.com/css?family=Raleway:300|Roboto+Slab:300");
@@ -25,6 +26,9 @@ body {
     width: 100%;
 
     padding-bottom: 100px;
+    @include media-breakpoint-down(xs) {
+        padding-bottom: 150px;
+    }
 }
 
 h1,
@@ -43,7 +47,7 @@ p {
     line-height: 1.5;
 
     margin: 0 0 25px;
-    @media(min-width: 768px) {
+    @include media-breakpoint-up(md) {
         font-size: 18px;
         line-height: 1.6;
 
@@ -99,7 +103,7 @@ nav.navbar {
             }
         }
     }
-    @media(min-width:768px) {
+    @include media-breakpoint-up(md) {
         padding-top: 20px;
         padding-bottom: 20px;
 
@@ -196,7 +200,7 @@ footer {
             font-size: 18px;
         }
     }
-    @media(min-width:768px) {
+    @include media-breakpoint-up(md) {
         padding: 0;
         .intro-body {
             .brand-heading {
@@ -217,7 +221,7 @@ footer {
     width: 100%;
     height: 300px;
 
-    @media(min-width:992px) {
+    @include media-breakpoint-up(lg) {
         height: 500px;
     }
 }
@@ -241,10 +245,10 @@ footer {
 
 ul.banner-social-buttons {
     margin-top: 0;
-    @media(max-width: 1199px) {
+    @include media-breakpoint-down(xl) {
         margin-top: 15px;
     }
-    @media(max-width:767px) {
+    @include media-breakpoint-down(md) {
         li {
             display: block;
 
@@ -324,7 +328,7 @@ body {
 }
 
 .card {
-    @media (max-width: 575px) {
+    @include media-breakpoint-down(xs) {
         margin-top: 15px;
         margin-bottom: 15px;
     }
