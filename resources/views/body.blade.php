@@ -40,7 +40,7 @@
         <div id="app">
             <nav class="navbar navbar-expand-md fixed-top navbar-dark">
                 <div class="container">
-                    <router-link to="/" class="navbar-brand">{{ config('app.name') }}</router-link>
+                    <router-link to="/" class="navbar-brand">&lt; gabe.cook &gt;</router-link>
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <svgicon name="bars"></svgicon>
                         &nbsp;Menu
@@ -86,15 +86,24 @@
 
             <footer>
                 <div class="container">
-                    <a href="https://github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank" class="float-left">
-                        <span>&copy; 2017 Gabe Cook</span>
-                    </a>
-                    <a href="https://github.com/gabe565/gabecook.com" target="_blank" class="float-right">
-                        <span>
-                            <svgicon name="github"></svgicon>
-                            &nbsp;View on GitHub
-                        </span>
-                    </a>
+                    <div class="row">
+                        <div class="col">
+                            <span>&lt;/ gabe.cook &gt;</span>
+                        </div>
+                        <div class="col text-center">
+                            <a href="https://github.com/gabe565/gabecook.com" target="_blank">
+                                <span>
+                                    <svgicon name="github"></svgicon>
+                                    &nbsp;View on GitHub
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col text-right">
+                            <a href="https:/github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank">
+                                &copy; 2017 Gabe Cook
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </footer>
 
