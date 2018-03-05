@@ -13,7 +13,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueProgressBar from 'vue-progressbar'
 import VueSVGIcon from 'vue-svgicon'
-import * as VueGoogleMaps from 'vue2-google-maps/src/main'
+import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.use(VueRouter)
 Vue.use(VueProgressBar, {
