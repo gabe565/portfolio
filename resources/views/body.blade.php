@@ -91,7 +91,7 @@
                             <span>&lt;/ gabe.cook &gt;</span>
                         </div>
                         <div class="col-sm">
-                            <a href="https://github.com/gabe565/gabecook.com" target="_blank">
+                            <a href="//github.com/gabe565/gabecook.com" target="_blank">
                                 <span>
                                     <svgicon name="github"></svgicon>
                                     &nbsp;View on GitHub
@@ -99,8 +99,8 @@
                             </a>
                         </div>
                         <div class="col-sm text-sm-right">
-                            <a href="https:/github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank">
-                                &copy; 2017 Gabe Cook
+                            <a href="//github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank">
+                                &copy; 2018 Gabe Cook
                             </a>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
 
         </div>
 
-        <script src="https://cdn.polyfill.io/v2/polyfill.js?unknown=polyfill&features=Object.assign|gated,Promise|gated"></script>
+        <script src="//cdn.polyfill.io/v2/polyfill.js?unknown=polyfill&features=Object.assign|gated,Promise|gated"></script>
         <script src="{{ mix('js/manifest.js') }}"></script>
         <script src="{{ mix('js/vendor.js') }}"></script>
         <script src="{{ mix('js/app.js') }}"></script>
