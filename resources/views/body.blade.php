@@ -61,7 +61,7 @@
                             </li>
                             <li class="nav-item">
                                 <router-link to="/projects" class="nav-link">
-                                    <svgicon name="terminal"></svgicon>
+                                    <svgicon name="code"></svgicon>
                                     Projects
                                 </router-link>
                             </li>
