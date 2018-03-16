@@ -68,11 +68,7 @@ a {
 }
 
 nav.navbar {
-    background-color: rgba($gray-900, 0.75);
-    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
-        background-color: rgba($gray-900, 0.25);
-        backdrop-filter: blur(10px);
-    }
+    background-color: rgba($gray-900, 0.95);
 
     border-bottom: 1px solid fade-out(white, .7);
 
@@ -118,17 +114,28 @@ nav.navbar {
 
             border-bottom: 1px solid fade-out(white, .7);
 
-            @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
-                background-color: rgba($gray-900, 0.25);
-                backdrop-filter: blur(10px);
-            }
-            background-color: rgba($gray-900, 0.75);
+            background-color: rgba($gray-900, 0.95);
         }
         .nav-link.active {
             outline: none;
             background-color: rgba(white, .3);
             &:hover {
                 color: white;
+            }
+        }
+    }
+}
+
+#app:not(.Home) nav.navbar {
+    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+        background-color: rgba($gray-900, 0.25);
+        backdrop-filter: blur(10px);
+    }
+    @include media-breakpoint-up(md) {
+        &.navbar-shrink {
+            @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+                background-color: rgba($gray-900, 0.25);
+                backdrop-filter: blur(10px);
             }
         }
     }
