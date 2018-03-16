@@ -25,7 +25,7 @@ export default {
         axios.get('/api/bg')
             .then(response => {
                 this.style = {
-                    backgroundImage:  `url("${response.data}")`,
+                    backgroundImage:  `url('${response.data}')`,
                     opacity: 0.5
                 }
             })
