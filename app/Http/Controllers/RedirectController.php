@@ -12,7 +12,7 @@ class RedirectController extends Controller
             ->where('handle', '=', $handle)
             ->get()
             ->pluck('url')
-            ->pop();
+            ->pop() ?? url('/');
 
         return redirect($url);
     }
