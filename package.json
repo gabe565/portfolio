@@ -11,6 +11,7 @@
         "svg": "vsvg -s ./resources/assets/svg -t ./resources/assets/js/svg"
     },
     "devDependencies": {
+        "babel-preset-react": "^6.24.1",
         "vue-svgicon": "^2.1.2"
     },
     "dependencies": {
