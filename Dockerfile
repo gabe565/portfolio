@@ -13,6 +13,7 @@ RUN set -x \
         --no-dev \
         --no-interaction \
         --no-plugins \
+        --no-progress \
         --no-scripts \
         --no-suggest
 
