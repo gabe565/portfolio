@@ -94,6 +94,25 @@ img::selection {
             pointer-events: none;
         }
     }
+
+    .list-group .list-group-item {
+        background-color: transparent;
+        border: none;
+        text-align: left;
+    }
+
+    .ability-score {
+        float: right;
+    }
+
+    .fa-star {
+        color: $primary;
+        opacity: 1;
+    }
+    .fa-star.empty {
+        color: #fff;
+        opacity: 0.15;
+    }
 }
 
 .navbar {
@@ -270,27 +289,6 @@ footer {
 
         color: black;
         outline: none;
-    }
-}
-
-#app.Skills {
-    .list-group .list-group-item {
-        background-color: transparent;
-        border: none;
-        text-align: left;
-    }
-
-    .ability-score {
-        float: right;
-    }
-
-    .fa-star {
-        color: $primary;
-        opacity: 1;
-    }
-    .fa-star.empty {
-        color: #fff;
-        opacity: 0.15;
     }
 }
 
