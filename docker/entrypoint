@@ -1,0 +1,9 @@
+#!/bin/sh
+set -ex
+
+tar -Jxf /usr/src/app.tar.xz
+
+php artisan package:discover
+php artisan migrate
+
+exec php-fpm
