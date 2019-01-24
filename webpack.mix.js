@@ -15,8 +15,8 @@ mix.autoload({
     jquery: ['$', 'jQuery', 'window.jQuery'],
     'popper.js/dist/umd/popper.js': ['Popper']
 })
-    .react('resources/assets/js/app.js', 'public/js')
-    .extract(['axios', 'bootstrap', 'lodash', 'popper.js', 'jquery', 'jquery.easing', 'vue'])
+    .js('resources/assets/js/app.js', 'public/js')
+    .extract()
     .sass('resources/assets/sass/bootstrap.scss', 'public/css')
     .sass('resources/assets/sass/main.scss', 'public/css')
     .version()
