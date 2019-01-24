@@ -100,7 +100,7 @@
                         </div>
                         <div class="col-sm text-sm-right">
                             <a href="//github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank">
-                                &copy; 2018 Gabe Cook
+                                &copy; 2019 Gabe Cook
                             </a>
                         </div>
                     </div>
