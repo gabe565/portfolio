@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use \App\Background as Background;
 use Illuminate\Http\Request;
 
 class DashController extends Controller
@@ -11,7 +12,12 @@ class DashController extends Controller
     }
 
     public function getBackground() {
-        $files = \Storage::disk('local')->files('public/bg');
-        return json_encode(str_replace('public', 'storage', $files[mt_rand(0, count($files) - 1)]));
+        $bg_url = Background::select('url')
+            ->inRandomOrder()
+            ->limit(1)
+            ->get()
+            ->pluck('url')
+            ->get(0);
+        return response()->json($bg_url);
     }
 }
