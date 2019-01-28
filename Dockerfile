@@ -7,7 +7,6 @@ COPY composer.json composer.lock ./
 RUN set -x \
     && composer install \
         --ignore-platform-reqs \
-        --no-dev \
         --no-autoloader \
         --no-interaction \
         --no-plugins \
@@ -15,20 +14,17 @@ RUN set -x \
         --no-scripts \
         --no-suggest
 
-COPY app/ app/
-COPY database/ database/
+COPY . ./
 RUN set -x \
     && composer dump-autoload \
         --classmap-authoritative \
-        --no-dev \
         --no-interaction \
-        --no-plugins \
-        --no-scripts
+        --no-plugins
 
 # Node
 FROM node:8-alpine as frontend
 
-ENV NODE_ENV=production
+ARG NODE_ENV=production
 
 WORKDIR /app
 
@@ -44,10 +40,10 @@ COPY public/ public/
 COPY resources/assets/ resources/assets/
 
 RUN set -x \
-    && yarn run production \
-        --no-progress
-
-
+    && node_modules/webpack/bin/webpack.js \
+        --no-progress \
+        --hide-modules \
+        --config=node_modules/laravel-mix/setup/webpack.config.js
 
 FROM alpine as packer
 
