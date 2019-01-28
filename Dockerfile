@@ -3,20 +3,27 @@ FROM composer as vendor
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-COPY app/ app/
-COPY database/ database/
 COPY composer.json composer.lock ./
 RUN set -x \
     && composer install \
-        --classmap-authoritative \
         --ignore-platform-reqs \
         --no-dev \
+        --no-autoloader \
         --no-interaction \
         --no-plugins \
         --no-progress \
         --no-scripts \
         --no-suggest
 
+COPY app/ app/
+COPY database/ database/
+RUN set -x \
+    && composer dump-autoload \
+        --classmap-authoritative \
+        --no-dev \
+        --no-interaction \
+        --no-plugins \
+        --no-scripts
 
 # Node
 FROM node:8-alpine as frontend
