@@ -1,7 +1,7 @@
 <template>
     <header class="masthead">
         <transition name="fade" appear>
-        <div class="intro-bg" :key="index" :style="{ backgroundImage: `url(${backgrounds[index]})` }" v-if="backgrounds"></div>
+            <div class="intro-bg" :key="index" :style="{ backgroundImage: `url(${backgrounds[index]})` }" v-if="ready"></div>
         </transition>
         <div class="intro-body">
             <div class="container">
@@ -17,10 +17,13 @@
 </template>
 
 <script>
+import preloadImage from '../preloadImage'
+
 export default {
     data() {
         return {
-            index: 0,
+            ready: false,
+            index: null,
             backgrounds: null,
         }
     },
@@ -34,15 +37,23 @@ export default {
                 .then(response => {
                     this.backgrounds = response.data
                     this.randomBackground()
-                    setInterval(() => this.randomBackground(), 7500)
-                    this.$Progress.finish()
                 })
                 .catch(response => {
                     this.$Progress.fail()
                 })
         },
         randomBackground() {
-            this.index = Math.floor(Math.random() * this.backgrounds.length);
+            let index = Math.floor(Math.random() * this.backgrounds.length)
+            preloadImage(this.backgrounds[index])
+                .then(() => {
+                    this.index = index
+                    this.ready = true
+                    this.$Progress.finish()
+                    setTimeout(() => this.randomBackground(), 7500)
+                })
+                .catch(() => {
+                    this.$Progress.fail()
+                })
         }
     }
 }
