@@ -13,11 +13,8 @@ class DashController extends Controller
 
     public function getBackground() {
         $bg_url = Background::select('url')
-            ->inRandomOrder()
-            ->limit(1)
             ->get()
-            ->pluck('url')
-            ->get(0);
+            ->pluck('url');
         return response()->json($bg_url);
     }
 }

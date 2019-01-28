@@ -1,6 +1,8 @@
 <template>
     <header class="masthead">
-        <div class="intro-bg" :style="style"></div>
+        <transition name="fade" appear>
+        <div class="intro-bg" :key="index" :style="{ backgroundImage: `url(${backgrounds[index]})` }" v-if="backgrounds"></div>
+        </transition>
         <div class="intro-body">
             <div class="container">
                 <div class="row">
@@ -18,19 +20,30 @@
 export default {
     data() {
         return {
-            style: {},
+            index: 0,
+            backgrounds: null,
         }
     },
     created() {
-        axios.get('/api/bg')
-            .then(response => {
-                this.style = {
-                    backgroundImage:  `url('${response.data}')`,
-                    opacity: 0.5
-                }
-            })
-            .catch(response => {
-            })
+        this.updateBackgrounds()
+    },
+    methods: {
+        updateBackgrounds() {
+            this.$Progress.start()
+            axios.get('/api/bg')
+                .then(response => {
+                    this.backgrounds = response.data
+                    this.randomBackground()
+                    setInterval(() => this.randomBackground(), 7500)
+                    this.$Progress.finish()
+                })
+                .catch(response => {
+                    this.$Progress.fail()
+                })
+        },
+        randomBackground() {
+            this.index = Math.floor(Math.random() * this.backgrounds.length);
+        }
     }
 }
 </script>

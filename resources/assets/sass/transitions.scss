@@ -1,9 +1,10 @@
 .fade-enter-active, .fade-leave-active {
-    transition: opacity .2s cubic-bezier(.55,0,.1,1);
+    transition: opacity .8s cubic-bezier(.55,0,.1,1);
 }
-.fade-enter, .fade-leave-active {
-    opacity: 0;
+.fade-enter, .fade-leave-to {
+    opacity: 0 !important;
 }
+
 .child-view {
     transition: opacity .2s cubic-bezier(0.22, 0.61, 0.36, 1), transform .2s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
