@@ -16,16 +16,6 @@ class SkillController extends Controller
             ->get()
             ->groupBy('heading');
 
-        $skills = $skills->map(function($item, $key) {
-            $count = $item->count();
-            if ($count > 1) {
-                $chunk = ceil($count / 2);
-                return $item->chunk($chunk, false);
-            } else {
-                return $item;
-            }
-        });
-
         return response()->json($skills);
     }
 }

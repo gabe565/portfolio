@@ -56,7 +56,7 @@ COPY --from=frontend --chown=82:82 /app/public public/
 RUN set -x \
     && apk add --no-cache xz \
     && ln -s ../storage/app/public /app/public/storage \
-    && XZ_OPT=-9e tar -Jcf /app.tar.xz -C /app . \
+    && tar -Jcf /app.tar.xz -C /app . \
     && apk del xz
 
 

@@ -28,11 +28,11 @@ export default {
         }
     },
     created() {
+        this.$Progress.start()
         this.updateBackgrounds()
     },
     methods: {
         updateBackgrounds() {
-            this.$Progress.start()
             axios.get('/api/bg')
                 .then(response => {
                     this.backgrounds = response.data

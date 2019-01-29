@@ -5,26 +5,34 @@
             <hr>
             <div class="row">
                 <div class="col-3 col-lg-2 mb-3 mx-auto ml-lg-auto mr-lg-0">
-                    <img class="img-fluid rounded" src="/images/me.jpg">
+                    <transition name="fade">
+                        <img class="img-fluid rounded" :src="me" v-if="displayImg">
+                    </transition>
                 </div>
                 <div class="col-lg-6 mr-auto">
-                    <p>I am a <span>{{ age }}</span> year old computer programmer from Oklahoma City, OK. I am currently studying towards a B.S. in Computer Science at the University of Central Oklahoma.</p>
-                    <p>I enjoy creating optimized programs which have an easy-to-use interface.</p>
+                    <p>I am a <span>{{ age }}</span> year old DevOps Engineer and Software Developer from Oklahoma City, OK. I graduated with my B.S. in Computer Science from the University of Central Oklahoma.</p>
+                    <p>I enjoy scripting things together, writing websites which have an easy-to-use interface, tinkering with self-hosted home automation, and just overall playing with technology!</p>
+                    <p><router-link to="/connect">Let me know if you have any questions!</router-link></p>
                 </div>
             </div>
             <hr>
         </div>
         <div id="map">
-            <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
+            <transition name="fade">
+                <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
+            </transition>
         </div>
     </section>
 </template>
 
 <script>
+import preloadImage from '../preloadImage'
+
 export default {
     data() {
         return {
             age : '',
+            displayImg: false,
             mapCenter: { lat: 35.46756, lng: -97.516428 },
             mapOptions: {
                 zoom: 11,
@@ -32,6 +40,7 @@ export default {
                 scrollwheel: false,
                 draggable: false,
                 disableDoubleClickZoom: true,
+                backgroundColor: '#222',
                 styles: [
                     {
                         "stylers": [
@@ -130,12 +139,25 @@ export default {
                             }
                         ]
                     }
-                ]}
+                ]
+            },
+            me: '/images/me.jpg',
         }
     },
-    mounted() {
+    created() {
+        this.$Progress.start()
+
         var birthday = +new Date('1995-05-26')
         this.age = ~~((Date.now() - birthday) / (31557600000))
+
+        preloadImage(this.me)
+            .then(() => {
+                this.displayImg = true
+                this.$Progress.finish()
+            })
+            .catch(() => {
+                this.$Progress.fail()
+            })
     }
 }
 </script>
