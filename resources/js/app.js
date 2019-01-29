@@ -17,9 +17,10 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.use(VueRouter)
 Vue.use(VueProgressBar, {
+    autoFinish: false,
     color: '#8cb9df',
     failedColor: 'red',
-    height: '2px'
+    thickness: '3px'
 })
 Vue.use(VueSVGIcon)
 Vue.use(VueGoogleMaps, {
