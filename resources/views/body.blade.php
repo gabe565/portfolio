@@ -78,7 +78,7 @@
 
             <transition :name="transitionName" mode="out-in" appear>
                 <keep-alive>
-                    <router-view class="child-view" keep-alive></router-view>
+                    <router-view class="child-view"></router-view>
                 </keep-alive>
             </transition>
 

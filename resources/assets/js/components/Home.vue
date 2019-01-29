@@ -22,9 +22,11 @@ import preloadImage from '../preloadImage'
 export default {
     data() {
         return {
+            active: true,
             ready: false,
             index: null,
             backgrounds: null,
+            timeout: null,
         }
     },
     created() {
@@ -49,12 +51,30 @@ export default {
                     this.index = index
                     this.ready = true
                     this.$Progress.finish()
-                    setTimeout(() => this.randomBackground(), 7500)
+                    if (!this._inactive) {
+                        this.startTimeout()
+                    }
                 })
                 .catch(() => {
                     this.$Progress.fail()
                 })
+        },
+        startTimeout() {
+            this.timeout = setTimeout(this.randomBackground, 7500)
+        },
+        stopTimeout() {
+            if (this.timeout != null)
+                this.timeout = clearTimeout(this.timeout)
         }
+    },
+    activated() {
+        if (this.ready && this.timeout == null) {
+            this.startTimeout()
+        }
+    },
+    deactivated() {
+        this.stopTimeout()
+        this.randomBackground()
     }
 }
 </script>
