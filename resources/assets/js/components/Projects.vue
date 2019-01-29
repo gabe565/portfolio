@@ -43,7 +43,7 @@ export default {
             .then(response => {
                 _.forOwn(response.data, (category, key) => {
                     this.$set(this.projects, key, [])
-                    _.forOwn(category, project => {
+                    _.forEach(category, project => {
                         preloadImage(project.image_path)
                             .then(() => {
                                 this.projects[key].push(project)
