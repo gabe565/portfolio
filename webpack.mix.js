@@ -15,9 +15,9 @@ mix.autoload({
     jquery: ['$', 'jQuery', 'window.jQuery'],
     'popper.js/dist/umd/popper.js': ['Popper']
 })
-    .js('resources/assets/js/app.js', 'public/js')
+    .js('resources/js/app.js', 'public/js')
     .extract()
-    .sass('resources/assets/sass/bootstrap.scss', 'public/css')
-    .sass('resources/assets/sass/main.scss', 'public/css')
+    .sass('resources/sass/bootstrap.scss', 'public/css')
+    .sass('resources/sass/main.scss', 'public/css')
     .version()
     .sourceMaps();

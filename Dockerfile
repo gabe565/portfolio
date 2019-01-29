@@ -37,7 +37,7 @@ RUN set -x \
         --no-progress
 
 COPY public/ public/
-COPY resources/assets/ resources/assets/
+COPY resources/ resources/
 
 RUN set -x \
     && node_modules/webpack/bin/webpack.js \
