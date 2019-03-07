@@ -10,7 +10,7 @@
                     </transition>
                 </div>
                 <div class="col-lg-6 mr-auto">
-                    <p>I am a <span>{{ age }}</span> year old DevOps Engineer and Software Developer from Oklahoma City, OK. I graduated with my B.S. in Computer Science from the University of Central Oklahoma.</p>
+                    <p>I am a {{ age }} year old DevOps Engineer and Software Developer from Oklahoma City, OK. I graduated with my B.S. in Computer Science from the University of Central Oklahoma.</p>
                     <p>I enjoy scripting things together, writing websites which have an easy-to-use interface, tinkering with self-hosted home automation, and just overall playing with technology!</p>
                     <p><router-link to="/connect">Let me know if you have any questions!</router-link></p>
                 </div>
