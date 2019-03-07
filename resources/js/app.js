@@ -87,8 +87,10 @@ const router = new VueRouter({
     }
 })
 
+const initialTitle = document.title
+
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title ? to.meta.title + ' · Gabe Cook' : 'Gabe Cook'
+    document.title = (to.meta.title ? to.meta.title + ' | ' : '') + (router.app.appName || initialTitle)
     next()
 })
 
@@ -97,7 +99,8 @@ const app = new Vue({
     router,
     data() {
         return {
-            transitionName: 'fade'
+            transitionName: 'fade',
+            appName: initialTitle
         }
     },
     watch: {

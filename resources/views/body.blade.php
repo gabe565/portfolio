@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Personal portfolio website for Gabe Cook">
-        <meta name="author" content="Gabe Cook">
+        <meta name="description" content="Personal portfolio website for {{ config('app.name') }}">
+        <meta name="author" content="{{ config('app.name') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -14,10 +14,10 @@
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#607d8b">
         <meta name="theme-color" content="#607d8b">
 
-        <meta property='og:title' content='Gabe Cook'/>
-        <meta property='og:image' content='https://gabecook.com/images/thumb.png'/>
-        <meta property='og:description' content='Personal portfolio website for Gabe Cook'/>
-        <meta property='og:url' content='https://gabecook.com' />
+        <meta property='og:title' content='{{ config('app.name') }}'/>
+        <meta property='og:image' content='{{ config('app.url') }}/images/thumb.png'/>
+        <meta property='og:description' content='Personal portfolio website for {{ config('app.name') }}'/>
+        <meta property='og:url' content='{{ config('app.url') }}' />
         <meta property="og:type" content="website" />
 
         <title>{{ config('app.name') }}</title>
@@ -40,7 +40,7 @@
         <div id="app" :class="$route.meta.title">
             <nav class="navbar navbar-expand-md fixed-top navbar-dark">
                 <div class="container">
-                    <router-link to="/" class="navbar-brand">&lt; gabe.cook &gt;</router-link>
+                    <router-link to="/" class="navbar-brand">&lt; {{ str_replace(' ', '.', strtolower(config('app.name'))) }} &gt;</router-link>
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <svgicon name="bars"></svgicon>
                         &nbsp;Menu
@@ -88,7 +88,7 @@
                 <div class="container">
                     <div class="row text-center">
                         <div class="col-sm text-sm-left">
-                            <span>&lt;/ gabe.cook &gt;</span>
+                            <span>&lt;/ {{ str_replace(' ', '.', strtolower(config('app.name'))) }} &gt;</span>
                         </div>
                         <div class="col-sm">
                             <a href="//github.com/gabe565/gabecook.com" target="_blank">
@@ -100,7 +100,7 @@
                         </div>
                         <div class="col-sm text-sm-right">
                             <a href="//github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank">
-                                &copy; 2019 Gabe Cook
+                                &copy; 2019 {{ config('app.name') }}
                             </a>
                         </div>
                     </div>

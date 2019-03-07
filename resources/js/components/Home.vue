@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <h1 class="brand-heading">Gabe Cook</h1>
+                        <h1 class="brand-heading">{{ $parent.appName }}</h1>
                         <h2 class="intro-text">Software Developer</h2>
                     </div>
                 </div>
