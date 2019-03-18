@@ -63,12 +63,12 @@ export default {
             this.timeout = setTimeout(this.randomBackground, 7500)
         },
         stopTimeout() {
-            if (this.timeout != null)
+            if (this.timeout !== null)
                 this.timeout = clearTimeout(this.timeout)
         }
     },
     activated() {
-        if (this.ready && this.timeout == null) {
+        if (this.ready && this.timeout === null) {
             this.startTimeout()
         }
     },
