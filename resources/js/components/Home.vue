@@ -1,7 +1,7 @@
 <template>
     <header class="masthead">
         <transition name="fade" appear>
-            <div class="intro-bg" :key="index" :style="{ backgroundImage: `url(${backgrounds[index]})` }" v-if="ready"></div>
+            <div class="intro-bg" :key="index" :style="{ backgroundImage: `url(${backgrounds[index]})` }" v-if="index !== null"></div>
         </transition>
         <div class="intro-body">
             <div class="container">
@@ -22,8 +22,6 @@ import preloadImage from '../preloadImage'
 export default {
     data() {
         return {
-            active: true,
-            ready: false,
             index: null,
             backgrounds: null,
             timeout: null,
@@ -49,7 +47,6 @@ export default {
             preloadImage(this.backgrounds[index])
                 .then(() => {
                     this.index = index
-                    this.ready = true
                     this.$Progress.finish()
                     if (!this._inactive) {
                         this.startTimeout()
@@ -68,7 +65,7 @@ export default {
         }
     },
     activated() {
-        if (this.ready && this.timeout === null) {
+        if (this.index !== null && this.timeout === undefined) {
             this.startTimeout()
         }
     },
