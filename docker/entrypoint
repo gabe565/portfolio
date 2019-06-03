@@ -4,5 +4,6 @@ set -ex
 tar -Jxf /usr/src/app.tar.xz
 
 php artisan migrate
+php artisan config:cache
 
 exec php-fpm

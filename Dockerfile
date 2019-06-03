@@ -19,7 +19,8 @@ RUN set -x \
     && composer dump-autoload \
         --classmap-authoritative \
         --no-interaction \
-        --no-plugins
+        --no-plugins \
+    && php artisan route:cache
 
 # Node
 FROM node:8-alpine as frontend
