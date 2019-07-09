@@ -1,5 +1,5 @@
 # Composer
-FROM composer as vendor
+FROM gabe565/prestissimo as vendor
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
@@ -9,9 +9,7 @@ RUN set -x \
         --ignore-platform-reqs \
         --no-autoloader \
         --no-interaction \
-        --no-plugins \
         --no-progress \
-        --no-scripts \
         --no-suggest
 
 COPY . ./
@@ -19,7 +17,6 @@ RUN set -x \
     && composer dump-autoload \
         --classmap-authoritative \
         --no-interaction \
-        --no-plugins \
     && php artisan route:cache
 
 # Node
