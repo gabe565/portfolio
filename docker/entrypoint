@@ -1,8 +1,6 @@
 #!/bin/sh
 set -ex
 
-tar -Jxf /usr/src/app.tar.xz
-
 php artisan migrate
 php artisan config:cache
 

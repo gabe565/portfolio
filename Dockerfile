@@ -43,30 +43,14 @@ RUN set -x \
         --hide-modules \
         --config=node_modules/laravel-mix/setup/webpack.config.js
 
-FROM alpine as packer
-
-WORKDIR /app
-
-COPY --chown=82:82 ./ .
-COPY --from=vendor --chown=82:82 /app/vendor vendor/
-COPY --from=frontend --chown=82:82 /app/public public/
-
-RUN set -x \
-    && apk add --no-cache xz \
-    && ln -s ../storage/app/public /app/public/storage \
-    && tar -Jcf /app.tar.xz -C /app . \
-    && apk del xz
-
-
 # Final Image
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 LABEL maintainer="Gabe Cook <gabe565@gmail.com>"
 
 RUN set -x \
     && apk add --no-cache \
         fcgi \
-        rsync \
-    && docker-php-ext-install mysqli pdo_mysql \
+    && docker-php-ext-install -j"$(nproc)" mysqli pdo_mysql opcache \
     && rm -rf /tmp/* /var/cache/apk/* \
     && sed -ri \
         -e 's/;(ping\.path)/\1/' /usr/local/etc/php-fpm.d/www.conf \
@@ -79,7 +63,9 @@ RUN set -x \
 WORKDIR /var/www/html
 VOLUME /var/www/html
 
-COPY --from=packer /app.tar.xz /usr/src/app.tar.xz
+COPY --chown=82:82 ./ .
+COPY --from=vendor --chown=82:82 /app/vendor vendor/
+COPY --from=frontend --chown=82:82 /app/public public/
 COPY --chown=root docker/entrypoint docker/health-check /
 
 HEALTHCHECK --interval=1m --timeout=5s \
