@@ -100,7 +100,7 @@
                         </div>
                         <div class="col-sm text-sm-right">
                             <a href="//github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank">
-                                &copy; 2019 {{ config('app.name') }}
+                                &copy; {{ now()->year }} {{ config('app.name') }}
                             </a>
                         </div>
                     </div>
