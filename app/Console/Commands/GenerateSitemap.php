@@ -35,7 +35,7 @@ class GenerateSitemap extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return int
      */
     public function handle()
     {
@@ -44,5 +44,7 @@ class GenerateSitemap extends Command
                 return $url->segment(1) !== 'to';
             })
             ->writeToFile(public_path('sitemap.xml'));
+
+        return 0;
     }
 }
