@@ -16,6 +16,7 @@ mix.autoload({
     'popper.js/dist/umd/popper.js': ['Popper']
 })
     .js('resources/js/app.js', 'public/js')
+    .vue()
     .extract()
     .sass('resources/sass/bootstrap.scss', 'public/css')
     .sass('resources/sass/main.scss', 'public/css')

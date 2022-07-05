@@ -3,4 +3,4 @@
 set -eux
 
 npm install
-exec npm run watch -- --no-progress
+exec npm run watch
