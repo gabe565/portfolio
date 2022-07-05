@@ -50,5 +50,6 @@ CMD ["s6-svscan", "/etc/services.d/app"]
 
 # prod image
 FROM local-image as prod-image
+LABEL org.opencontainers.image.source="https://github.com/gabe565/portfolio"
 COPY --from=php-builder --chown=82:82 /app .
 COPY --from=node-builder --chown=82:82 /app/public public/
