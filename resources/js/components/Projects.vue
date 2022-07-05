@@ -6,20 +6,23 @@
             <span v-for="(projects, category) in projects">
                 <hr>
                 <h3>{{ category }}</h3>
-                <transition-group name="fade" tag="div" appear class="card-deck col-lg-10 mx-auto">
-                    <div class="card text-white bg-dark border-dark" v-for="project in projects" :key="`project-${project.name}`">
-                        <a :href="project.url" class="card-link overflow-hidden" target="_blank">
-                            <img :src="project.image_path" class="card-img-top" :alt="`Screenshot of ${project.name}`">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ project.name }}</h5>
-                            <p class="card-description" v-html="project.description"></p>
-                        </div>
-                        <a :href="project.url" class="card-link" target="_blank">
-                            <div class="card-footer">
-                                View at <span class="mono">{{ project.url.replace(/(^\w+:|^)\/\//, '') }}</span>
+
+                <transition-group name="fade" tag="div" appear class="row justify-content-center">
+                    <div class="col-10 col-lg-6 pb-4 pb-lg-0" v-for="project in projects" :key="`project-${project.name}`">
+                        <div class="card text-white bg-dark border-dark h-100">
+                            <a :href="project.url" class="card-link overflow-hidden" target="_blank">
+                                <img :src="project.image_path" class="card-img-top" :alt="`Screenshot of ${project.name}`">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ project.name }}</h5>
+                                <p class="card-description" v-html="project.description"></p>
                             </div>
-                        </a>
+                            <a :href="project.url" class="card-link" target="_blank">
+                                <div class="card-footer">
+                                    View at <span class="mono">{{ project.url.replace(/(^\w+:|^)\/\//, '') }}</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </transition-group>
             </span>
