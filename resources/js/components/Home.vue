@@ -25,14 +25,15 @@ export default {
             index: null,
             backgrounds: null,
             timeout: null,
+            retries: 0,
         }
     },
     created() {
-        this.$Progress.start()
         this.updateBackgrounds()
     },
     methods: {
         async updateBackgrounds() {
+            this.$Progress.start();
             try {
                 const response = await axios.get('/api/bg');
                 this.backgrounds = response.data;
@@ -43,17 +44,25 @@ export default {
             }
         },
         async randomBackground() {
+            this.$Progress.start();
             let index = Math.floor(Math.random() * this.backgrounds.length)
             try {
                 await preloadImage(this.backgrounds[index]);
                 this.index = index;
                 this.$Progress.finish();
-                if (!this._inactive) {
-                    this.startTimeout();
-                }
+                this.retries = 0;
             } catch (error) {
                 console.error(error);
+                if (this.retries < 2) {
+                    this.retries += 1;
+                    this.randomBackground();
+                    return;
+                }
+                console.error("Exceeded retries");
                 this.$Progress.fail();
+            }
+            if (!this._inactive) {
+                this.startTimeout();
             }
         },
         startTimeout() {
