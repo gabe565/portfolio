@@ -5,6 +5,7 @@ services:
     image: ghcr.io/gabe565/portfolio
     build:
       args:
+        FONTAWESOME_NPM_AUTH_TOKEN: "$FONTAWESOME_NPM_AUTH_TOKEN"
         INSTALL_XDEBUG: "false"
         NODE_ENV: development
       context: .
@@ -42,8 +43,10 @@ services:
   hot:
     image: ghcr.io/gabe565/portfolio-hot
     build: docker/hot
+    environment:
+      FONTAWESOME_NPM_AUTH_TOKEN: "$FONTAWESOME_NPM_AUTH_TOKEN"
     env_file:
-        - .env
+      - .env
     restart: unless-stopped
     volumes:
       - .:/app

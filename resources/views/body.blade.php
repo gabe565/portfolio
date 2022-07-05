@@ -42,32 +42,32 @@
                 <div class="container">
                     <router-link to="/" class="navbar-brand">&lt; {{ str_replace(' ', '.', strtolower(config('app.name'))) }} &gt;</router-link>
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <svgicon name="bars"></svgicon>
+                        <font-awesome-icon icon="fas fa-bars"></font-awesome-icon>
                         &nbsp;Menu
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <router-link to="/about" class="nav-link">
-                                    <svgicon name="info-circle"></svgicon>
+                                    <font-awesome-icon icon="fas fa-info-circle" fixed-width></font-awesome-icon>
                                     About
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="/skills" class="nav-link">
-                                    <svgicon name="list-ul"></svgicon>
+                                    <font-awesome-icon icon="fas fa-list-ul" fixed-width></font-awesome-icon>
                                     Skills
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="/projects" class="nav-link">
-                                    <svgicon name="code"></svgicon>
+                                    <font-awesome-icon icon="fas fa-code" fixed-width></font-awesome-icon>
                                     Projects
                                 </router-link>
                             </li>
                             <li class="nav-item">
                                 <router-link to="/connect" class="nav-link">
-                                    <svgicon name="envelope"></svgicon>
+                                    <font-awesome-icon icon="fas fa-envelope" fixed-width></font-awesome-icon>
                                     Connect
                                 </router-link>
                             </li>
@@ -93,7 +93,7 @@
                         <div class="col-sm">
                             <a href="//github.com/gabe565/gabecook.com" target="_blank">
                                 <span>
-                                    <svgicon name="github"></svgicon>
+                                    <font-awesome-icon icon="fab fa-github"></font-awesome-icon>
                                     &nbsp;View on GitHub
                                 </span>
                             </a>

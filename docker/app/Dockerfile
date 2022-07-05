@@ -28,7 +28,8 @@ RUN composer dump-autoload \
 FROM node:$NODE_VERSION-alpine as node-builder
 WORKDIR /app
 
-COPY artisan package.json package-lock.json webpack.* ./
+COPY artisan package.json package-lock.json webpack.* .npmrc ./
+ARG FONTAWESOME_NPM_AUTH_TOKEN
 RUN npm ci
 
 COPY public/ public/

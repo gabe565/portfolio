@@ -9,6 +9,11 @@
     },
     "dependencies": {
         "@babel/preset-react": "^7.0.0",
+        "@fortawesome/fontawesome-svg-core": "^6.1.1",
+        "@fortawesome/free-brands-svg-icons": "^6.1.1",
+        "@fortawesome/pro-regular-svg-icons": "^6.1.1",
+        "@fortawesome/pro-solid-svg-icons": "^6.1.1",
+        "@fortawesome/vue-fontawesome": "^2.0.8",
         "axios": "^0.27.2",
         "bootstrap": "^4.6.1",
         "jquery": "^3.6.0",
@@ -23,7 +28,6 @@
         "vue-loader": "^15.10.0",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.0.2",
-        "vue-svgicon": "^3.2.9",
         "vue-template-compiler": "^2.6.7",
         "vue2-google-maps": "^0.10.7"
     }

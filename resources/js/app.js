@@ -11,7 +11,7 @@ import Vue from 'vue';
 
 import './plugins/google-maps';
 import './plugins/progress-bar';
-import './plugins/svgicon';
+import './plugins/fontawesome';
 import { initialTitle, router, routes } from './plugins/router';
 
 const app = new Vue({

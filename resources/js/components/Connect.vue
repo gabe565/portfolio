@@ -13,19 +13,19 @@
                     <ul class="list-inline banner-social-buttons">
                         <li class="list-inline-item">
                             <a href="/to/twitter" class="btn btn-default btn-lg" target="_blank">
-                                <svgicon name="twitter"></svgicon>
+                                <font-awesome-icon icon="fab fa-twitter"/>
                                 <span class="network-name">Twitter</span>
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a href="/to/github" class="btn btn-default btn-lg" target="_blank">
-                                <svgicon name="github"></svgicon>
+                                <font-awesome-icon icon="fab fa-github"/>
                                 <span class="network-name">Github</span>
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a href="/to/linkedin" class="btn btn-default btn-lg" target="_blank">
-                                <svgicon name="linkedin"></svgicon>
+                                <font-awesome-icon icon="fab fa-linkedin"/>
                                 <span class="network-name">LinkedIn</span>
                             </a>
                         </li>
@@ -46,7 +46,7 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
-                                        <svgicon name="user-alt"></svgicon>
+                                        <font-awesome-icon icon="far fa-user-alt" fixed-width/>
                                     </div>
                                 </div>
                                 <input v-model="name" name="name" placeholder="Name" class="form-control" type="text" required>
@@ -57,7 +57,7 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
-                                        <svgicon name="at"></svgicon>
+                                        <font-awesome-icon icon="far fa-at" fixed-width/>
                                     </div>
                                 </div>
                                 <input v-model="email" name="email" placeholder="Email Address" class="form-control" type="email" required>
@@ -68,7 +68,7 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
-                                        <svgicon name="comment"></svgicon>
+                                        <font-awesome-icon icon="far fa-comment" fixed-width/>
                                     </div>
                                 </div>
                                 <textarea v-model="text" class="form-control vertical" name="text" placeholder="Message" required style="min-height: 62px"></textarea>
@@ -77,8 +77,8 @@
                         <!-- Button -->
                         <div class="form-group">
                             <button class="btn btn-default">
-                                <svgicon name="paper-plane" v-if="!loading"></svgicon>
-                                <svgicon name="sync" class="svg-spin" v-if="loading"></svgicon>
+                                <font-awesome-icon icon="far fa-sync" fixed-width spin v-if="loading"/>
+                                <font-awesome-icon icon="far fa-paper-plane" fixed-width v-else/>
                                 &nbsp;Send
                             </button>
                         </div>

@@ -18,10 +18,10 @@
                                     <div class="ability-score" aria-hidden="true" :title="`${skill.rating} Stars`">
                                         <span v-for="n in 5">
                                             <template v-if="n <= skill.rating">
-                                                <svgicon name="star-full" class="star-full" aria-hidden="true"></svgicon>
+                                                <font-awesome-icon icon="fas fa-star" fixed-width class="text-primary"/>
                                             </template>
                                             <template v-else>
-                                                <svgicon name="star-empty" class="star-empty" aria-hidden="true"></svgicon>
+                                                <font-awesome-icon icon="far fa-star" fixed-width class="text-white opacity-15"/>
                                             </template>
                                         </span>
                                     </div>
@@ -69,3 +69,9 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+.opacity-15 {
+    opacity: 0.15;
+}
+</style>
