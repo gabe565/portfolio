@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use \App\Background as Background;
-use Illuminate\Http\Request;
 
 class DashController extends Controller
 {
-    public function __invoke() {
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application {
         return view('body');
     }
 
-    public function getBackground() {
+    public function getBackground(): \Illuminate\Http\JsonResponse {
         $bg_url = Background::select('url')
             ->get()
             ->pluck('url');
