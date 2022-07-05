@@ -10,7 +10,7 @@ ARG INSTALL_PGSQL=true
 FROM ghcr.io/clevyr/php:$PHP_VERSION-composer$COMPOSER_VERSION-base as php-builder
 WORKDIR /app
 
-COPY composer.json composer.lock auth.json ./
+COPY composer.json composer.lock ./
 RUN composer install \
         --ignore-platform-reqs \
         --no-autoloader \
