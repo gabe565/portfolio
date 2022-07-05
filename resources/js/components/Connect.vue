@@ -112,20 +112,22 @@ export default {
         }
     },
     methods: {
-        mail() {
+        async mail() {
             let valid = this.$refs.form.checkValidity()
             this.$refs.form.classList.add('was-validated')
             if (valid) {
                 this.loading = true
-                axios.post('/api/mail', {
-                    name: this.name,
-                    email: this.email,
-                    text: this.text
-                }).then(response => {
-                    this.postSubmit(response)
-                }).catch(error => {
+                try {
+                    const response = await axios.post('/api/mail', {
+                        name: this.name,
+                        email: this.email,
+                        text: this.text
+                    });
+                    this.postSubmit(response);
+                } catch (error) {
+                    console.error(error);
                     this.postSubmit(error)
-                })
+                }
             }
         },
         postSubmit(response) {

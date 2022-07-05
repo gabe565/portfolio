@@ -36,29 +36,28 @@ export default {
             projects: {},
         }
     },
-    created() {
+    async created() {
         this.$Progress.start()
 
-        axios.get('/api/projects')
-            .then(response => {
-                _.forOwn(response.data, (category, key) => {
-                    this.$set(this.projects, key, [])
-                    _.forEach(category, project => {
-                        preloadImage(project.image_path)
-                            .then(() => {
-                                this.projects[key].push(project)
-                            })
-                            .catch(() => {
-                                this.$Progress.fail()
-                            })
-
-                    })
-                })
-                this.$Progress.finish()
-            })
-            .catch(response => {
-                this.$Progress.fail()
-            })
+        try {
+            const response = await axios.get('/api/projects');
+            _.forOwn(response.data, (category, key) => {
+                this.$set(this.projects, key, []);
+                _.forEach(category, async project => {
+                    try {
+                        await preloadImage(project.image_path);
+                        this.projects[key].push(project);
+                    } catch (error) {
+                        console.error(error);
+                        this.$Progress.fail();
+                    }
+                });
+            });
+            this.$Progress.finish();
+        } catch (error) {
+            console.error(error);
+            this.$Progress.fail();
+        }
     }
 }
 </script>

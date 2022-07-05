@@ -144,20 +144,20 @@ export default {
             me: '/images/me.jpg',
         }
     },
-    created() {
-        this.$Progress.start()
+    async created() {
+        this.$Progress.start();
 
-        var birthday = +new Date('1995-05-26')
-        this.age = ~~((Date.now() - birthday) / (31557600000))
+        var birthday = +new Date('1995-05-26');
+        this.age = ~~((Date.now() - birthday) / (31557600000));
 
-        preloadImage(this.me)
-            .then(() => {
-                this.displayImg = true
-                this.$Progress.finish()
-            })
-            .catch(() => {
-                this.$Progress.fail()
-            })
+        try {
+            await preloadImage(this.me);
+            this.displayImg = true;
+            this.$Progress.finish();
+        } catch (error) {
+            console.error(error);
+            this.$Progress.fail();
+        }
     }
 }
 </script>

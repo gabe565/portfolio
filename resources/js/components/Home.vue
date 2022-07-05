@@ -32,36 +32,37 @@ export default {
         this.updateBackgrounds()
     },
     methods: {
-        updateBackgrounds() {
-            axios.get('/api/bg')
-                .then(response => {
-                    this.backgrounds = response.data
-                    this.randomBackground()
-                })
-                .catch(response => {
-                    this.$Progress.fail()
-                })
+        async updateBackgrounds() {
+            try {
+                const response = await axios.get('/api/bg');
+                this.backgrounds = response.data;
+                await this.randomBackground();
+            } catch (error) {
+                console.error(error);
+                this.$Progress.fail();
+            }
         },
-        randomBackground() {
+        async randomBackground() {
             let index = Math.floor(Math.random() * this.backgrounds.length)
-            preloadImage(this.backgrounds[index])
-                .then(() => {
-                    this.index = index
-                    this.$Progress.finish()
-                    if (!this._inactive) {
-                        this.startTimeout()
-                    }
-                })
-                .catch(() => {
-                    this.$Progress.fail()
-                })
+            try {
+                await preloadImage(this.backgrounds[index]);
+                this.index = index;
+                this.$Progress.finish();
+                if (!this._inactive) {
+                    this.startTimeout();
+                }
+            } catch (error) {
+                console.error(error);
+                this.$Progress.fail();
+            }
         },
         startTimeout() {
             this.timeout = setTimeout(this.randomBackground, 7500)
         },
         stopTimeout() {
             if (this.timeout !== null)
-                this.timeout = clearTimeout(this.timeout)
+                clearTimeout(this.timeout);
+                this.timeout = null;
         }
     },
     activated() {

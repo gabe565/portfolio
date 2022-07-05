@@ -54,18 +54,18 @@ export default {
                 return {}
         },
     },
-    created() {
+    async created() {
         this.$Progress.start()
 
-        axios.get('/api/skills')
-            .then(response => {
-                this.skills = response.data
-                this.ready = true
-                this.$Progress.finish()
-            })
-            .catch(response => {
-                this.$Progress.fail()
-            })
+        try {
+            const response = await axios.get('/api/skills');
+            this.skills = response.data;
+            this.ready = true;
+            this.$Progress.finish();
+        } catch (error) {
+            console.error(error);
+            this.$Progress.fail();
+        }
     }
 }
 </script>
