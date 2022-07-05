@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \App\Project as Project;
+use App\Models\Project as Project;
 
 class ProjectController extends Controller
 {

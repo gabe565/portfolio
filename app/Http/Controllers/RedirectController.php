@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \App\Redirect as Redirect;
+use App\Models\Redirect as Redirect;
 
 class RedirectController extends Controller
 {

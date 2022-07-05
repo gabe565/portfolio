@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \App\Background as Background;
+use App\Models\Background as Background;
 
 class DashController extends Controller
 {

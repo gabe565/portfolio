@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \App\Skill as Skill;
+use App\Models\Skill as Skill;
 
 class SkillController extends Controller
 {

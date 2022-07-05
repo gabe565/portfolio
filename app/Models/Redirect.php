@@ -1,11 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Skill extends Model
+class Redirect extends Model
 {
     public $timestamps = false;
-    protected $hidden = ['heading'];
 }
