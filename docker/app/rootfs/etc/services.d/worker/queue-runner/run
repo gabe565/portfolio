@@ -1,0 +1,11 @@
+#!/bin/sh
+set -x
+
+if [ "$APP_ENV" != "local" ]; then
+    while /health-check "$DOCKER_GATEWAY"; do
+        echo "Waiting for app to come up" >&2
+        sleep 2
+    done
+fi
+
+exec php /app/artisan queue:work -n --delay=90 --tries=3

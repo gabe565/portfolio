@@ -1,7 +1,0 @@
-#!/bin/sh
-set -ex
-
-php artisan migrate
-php artisan config:cache
-
-exec php-fpm

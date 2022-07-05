@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  app:
+    image: ghcr.io/gabe565/portfolio
+    build:
+      args:
+        INSTALL_XDEBUG: "false"
+        NODE_ENV: development
+      context: .
+      dockerfile: docker/app/Dockerfile
+      target: local-image
+    environment:
+      HTTPS: "true"
+    restart: unless-stopped
+    volumes:
+      - .:/app
+ 
+  proxy:
+    image: clevyr/caddy
+    environment:
+      SITE_ADDRESS: localtest.me
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    volumes:
+      - ~/.config/caddy:/data
+
+  database:
+    environment:
+      POSTGRES_USER: "$DB_USERNAME"
+      POSTGRES_PASSWORD: "$DB_PASSWORD"
+      POSTGRES_DB: "$DB_DATABASE"
+    image: postgres:14-alpine
+    ports:
+      - 127.0.0.1:5432:5432
+    restart: unless-stopped
+    volumes:
+      - database:/var/lib/postgresql/data
+
+  hot:
+    image: ghcr.io/gabe565/portfolio-hot
+    build: docker/hot
+    env_file:
+        - .env
+    restart: unless-stopped
+    volumes:
+      - .:/app
+
+  mail:
+    image: clevyr/mailhog
+    ports:
+      - 127.0.0.1:25:25
+    restart: unless-stopped
+
+volumes:
+  database:
