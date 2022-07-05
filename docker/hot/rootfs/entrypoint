@@ -2,5 +2,5 @@
 
 set -eux
 
-npm install --frozen-lockfile
+npm install
 exec npm run watch -- --no-progress
