@@ -7,6 +7,7 @@ services:
       args:
         FONTAWESOME_NPM_AUTH_TOKEN: "$FONTAWESOME_NPM_AUTH_TOKEN"
         INSTALL_XDEBUG: "false"
+        MIX_GOOGLE_API_KEY: "$MIX_GOOGLE_API_KEY"
         NODE_ENV: development
       context: .
       dockerfile: docker/app/Dockerfile
@@ -45,6 +46,7 @@ services:
     build: docker/hot
     environment:
       FONTAWESOME_NPM_AUTH_TOKEN: "$FONTAWESOME_NPM_AUTH_TOKEN"
+      MIX_GOOGLE_API_KEY: "$MIX_GOOGLE_API_KEY"
     env_file:
       - .env
     restart: unless-stopped

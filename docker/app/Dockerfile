@@ -35,6 +35,7 @@ RUN npm ci
 COPY public/ public/
 COPY resources/ resources/
 
+ARG MIX_GOOGLE_API_KEY
 RUN npm run production
 
 
