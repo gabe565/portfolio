@@ -1,9 +1,8 @@
-# gabecook.com
-<p align="center">
-    <a href="https://gabecook.com"><img src="https://img.shields.io/uptimerobot/status/m779229331-ae0691a5299723e34230e379.svg?label=site%20status" alt="Site Status"></a>
-    <a href="https://github.com/gabe565/gabecook.com/blob/master/LICENSE"><img src="https://img.shields.io/github/license/gabe565/gabecook.com.svg" alt="License"></a>
-</p>
+# Portfolio
 
-My single-page portfolio website build with [Laravel](https://laravel.com) and [Vue.js](https://vuejs.org).
+[![Docker Build](https://github.com/gabe565/portfolio/actions/workflows/docker.yaml/badge.svg)](https://github.com/gabe565/portfolio/actions/workflows/docker.yaml)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/gabe565)](https://artifacthub.io/packages/helm/gabe565/portfolio)
 
-This site is live at <https://gabecook.com>.
+My personal portfolio website build as a single-page app with [Laravel](https://laravel.com) and [Vue.js](https://vuejs.org).
+
+View the live site at <https://gabecook.com>.
