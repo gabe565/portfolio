@@ -48,25 +48,25 @@
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <router-link to="/about" class="nav-link">
+                                <router-link to="/about" class="nav-link rounded">
                                     <font-awesome-icon icon="fas fa-info-circle" fixed-width></font-awesome-icon>
                                     About
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/skills" class="nav-link">
+                                <router-link to="/skills" class="nav-link rounded">
                                     <font-awesome-icon icon="fas fa-list-ul" fixed-width></font-awesome-icon>
                                     Skills
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/projects" class="nav-link">
+                                <router-link to="/projects" class="nav-link rounded">
                                     <font-awesome-icon icon="fas fa-code" fixed-width></font-awesome-icon>
                                     Projects
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/connect" class="nav-link">
+                                <router-link to="/connect" class="nav-link rounded">
                                     <font-awesome-icon icon="fas fa-envelope" fixed-width></font-awesome-icon>
                                     Connect
                                 </router-link>
