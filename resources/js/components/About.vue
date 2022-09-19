@@ -17,7 +17,7 @@
             </div>
             <hr>
         </div>
-        <div id="map">
+        <div id="map" class="w-100">
             <transition name="fade">
                 <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
             </transition>
