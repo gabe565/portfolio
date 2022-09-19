@@ -24,11 +24,11 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.53.0",
         "sass-loader": "^12.6.0",
-        "vue": "^2.6.7",
+        "vue": "^2.7.10",
         "vue-loader": "^15.10.0",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.0.2",
-        "vue-template-compiler": "^2.6.7",
+        "vue-template-compiler": "^2.7.10",
         "vue2-google-maps": "^0.10.7"
     }
 }
