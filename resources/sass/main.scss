@@ -269,23 +269,6 @@ footer {
     transition: all 0.3s ease-out;
 }
 
-.btn-default {
-    border: 1px solid $primary;
-
-    background-color: $gray-900;
-
-    color: $primary;
-
-    &:focus, &:hover {
-        border: 1px solid $primary;
-
-        background-color: $primary;
-
-        color: black;
-        outline: none;
-    }
-}
-
 .banner-social-buttons.list-inline {
     margin-top: 0;
 

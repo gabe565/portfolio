@@ -12,19 +12,19 @@
                 <div class="col-lg-8 mx-auto">
                     <ul class="list-inline banner-social-buttons">
                         <li class="list-inline-item">
-                            <a href="/to/twitter" class="btn btn-default btn-lg" target="_blank">
+                            <a href="/to/twitter" class="btn btn-outline-primary btn-lg" target="_blank">
                                 <font-awesome-icon icon="fab fa-twitter"/>
                                 <span class="network-name">Twitter</span>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="/to/github" class="btn btn-default btn-lg" target="_blank">
+                            <a href="/to/github" class="btn btn-outline-primary btn-lg" target="_blank">
                                 <font-awesome-icon icon="fab fa-github"/>
                                 <span class="network-name">Github</span>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="/to/linkedin" class="btn btn-default btn-lg" target="_blank">
+                            <a href="/to/linkedin" class="btn btn-outline-primary btn-lg" target="_blank">
                                 <font-awesome-icon icon="fab fa-linkedin"/>
                                 <span class="network-name">LinkedIn</span>
                             </a>
@@ -76,7 +76,7 @@
                         </div>
                         <!-- Button -->
                         <div class="form-group">
-                            <button class="btn btn-default">
+                            <button class="btn btn-outline-primary">
                                 <font-awesome-icon icon="far fa-sync" fixed-width spin v-if="loading"/>
                                 <font-awesome-icon icon="far fa-paper-plane" fixed-width v-else/>
                                 &nbsp;Send
