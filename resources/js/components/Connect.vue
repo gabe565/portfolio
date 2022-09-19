@@ -38,44 +38,38 @@
             <div class="col-lg-6 col-md-8 mx-auto">
                 <form id="needs-validation" data-focus="false" method="post" action="/api/mail" role="form" ref="form" novalidate v-on:submit.prevent="mail">
                     <fieldset>
-                        <div class="col">
+                        <div class="col mb-3">
                             <div class="alert" v-if="response !== null" :class="[ successful ? 'alert-success' : 'alert-danger']">{{ message }}</div>
                         </div>
                         <!--Name-->
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <font-awesome-icon icon="far fa-user-alt" fixed-width/>
-                                    </div>
+                                <div class="input-group-text">
+                                    <font-awesome-icon icon="far fa-user-alt" fixed-width/>
                                 </div>
                                 <input v-model="name" name="name" placeholder="Name" class="form-control" type="text" required>
                             </div>
                         </div>
                         <!--Email-->
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <font-awesome-icon icon="far fa-at" fixed-width/>
-                                    </div>
+                                <div class="input-group-text">
+                                    <font-awesome-icon icon="far fa-at" fixed-width/>
                                 </div>
                                 <input v-model="email" name="email" placeholder="Email Address" class="form-control" type="email" required>
                             </div>
                         </div>
                         <!--Message-->
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <font-awesome-icon icon="far fa-comment" fixed-width/>
-                                    </div>
+                                <div class="input-group-text">
+                                    <font-awesome-icon icon="far fa-comment" fixed-width/>
                                 </div>
                                 <textarea v-model="text" class="form-control vertical" name="text" placeholder="Message" required style="min-height: 62px"></textarea>
                             </div>
                         </div>
                         <!-- Button -->
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <button class="btn btn-outline-primary">
                                 <font-awesome-icon icon="far fa-sync" fixed-width spin v-if="loading"/>
                                 <font-awesome-icon icon="far fa-paper-plane" fixed-width v-else/>
