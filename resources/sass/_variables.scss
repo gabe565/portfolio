@@ -795,9 +795,10 @@ $progress-bar-transition:           width .6s ease !default;
 
 // List group
 
-$list-group-bg:                     $white !default;
+$list-group-bg:                     rgba(0, 0, 0, 0) !default;
+$list-group-color:                  $white !default;
 $list-group-border-color:           rgba($black, .125) !default;
-$list-group-border-width:           $border-width !default;
+$list-group-border-width:           0 !default;
 $list-group-border-radius:          $border-radius !default;
 
 $list-group-item-padding-y:         .75rem !default;
