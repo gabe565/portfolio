@@ -11,19 +11,25 @@
                     <h3>{{ category }}</h3>
                     <div class="row">
                         <div class="col-sm-8 col-lg-4 mx-auto" v-for="(list, key) in skills" :class="[ key == 0 ? 'ms-lg-auto me-lg-0' : 'me-lg-auto ms-lg-0']">
-                            <ul class="list-group list-group-inverse talent-list">
+                            <ul class="list-group list-group-inverse">
                                 <li v-for="skill in list" class="list-group-item">
-                                    <span>{{ skill.title }}</span>
-                                    <div class="sr-only">{{ skill.rating }} of 5</div>
-                                    <div class="ability-score" aria-hidden="true" :title="`${skill.rating} Stars`">
-                                        <span v-for="n in 5">
-                                            <template v-if="n <= skill.rating">
-                                                <font-awesome-icon icon="fas fa-star" fixed-width class="text-primary"/>
+                                    <div class="row">
+                                        <div class="col text-start">
+                                            {{ skill.title }}
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="sr-only">{{ skill.rating }} of 5</div>
+                                            <div class="float-end" aria-hidden="true" :title="`${skill.rating} Stars`">
+                                            <template v-for="n in 5">
+                                                <template v-if="n <= skill.rating">
+                                                    <font-awesome-icon icon="fas fa-star" fixed-width class="text-primary"/>
+                                                </template>
+                                                <template v-else>
+                                                    <font-awesome-icon icon="far fa-star" fixed-width class="text-white opacity-15"/>
+                                                </template>
                                             </template>
-                                            <template v-else>
-                                                <font-awesome-icon icon="far fa-star" fixed-width class="text-white opacity-15"/>
-                                            </template>
-                                        </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
