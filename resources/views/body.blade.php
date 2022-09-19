@@ -37,36 +37,36 @@
         </script>
     </head>
     <body>
-        <div id="app" :class="$route.meta.title">
+        <div id="app" :class="$route.meta.title" class="position-relative min-vh-100 vw-100">
             <nav class="navbar navbar-expand-md fixed-top navbar-dark">
                 <div class="container">
                     <router-link to="/" class="navbar-brand">&lt; {{ str_replace(' ', '.', strtolower(config('app.name'))) }} &gt;</router-link>
-                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <font-awesome-icon icon="fas fa-bars"></font-awesome-icon>
-                        &nbsp;Menu
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <font-awesome-icon icon="fas fa-bars fa-fw"></font-awesome-icon>
+                        Menu
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <router-link to="/about" class="nav-link">
+                                <router-link to="/about" class="nav-link rounded">
                                     <font-awesome-icon icon="fas fa-info-circle" fixed-width></font-awesome-icon>
                                     About
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/skills" class="nav-link">
+                                <router-link to="/skills" class="nav-link rounded">
                                     <font-awesome-icon icon="fas fa-list-ul" fixed-width></font-awesome-icon>
                                     Skills
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/projects" class="nav-link">
+                                <router-link to="/projects" class="nav-link rounded">
                                     <font-awesome-icon icon="fas fa-code" fixed-width></font-awesome-icon>
                                     Projects
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/connect" class="nav-link">
+                                <router-link to="/connect" class="nav-link rounded">
                                     <font-awesome-icon icon="fas fa-envelope" fixed-width></font-awesome-icon>
                                     Connect
                                 </router-link>
@@ -87,7 +87,7 @@
             <footer>
                 <div class="container">
                     <div class="row text-center">
-                        <div class="col-sm text-sm-left">
+                        <div class="col-sm text-sm-start">
                             <span>&lt;/ {{ str_replace(' ', '.', strtolower(config('app.name'))) }} &gt;</span>
                         </div>
                         <div class="col-sm">
@@ -98,7 +98,7 @@
                                 </span>
                             </a>
                         </div>
-                        <div class="col-sm text-sm-right">
+                        <div class="col-sm text-sm-end">
                             <a href="//github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank">
                                 &copy; {{ now()->year }} {{ config('app.name') }}
                             </a>

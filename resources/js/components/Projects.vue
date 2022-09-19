@@ -19,7 +19,7 @@
                             </div>
                             <a :href="project.url" class="card-link" target="_blank">
                                 <div class="card-footer">
-                                    View at <span class="mono">{{ project.pretty_url }}</span>
+                                    View at <span class="font-monospace">{{ project.pretty_url }}</span>
                                 </div>
                             </a>
                         </div>

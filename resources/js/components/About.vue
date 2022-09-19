@@ -4,12 +4,12 @@
             <h1>About</h1>
             <hr>
             <div class="row">
-                <div class="col-3 col-lg-2 mb-3 mx-auto ml-lg-auto mr-lg-0">
+                <div class="col-3 col-lg-2 mb-3 mx-auto ms-lg-auto me-lg-0">
                     <transition name="fade">
                         <img class="img-fluid rounded" :src="me" v-if="displayImg">
                     </transition>
                 </div>
-                <div class="col-lg-6 mr-auto">
+                <div class="col-lg-6 me-auto">
                     <p>I am a {{ age }} year old DevOps Engineer and Software Developer from Oklahoma City, OK. I graduated with my B.S. in Computer Science from the University of Central Oklahoma.</p>
                     <p>I enjoy scripting things together, writing websites which have an easy-to-use interface, tinkering with self-hosted home automation, and just overall playing with technology!</p>
                     <p><router-link to="/connect">Let me know if you have any questions!</router-link></p>
@@ -17,7 +17,7 @@
             </div>
             <hr>
         </div>
-        <div id="map">
+        <div id="map" class="w-100">
             <transition name="fade">
                 <gmap-map ref="map" :center="mapCenter" :options="mapOptions" style="width: 100%; height: 100%"></gmap-map>
             </transition>

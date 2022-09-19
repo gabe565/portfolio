@@ -1,19 +1,15 @@
 <template>
-    <header class="masthead">
+    <div class="text-center bg-black text-white">
         <transition name="fade" appear>
-            <div class="intro-bg" :key="index" :style="{ backgroundImage: `url(${backgrounds[index]})` }" v-if="index !== null"></div>
+            <div class="position-absolute vw-100 vh-100 top-0 opacity-50":key="index" :style="{ backgroundImage: `url(${backgrounds[index]})`, backgroundSize: 'cover', backgroundPosition: 'center'  }" v-if="index !== null"></div>
         </transition>
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <h1 class="brand-heading">{{ $parent.appName }}</h1>
-                        <h2 class="intro-text">DevOps Engineer / Software Developer</h2>
-                    </div>
-                </div>
+        <div class="row position-absolute g-0 align-items-center intro-body vw-100 vh-100">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-1">{{ $parent.appName }}</h1>
+                <h2 class="h5">DevOps Engineer / Software Developer</h2>
             </div>
         </div>
-    </header>
+    </div>
 </template>
 
 <script>
