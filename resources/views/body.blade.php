@@ -46,7 +46,7 @@
                         &nbsp;Menu
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
                                 <router-link to="/about" class="nav-link">
                                     <font-awesome-icon icon="fas fa-info-circle" fixed-width></font-awesome-icon>
@@ -87,7 +87,7 @@
             <footer>
                 <div class="container">
                     <div class="row text-center">
-                        <div class="col-sm text-sm-left">
+                        <div class="col-sm text-sm-start">
                             <span>&lt;/ {{ str_replace(' ', '.', strtolower(config('app.name'))) }} &gt;</span>
                         </div>
                         <div class="col-sm">
@@ -98,7 +98,7 @@
                                 </span>
                             </a>
                         </div>
-                        <div class="col-sm text-sm-right">
+                        <div class="col-sm text-sm-end">
                             <a href="//github.com/gabe565/gabecook.com/blob/master/LICENSE" target="_blank">
                                 &copy; {{ now()->year }} {{ config('app.name') }}
                             </a>
