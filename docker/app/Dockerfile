@@ -6,6 +6,8 @@ ARG INSTALL_BCMATH=false
 ARG INSTALL_EXIF=true
 ARG INSTALL_PGSQL=true
 
+ARG DEPS=tzdata
+
 # composer install
 FROM ghcr.io/clevyr/php:$PHP_VERSION-composer$COMPOSER_VERSION-base as php-builder
 WORKDIR /app
