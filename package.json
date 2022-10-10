@@ -23,7 +23,7 @@
         "popper.js": "^1.14.7",
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.55.0",
-        "sass-loader": "^13.0.2",
+        "sass-loader": "^13.1.0",
         "vue": "^2.7.10",
         "vue-loader": "^15.10.0",
         "vue-progressbar": "^0.7.5",
