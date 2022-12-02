@@ -15,7 +15,7 @@
         "@fortawesome/pro-solid-svg-icons": "^6.2.1",
         "@fortawesome/vue-fontawesome": "^2.0.9",
         "axios": "^1.2.0",
-        "bootstrap": "^5.2.2",
+        "bootstrap": "^5.2.3",
         "jquery": "^3.6.1",
         "jquery.easing": "^1.4.1",
         "laravel-mix": "^6.0.49",
