@@ -16,7 +16,7 @@
         "@fortawesome/vue-fontawesome": "^2.0.9",
         "axios": "^1.2.0",
         "bootstrap": "^5.2.3",
-        "jquery": "^3.6.1",
+        "jquery": "^3.6.2",
         "jquery.easing": "^1.4.1",
         "laravel-mix": "^6.0.49",
         "lodash": "^4.17.21",
