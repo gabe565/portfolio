@@ -1,6 +1,0 @@
-#!/bin/sh
-
-set -eux
-
-npm install
-exec npm run watch

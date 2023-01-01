@@ -1,4 +1,5 @@
 ARG PHP_VERSION=8.1
+ARG ROADRUNNER_VERSION=2.12.1
 ARG COMPOSER_VERSION=2
 ARG NODE_VERSION=16
 
@@ -8,9 +9,15 @@ ARG INSTALL_PGSQL=true
 
 ARG DEPS=tzdata
 
-# composer install
-FROM ghcr.io/clevyr/php:$PHP_VERSION-composer$COMPOSER_VERSION-base as php-builder
+FROM composer:$COMPOSER_VERSION as local-composer
+FROM ghcr.io/roadrunner-server/roadrunner:$ROADRUNNER_VERSION AS roadrunner
+FROM php:$PHP_VERSION-cli-alpine as base-image
 WORKDIR /app
+COPY --from=local-composer /usr/bin/composer /usr/bin/composer
+COPY --from=roadrunner /usr/bin/rr /usr/local/bin/rr
+
+# composer install
+FROM base-image as php-builder
 
 COPY composer.json composer.lock ./
 RUN composer install \
@@ -42,13 +49,15 @@ RUN npm run production
 
 
 # local image
-FROM ghcr.io/clevyr/php:$PHP_VERSION-composer$COMPOSER_VERSION as local-image
-WORKDIR /app
-
-COPY --chown=root docker/app/rootfs /
-RUN crontab /etc/cron.d/scheduler
-
-CMD ["s6-svscan", "/etc/services.d/app"]
+FROM base-image as local-image
+RUN curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
+      exif \
+      opcache \
+      pdo_pgsql \
+      pgsql \
+      sockets
+COPY --chown=root docker/entrypoint /
+CMD ["/entrypoint"]
 
 
 # prod image

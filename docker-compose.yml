@@ -10,18 +10,19 @@ services:
         MIX_GOOGLE_API_KEY: "$MIX_GOOGLE_API_KEY"
         NODE_ENV: development
       context: .
-      dockerfile: docker/app/Dockerfile
+      dockerfile: Dockerfile
       target: local-image
     environment:
       HTTPS: "true"
     restart: unless-stopped
     volumes:
       - .:/app
- 
+
   proxy:
     image: clevyr/caddy
     environment:
       SITE_ADDRESS: localtest.me
+      APP_ADDRESS: app:8000
     ports:
       - 80:80
       - 443:443
@@ -42,8 +43,15 @@ services:
       - database:/var/lib/postgresql/data
 
   hot:
-    image: ghcr.io/gabe565/portfolio-hot
-    build: docker/hot
+    image: node:16-alpine
+    working_dir: /app
+    command:
+      - sh
+      - -c
+      - |
+        set -eux
+        npm install
+        exec npm run watch
     environment:
       FONTAWESOME_NPM_AUTH_TOKEN: "$FONTAWESOME_NPM_AUTH_TOKEN"
       MIX_GOOGLE_API_KEY: "$MIX_GOOGLE_API_KEY"

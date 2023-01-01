@@ -30,6 +30,6 @@ cd /app
     else
         php artisan migrate --force
     fi
-) 
+)
 
-exec php-fpm
+exec php artisan octane:start --no-interaction --host=0.0.0.0
