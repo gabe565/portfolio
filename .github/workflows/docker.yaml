@@ -36,7 +36,7 @@ jobs:
         with:
           context: .
           pull: true
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: ${{ github.secret_source == 'Actions' }}
           platforms: linux/amd64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
