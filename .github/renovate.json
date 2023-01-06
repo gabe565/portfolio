@@ -37,6 +37,18 @@
       "enabled": false
     },
     {
+      "matchPackageNames": ["vue"],
+      "allowedVersions": "< 3"
+    },
+    {
+      "matchPackageNames": ["vue-router"],
+      "allowedVersions": "< 4"
+    },
+    {
+      "matchPackageNames": ["vue-loader"],
+      "allowedVersions": "< 16"
+    },
+    {
       "matchManagers": ["github-actions"],
       "automerge": true
     }
