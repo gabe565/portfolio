@@ -1,0 +1,65 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "ignorePresets": [":prHourlyLimit2"],
+  "labels": [
+    "dependencies",
+    "{{datasource}}",
+    "{{updateType}}"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["Dockerfile", "docker-compose.ya?ml"],
+      "matchStrings": [
+        "ARG NODE_VERSION=(?<currentValue>.+)",
+        "node:(?<currentValue>.+)-alpine"
+      ],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node",
+      "versioningTemplate": "node"
+    }
+  ],
+  "commitMessagePrefix": ":arrow_up:",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["lockFileMaintenance", "pin"],
+      "commitMessagePrefix": ":pushpin:"
+    },
+    {
+      "matchUpdateTypes": ["rollback"],
+      "commitMessagePrefix": ":arrow_down:"
+    },
+    {
+      "matchManagers": ["dockerfile", "docker-compose"],
+      "matchPackageNames": ["node"],
+      "enabled": false
+    },
+    {
+      "matchPackageNames": ["vue"],
+      "allowedVersions": "< 3"
+    },
+    {
+      "matchPackageNames": ["vue-router"],
+      "allowedVersions": "< 4"
+    },
+    {
+      "matchPackageNames": ["vue-loader"],
+      "allowedVersions": "< 16"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "automerge": true
+    }
+  ],
+  "hostRules": [
+    {
+      "matchHost": "https://npm.fontawesome.com/",
+      "hostType": "npm",
+      "encrypted": {
+        "token": "wcFMA/xDdHCJBTolARAAmEtECIybGib/Dr4khX057V+JUEBRIqHSctpnYI59RuSg8+kcR2UhozqSwQS8ghtnc3f9yDgtHW8QmCv0MPR9r1OGkJjJh94673ei40UMZmFufHKYwUGQzDzt11/OZ1I6wfk7pI0zhMbdzq61xsv3SMWTxNc3OiEtOuk04QfVWtuopPioqV1ptZ8wDe5U/6RVeH5AdwFPwnS8UZNheNU6nk6rM9IpxeB9IBHfi/2b3jFRnfo/VQSGRvZ2awuB28IZ7CNmpUtUkM4TQ7dYCRA3LJnW1Ifm3Q6F5tmnzhWGuekkLwwl537d/wlYDyP9GQT9ad8A2QWY16R7s8O/D5OHC8CUYxAFHkoeDYx8bEQcCqW0ySCJyf+TVN2qyIYFgRUTkAEXYQSbKSyDPJA9TYVu3GZZb+B3kvr4GYXvrhcjKxn8tiLlL6yyqiJktVvl3/NqgF6wRhcWH7MfMUiP0VzB+gt6Jcy3ZHdW5Etqhl3eMHXKbuGHZhiLx1NQVCpG9Tg5n+ZxXAmvD4UvKIYrih3uwspUdE9FH6f+VmZ2IH5BjKSXayOsyxWiGofcFHPYgZMZWDCGo2kcbwoaACVvun0BpWR+XHK2pWpSOA451ykQmxxEmT6KnyV7PFjYq5KQwnYBdA0/5eIScl0MJQbhTOO24p9oV8+jf+k7dWufeuIIr43SewE30XzDvpUQIkylKV5f8gGbCphYuxiTOILmy/scJQz+8zGVdib4+puR8TVa5lnthojpk0LGoOJiT6ck1XIqbuMNVwgqMs2VQhSBhL1B3asVgWoyaxFjhhkfFWdJwfbu5poeWa2y5Zav9ijbVmFjwiDQNL7S/KDdZ7ThCw"
+      }
+    }
+  ]
+}
