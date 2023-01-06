@@ -12,10 +12,7 @@
   "regexManagers": [
     {
       "fileMatch": ["Dockerfile", "docker-compose.ya?ml"],
-      "matchStrings": [
-        "ARG NODE_VERSION=(?<currentValue>.+)",
-        "node:(?<currentValue>.+)-alpine"
-      ],
+      "matchStrings": ["node:(?<currentValue>.+)-alpine"],
       "depNameTemplate": "node",
       "datasourceTemplate": "node",
       "versioningTemplate": "node"

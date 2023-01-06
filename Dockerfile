@@ -1,17 +1,6 @@
-ARG PHP_VERSION=8.1
-ARG ROADRUNNER_VERSION=2.12.1
-ARG COMPOSER_VERSION=2
-ARG NODE_VERSION=18
-
-ARG INSTALL_BCMATH=false
-ARG INSTALL_EXIF=true
-ARG INSTALL_PGSQL=true
-
-ARG DEPS=tzdata
-
-FROM composer:$COMPOSER_VERSION as local-composer
-FROM ghcr.io/roadrunner-server/roadrunner:$ROADRUNNER_VERSION AS roadrunner
-FROM php:$PHP_VERSION-cli-alpine as base-image
+FROM composer:2 as local-composer
+FROM ghcr.io/roadrunner-server/roadrunner:2.12.1 AS roadrunner
+FROM php:8.1-cli-alpine as base-image
 WORKDIR /app
 COPY --from=local-composer /usr/bin/composer /usr/bin/composer
 COPY --from=roadrunner /usr/bin/rr /usr/local/bin/rr
@@ -34,7 +23,7 @@ RUN composer dump-autoload \
 
 
 # npm install
-FROM node:$NODE_VERSION-alpine as node-builder
+FROM node:18-alpine as node-builder
 WORKDIR /app
 
 COPY artisan package.json package-lock.json webpack.* .npmrc ./
