@@ -9,6 +9,18 @@
     "{{datasource}}",
     "{{updateType}}"
   ],
+  "regexManagers": [
+    {
+      "fileMatch": ["Dockerfile", "docker-compose.ya?ml"],
+      "matchStrings": [
+        "ARG NODE_VERSION=(?<currentValue>.+)",
+        "node:(?<currentValue>.+)-alpine"
+      ],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node",
+      "versioningTemplate": "node"
+    }
+  ],
   "commitMessagePrefix": ":arrow_up:",
   "packageRules": [
     {
@@ -18,6 +30,11 @@
     {
       "matchUpdateTypes": ["rollback"],
       "commitMessagePrefix": ":arrow_down:"
+    },
+    {
+      "matchManagers": ["dockerfile", "docker-compose"],
+      "matchPackageNames": ["node"],
+      "enabled": false
     },
     {
       "matchManagers": ["github-actions"],
