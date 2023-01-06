@@ -1,6 +1,6 @@
 FROM composer:2 as local-composer
 FROM ghcr.io/roadrunner-server/roadrunner:2.12.1 AS roadrunner
-FROM php:8.1-cli-alpine as base-image
+FROM php:8.2-cli-alpine as base-image
 WORKDIR /app
 COPY --from=local-composer /usr/bin/composer /usr/bin/composer
 COPY --from=roadrunner /usr/bin/rr /usr/local/bin/rr
