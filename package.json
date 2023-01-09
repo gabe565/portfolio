@@ -1,4 +1,5 @@
 {
+    "name": "portfolio",
     "private": true,
     "scripts": {
         "development": "mix",
