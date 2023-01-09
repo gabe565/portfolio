@@ -1,38 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "github>gabe565/renovate-config"
   ],
-  "ignorePresets": [":prHourlyLimit2"],
-  "labels": [
-    "dependencies",
-    "{{datasource}}",
-    "{{updateType}}"
-  ],
-  "regexManagers": [
-    {
-      "fileMatch": ["Dockerfile", "docker-compose.ya?ml"],
-      "matchStrings": ["node:(?<currentValue>.+)-alpine"],
-      "depNameTemplate": "node",
-      "datasourceTemplate": "node",
-      "versioningTemplate": "node"
-    }
-  ],
-  "commitMessagePrefix": ":arrow_up:",
   "packageRules": [
-    {
-      "matchUpdateTypes": ["lockFileMaintenance", "pin"],
-      "commitMessagePrefix": ":pushpin:"
-    },
-    {
-      "matchUpdateTypes": ["rollback"],
-      "commitMessagePrefix": ":arrow_down:"
-    },
-    {
-      "matchManagers": ["dockerfile", "docker-compose"],
-      "matchPackageNames": ["node"],
-      "enabled": false
-    },
     {
       "matchPackageNames": ["vue"],
       "allowedVersions": "< 3"
@@ -44,10 +15,6 @@
     {
       "matchPackageNames": ["vue-loader"],
       "allowedVersions": "< 16"
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "automerge": true
     }
   ],
   "hostRules": [
