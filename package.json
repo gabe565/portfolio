@@ -26,7 +26,7 @@
         "sass": "1.56.1",
         "sass-loader": "13.2.0",
         "vue": "2.7.13",
-        "vue-loader": "15.10.0",
+        "vue-loader": "15.10.1",
         "vue-progressbar": "0.7.5",
         "vue-router": "3.6.5",
         "vue-template-compiler": "2.7.13",
