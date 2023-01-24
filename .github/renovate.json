@@ -15,6 +15,10 @@
     {
       "matchPackageNames": ["vue-loader"],
       "allowedVersions": "< 16"
+    },
+    {
+      "matchPackageNames": ["@fortawesome/vue-fontawesome"],
+      "allowedVersions": "< 3"
     }
   ],
   "hostRules": [
