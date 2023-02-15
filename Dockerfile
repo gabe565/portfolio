@@ -1,6 +1,7 @@
 FROM composer:2 as local-composer
 FROM ghcr.io/roadrunner-server/roadrunner:2.12.2 AS roadrunner
 FROM mlocati/php-extension-installer:2.0.2 as php-extension-installer
+
 FROM php:8.2-cli-alpine as base-image
 WORKDIR /app
 COPY --from=local-composer /usr/bin/composer /usr/bin/composer
@@ -11,16 +12,16 @@ FROM base-image as php-builder
 
 COPY composer.json composer.lock ./
 RUN composer install \
-        --ignore-platform-reqs \
-        --no-autoloader \
-        --no-interaction \
-        --no-progress \
-        --no-suggest
+      --ignore-platform-reqs \
+      --no-autoloader \
+      --no-interaction \
+      --no-progress \
+      --no-suggest
 
 COPY . .
 RUN composer dump-autoload \
-        --classmap-authoritative \
-        --no-interaction
+      --classmap-authoritative \
+      --no-interaction
 
 
 # npm install
