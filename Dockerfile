@@ -1,5 +1,6 @@
 FROM composer:2 as local-composer
 FROM ghcr.io/roadrunner-server/roadrunner:2.12.2 AS roadrunner
+FROM mlocati/php-extension-installer:2.0.2 as php-extension-installer
 FROM php:8.2-cli-alpine as base-image
 WORKDIR /app
 COPY --from=local-composer /usr/bin/composer /usr/bin/composer
@@ -39,7 +40,8 @@ RUN npm run production
 
 # local image
 FROM base-image as local-image
-RUN curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
+RUN --mount=type=bind,from=php-extension-installer,source=/usr/bin/install-php-extensions,target=/usr/local/bin/install-php-extensions \
+    install-php-extensions \
       exif \
       opcache \
       pdo_pgsql \
