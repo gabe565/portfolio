@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f88057c9b1ae94406ee38f6241be6f27",
+    "content-hash": "b4d214b16de736bd88bfb9eea4d6b13b",
     "packages": [
         {
             "name": "brick/math",
@@ -1347,21 +1347,21 @@
         },
         {
             "name": "laravel/octane",
-            "version": "v1.3.10",
+            "version": "v1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/octane.git",
-                "reference": "35243aaff9278be37503e1475a303312616c9df5"
+                "reference": "b7b1fb4e77c57edd3cdc668ce483adff6830fc4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/octane/zipball/35243aaff9278be37503e1475a303312616c9df5",
-                "reference": "35243aaff9278be37503e1475a303312616c9df5",
+                "url": "https://api.github.com/repos/laravel/octane/zipball/b7b1fb4e77c57edd3cdc668ce483adff6830fc4c",
+                "reference": "b7b1fb4e77c57edd3cdc668ce483adff6830fc4c",
                 "shasum": ""
             },
             "require": {
                 "laminas/laminas-diactoros": "^2.5",
-                "laravel/framework": "^8.83.26|^9.38.0",
+                "laravel/framework": "^8.83.26|^9.38.0|^10.0",
                 "laravel/serializable-closure": "^1.0",
                 "nesbot/carbon": "^2.60",
                 "php": "^8.0",
@@ -1370,8 +1370,8 @@
             "require-dev": {
                 "guzzlehttp/guzzle": "^7.2",
                 "mockery/mockery": "^1.4",
-                "nunomaduro/collision": "^5.10|^6.0",
-                "orchestra/testbench": "^6.16|^7.0",
+                "nunomaduro/collision": "^5.10|^6.0|^7.0",
+                "orchestra/testbench": "^6.16|^7.0|^8.0",
                 "phpunit/phpunit": "^9.3",
                 "spiral/roadrunner": "^2.8.2"
             },
@@ -1419,20 +1419,20 @@
                 "issues": "https://github.com/laravel/octane/issues",
                 "source": "https://github.com/laravel/octane"
             },
-            "time": "2022-12-23T10:37:10+00:00"
+            "time": "2023-02-08T02:10:42+00:00"
         },
         {
             "name": "laravel/serializable-closure",
-            "version": "v1.2.2",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/serializable-closure.git",
-                "reference": "47afb7fae28ed29057fdca37e16a84f90cc62fae"
+                "reference": "f23fe9d4e95255dacee1bf3525e0810d1a1b0f37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/47afb7fae28ed29057fdca37e16a84f90cc62fae",
-                "reference": "47afb7fae28ed29057fdca37e16a84f90cc62fae",
+                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/f23fe9d4e95255dacee1bf3525e0810d1a1b0f37",
+                "reference": "f23fe9d4e95255dacee1bf3525e0810d1a1b0f37",
                 "shasum": ""
             },
             "require": {
@@ -1479,7 +1479,7 @@
                 "issues": "https://github.com/laravel/serializable-closure/issues",
                 "source": "https://github.com/laravel/serializable-closure"
             },
-            "time": "2022-09-08T13:45:54+00:00"
+            "time": "2023-01-30T18:31:20+00:00"
         },
         {
             "name": "laravel/tinker",
