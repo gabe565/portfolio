@@ -1,5 +1,5 @@
 FROM composer:2 as local-composer
-FROM ghcr.io/roadrunner-server/roadrunner:2.12.2 AS roadrunner
+FROM ghcr.io/roadrunner-server/roadrunner:2.12.3 AS roadrunner
 FROM mlocati/php-extension-installer:2.0.2 as php-extension-installer
 
 FROM php:8.2-cli-alpine as base-image
