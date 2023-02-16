@@ -10,7 +10,7 @@
         "laravel/octane": "1.4.2",
         "laravel/tinker": "2.8.0",
         "spatie/laravel-sitemap": "6.2.5",
-        "spiral/roadrunner": "2.12.2"
+        "spiral/roadrunner": "2.12.3"
     },
     "require-dev": {
         "fakerphp/faker": "1.21.0",

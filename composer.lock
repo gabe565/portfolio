@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7cc37fb04cd15e8769cc4aa55c1397d5",
+    "content-hash": "6dd57c99583c17c939f3ca8eff1ab6df",
     "packages": [
         {
             "name": "brick/math",
@@ -4102,16 +4102,16 @@
         },
         {
             "name": "spiral/roadrunner",
-            "version": "v2.12.2",
+            "version": "v2.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roadrunner-server/roadrunner.git",
-                "reference": "c794a7ab2ae828af8068776b9dfcdcce5299d855"
+                "reference": "18f526ad9eef19b57bdf1ad4b0252683f514c718"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roadrunner-server/roadrunner/zipball/c794a7ab2ae828af8068776b9dfcdcce5299d855",
-                "reference": "c794a7ab2ae828af8068776b9dfcdcce5299d855",
+                "url": "https://api.github.com/repos/roadrunner-server/roadrunner/zipball/18f526ad9eef19b57bdf1ad4b0252683f514c718",
+                "reference": "18f526ad9eef19b57bdf1ad4b0252683f514c718",
                 "shasum": ""
             },
             "require": {
@@ -4130,16 +4130,30 @@
                     "email": "wolfy.jd@gmail.com"
                 },
                 {
+                    "name": "Valery Piashchynski",
+                    "homepage": "https://github.com/rustatian"
+                },
+                {
                     "name": "RoadRunner Community",
                     "homepage": "https://github.com/roadrunner-server/roadrunner/graphs/contributors"
                 }
             ],
             "description": "RoadRunner: High-performance PHP application server and process manager written in Go and powered with plugins",
+            "homepage": "https://roadrunner.dev/",
             "support": {
+                "chat": "https://discord.gg/V6EK4he",
+                "docs": "https://roadrunner.dev/docs",
+                "forum": "https://forum.roadrunner.dev/",
                 "issues": "https://github.com/roadrunner-server/roadrunner/issues",
-                "source": "https://github.com/roadrunner-server/roadrunner/tree/v2.12.2"
+                "source": "https://github.com/roadrunner-server/roadrunner/tree/v2.12.3"
             },
-            "time": "2023-01-12T11:55:21+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/roadrunner-server",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-16T13:00:26+00:00"
         },
         {
             "name": "spiral/roadrunner-cli",
