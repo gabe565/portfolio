@@ -1,25 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "local>gabe565/renovate-config"
-  ],
-  "packageRules": [
-    {
-      "matchPackageNames": ["vue"],
-      "allowedVersions": "< 3"
-    },
-    {
-      "matchPackageNames": ["vue-router"],
-      "allowedVersions": "< 4"
-    },
-    {
-      "matchPackageNames": ["vue-loader"],
-      "allowedVersions": "< 16"
-    },
-    {
-      "matchPackageNames": ["@fortawesome/vue-fontawesome"],
-      "allowedVersions": "< 3"
-    }
+    "local>gabe565/renovate-config",
+    "local>gabe565/renovate-config:golang"
   ],
   "hostRules": [
     {

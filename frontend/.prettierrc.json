@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json.schemastore.org/prettierrc",
+  "tabWidth": 2,
+  "printWidth": 80,
+  "trailingComma": "all"
+}

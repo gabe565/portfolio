@@ -1,0 +1,77 @@
+<template>
+  <div class="text-center bg-black text-white">
+    <transition name="fade" appear>
+      <div
+        v-if="index !== null"
+        :key="index"
+        class="position-absolute vw-100 vh-100 top-0 opacity-50"
+        :style="{
+          backgroundImage: `url(${backgrounds[index]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }"
+      ></div>
+    </transition>
+    <div
+      class="row position-absolute g-0 align-items-center intro-body vw-100 vh-100"
+    >
+      <div class="col-lg-8 mx-auto">
+        <h1 class="display-1">Gabe Cook</h1>
+        <h2 class="h5">DevOps Engineer / Software Developer</h2>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import pb from "@/plugins/pocketbase";
+
+export default {
+  data() {
+    return {
+      index: null,
+      backgrounds: null,
+      timeout: null,
+    };
+  },
+  async created() {
+    await this.updateBackgrounds();
+    this.randomBackground();
+    this.startTimeout();
+  },
+  activated() {
+    if (this.index !== null && !this.timeout) {
+      this.startTimeout();
+    }
+  },
+  deactivated() {
+    this.stopTimeout();
+    this.randomBackground();
+  },
+  methods: {
+    async updateBackgrounds() {
+      try {
+        const response = await pb.collection("backgrounds").getFullList();
+        this.backgrounds = response.map((e) => e.url);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    randomBackground() {
+      this.index = Math.floor(Math.random() * this.backgrounds.length);
+    },
+    startTimeout() {
+      this.timeout = setTimeout(() => {
+        this.randomBackground();
+        this.startTimeout();
+      }, 7500);
+    },
+    stopTimeout() {
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      }
+      this.timeout = null;
+    },
+  },
+};
+</script>
