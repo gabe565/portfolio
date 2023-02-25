@@ -35,7 +35,6 @@
     </div>
     <transition name="fade">
       <GMapMap
-        ref="map"
         :center="mapData.center"
         :options="mapData.options"
         style="width: 100%; height: 100%"
