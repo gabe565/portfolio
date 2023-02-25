@@ -135,6 +135,14 @@ export default {
     </div>
   </nav>
 
+  <div
+    v-if="showNav"
+    class="position-absolute w-100 h-100 opacity-0"
+    aria-hidden="true"
+    style="z-index: 1000"
+    @click="toggleNav(false)"
+  />
+
   <router-view v-slot="{ Component }" class="child-view">
     <transition :name="transitionName" mode="out-in" appear>
       <keep-alive>
