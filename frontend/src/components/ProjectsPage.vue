@@ -37,7 +37,7 @@
               <p
                 class="card-description mb-auto"
                 v-html="project.description"
-              ></p>
+              />
               <div>
                 <h6 class="sr-only">Tags</h6>
                 <span
@@ -95,3 +95,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.card-description:deep(p) {
+  margin: 0;
+}
+</style>
