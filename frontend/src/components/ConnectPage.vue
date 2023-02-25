@@ -114,6 +114,10 @@
                   placeholder="Message"
                   required
                   style="min-height: 62px"
+                  @input="
+                    $event.target.style.height = '';
+                    $event.target.style.height = `${$event.target.scrollHeight}px`;
+                  "
                 ></textarea>
               </div>
             </div>
