@@ -15,8 +15,8 @@
           <div class="row">
             <div
               v-for="(chunk, i) in [
-                skills.slice(0, skills.length / 2),
-                skills.slice(skills.length / 2),
+                skills.slice(0, Math.ceil(skills.length / 2)),
+                skills.slice(Math.ceil(skills.length / 2)),
               ]"
               :key="i"
               class="col-sm-8 col-lg-4 mx-auto"
