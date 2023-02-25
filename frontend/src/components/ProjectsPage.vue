@@ -44,7 +44,9 @@
                 <span
                   v-for="tag in project.expand.tags"
                   :key="tag.id"
-                  class="badge rounded-pill bg-info mx-1"
+                  class="badge rounded-pill mx-1"
+                  :class="{ 'bg-info': !tag.color }"
+                  :style="{ backgroundColor: tag.color }"
                 >
                   {{ tag.title }}
                 </span>
