@@ -86,9 +86,9 @@ export default {
         .map(({ title, expand }) => {
           return {
             title: title,
-            skills: expand["skills(heading)"]?.map((skill) => {
-              return skill;
-            }),
+            skills: expand["skills(heading)"]?.sort(
+              (a, b) => b.rating - a.rating || a.title.localeCompare(b.title),
+            ),
           };
         })
         .filter(({ skills }) => skills);
