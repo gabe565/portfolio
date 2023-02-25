@@ -69,7 +69,7 @@ export default {
         aria-label="Toggle navigation"
         @click="toggleNav()"
       >
-        <font-awesome-icon icon="fas fa-bars fa-fw"></font-awesome-icon>
+        <font-awesome-icon icon="fas fa-bars fa-fw" fixed-width />
         Menu
       </button>
       <div
