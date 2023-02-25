@@ -83,6 +83,7 @@ export default {
         expand: "skills(heading)",
       });
       this.skills = response
+        .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title))
         .map(({ title, expand }) => {
           return {
             title: title,
