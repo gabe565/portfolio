@@ -3,7 +3,7 @@ module github.com/gabe565/portfolio
 go 1.20
 
 require (
-	github.com/labstack/echo/v5 v5.0.0-20220201181537-ed2888cfa198
+	github.com/labstack/echo/v5 5b36ce36127b
 	github.com/pocketbase/dbx v1.10.0
 	github.com/pocketbase/pocketbase v0.12.3
 )
