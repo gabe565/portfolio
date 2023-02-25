@@ -36,8 +36,8 @@
     <transition name="fade">
       <GMapMap
         ref="map"
-        :center="mapCenter"
-        :options="mapOptions"
+        :center="mapData.center"
+        :options="mapData.options"
         style="width: 100%; height: 100%"
       ></GMapMap>
     </transition>
@@ -45,118 +45,13 @@
 </template>
 
 <script>
+import mapData from "@/data/mapOptions";
+
 export default {
   data() {
     return {
       age: "",
-      mapCenter: { lat: 35.46756, lng: -97.516428 },
-      mapOptions: {
-        zoom: 11,
-        disableDefaultUI: true,
-        scrollwheel: false,
-        draggable: false,
-        disableDoubleClickZoom: true,
-        backgroundColor: "#222",
-        styles: [
-          {
-            stylers: [
-              {
-                hue: "#607d8b",
-              },
-              {
-                saturation: 10,
-              },
-              {
-                invert_lightness: true,
-              },
-              {
-                lightness: 20,
-              },
-              {
-                gamma: 0.7,
-              },
-            ],
-          },
-          {
-            featureType: "administrative.land_parcel",
-            elementType: "labels",
-            stylers: [
-              {
-                visibility: "off",
-              },
-            ],
-          },
-          {
-            featureType: "poi",
-            elementType: "labels.text",
-            stylers: [
-              {
-                visibility: "off",
-              },
-            ],
-          },
-          {
-            featureType: "poi.business",
-            stylers: [
-              {
-                visibility: "off",
-              },
-            ],
-          },
-          {
-            featureType: "road",
-            elementType: "labels.icon",
-            stylers: [
-              {
-                visibility: "off",
-              },
-            ],
-          },
-          {
-            featureType: "road.arterial",
-            elementType: "labels",
-            stylers: [
-              {
-                visibility: "off",
-              },
-            ],
-          },
-          {
-            featureType: "road.highway",
-            elementType: "labels",
-            stylers: [
-              {
-                visibility: "off",
-              },
-            ],
-          },
-          {
-            featureType: "road.local",
-            stylers: [
-              {
-                visibility: "off",
-              },
-            ],
-          },
-          {
-            featureType: "road.local",
-            elementType: "labels",
-            stylers: [
-              {
-                visibility: "off",
-              },
-            ],
-          },
-          {
-            featureType: "transit",
-            stylers: [
-              {
-                visibility: "off",
-              },
-            ],
-          },
-        ],
-      },
+      mapData,
     };
   },
   async created() {
