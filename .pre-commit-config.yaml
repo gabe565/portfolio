@@ -16,5 +16,4 @@ repos:
         entry: npm --prefix frontend run lint
         language: system
         files: ^frontend
-        types_or: [javascript, vue]
         pass_filenames: false
