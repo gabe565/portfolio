@@ -12,8 +12,14 @@
         appear
         class="row justify-content-center"
       >
+        <div v-if="error" class="col">
+          <div class="alert alert-danger">
+            {{ error }}
+          </div>
+        </div>
         <div
           v-for="project in projects"
+          v-else
           :key="`project-${project.name}`"
           class="col-10 col-lg-6 col-xl-4 pb-4"
         >
@@ -72,6 +78,7 @@ export default {
   data() {
     return {
       projects: {},
+      error: null,
     };
   },
   async created() {
@@ -94,6 +101,7 @@ export default {
       });
     } catch (error) {
       console.error(error);
+      this.error = "Failed to fetch projects. Please try again later.";
     }
   },
 };

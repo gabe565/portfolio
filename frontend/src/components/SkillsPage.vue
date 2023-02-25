@@ -9,7 +9,12 @@
         at it)!
       </div>
       <transition-group name="fade" appear>
-        <div v-for="{ title, skills } in skills" :key="title">
+        <div v-if="error" class="col mt-5">
+          <div class="alert alert-danger">
+            {{ error }}
+          </div>
+        </div>
+        <div v-for="{ title, skills } in skills" v-else :key="title">
           <hr />
           <h3>{{ title }}</h3>
           <div class="row">
@@ -75,6 +80,7 @@ export default {
   data() {
     return {
       skills: null,
+      error: null,
     };
   },
   async created() {
@@ -96,6 +102,7 @@ export default {
       this.ready = true;
     } catch (error) {
       console.error(error);
+      this.error = "Failed to fetch skills. Please try again later.";
     }
   },
 };
