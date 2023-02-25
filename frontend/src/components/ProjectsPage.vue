@@ -35,7 +35,7 @@
               <h5 class="card-title">{{ project.name }}</h5>
               <!-- eslint-disable vue/no-v-html -->
               <p
-                class="card-description mb-auto"
+                class="card-description my-auto"
                 v-html="project.description"
               />
               <div>
