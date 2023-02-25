@@ -31,10 +31,13 @@
                 />
               </a>
             </template>
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title">{{ project.name }}</h5>
               <!-- eslint-disable vue/no-v-html -->
-              <p class="card-description" v-html="project.description"></p>
+              <p
+                class="card-description mb-auto"
+                v-html="project.description"
+              ></p>
               <div>
                 <h6 class="sr-only">Tags</h6>
                 <span
