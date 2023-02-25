@@ -19,6 +19,7 @@ module.exports = {
     ],
     "valid-jsdoc": "off",
     "new-cap": "off",
+    "vue/no-template-shadow": "off",
   },
   parserOptions: {
     ecmaVersion: "latest",
