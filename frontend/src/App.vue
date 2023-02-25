@@ -12,10 +12,13 @@ export default {
   }),
   watch: {
     $route(to, from) {
-      const routes = this.$router.getRoutes();
-      const fromIndex = routes.findIndex((o) => o.path === from.path);
-      const toIndex = routes.findIndex((o) => o.path === to.path);
-      this.transitionName = fromIndex < toIndex ? "slide-left" : "slide-right";
+      if (from.href) {
+        const routes = this.$router.getRoutes();
+        const fromIndex = routes.findIndex((o) => o.path === from.path);
+        const toIndex = routes.findIndex((o) => o.path === to.path);
+        this.transitionName =
+          fromIndex < toIndex ? "slide-left" : "slide-right";
+      }
 
       this.minimal = to.path === "/";
     },
