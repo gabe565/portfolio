@@ -58,7 +58,12 @@ export default {
       }
     },
     randomBackground() {
-      this.index = Math.floor(Math.random() * this.backgrounds.length);
+      let index = Math.floor(Math.random() * this.backgrounds.length);
+      if (index === this.index) {
+        index += 1;
+        index %= this.backgrounds.length;
+      }
+      this.index = index;
     },
     startTimeout() {
       this.timeout = setTimeout(() => {
