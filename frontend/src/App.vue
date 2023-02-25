@@ -55,7 +55,9 @@ export default {
     :class="{ 'navbar-shrink': navbarShrink, minimal }"
   >
     <div class="container">
-      <router-link to="/" class="navbar-brand">&lt; gabe.cook &gt;</router-link>
+      <router-link to="/" class="navbar-brand" @click="toggleNav(false)"
+        >&lt; gabe.cook &gt;</router-link
+      >
       <button
         class="navbar-toggler navbar-toggler-right"
         type="button"
