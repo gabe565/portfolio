@@ -101,9 +101,9 @@ nav.navbar {
     }
 
     @include media-breakpoint-up(md) {
-        transition: background 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s;
+        transition: background 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out, border-bottom-color 0.3s ease-in-out;
 
-        border-bottom: none;
+        border-bottom: 1px solid transparent;
         padding-top: 20px;
         padding-bottom: 20px;
 
