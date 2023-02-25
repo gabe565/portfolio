@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  app:
+    image: "ghcr.io/gabe565/portfolio"
+    build:
+      args:
+        FONTAWESOME_NPM_AUTH_TOKEN: "$FONTAWESOME_NPM_AUTH_TOKEN"
+      context: .
+    ports:
+      - "80:80"
+    volumes:
+      - "./pb_data:/data"

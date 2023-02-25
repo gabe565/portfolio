@@ -1,0 +1,14 @@
+**/.DS_Store
+.dockerignore
+.git/
+.github/
+.idea/
+.pre-commit-config.yaml
+Dockerfile
+pb_data/
+docker-compose.yml
+frontend/README.md
+frontend/dist/
+frontend/node_modules/
+portfolio
+vendor/
