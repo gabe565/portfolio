@@ -94,7 +94,8 @@ nav.navbar {
         font-weight: $font-weight-light;
     }
 
-    .navbar-nav .nav-item {
+    .nav-item {
+        text-align: center;
         margin: auto 10px;
 
         a:hover, a.active {
