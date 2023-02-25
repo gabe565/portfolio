@@ -38,6 +38,8 @@ RUN npm run build
 FROM alpine
 WORKDIR /app
 
+RUN apk add --no-cache tzdata
+
 COPY --from=go-builder /app/portfolio ./
 COPY --from=node-builder /app/dist ./public
 
