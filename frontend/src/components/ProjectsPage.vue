@@ -35,6 +35,16 @@
               <h5 class="card-title">{{ project.name }}</h5>
               <!-- eslint-disable vue/no-v-html -->
               <p class="card-description" v-html="project.description"></p>
+              <div>
+                <h6 class="sr-only">Tags</h6>
+                <span
+                  v-for="tag in project.expand.tags"
+                  :key="tag.id"
+                  class="badge rounded-pill bg-info mx-1"
+                >
+                  {{ tag.title }}
+                </span>
+              </div>
             </div>
             <a :href="project.url" class="card-link" target="_blank">
               <div class="card-footer">
@@ -65,10 +75,15 @@ export default {
       });
       this.projects = response.map((project) => {
         return {
+          ...project,
           pretty_url: project.url
             .replace(/^(\w+:)?\/\//, "")
             .replace(/^github\.com\//, ""),
-          ...project,
+          expand: {
+            tags: project.expand.tags.sort((a, b) =>
+              a.title.localeCompare(b.title),
+            ),
+          },
         };
       });
     } catch (error) {
