@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fawmi/vue-google-maps": "0.9.79",
+    "@fontsource/roboto-slab": "4.5.11",
     "@fortawesome/fontawesome-svg-core": "6.3.0",
     "@fortawesome/free-brands-svg-icons": "6.3.0",
     "@fortawesome/pro-regular-svg-icons": "6.3.0",
