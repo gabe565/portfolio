@@ -15,7 +15,7 @@
         <div
           v-for="project in projects"
           :key="`project-${project.name}`"
-          class="col-10 col-lg-6 pb-4"
+          class="col-10 col-lg-6 col-xl-4 pb-4"
         >
           <div class="card text-white bg-dark border-dark h-100">
             <template v-if="project.image_path">
