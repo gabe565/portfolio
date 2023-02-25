@@ -18,7 +18,7 @@
                 class="btn btn-outline-primary btn-lg"
                 target="_blank"
               >
-                <font-awesome-icon icon="fab fa-twitter" />
+                <font-awesome-icon icon="fab fa-twitter" fixed-width />
                 <span class="network-name">Twitter</span>
               </a>
             </li>
@@ -28,7 +28,7 @@
                 class="btn btn-outline-primary btn-lg"
                 target="_blank"
               >
-                <font-awesome-icon icon="fab fa-github" />
+                <font-awesome-icon icon="fab fa-github" fixed-width />
                 <span class="network-name">Github</span>
               </a>
             </li>
@@ -38,7 +38,7 @@
                 class="btn btn-outline-primary btn-lg"
                 target="_blank"
               >
-                <font-awesome-icon icon="fab fa-linkedin" />
+                <font-awesome-icon icon="fab fa-linkedin" fixed-width />
                 <span class="network-name">LinkedIn</span>
               </a>
             </li>
@@ -131,7 +131,7 @@
                   icon="far fa-paper-plane"
                   fixed-width
                 />
-                &nbsp;Send
+                Send
               </button>
             </div>
           </fieldset>
