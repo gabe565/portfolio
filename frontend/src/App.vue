@@ -62,9 +62,10 @@ export default {
     :class="{ 'navbar-shrink': navbarShrink, minimal }"
   >
     <div class="container">
-      <router-link to="/" class="navbar-brand" @click="toggleNav(false)"
-        >&lt; gabe.cook &gt;</router-link
-      >
+      <router-link to="/" class="navbar-brand" @click="toggleNav(false)">
+        <span aria-hidden="true">&lt; gabe.cook &gt;</span>
+        <span class="sr-only">Gabe Cook</span>
+      </router-link>
       <button
         class="navbar-toggler navbar-toggler-right"
         type="button"
@@ -163,7 +164,9 @@ export default {
   <footer :class="{ minimal }">
     <div class="container">
       <div class="row text-center">
-        <div class="col-sm text-sm-start">&lt;/ gabe.cook &gt;</div>
+        <div class="col-sm text-sm-start" aria-hidden="true">
+          &lt;/ gabe.cook &gt;
+        </div>
         <div class="col-sm">
           <a href="//github.com/gabe565/portfolio" target="_blank"
             ><font-awesome-icon
