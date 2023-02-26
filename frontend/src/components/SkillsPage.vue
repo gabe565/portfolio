@@ -84,13 +84,11 @@
 import pb from "@/plugins/pocketbase";
 
 export default {
-  data() {
-    return {
-      skills: null,
-      error: null,
-      loading: true,
-    };
-  },
+  data: () => ({
+    skills: null,
+    error: null,
+    loading: true,
+  }),
   async created() {
     try {
       const response = await pb.collection("skill_headings").getFullList({

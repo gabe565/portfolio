@@ -28,13 +28,11 @@ import pb from "@/plugins/pocketbase";
 import loadImage from "@/util/loadImage";
 
 export default {
-  data() {
-    return {
-      index: null,
-      backgrounds: null,
-      timeout: null,
-    };
-  },
+  data: () => ({
+    index: null,
+    backgrounds: null,
+    timeout: null,
+  }),
   async created() {
     await this.updateBackgrounds();
     await this.randomBackground();

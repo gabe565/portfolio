@@ -47,12 +47,10 @@
 import mapData from "@/data/mapOptions";
 
 export default {
-  data() {
-    return {
-      age: "",
-      mapData,
-    };
-  },
+  data: () => ({
+    age: "",
+    mapData,
+  }),
   async created() {
     const diff = Date.now() - new Date("1995-05-26");
     this.age = new Date(diff).getUTCFullYear() - 1970;

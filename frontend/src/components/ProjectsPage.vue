@@ -79,13 +79,11 @@
 import pb from "@/plugins/pocketbase";
 
 export default {
-  data() {
-    return {
-      projects: {},
-      loading: true,
-      error: null,
-    };
-  },
+  data: () => ({
+    projects: {},
+    loading: true,
+    error: null,
+  }),
   async created() {
     try {
       const response = await pb.collection("projects").getFullList({

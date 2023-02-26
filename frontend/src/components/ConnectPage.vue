@@ -149,16 +149,14 @@
 import pb from "@/plugins/pocketbase";
 
 export default {
-  data() {
-    return {
-      name: "",
-      email: "",
-      text: "",
-      error: null,
-      success: false,
-      loading: false,
-    };
-  },
+  data: () => ({
+    name: "",
+    email: "",
+    text: "",
+    error: null,
+    success: false,
+    loading: false,
+  }),
   computed: {
     message() {
       if (this.error) {
