@@ -8,7 +8,14 @@
         means that I am most familiar with that language (Not that I am perfect
         at it)!
       </div>
-      <transition-group name="fade" appear>
+      <div
+        v-if="loading"
+        class="spinner-border text-primary mt-5"
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <transition-group v-else name="fade" appear>
         <div v-if="error" class="col mt-5">
           <div class="alert alert-danger">
             {{ error }}
@@ -81,6 +88,7 @@ export default {
     return {
       skills: null,
       error: null,
+      loading: true,
     };
   },
   async created() {
@@ -103,6 +111,8 @@ export default {
     } catch (error) {
       console.error(error);
       this.error = "Failed to fetch skills. Please try again later.";
+    } finally {
+      this.loading = false;
     }
   },
 };

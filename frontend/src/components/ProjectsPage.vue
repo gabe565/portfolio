@@ -6,7 +6,11 @@
         Below are links to the personal or collaborative projects that I can
         claim a piece of.
       </p>
+      <div v-if="loading" class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
       <transition-group
+        v-else
         name="fade"
         tag="div"
         appear
@@ -78,6 +82,7 @@ export default {
   data() {
     return {
       projects: {},
+      loading: true,
       error: null,
     };
   },
@@ -102,6 +107,8 @@ export default {
     } catch (error) {
       console.error(error);
       this.error = "Failed to fetch projects. Please try again later.";
+    } finally {
+      this.loading = false;
     }
   },
 };
