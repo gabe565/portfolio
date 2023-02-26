@@ -34,25 +34,27 @@
           </p>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <h2 class="h3">Stats</h2>
+      <section>
+        <div class="row">
+          <div class="col">
+            <h2 class="h3">Stats</h2>
+          </div>
         </div>
-      </div>
-      <div class="row g-0 mb-3 justify-content-center">
-        <div class="col-auto">
-          <img
-            src="https://github-readme-stats.vercel.app/api?username=gabe565&show_icons=true&theme=transparent&hide_border=true&count_private=true"
-            alt="Gabe Cook's GitHub stats"
-          />
+        <div class="row g-0 mb-3 justify-content-center">
+          <div class="col-auto">
+            <img
+              src="https://github-readme-stats.vercel.app/api?username=gabe565&show_icons=true&theme=transparent&hide_border=true&count_private=true"
+              alt="Gabe Cook's GitHub stats"
+            />
+          </div>
+          <div class="col-auto">
+            <img
+              src="https://github-readme-stats.vercel.app/api/top-langs?username=gabe565&theme=transparent&hide_border=true&layout=compact"
+              alt="Most Used Languages"
+            />
+          </div>
         </div>
-        <div class="col-auto">
-          <img
-            src="https://github-readme-stats.vercel.app/api/top-langs?username=gabe565&theme=transparent&hide_border=true&layout=compact"
-            alt="Most Used Languages"
-          />
-        </div>
-      </div>
+      </section>
     </div>
     <GMapMap
       :center="mapData.center"

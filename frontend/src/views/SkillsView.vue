@@ -27,7 +27,7 @@
             {{ error }}
           </div>
         </div>
-        <div v-for="{ title, skills } in skills" v-else :key="title">
+        <section v-for="{ title, skills } in skills" v-else :key="title">
           <div class="row mb-2">
             <div class="col">
               <h2 class="h3">{{ title }}</h2>
@@ -105,7 +105,7 @@
               />
             </template>
           </div>
-        </div>
+        </section>
       </transition-group>
     </div>
   </section>

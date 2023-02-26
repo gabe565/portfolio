@@ -36,7 +36,7 @@
           :key="`project-${project.name}`"
           class="col-10 col-lg-6 col-xl-4 pb-4"
         >
-          <div class="card text-white bg-dark border-dark h-100">
+          <section class="card text-white bg-dark border-dark h-100">
             <template v-if="project.image_path">
               <a
                 :href="project.url"
@@ -77,7 +77,7 @@
                 <span class="font-monospace">{{ project.pretty_url }}</span>
               </div>
             </a>
-          </div>
+          </section>
         </div>
       </transition-group>
     </div>
