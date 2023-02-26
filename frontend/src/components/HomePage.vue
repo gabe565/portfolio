@@ -34,7 +34,7 @@ export default {
     timeout: null,
   }),
   async created() {
-    await this.updateBackgrounds();
+    await this.fetchBackgrounds();
     await this.randomBackground();
     this.startTimeout();
   },
@@ -48,7 +48,7 @@ export default {
     this.randomBackground();
   },
   methods: {
-    async updateBackgrounds() {
+    async fetchBackgrounds() {
       try {
         const response = await pb.collection("backgrounds").getFullList();
         this.backgrounds = response.map((e) => e.url);

@@ -85,29 +85,34 @@ export default {
     error: null,
   }),
   async created() {
-    try {
-      const response = await pb.collection("projects").getFullList({
-        expand: "tags",
-      });
-      this.projects = response.map((project) => {
-        return {
-          ...project,
-          pretty_url: project.url
-            .replace(/^(\w+:)?\/\//, "")
-            .replace(/^github\.com\//, ""),
-          expand: {
-            tags: project.expand.tags.sort((a, b) =>
-              a.title.localeCompare(b.title),
-            ),
-          },
-        };
-      });
-    } catch (error) {
-      console.error(error);
-      this.error = "Failed to fetch projects. Please try again later.";
-    } finally {
-      this.loading = false;
-    }
+    await this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const response = await pb.collection("projects").getFullList({
+          expand: "tags",
+        });
+        this.projects = response.map((project) => {
+          return {
+            ...project,
+            pretty_url: project.url
+              .replace(/^(\w+:)?\/\//, "")
+              .replace(/^github\.com\//, ""),
+            expand: {
+              tags: project.expand.tags.sort((a, b) =>
+                a.title.localeCompare(b.title),
+              ),
+            },
+          };
+        });
+      } catch (error) {
+        console.error(error);
+        this.error = "Failed to fetch projects. Please try again later.";
+      } finally {
+        this.loading = false;
+      }
+    },
   },
 };
 </script>
