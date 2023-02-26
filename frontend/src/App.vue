@@ -53,6 +53,10 @@ export default {
 </script>
 
 <template>
+  <a class="sr-only-focusable btn btn-primary position-absolute" href="#content"
+    >Skip to main content</a
+  >
+
   <nav
     class="navbar navbar-expand-md fixed-top navbar-dark"
     :class="{ 'navbar-shrink': navbarShrink, minimal }"
@@ -144,6 +148,7 @@ export default {
   />
 
   <router-view
+    id="content"
     v-slot="{ Component }"
     class="child-view text-center"
     :class="{ 'content-section': !minimal }"
