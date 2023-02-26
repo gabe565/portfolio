@@ -31,6 +31,20 @@
           </p>
         </div>
       </div>
+      <div class="row g-0 justify-content-center">
+        <div class="col-auto">
+          <img
+            src="https://github-readme-stats.vercel.app/api?username=gabe565&show_icons=true&theme=transparent&hide_border=true&count_private=true"
+            alt="Gabe Cook's GitHub stats"
+          />
+        </div>
+        <div class="col-auto">
+          <img
+            src="https://github-readme-stats.vercel.app/api/top-langs?username=gabe565&theme=transparent&hide_border=true&layout=compact"
+            alt="Most Used Languages"
+          />
+        </div>
+      </div>
       <hr />
     </div>
     <transition name="fade">
