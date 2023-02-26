@@ -1,14 +1,23 @@
 <template>
   <section id="about" class="content-section text-center">
     <div class="container">
-      <h1>Connect</h1>
-      <p>
-        Here are links to my profiles on other relevant sites.<br />
-        The email form below will directly send to my personal email address.
-        Feel free to contact me!
-      </p>
-      <hr />
-      <h2 class="h3">Accounts</h2>
+      <div class="row">
+        <div class="col">
+          <h1>Connect</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Here are links to my profiles on other relevant sites.<br />
+          The email form below will directly send to my personal email address.
+          Feel free to contact me!
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2 class="h3">Accounts</h2>
+        </div>
+      </div>
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <ul class="list-inline banner-social-buttons">
@@ -45,106 +54,110 @@
           </ul>
         </div>
       </div>
-      <br />
-      <hr />
-      <h2 class="h3">Email</h2>
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <form
-          id="needs-validation"
-          ref="form"
-          data-focus="false"
-          method="post"
-          action="/api/mail"
-          role="form"
-          novalidate
-          @submit.prevent="mail"
-        >
-          <fieldset>
-            <div class="col mb-3">
-              <div
-                v-if="message"
-                class="alert"
-                :class="[success ? 'alert-success' : 'alert-danger']"
-              >
-                {{ message }}
-              </div>
-            </div>
-            <!--Name-->
-            <div class="form-group mb-3">
-              <label for="nameInput" class="form-label">Name</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <font-awesome-icon icon="far fa-user-alt" fixed-width />
+      <div class="row">
+        <div class="col">
+          <h2 class="h3">Email</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <form
+            id="needs-validation"
+            ref="form"
+            data-focus="false"
+            method="post"
+            action="/api/mail"
+            role="form"
+            novalidate
+            @submit.prevent="mail"
+          >
+            <fieldset>
+              <div class="col mb-3">
+                <div
+                  v-if="message"
+                  class="alert"
+                  :class="[success ? 'alert-success' : 'alert-danger']"
+                >
+                  {{ message }}
                 </div>
-                <input
-                  id="nameInput"
-                  v-model="name"
-                  name="name"
-                  placeholder="Jane Doe"
-                  class="form-control"
-                  type="text"
-                  required
-                />
               </div>
-            </div>
-            <!--Email-->
-            <div class="form-group mb-3">
-              <label for="emailInput" class="form-label">Email Address</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <font-awesome-icon icon="far fa-at" fixed-width />
+              <!--Name-->
+              <div class="form-group mb-3">
+                <label for="nameInput" class="form-label">Name</label>
+                <div class="input-group">
+                  <div class="input-group-text">
+                    <font-awesome-icon icon="far fa-user-alt" fixed-width />
+                  </div>
+                  <input
+                    id="nameInput"
+                    v-model="name"
+                    name="name"
+                    placeholder="Jane Doe"
+                    class="form-control"
+                    type="text"
+                    required
+                  />
                 </div>
-                <input
-                  id="emailInput"
-                  v-model="email"
-                  name="email"
-                  placeholder="name@example.com"
-                  class="form-control"
-                  type="email"
-                  required
-                />
               </div>
-            </div>
-            <!--Message-->
-            <div class="form-group mb-3">
-              <label for="messageInput" class="form-label">Message</label>
-              <div class="input-group">
-                <div class="input-group-text">
-                  <font-awesome-icon icon="far fa-comment" fixed-width />
+              <!--Email-->
+              <div class="form-group mb-3">
+                <label for="emailInput" class="form-label">Email Address</label>
+                <div class="input-group">
+                  <div class="input-group-text">
+                    <font-awesome-icon icon="far fa-at" fixed-width />
+                  </div>
+                  <input
+                    id="emailInput"
+                    v-model="email"
+                    name="email"
+                    placeholder="name@example.com"
+                    class="form-control"
+                    type="email"
+                    required
+                  />
                 </div>
-                <textarea
-                  id="messageInput"
-                  v-model="text"
-                  class="form-control vertical"
-                  name="text"
-                  required
-                  style="min-height: 62px"
-                  @input="
-                    $event.target.style.height = '';
-                    $event.target.style.height = `${$event.target.scrollHeight}px`;
-                  "
-                ></textarea>
               </div>
-            </div>
-            <!-- Button -->
-            <div class="form-group mb-3">
-              <button class="btn btn-outline-primary">
-                <font-awesome-icon
-                  v-if="loading"
-                  icon="far fa-sync"
-                  fixed-width
-                  spin
-                />
-                <font-awesome-icon
-                  v-else
-                  icon="far fa-paper-plane"
-                  fixed-width
-                />
-                Send
-              </button>
-            </div>
-          </fieldset>
-        </form>
+              <!--Message-->
+              <div class="form-group mb-3">
+                <label for="messageInput" class="form-label">Message</label>
+                <div class="input-group">
+                  <div class="input-group-text">
+                    <font-awesome-icon icon="far fa-comment" fixed-width />
+                  </div>
+                  <textarea
+                    id="messageInput"
+                    v-model="text"
+                    class="form-control vertical"
+                    name="text"
+                    required
+                    style="min-height: 62px"
+                    @input="
+                      $event.target.style.height = '';
+                      $event.target.style.height = `${$event.target.scrollHeight}px`;
+                    "
+                  ></textarea>
+                </div>
+              </div>
+              <!-- Button -->
+              <div class="form-group mb-3">
+                <button class="btn btn-outline-primary">
+                  <font-awesome-icon
+                    v-if="loading"
+                    icon="far fa-sync"
+                    fixed-width
+                    spin
+                  />
+                  <font-awesome-icon
+                    v-else
+                    icon="far fa-paper-plane"
+                    fixed-width
+                  />
+                  Send
+                </button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
       </div>
     </div>
   </section>

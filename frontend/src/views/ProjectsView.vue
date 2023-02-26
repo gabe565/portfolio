@@ -1,10 +1,22 @@
 <template>
   <section id="skills" class="content-section text-center">
     <div class="container">
-      <h1>Projects</h1>
-      <p>Here are some of my best projects!</p>
-      <div v-if="loading" class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
+      <div class="row">
+        <div class="col">
+          <h1>Projects</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p>Here are some of my best projects!</p>
+        </div>
+      </div>
+      <div v-if="loading" class="row">
+        <div class="col">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
       </div>
       <transition-group
         v-else
