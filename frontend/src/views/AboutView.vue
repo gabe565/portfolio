@@ -13,21 +13,21 @@
             />
           </transition>
         </div>
-        <div class="col-lg-6 me-auto">
+        <div class="col-lg-9 me-auto text-left">
           <p>
-            I am a {{ age }} year old DevOps Engineer and Software Developer
-            from Oklahoma City, OK. I graduated with my B.S. in Computer Science
-            from the University of Central Oklahoma.
+            I'm a {{ age }} year old DevOps Engineer and Software Developer
+            based in Oklahoma City, Oklahoma, USA.
+            <br />
+            I love automating things, building things with Golang and Vue,
+            tinkering with self-hosted home automation, and learning new things!
+            See my <router-link to="/projects">projects page</router-link> for a
+            list of projects.
+            <br />
+            I build and deploy using containers, GitHub Actions, Kubernetes, and
+            GitOps.
           </p>
           <p>
-            I enjoy scripting things together, writing websites which have an
-            easy-to-use interface, tinkering with self-hosted home automation,
-            and just overall playing with technology!
-          </p>
-          <p>
-            <router-link to="/connect"
-              >Let me know if you have any questions!</router-link
-            >
+            <router-link to="/connect">Feel free to reach out!</router-link>
           </p>
         </div>
       </div>
