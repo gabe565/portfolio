@@ -167,12 +167,13 @@ export default {
           <span>&lt;/ gabe.cook &gt;</span>
         </div>
         <div class="col-sm">
-          <a href="//github.com/gabe565/portfolio" target="_blank">
-            <span>
-              <font-awesome-icon icon="fab fa-github"></font-awesome-icon>
-              &nbsp;View on GitHub
-            </span>
-          </a>
+          <a href="//github.com/gabe565/portfolio" target="_blank"
+            ><font-awesome-icon
+              icon="fab fa-github"
+              fixed-width
+            ></font-awesome-icon
+            >View on GitHub</a
+          >
         </div>
         <div class="col-sm text-sm-end">
           <a
