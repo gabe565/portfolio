@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/components/HomePage.vue";
-import About from "@/components/AboutPage.vue";
-import Skills from "@/components/SkillsPage.vue";
-import Projects from "@/components/ProjectsPage.vue";
-import Connect from "@/components/ConnectPage.vue";
-import NotFound from "@/components/NotFoundPage.vue";
+import HomeView from "@/views/HomeView.vue";
+import AboutView from "@/views/AboutView.vue";
+import SkillsView from "@/views/SkillsView.vue";
+import ProjectsView from "@/views/ProjectsView.vue";
+import ConnectView from "@/views/ConnectView.vue";
+import NotFoundView from "@/views/NotFoundView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,32 +12,32 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: Home,
+      component: HomeView,
       meta: { title: "Home" },
     },
     {
       path: "/about",
-      component: About,
+      component: AboutView,
       meta: { title: "About" },
     },
     {
       path: "/skills",
-      component: Skills,
+      component: SkillsView,
       meta: { title: "Skills" },
     },
     {
       path: "/projects",
-      component: Projects,
+      component: ProjectsView,
       meta: { title: "Projects" },
     },
     {
       path: "/connect",
-      component: Connect,
+      component: ConnectView,
       meta: { title: "Connect" },
     },
     {
       path: "/:wildcard(.*)",
-      component: NotFound,
+      component: NotFoundView,
       meta: { title: "Not Found" },
     },
   ],

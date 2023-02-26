@@ -9,15 +9,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AboutPage: typeof import('./src/components/AboutPage.vue')['default']
-    ConnectPage: typeof import('./src/components/ConnectPage.vue')['default']
     FontAwesomeIcon: typeof import('@fortawesome/vue-fontawesome')['FontAwesomeIcon']
     FontAwesomeLayers: typeof import('@fortawesome/vue-fontawesome')['FontAwesomeLayers']
-    HomePage: typeof import('./src/components/HomePage.vue')['default']
-    NotFoundPage: typeof import('./src/components/NotFoundPage.vue')['default']
-    ProjectsPage: typeof import('./src/components/ProjectsPage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SkillsPage: typeof import('./src/components/SkillsPage.vue')['default']
   }
 }
