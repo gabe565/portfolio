@@ -39,7 +39,7 @@
           <h2 class="h3">Stats</h2>
         </div>
       </div>
-      <div class="row g-0 justify-content-center">
+      <div class="row g-0 mb-3 justify-content-center">
         <div class="col-auto">
           <img
             src="https://github-readme-stats.vercel.app/api?username=gabe565&show_icons=true&theme=transparent&hide_border=true&count_private=true"
@@ -53,7 +53,6 @@
           />
         </div>
       </div>
-      <hr />
     </div>
     <GMapMap
       :center="mapData.center"
