@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="row mb-3">
-        <div class="col-3 col-lg-2 mx-auto ms-lg-auto me-lg-0">
+        <div class="col-3 col-lg-2 mx-auto ms-lg-auto me-lg-0 mb-4">
           <img
             class="img-fluid rounded"
             src="../assets/me.jpg"
