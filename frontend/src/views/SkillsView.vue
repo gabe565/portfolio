@@ -3,10 +3,10 @@
     <div class="container">
       <h1>Skills</h1>
       <div class="col-md-9 mx-auto">
-        My development skills on a scale of 1-5 stars. Note that the scale is
-        relative to the other languages that I have used, so a 5 star rating
-        means that I am most familiar with that language (Not that I am perfect
-        at it)!
+        A list of skills and languages that I'm proficient in on a scale of 1-5
+        stars. Note that the scale is relative to the other languages that I
+        have used, so a 5 star rating means that I'm most familiar with that
+        language, not that I'm perfect at it.
       </div>
       <div
         v-if="loading"
