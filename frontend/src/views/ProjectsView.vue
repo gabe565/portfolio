@@ -2,10 +2,7 @@
   <section id="skills" class="content-section text-center">
     <div class="container">
       <h1>Projects</h1>
-      <p>
-        Below are links to the personal or collaborative projects that I can
-        claim a piece of.
-      </p>
+      <p>Here are some of my best projects!</p>
       <div v-if="loading" class="spinner-border text-primary" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
