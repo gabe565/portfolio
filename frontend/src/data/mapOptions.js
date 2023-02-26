@@ -1,7 +1,7 @@
 export default {
-  center: { lat: 35.46756, lng: -97.516428 },
+  center: { lat: 35.52, lng: -97.49 },
   options: {
-    zoom: 11,
+    zoom: 10.8,
     disableDefaultUI: true,
     scrollwheel: false,
     draggable: false,
