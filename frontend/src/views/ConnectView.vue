@@ -8,9 +8,7 @@
       </div>
       <div class="row">
         <div class="col">
-          Here are links to my profiles on other relevant sites.<br />
-          The email form below will directly send to my personal email address.
-          Feel free to contact me!
+          Here are some ways to reach out or see what I'm up to!
         </div>
       </div>
       <div class="row mt-4 mb-3">
