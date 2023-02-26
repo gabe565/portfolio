@@ -34,69 +34,76 @@
             </div>
           </div>
           <div class="row mb-4">
-            <div
+            <template
               v-for="(chunk, i) in [
                 skills.slice(0, Math.ceil(skills.length / 2)),
                 skills.slice(Math.ceil(skills.length / 2)),
               ]"
               :key="i"
-              class="col-sm-8 col-lg-4 mx-auto"
-              :class="[i === 0 ? 'ms-lg-auto me-lg-0' : 'me-lg-auto ms-lg-0']"
             >
-              <ul class="list-group list-group-inverse">
-                <li
-                  v-for="skill in chunk"
-                  :key="skill.title"
-                  class="list-group-item"
-                >
-                  <div class="row">
-                    <div class="col text-start">
-                      {{ skill.title }}
-                    </div>
-                    <div class="col-auto">
-                      <div class="sr-only">{{ skill.rating }} of 5 stars</div>
-                      <div
-                        class="float-end"
-                        aria-hidden="true"
-                        :title="`${skill.rating} star${
-                          skill.rating === 1 ? '' : 's'
-                        }`"
-                      >
-                        <template v-for="n in 5" :key="n">
-                          <font-awesome-icon
-                            v-if="n <= skill.rating"
-                            icon="fas fa-star"
-                            fixed-width
-                            class="text-primary"
-                          />
-                          <font-awesome-layers
-                            v-else-if="n === Math.ceil(skill.rating)"
-                            fixed-width
-                          >
+              <div
+                class="col-sm-8 col-lg-4 mx-auto"
+                :class="[i === 0 ? 'ms-lg-auto me-lg-0' : 'me-lg-auto ms-lg-0']"
+              >
+                <ul class="list-group list-group-inverse">
+                  <li
+                    v-for="skill in chunk"
+                    :key="skill.title"
+                    class="list-group-item"
+                  >
+                    <div class="row">
+                      <div class="col text-start">
+                        {{ skill.title }}
+                      </div>
+                      <div class="col-auto">
+                        <div class="sr-only">{{ skill.rating }} of 5 stars</div>
+                        <div
+                          class="float-end"
+                          aria-hidden="true"
+                          :title="`${skill.rating} star${
+                            skill.rating === 1 ? '' : 's'
+                          }`"
+                        >
+                          <template v-for="n in 5" :key="n">
                             <font-awesome-icon
-                              icon="fas fa-star-half"
+                              v-if="n <= skill.rating"
+                              icon="fas fa-star"
                               fixed-width
                               class="text-primary"
                             />
+                            <font-awesome-layers
+                              v-else-if="n === Math.ceil(skill.rating)"
+                              fixed-width
+                            >
+                              <font-awesome-icon
+                                icon="fas fa-star-half"
+                                fixed-width
+                                class="text-primary"
+                              />
+                              <font-awesome-icon
+                                icon="far fa-star"
+                                fixed-width
+                                class="text-white opacity-15"
+                              />
+                            </font-awesome-layers>
                             <font-awesome-icon
+                              v-else
                               icon="far fa-star"
                               fixed-width
                               class="text-white opacity-15"
                             />
-                          </font-awesome-layers>
-                          <font-awesome-icon
-                            v-else
-                            icon="far fa-star"
-                            fixed-width
-                            class="text-white opacity-15"
-                          />
-                        </template>
+                          </template>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
+                  </li>
+                </ul>
+              </div>
+              <div
+                v-if="i === 0"
+                class="col-auto g-0 d-none d-lg-block border-end border-opacity-10 border-light"
+              />
+            </template>
           </div>
         </div>
       </transition-group>
