@@ -1,12 +1,12 @@
 <template>
   <section id="skills" class="content-section text-center">
     <div class="container">
-      <div class="row">
+      <div class="row mb-4">
         <div class="col">
           <h1>Projects</h1>
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3">
         <div class="col">
           <p>Here are some of my best projects!</p>
         </div>

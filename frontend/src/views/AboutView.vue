@@ -1,7 +1,7 @@
 <template>
   <section id="about" class="content-section text-center">
     <div class="container">
-      <div class="row">
+      <div class="row mb-4">
         <div class="col">
           <h1>About</h1>
         </div>

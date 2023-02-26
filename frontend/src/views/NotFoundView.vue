@@ -1,7 +1,7 @@
 <template>
   <section id="error" class="content-section text-center">
     <div class="container">
-      <div class="row">
+      <div class="row mb-4">
         <div class="col">
           <h1>404 Not Found</h1>
         </div>

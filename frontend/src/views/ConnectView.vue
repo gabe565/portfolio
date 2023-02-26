@@ -1,7 +1,7 @@
 <template>
   <section id="about" class="content-section text-center">
     <div class="container">
-      <div class="row">
+      <div class="row mb-4">
         <div class="col">
           <h1>Connect</h1>
         </div>
@@ -13,7 +13,7 @@
           Feel free to contact me!
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-4 mb-3">
         <div class="col">
           <h2 class="h3">Accounts</h2>
         </div>
@@ -54,7 +54,7 @@
           </ul>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-4 mb-1">
         <div class="col">
           <h2 class="h3">Contact</h2>
         </div>

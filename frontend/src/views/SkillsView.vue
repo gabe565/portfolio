@@ -1,12 +1,12 @@
 <template>
   <section id="skills" class="content-section text-center">
     <div class="container">
-      <div class="row">
+      <div class="row mb-4">
         <div class="col">
           <h1>Skills</h1>
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-4">
         <div class="col-md-9 mx-auto">
           A list of skills and languages that I'm proficient in on a scale of
           1-5 stars. Note that the scale is relative to the other languages that
@@ -22,18 +22,18 @@
         </div>
       </div>
       <transition-group v-else name="fade" tag="div" class="row" appear>
-        <div v-if="error" class="col mt-5">
+        <div v-if="error" class="col">
           <div class="alert alert-danger">
             {{ error }}
           </div>
         </div>
         <div v-for="{ title, skills } in skills" v-else :key="title">
-          <div class="row">
+          <div class="row mb-2">
             <div class="col">
               <h2 class="h3">{{ title }}</h2>
             </div>
           </div>
-          <div class="row">
+          <div class="row mb-4">
             <div
               v-for="(chunk, i) in [
                 skills.slice(0, Math.ceil(skills.length / 2)),
