@@ -1,8 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import FontAwesomeIcon from "./plugins/fontawesome";
 import VueGoogleMaps from "@fawmi/vue-google-maps";
+import "./plugins/fontawesome";
 
 import "@/sass/bootstrap.scss";
 import "@/sass/main.scss";
@@ -14,5 +14,4 @@ createApp(App)
       key: import.meta.env.VITE_GOOGLE_API_KEY,
     },
   })
-  .component("FontAwesomeIcon", FontAwesomeIcon)
   .mount("#app");
