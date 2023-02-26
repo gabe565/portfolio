@@ -56,7 +56,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <h2 class="h3">Email</h2>
+          <h2 class="h3">Contact</h2>
         </div>
       </div>
       <div class="row">
