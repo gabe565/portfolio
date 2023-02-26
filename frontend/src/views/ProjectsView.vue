@@ -43,14 +43,14 @@
               </a>
             </template>
             <div class="card-body d-flex flex-column">
-              <h5 class="card-title">{{ project.name }}</h5>
+              <h2 class="card-title h4">{{ project.name }}</h2>
               <!-- eslint-disable vue/no-v-html -->
               <p
                 class="card-description my-auto"
                 v-html="project.description"
               />
               <div>
-                <h6 class="sr-only">Tags</h6>
+                <h3 class="sr-only">Tags</h3>
                 <span
                   v-for="tag in project.expand.tags"
                   :key="tag.id"

@@ -23,7 +23,7 @@
         </div>
         <div v-for="{ title, skills } in skills" v-else :key="title">
           <hr />
-          <h3>{{ title }}</h3>
+          <h2 class="h3">{{ title }}</h2>
           <div class="row">
             <div
               v-for="(chunk, i) in [

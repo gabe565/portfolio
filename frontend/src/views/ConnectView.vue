@@ -8,7 +8,7 @@
         Feel free to contact me!
       </p>
       <hr />
-      <h3>Accounts</h3>
+      <h2 class="h3">Accounts</h2>
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <ul class="list-inline banner-social-buttons">
@@ -47,7 +47,7 @@
       </div>
       <br />
       <hr />
-      <h3>Email</h3>
+      <h2 class="h3">Email</h2>
       <div class="col-lg-6 col-md-8 mx-auto">
         <form
           id="needs-validation"
