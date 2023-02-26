@@ -33,11 +33,11 @@ p {
 a {
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
-    color: $primary;
+    color: lighten($primary, 7%);
     &:focus,
     &:hover {
         text-decoration: none;
-        color: lighten($primary, 20%);
+        color: lighten($primary, 25%);
     }
 }
 
