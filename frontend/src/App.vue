@@ -163,9 +163,7 @@ export default {
   <footer :class="{ minimal }">
     <div class="container">
       <div class="row text-center">
-        <div class="col-sm text-sm-start">
-          <span>&lt;/ gabe.cook &gt;</span>
-        </div>
+        <div class="col-sm text-sm-start">&lt;/ gabe.cook &gt;</div>
         <div class="col-sm">
           <a href="//github.com/gabe565/portfolio" target="_blank"
             ><font-awesome-icon
