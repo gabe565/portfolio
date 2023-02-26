@@ -17,12 +17,14 @@
           <p>
             I'm a {{ age }} year old DevOps Engineer and Software Developer
             based in Oklahoma City, Oklahoma, USA.
-            <br />
+          </p>
+          <p>
             I love automating things, building things with Golang and Vue,
             tinkering with self-hosted home automation, and learning new things!
             See my <router-link to="/projects">projects page</router-link> for a
             list of projects.
-            <br />
+          </p>
+          <p>
             I build and deploy using containers, GitHub Actions, Kubernetes, and
             GitOps.
           </p>
