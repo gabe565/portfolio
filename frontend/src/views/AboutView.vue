@@ -6,7 +6,7 @@
           <h1>About</h1>
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3">
         <div class="col-3 col-lg-2 mx-auto ms-lg-auto me-lg-0">
           <img
             class="img-fluid rounded"
@@ -32,6 +32,11 @@
           <p>
             <router-link to="/connect">Feel free to reach out!</router-link>
           </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2 class="h3">Stats</h2>
         </div>
       </div>
       <div class="row g-0 justify-content-center">
