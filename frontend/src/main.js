@@ -4,8 +4,8 @@ import router from "./router";
 import VueGoogleMaps from "@fawmi/vue-google-maps";
 import "./plugins/fontawesome";
 
-import "@/sass/bootstrap.scss";
-import "@/sass/main.scss";
+import "@/scss/bootstrap.scss";
+import "@/scss/main.scss";
 
 createApp(App)
   .use(router)
