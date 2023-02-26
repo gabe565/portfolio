@@ -25,6 +25,7 @@
 
 <script>
 import pb from "@/plugins/pocketbase";
+import loadImage from "@/util/loadImage";
 
 export default {
   data() {
@@ -36,7 +37,7 @@ export default {
   },
   async created() {
     await this.updateBackgrounds();
-    this.randomBackground();
+    await this.randomBackground();
     this.startTimeout();
   },
   activated() {
@@ -57,17 +58,22 @@ export default {
         console.error(error);
       }
     },
-    randomBackground() {
+    async randomBackground() {
       let index = Math.floor(Math.random() * this.backgrounds.length);
       if (index === this.index) {
         index += 1;
         index %= this.backgrounds.length;
       }
-      this.index = index;
+      try {
+        await loadImage(this.backgrounds[index]);
+        this.index = index;
+      } catch (error) {
+        console.error(error);
+      }
     },
     startTimeout() {
-      this.timeout = setTimeout(() => {
-        this.randomBackground();
+      this.timeout = setTimeout(async () => {
+        await this.randomBackground();
         this.startTimeout();
       }, 7500);
     },
