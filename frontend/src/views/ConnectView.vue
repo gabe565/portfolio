@@ -71,14 +71,16 @@
             </div>
             <!--Name-->
             <div class="form-group mb-3">
+              <label for="nameInput" class="form-label">Name</label>
               <div class="input-group">
                 <div class="input-group-text">
                   <font-awesome-icon icon="far fa-user-alt" fixed-width />
                 </div>
                 <input
+                  id="nameInput"
                   v-model="name"
                   name="name"
-                  placeholder="Name"
+                  placeholder="Jane Doe"
                   class="form-control"
                   type="text"
                   required
@@ -87,14 +89,16 @@
             </div>
             <!--Email-->
             <div class="form-group mb-3">
+              <label for="emailInput" class="form-label">Email Address</label>
               <div class="input-group">
                 <div class="input-group-text">
                   <font-awesome-icon icon="far fa-at" fixed-width />
                 </div>
                 <input
+                  id="emailInput"
                   v-model="email"
                   name="email"
-                  placeholder="Email Address"
+                  placeholder="name@example.com"
                   class="form-control"
                   type="email"
                   required
@@ -103,15 +107,16 @@
             </div>
             <!--Message-->
             <div class="form-group mb-3">
+              <label for="messageInput" class="form-label">Message</label>
               <div class="input-group">
                 <div class="input-group-text">
                   <font-awesome-icon icon="far fa-comment" fixed-width />
                 </div>
                 <textarea
+                  id="messageInput"
                   v-model="text"
                   class="form-control vertical"
                   name="text"
-                  placeholder="Message"
                   required
                   style="min-height: 62px"
                   @input="
