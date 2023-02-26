@@ -143,7 +143,11 @@ export default {
     @click="toggleNav(false)"
   />
 
-  <router-view v-slot="{ Component }" class="child-view">
+  <router-view
+    v-slot="{ Component }"
+    class="child-view text-center"
+    :class="{ 'content-section': !minimal }"
+  >
     <transition :name="transitionName" mode="out-in" appear>
       <keep-alive>
         <component :is="Component" />

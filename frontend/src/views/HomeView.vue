@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center bg-black text-white">
+  <div>
     <transition name="fade" appear>
       <div
         v-if="index !== null"
