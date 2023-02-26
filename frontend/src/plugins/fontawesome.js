@@ -7,8 +7,17 @@ import {
   faInfoCircle,
   faListUl,
   faStar,
+  faStarHalf,
 } from "@fortawesome/pro-solid-svg-icons";
-library.add(faBars, faCode, faEnvelope, faInfoCircle, faListUl, faStar);
+library.add(
+  faBars,
+  faCode,
+  faEnvelope,
+  faInfoCircle,
+  faListUl,
+  faStar,
+  faStarHalf,
+);
 
 import {
   faAt,

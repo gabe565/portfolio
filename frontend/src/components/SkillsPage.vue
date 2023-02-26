@@ -45,27 +45,42 @@
                       {{ skill.title }}
                     </div>
                     <div class="col-auto">
-                      <div class="sr-only">{{ skill.rating }} of 5</div>
+                      <div class="sr-only">{{ skill.rating }} of 5 stars</div>
                       <div
                         class="float-end"
                         aria-hidden="true"
-                        :title="`${skill.rating} Stars`"
+                        :title="`${skill.rating} star${
+                          skill.rating === 1 ? '' : 's'
+                        }`"
                       >
                         <template v-for="n in 5" :key="n">
-                          <template v-if="n <= skill.rating">
+                          <font-awesome-icon
+                            v-if="n <= skill.rating"
+                            icon="fas fa-star"
+                            fixed-width
+                            class="text-primary"
+                          />
+                          <font-awesome-layers
+                            v-else-if="n === Math.ceil(skill.rating)"
+                            fixed-width
+                          >
                             <font-awesome-icon
-                              icon="fas fa-star"
+                              icon="fas fa-star-half"
                               fixed-width
                               class="text-primary"
                             />
-                          </template>
-                          <template v-else>
                             <font-awesome-icon
                               icon="far fa-star"
                               fixed-width
                               class="text-white opacity-15"
                             />
-                          </template>
+                          </font-awesome-layers>
+                          <font-awesome-icon
+                            v-else
+                            icon="far fa-star"
+                            fixed-width
+                            class="text-white opacity-15"
+                          />
                         </template>
                       </div>
                     </div>
