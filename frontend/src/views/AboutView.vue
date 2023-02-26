@@ -56,11 +56,14 @@
         </div>
       </section>
     </div>
-    <GMapMap
-      :center="mapData.center"
-      :options="mapData.options"
-      style="width: 100%; height: 100%"
-    ></GMapMap>
+    <section>
+      <h2 class="h3 sr-only">Map of Oklahoma City</h2>
+      <GMapMap
+        :center="mapData.center"
+        :options="mapData.options"
+        style="width: 100%; height: 100%"
+      ></GMapMap>
+    </section>
   </section>
 </template>
 
