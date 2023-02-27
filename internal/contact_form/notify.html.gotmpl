@@ -1,0 +1,40 @@
+<html>
+    <body>
+        <div style="background-color: #607d8b; color: #fff; width: 100%; text-align: center;">
+            <h3 style="line-height: 48px; display: inline;">New Contact Form Submission</h3>
+        </div>
+        <table style="margin: 1em auto;">
+            <tbody style="vertical-align: top">
+                <tr>
+                    <td>
+                        <b>Name:</b>
+                    </td>
+                    <td>
+                        {{ .Sender.Name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Email:</b>
+                    </td>
+                    <td>
+                        {{ .Sender.Address }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Message:</b>
+                    </td>
+                    <td>
+                        {{ .Message }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="background-color: #607d8b; color: #fff; width: 100%; text-align: center;">
+            <a href="{{ .AppUrl }}">
+                <img src="{{ .AppUrl }}/images/logo-70x70.png" style="width: 48px;" alt="Gabe Cook Logo">
+            </a>
+        </div>
+    </body>
+</html>

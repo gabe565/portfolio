@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gabe565/portfolio/internal/contact_form"
 	"github.com/gabe565/portfolio/internal/handlers"
 	_ "github.com/gabe565/portfolio/migrations"
 	"github.com/pocketbase/pocketbase"
@@ -21,6 +22,8 @@ func main() {
 		e.Router.GET("/to/:handle", handlers.RedirectHandler(e))
 		return nil
 	})
+
+	app.OnModelAfterCreate("contact_form").Add(contact_form.Notify(app))
 
 	if err := app.Start(); err != nil {
 		log.Fatal(err)
