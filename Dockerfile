@@ -8,6 +8,7 @@ RUN go mod download
 
 COPY *.go ./
 COPY migrations/ migrations/
+COPY internal/ internal/
 
 # Set Golang build envs based on Docker platform string
 ARG TARGETPLATFORM
