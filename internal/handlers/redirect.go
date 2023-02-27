@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"database/sql"
@@ -9,8 +9,8 @@ import (
 	"net/http"
 )
 
-func Redirects(e *core.ServeEvent) error {
-	e.Router.GET("/to/:handle", func(c echo.Context) error {
+func RedirectHandler(e *core.ServeEvent) echo.HandlerFunc {
+	return func(c echo.Context) error {
 		handle := c.PathParam("handle")
 
 		record, err := e.App.Dao().FindFirstRecordByData("redirects", "handle", handle)
@@ -23,6 +23,5 @@ func Redirects(e *core.ServeEvent) error {
 
 		url := record.Get("url").(string)
 		return c.Redirect(http.StatusTemporaryRedirect, url)
-	})
-	return nil
+	}
 }
