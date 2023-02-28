@@ -74,12 +74,11 @@
             >
               <fieldset>
                 <div class="col mb-3">
-                  <div
-                    v-if="message"
-                    class="alert"
-                    :class="[success ? 'alert-success' : 'alert-danger']"
-                  >
-                    {{ message }}
+                  <div v-if="error" class="alert alert-danger">
+                    There was an error during submission.
+                  </div>
+                  <div v-else-if="success" class="alert alert-success">
+                    The message has been sent successfully. Thank you!
                   </div>
                 </div>
                 <!--Name-->
@@ -179,17 +178,6 @@ export default {
     success: false,
     loading: false,
   }),
-  computed: {
-    message() {
-      if (this.error) {
-        return "There was an error during submission.";
-      } else if (this.success) {
-        return "The message has been sent successfully. Thank you!";
-      } else {
-        return null;
-      }
-    },
-  },
   methods: {
     async mail() {
       const valid = this.$refs.form.checkValidity();
