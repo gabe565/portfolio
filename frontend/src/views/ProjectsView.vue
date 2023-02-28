@@ -73,8 +73,15 @@
             </div>
             <a :href="project.url" class="card-link" target="_blank">
               <div class="card-footer">
-                View at
-                <span class="font-monospace">{{ project.pretty_url }}</span>
+                <font-awesome-icon
+                  v-if="project.icon"
+                  :icon="project.icon"
+                  fixed-width
+                  class="px-1"
+                />
+                <span class="font-monospace">
+                  {{ project.pretty_url }}
+                </span>
               </div>
             </a>
           </section>
@@ -105,6 +112,9 @@ export default {
         this.projects = response.map((project) => {
           return {
             ...project,
+            icon: project.url.match(/^https:\/\/github\.com/)
+              ? "fab fa-github"
+              : "fas fa-globe",
             pretty_url: project.url
               .replace(/^(\w+:)?\/\//, "")
               .replace(/^github\.com\//, ""),

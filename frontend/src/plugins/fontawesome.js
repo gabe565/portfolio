@@ -8,6 +8,7 @@ import {
   faListUl,
   faStar,
   faStarHalf,
+  faGlobe,
 } from "@fortawesome/pro-solid-svg-icons";
 library.add(
   faBars,
@@ -17,6 +18,7 @@ library.add(
   faListUl,
   faStar,
   faStarHalf,
+  faGlobe,
 );
 
 import {
