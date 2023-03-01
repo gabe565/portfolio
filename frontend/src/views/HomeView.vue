@@ -38,25 +38,24 @@ onActivated(() => {
 
 onDeactivated(() => {
   stopTimeout();
-  randomBackground();
+  nextBackground();
 });
 
 let backgrounds = [];
 const fetchBackgrounds = async () => {
   try {
     const response = await pb.collection("backgrounds").getFullList();
-    backgrounds = response.map((e) => e.url);
+    backgrounds = response
+      .map((background) => ({ sortKey: Math.random(), background }))
+      .sort((a, b) => a.sortKey - b.sortKey)
+      .map(({ background }) => background.url);
   } catch (error) {
     console.error(error);
   }
 };
 
-const randomBackground = async () => {
-  let newIndex = Math.floor(Math.random() * backgrounds.length);
-  if (newIndex === index.value) {
-    newIndex += 1;
-    newIndex %= backgrounds.length;
-  }
+const nextBackground = async () => {
+  const newIndex = (index.value + 1) % backgrounds.length;
   try {
     await loadImage(backgrounds[newIndex]);
     index.value = newIndex;
@@ -67,7 +66,7 @@ const randomBackground = async () => {
 
 const startTimeout = () => {
   timeout = setTimeout(async () => {
-    await randomBackground();
+    await nextBackground();
     startTimeout();
   }, 7500);
 };
@@ -81,7 +80,7 @@ const stopTimeout = () => {
 
 (async () => {
   await fetchBackgrounds();
-  await randomBackground();
+  await nextBackground();
   startTimeout();
 })();
 </script>
