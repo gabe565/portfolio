@@ -67,7 +67,7 @@
                           <template v-for="n in 5" :key="n">
                             <font-awesome-icon
                               v-if="n <= skill.rating"
-                              icon="fas fa-star"
+                              :icon="fasStar"
                               fixed-width
                               class="text-primary"
                             />
@@ -76,19 +76,19 @@
                               fixed-width
                             >
                               <font-awesome-icon
-                                icon="fas fa-star-half"
+                                :icon="faStarHalf"
                                 fixed-width
                                 class="text-primary"
                               />
                               <font-awesome-icon
-                                icon="far fa-star"
+                                :icon="farStar"
                                 fixed-width
                                 class="text-white opacity-15"
                               />
                             </font-awesome-layers>
                             <font-awesome-icon
                               v-else
-                              icon="far fa-star"
+                              :icon="farStar"
                               fixed-width
                               class="text-white opacity-15"
                             />
@@ -113,6 +113,11 @@
 
 <script setup>
 import pb from "@/plugins/pocketbase";
+import {
+  faStar as fasStar,
+  faStarHalf,
+} from "@fortawesome/pro-solid-svg-icons";
+import { faStar as farStar } from "@fortawesome/pro-regular-svg-icons";
 
 const skills = ref([]);
 const error = ref(null);

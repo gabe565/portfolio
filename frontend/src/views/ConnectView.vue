@@ -26,7 +26,7 @@
                   class="btn btn-outline-primary btn-lg"
                   target="_blank"
                 >
-                  <font-awesome-icon icon="fab fa-twitter" fixed-width />
+                  <font-awesome-icon :icon="faTwitter" fixed-width />
                   <span class="network-name">Twitter</span>
                 </a>
               </li>
@@ -36,7 +36,7 @@
                   class="btn btn-outline-primary btn-lg"
                   target="_blank"
                 >
-                  <font-awesome-icon icon="fab fa-github" fixed-width />
+                  <font-awesome-icon :icon="faGithub" fixed-width />
                   <span class="network-name">Github</span>
                 </a>
               </li>
@@ -46,7 +46,7 @@
                   class="btn btn-outline-primary btn-lg"
                   target="_blank"
                 >
-                  <font-awesome-icon icon="fab fa-linkedin" fixed-width />
+                  <font-awesome-icon :icon="faLinkedin" fixed-width />
                   <span class="network-name">LinkedIn</span>
                 </a>
               </li>
@@ -86,7 +86,7 @@
                   <label for="nameInput" class="form-label">Name</label>
                   <div class="input-group">
                     <div class="input-group-text">
-                      <font-awesome-icon icon="far fa-user-alt" fixed-width />
+                      <font-awesome-icon :icon="faUserAlt" fixed-width />
                     </div>
                     <input
                       id="nameInput"
@@ -106,7 +106,7 @@
                   >
                   <div class="input-group">
                     <div class="input-group-text">
-                      <font-awesome-icon icon="far fa-at" fixed-width />
+                      <font-awesome-icon :icon="faAt" fixed-width />
                     </div>
                     <input
                       id="emailInput"
@@ -124,7 +124,7 @@
                   <label for="messageInput" class="form-label">Message</label>
                   <div class="input-group">
                     <div class="input-group-text">
-                      <font-awesome-icon icon="far fa-comment" fixed-width />
+                      <font-awesome-icon :icon="faComment" fixed-width />
                     </div>
                     <textarea
                       id="messageInput"
@@ -145,13 +145,13 @@
                   <button class="btn btn-outline-primary">
                     <font-awesome-icon
                       v-if="loading"
-                      icon="far fa-sync"
+                      :icon="faSync"
                       fixed-width
                       spin
                     />
                     <font-awesome-icon
                       v-else
-                      icon="far fa-paper-plane"
+                      :icon="faPaperPlane"
                       fixed-width
                     />
                     Send
@@ -168,6 +168,18 @@
 
 <script setup>
 import pb from "@/plugins/pocketbase";
+import {
+  faTwitter,
+  faGithub,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faAt,
+  faComment,
+  faSync,
+  faPaperPlane,
+  faUserAlt,
+} from "@fortawesome/pro-regular-svg-icons";
 
 const formData = ref({
   name: "",

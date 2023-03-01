@@ -1,5 +1,13 @@
 <script setup>
 import { Collapse } from "bootstrap";
+import {
+  faBars,
+  faCode,
+  faEnvelope,
+  faInfoCircle,
+  faListUl,
+} from "@fortawesome/pro-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const transitionName = ref("fade");
 const navbarShrink = ref(false);
@@ -71,7 +79,7 @@ const toggleNav = (show) => {
         aria-label="Toggle navigation"
         @click="toggleNav()"
       >
-        <font-awesome-icon icon="fas fa-bars fa-fw" fixed-width />
+        <font-awesome-icon :icon="faBars" fixed-width />
         Menu
       </button>
       <div
@@ -87,7 +95,7 @@ const toggleNav = (show) => {
               @click="toggleNav(false)"
             >
               <font-awesome-icon
-                icon="fas fa-info-circle"
+                :icon="faInfoCircle"
                 fixed-width
               ></font-awesome-icon>
               About
@@ -100,7 +108,7 @@ const toggleNav = (show) => {
               @click="toggleNav(false)"
             >
               <font-awesome-icon
-                icon="fas fa-list-ul"
+                :icon="faListUl"
                 fixed-width
               ></font-awesome-icon>
               Skills
@@ -112,10 +120,7 @@ const toggleNav = (show) => {
               class="nav-link rounded"
               @click="toggleNav(false)"
             >
-              <font-awesome-icon
-                icon="fas fa-code"
-                fixed-width
-              ></font-awesome-icon>
+              <font-awesome-icon :icon="faCode" fixed-width></font-awesome-icon>
               Projects
             </router-link>
           </li>
@@ -126,7 +131,7 @@ const toggleNav = (show) => {
               @click="toggleNav(false)"
             >
               <font-awesome-icon
-                icon="fas fa-envelope"
+                :icon="faEnvelope"
                 fixed-width
               ></font-awesome-icon>
               Connect
@@ -166,10 +171,7 @@ const toggleNav = (show) => {
         </div>
         <div class="col-sm">
           <a href="//github.com/gabe565/portfolio" target="_blank"
-            ><font-awesome-icon
-              icon="fab fa-github"
-              fixed-width
-            ></font-awesome-icon
+            ><font-awesome-icon :icon="faGithub" fixed-width></font-awesome-icon
             >View on GitHub</a
           >
         </div>

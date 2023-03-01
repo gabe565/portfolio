@@ -93,6 +93,8 @@
 
 <script setup>
 import pb from "@/plugins/pocketbase";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGlobe } from "@fortawesome/pro-solid-svg-icons";
 
 const projects = ref([]);
 const loading = ref(true);
@@ -106,9 +108,7 @@ const fetchData = async () => {
     projects.value = response.map((project) => {
       return {
         ...project,
-        icon: project.url.match(/^https:\/\/github\.com/)
-          ? "fab fa-github"
-          : "fas fa-globe",
+        icon: project.url.match(/^https:\/\/github\.com/) ? faGithub : faGlobe,
         pretty_url: project.url
           .replace(/^(\w+:)?\/\//, "")
           .replace(/^github\.com\//, ""),
