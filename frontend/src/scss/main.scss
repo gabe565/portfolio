@@ -130,11 +130,6 @@ footer {
     padding: 20px 0;
 
     background-color: $gray-900;
-
-    &.minimal {
-        opacity: 0;
-        pointer-events: none;
-    }
 }
 
 .content-section {

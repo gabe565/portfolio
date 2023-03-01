@@ -163,7 +163,7 @@ const toggleNav = (show) => {
     </transition>
   </router-view>
 
-  <footer :class="{ minimal }">
+  <footer :class="{ 'opacity-0 pe-none': minimal }">
     <div class="container">
       <div class="row text-center">
         <div class="col-sm text-sm-start" aria-hidden="true">
