@@ -111,45 +111,38 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import pb from "@/plugins/pocketbase";
 
-export default {
-  data: () => ({
-    skills: null,
-    error: null,
-    loading: true,
-  }),
-  async created() {
-    await this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      try {
-        const response = await pb.collection("skill_headings").getFullList({
-          expand: "skills(heading)",
-        });
-        this.skills = response
-          .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title))
-          .map(({ title, expand }) => {
-            return {
-              title: title,
-              skills: expand["skills(heading)"]?.sort(
-                (a, b) => b.rating - a.rating || a.title.localeCompare(b.title),
-              ),
-            };
-          })
-          .filter(({ skills }) => skills);
-        this.ready = true;
-      } catch (error) {
-        console.error(error);
-        this.error = "Failed to fetch skills. Please try again later.";
-      } finally {
-        this.loading = false;
-      }
-    },
-  },
+const skills = ref([]);
+const error = ref(null);
+const loading = ref(true);
+
+const fetchData = async () => {
+  try {
+    const response = await pb.collection("skill_headings").getFullList({
+      expand: "skills(heading)",
+    });
+    skills.value = response
+      .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title))
+      .map(({ title, expand }) => {
+        return {
+          title: title,
+          skills: expand["skills(heading)"]?.sort(
+            (a, b) => b.rating - a.rating || a.title.localeCompare(b.title),
+          ),
+        };
+      })
+      .filter(({ skills }) => skills);
+  } catch (error) {
+    console.error(error);
+    error.value = "Failed to fetch skills. Please try again later.";
+  } finally {
+    loading.value = false;
+  }
 };
+
+fetchData();
 </script>
 
 <style lang="scss">

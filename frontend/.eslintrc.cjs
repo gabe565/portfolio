@@ -8,6 +8,7 @@ module.exports = {
     "plugin:vue/vue3-recommended",
     "eslint:recommended",
     "@vue/eslint-config-prettier",
+    "./.eslintrc-auto-import.json",
   ],
   rules: {
     "object-curly-spacing": ["error", "always"],

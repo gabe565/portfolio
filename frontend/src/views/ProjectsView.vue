@@ -91,49 +91,43 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import pb from "@/plugins/pocketbase";
 
-export default {
-  data: () => ({
-    projects: {},
-    loading: true,
-    error: null,
-  }),
-  async created() {
-    await this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      try {
-        const response = await pb.collection("projects").getFullList({
-          expand: "tags",
-        });
-        this.projects = response.map((project) => {
-          return {
-            ...project,
-            icon: project.url.match(/^https:\/\/github\.com/)
-              ? "fab fa-github"
-              : "fas fa-globe",
-            pretty_url: project.url
-              .replace(/^(\w+:)?\/\//, "")
-              .replace(/^github\.com\//, ""),
-            expand: {
-              tags: project.expand.tags.sort((a, b) =>
-                a.title.localeCompare(b.title),
-              ),
-            },
-          };
-        });
-      } catch (error) {
-        console.error(error);
-        this.error = "Failed to fetch projects. Please try again later.";
-      } finally {
-        this.loading = false;
-      }
-    },
-  },
+const projects = ref([]);
+const loading = ref(true);
+const error = ref(null);
+
+const fetchData = async () => {
+  try {
+    const response = await pb.collection("projects").getFullList({
+      expand: "tags",
+    });
+    projects.value = response.map((project) => {
+      return {
+        ...project,
+        icon: project.url.match(/^https:\/\/github\.com/)
+          ? "fab fa-github"
+          : "fas fa-globe",
+        pretty_url: project.url
+          .replace(/^(\w+:)?\/\//, "")
+          .replace(/^github\.com\//, ""),
+        expand: {
+          tags: project.expand.tags.sort((a, b) =>
+            a.title.localeCompare(b.title),
+          ),
+        },
+      };
+    });
+  } catch (error) {
+    console.error(error);
+    error.value = "Failed to fetch projects. Please try again later.";
+  } finally {
+    loading.value = false;
+  }
 };
+
+fetchData();
 </script>
 
 <style scoped>

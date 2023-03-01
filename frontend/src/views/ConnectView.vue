@@ -70,7 +70,7 @@
               action="/api/mail"
               role="form"
               novalidate
-              @submit.prevent="mail"
+              @submit.prevent="submit"
             >
               <fieldset>
                 <div class="col mb-3">
@@ -90,7 +90,7 @@
                     </div>
                     <input
                       id="nameInput"
-                      v-model="name"
+                      v-model="formData.name"
                       name="name"
                       placeholder="Jane Doe"
                       class="form-control"
@@ -110,7 +110,7 @@
                     </div>
                     <input
                       id="emailInput"
-                      v-model="email"
+                      v-model="formData.email"
                       name="email"
                       placeholder="name@example.com"
                       class="form-control"
@@ -128,7 +128,7 @@
                     </div>
                     <textarea
                       id="messageInput"
-                      v-model="text"
+                      v-model="formData.message"
                       class="form-control vertical"
                       name="text"
                       required
@@ -166,41 +166,37 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import pb from "@/plugins/pocketbase";
 
-export default {
-  data: () => ({
-    name: "",
-    email: "",
-    text: "",
-    error: null,
-    success: false,
-    loading: false,
-  }),
-  methods: {
-    async mail() {
-      const valid = this.$refs.form.checkValidity();
-      this.$refs.form.classList.add("was-validated");
-      if (valid) {
-        this.loading = true;
-        const wait = new Promise((resolve) => setTimeout(resolve, 1000));
-        try {
-          await pb.collection("contact_form").create({
-            name: this.name,
-            email: this.email,
-            message: this.text,
-          });
-          await wait;
-          this.success = true;
-        } catch (error) {
-          console.error(error);
-          this.error = error;
-        } finally {
-          this.loading = false;
-        }
-      }
-    },
-  },
+const formData = ref({
+  name: "",
+  email: "",
+  message: "",
+});
+
+const error = ref(null);
+const success = ref(false);
+const loading = ref(false);
+
+const form = ref(null);
+
+const submit = async () => {
+  const valid = form.value.checkValidity();
+  form.value.classList.add("was-validated");
+  if (valid) {
+    loading.value = true;
+    const wait = new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      await pb.collection("contact_form").create(formData.value);
+      await wait;
+      success.value = true;
+    } catch (e) {
+      console.error(e);
+      error.value = e;
+    } finally {
+      loading.value = false;
+    }
+  }
 };
 </script>

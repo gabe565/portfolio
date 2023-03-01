@@ -1,54 +1,51 @@
-<script>
+<script setup>
 import { Collapse } from "bootstrap";
 
+const transitionName = ref("fade");
+const navbarShrink = ref(false);
+const minimal = ref(false);
+const showNav = ref(false);
+
+const router = useRouter();
+router.afterEach((to, from) => {
+  if (from.href) {
+    const routes = router.getRoutes();
+    const fromIndex = routes.findIndex((o) => o.path === from.path);
+    const toIndex = routes.findIndex((o) => o.path === to.path);
+    transitionName.value = fromIndex < toIndex ? "slide-left" : "slide-right";
+  }
+
+  minimal.value = to.path === "/";
+});
+
 let collapse = null;
+const navbarResponsive = ref(null);
+onMounted(() => {
+  window.addEventListener("scroll", onScroll);
+  collapse = new Collapse(navbarResponsive.value, {
+    toggle: showNav.value,
+  });
+});
 
-export default {
-  data: () => ({
-    transitionName: "fade",
-    navbarShrink: false,
-    minimal: false,
-    showNav: false,
-  }),
-  watch: {
-    $route(to, from) {
-      if (from.href) {
-        const routes = this.$router.getRoutes();
-        const fromIndex = routes.findIndex((o) => o.path === from.path);
-        const toIndex = routes.findIndex((o) => o.path === to.path);
-        this.transitionName =
-          fromIndex < toIndex ? "slide-left" : "slide-right";
-      }
+onUnmounted(() => {
+  window.removeEventListener("scroll", onScroll);
+});
 
-      this.minimal = to.path === "/";
-    },
-  },
-  mounted() {
-    window.addEventListener("scroll", this.scroll);
-    collapse = new Collapse(this.$refs.navbarResponsive, {
-      toggle: this.showNav,
-    });
-  },
-  unmounted() {
-    window.removeEventListener("scroll", this.scroll);
-  },
-  methods: {
-    scroll() {
-      this.navbarShrink = window.scrollY > 0;
-    },
-    toggleNav(show) {
-      if (show === undefined) {
-        show = !this.showNav;
-      }
-      if (show) {
-        collapse.show();
-        this.showNav = true;
-      } else {
-        collapse.hide();
-        this.showNav = false;
-      }
-    },
-  },
+const onScroll = () => {
+  navbarShrink.value = window.scrollY > 0;
+};
+
+const toggleNav = (show) => {
+  if (show === undefined) {
+    show = !showNav.value;
+  }
+  if (show) {
+    collapse.show();
+    showNav.value = true;
+  } else {
+    collapse.hide();
+    showNav.value = false;
+  }
 };
 </script>
 

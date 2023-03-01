@@ -23,64 +23,65 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import pb from "@/plugins/pocketbase";
 import loadImage from "@/util/loadImage";
 
-export default {
-  data: () => ({
-    index: null,
-    backgrounds: null,
-    timeout: null,
-  }),
-  async created() {
-    await this.fetchBackgrounds();
-    await this.randomBackground();
-    this.startTimeout();
-  },
-  activated() {
-    if (this.index !== null && !this.timeout) {
-      this.startTimeout();
-    }
-  },
-  deactivated() {
-    this.stopTimeout();
-    this.randomBackground();
-  },
-  methods: {
-    async fetchBackgrounds() {
-      try {
-        const response = await pb.collection("backgrounds").getFullList();
-        this.backgrounds = response.map((e) => e.url);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    async randomBackground() {
-      let index = Math.floor(Math.random() * this.backgrounds.length);
-      if (index === this.index) {
-        index += 1;
-        index %= this.backgrounds.length;
-      }
-      try {
-        await loadImage(this.backgrounds[index]);
-        this.index = index;
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    startTimeout() {
-      this.timeout = setTimeout(async () => {
-        await this.randomBackground();
-        this.startTimeout();
-      }, 7500);
-    },
-    stopTimeout() {
-      if (this.timeout) {
-        clearTimeout(this.timeout);
-      }
-      this.timeout = null;
-    },
-  },
+const index = ref(null);
+const backgrounds = ref([]);
+const timeout = ref(null);
+
+onActivated(() => {
+  if (index.value !== null && !timeout.value) {
+    startTimeout();
+  }
+});
+
+onDeactivated(() => {
+  stopTimeout();
+  randomBackground();
+});
+
+const fetchBackgrounds = async () => {
+  try {
+    const response = await pb.collection("backgrounds").getFullList();
+    backgrounds.value = response.map((e) => e.url);
+  } catch (error) {
+    console.error(error);
+  }
 };
+
+const randomBackground = async () => {
+  let newIndex = Math.floor(Math.random() * backgrounds.value.length);
+  if (newIndex === index.value) {
+    newIndex += 1;
+    newIndex %= backgrounds.value.length;
+  }
+  try {
+    await loadImage(backgrounds.value[newIndex]);
+    index.value = newIndex;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const startTimeout = () => {
+  timeout.value = setTimeout(async () => {
+    await randomBackground();
+    startTimeout();
+  }, 7500);
+};
+
+const stopTimeout = () => {
+  if (timeout.value) {
+    clearTimeout(timeout.value);
+  }
+  timeout.value = null;
+};
+
+(async () => {
+  await fetchBackgrounds();
+  await randomBackground();
+  startTimeout();
+})();
 </script>
