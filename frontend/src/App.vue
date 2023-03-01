@@ -153,7 +153,7 @@ const toggleNav = (show) => {
   <router-view
     id="content"
     v-slot="{ Component }"
-    class="child-view text-center"
+    class="text-center"
     :class="{ 'content-section': !minimal }"
   >
     <transition :name="transitionName" mode="out-in" appear>

@@ -5,7 +5,7 @@
     opacity: 0 !important;
 }
 
-.child-view {
+.slide-right-enter-active, .slide-left-enter-active {
     transition: opacity .2s cubic-bezier(0.22, 0.61, 0.36, 1), transform .2s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .slide-right-leave-active, .slide-left-leave-active {
