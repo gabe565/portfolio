@@ -64,7 +64,7 @@ const toggleNav = (show) => {
 
   <nav
     class="navbar navbar-expand-md fixed-top navbar-dark"
-    :class="{ 'navbar-shrink': navbarShrink, minimal }"
+    :class="{ 'navbar-shrink': navbarShrink }"
   >
     <div class="container">
       <router-link to="/" class="navbar-brand" @click="toggleNav(false)">
