@@ -134,9 +134,3 @@ const fetchData = async () => {
 
 fetchData();
 </script>
-
-<style scoped>
-.card-description:deep(p) {
-  margin: 0;
-}
-</style>
