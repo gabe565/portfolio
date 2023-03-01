@@ -28,11 +28,10 @@ import pb from "@/plugins/pocketbase";
 import loadImage from "@/util/loadImage";
 
 const index = ref(null);
-const backgrounds = ref([]);
-const timeout = ref(null);
+let timeout = null;
 
 onActivated(() => {
-  if (index.value !== null && !timeout.value) {
+  if (index.value !== null && !timeout) {
     startTimeout();
   }
 });
@@ -42,23 +41,24 @@ onDeactivated(() => {
   randomBackground();
 });
 
+let backgrounds = [];
 const fetchBackgrounds = async () => {
   try {
     const response = await pb.collection("backgrounds").getFullList();
-    backgrounds.value = response.map((e) => e.url);
+    backgrounds = response.map((e) => e.url);
   } catch (error) {
     console.error(error);
   }
 };
 
 const randomBackground = async () => {
-  let newIndex = Math.floor(Math.random() * backgrounds.value.length);
+  let newIndex = Math.floor(Math.random() * backgrounds.length);
   if (newIndex === index.value) {
     newIndex += 1;
-    newIndex %= backgrounds.value.length;
+    newIndex %= backgrounds.length;
   }
   try {
-    await loadImage(backgrounds.value[newIndex]);
+    await loadImage(backgrounds[newIndex]);
     index.value = newIndex;
   } catch (error) {
     console.error(error);
@@ -66,17 +66,17 @@ const randomBackground = async () => {
 };
 
 const startTimeout = () => {
-  timeout.value = setTimeout(async () => {
+  timeout = setTimeout(async () => {
     await randomBackground();
     startTimeout();
   }, 7500);
 };
 
 const stopTimeout = () => {
-  if (timeout.value) {
-    clearTimeout(timeout.value);
+  if (timeout) {
+    clearTimeout(timeout);
   }
-  timeout.value = null;
+  timeout = null;
 };
 
 (async () => {
