@@ -37,14 +37,14 @@
           class="col-10 col-lg-6 col-xl-4 pb-4"
         >
           <section class="card text-white bg-dark border-dark h-100">
-            <template v-if="project.image_path">
+            <template v-if="project.image">
               <a
                 :href="project.url"
                 class="card-link overflow-hidden"
                 target="_blank"
               >
                 <img
-                  :src="project.image_path"
+                  :src="project.image"
                   class="card-img-top"
                   :alt="`Screenshot of ${project.name}`"
                   :style="{ padding: `${project.image_padding}px` }"
@@ -106,12 +106,17 @@ const fetchData = async () => {
       expand: "tags",
     });
     projects.value = response.map((project) => {
+      let image = "";
+      if (project.image) {
+        image = pb.getFileUrl(project, project.image);
+      }
       return {
         ...project,
         icon: project.url.match(/^https:\/\/github\.com/) ? faGithub : faGlobe,
         pretty_url: project.url
           .replace(/^(\w+:)?\/\//, "")
           .replace(/^github\.com\//, ""),
+        image,
         expand: {
           tags: project.expand.tags.sort((a, b) =>
             a.title.localeCompare(b.title),
