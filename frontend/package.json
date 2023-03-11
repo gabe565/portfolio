@@ -20,7 +20,7 @@
     "@fortawesome/vue-fontawesome": "3.0.3",
     "@popperjs/core": "2.11.6",
     "@vitejs/plugin-vue": "4.0.0",
-    "autoprefixer": "10.4.13",
+    "autoprefixer": "10.4.14",
     "bootstrap": "5.2.3",
     "pocketbase": "0.12.0",
     "sass": "1.58.3",
