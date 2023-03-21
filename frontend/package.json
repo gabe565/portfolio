@@ -23,7 +23,7 @@
     "autoprefixer": "10.4.14",
     "bootstrap": "5.2.3",
     "pocketbase": "0.12.1",
-    "sass": "1.59.2",
+    "sass": "1.59.3",
     "unplugin-auto-import": "0.15.1",
     "unplugin-vue-components": "0.24.1",
     "vite": "4.1.4",
