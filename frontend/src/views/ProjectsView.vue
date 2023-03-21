@@ -118,7 +118,7 @@ const fetchData = async () => {
           .replace(/^github\.com\//, ""),
         image,
         expand: {
-          tags: project.expand.tags.sort((a, b) =>
+          tags: project.expand.tags?.sort((a, b) =>
             a.title.localeCompare(b.title),
           ),
         },
