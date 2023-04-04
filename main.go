@@ -5,6 +5,7 @@ import (
 	"github.com/gabe565/portfolio/internal/handlers"
 	_ "github.com/gabe565/portfolio/migrations"
 	"github.com/pocketbase/pocketbase"
+	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
 	"log"
@@ -19,7 +20,7 @@ func main() {
 
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
 		e.Router.GET("/*", handlers.StaticHandler())
-		e.Router.GET("/to/:handle", handlers.RedirectHandler(e))
+		e.Router.GET("/to/:handle", handlers.RedirectHandler(e), apis.ActivityLogger(app))
 		return nil
 	})
 
