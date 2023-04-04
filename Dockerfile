@@ -47,6 +47,8 @@ ARG GID=$UID
 RUN addgroup -g "$GID" "$USERNAME" \
     && adduser -S -u "$UID" -G "$USERNAME" "$USERNAME"
 
+RUN mkdir pb_data && chown 1000:1000 pb_data
+
 COPY --from=node-builder /app/dist ./public
 COPY --from=go-builder /app/portfolio ./
 
