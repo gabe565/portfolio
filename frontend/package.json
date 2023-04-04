@@ -18,7 +18,7 @@
     "@fortawesome/pro-regular-svg-icons": "6.3.0",
     "@fortawesome/pro-solid-svg-icons": "6.3.0",
     "@fortawesome/vue-fontawesome": "3.0.3",
-    "@popperjs/core": "2.11.6",
+    "@popperjs/core": "2.11.7",
     "@vitejs/plugin-vue": "4.1.0",
     "autoprefixer": "10.4.14",
     "bootstrap": "5.2.3",
