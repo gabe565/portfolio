@@ -51,5 +51,4 @@ RUN addgroup -g "$GID" "$USERNAME" \
     && adduser -S -u "$UID" -G "$USERNAME" "$USERNAME"
 USER $UID
 
-ENV PUBLIC_DIR "public"
-CMD ["./portfolio", "serve", "--http=0.0.0.0:80", "--dir=/data"]
+CMD ["./portfolio", "serve", "--http=0.0.0.0:80", "--dir=/data", "--public=public"]
