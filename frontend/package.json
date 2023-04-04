@@ -22,7 +22,7 @@
     "@vitejs/plugin-vue": "4.1.0",
     "autoprefixer": "10.4.14",
     "bootstrap": "5.2.3",
-    "pocketbase": "0.12.1",
+    "pocketbase": "0.13.1",
     "sass": "1.60.0",
     "unplugin-auto-import": "0.15.2",
     "unplugin-vue-components": "0.24.1",
