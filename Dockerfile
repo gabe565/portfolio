@@ -41,14 +41,14 @@ WORKDIR /app
 
 RUN apk add --no-cache tzdata
 
-COPY --from=go-builder /app/portfolio ./
-COPY --from=node-builder /app/dist ./public
-
 ARG USERNAME=portfolio
 ARG UID=1000
 ARG GID=$UID
 RUN addgroup -g "$GID" "$USERNAME" \
     && adduser -S -u "$UID" -G "$USERNAME" "$USERNAME"
-USER $UID
 
+COPY --from=node-builder /app/dist ./public
+COPY --from=go-builder /app/portfolio ./
+
+USER $UID
 CMD ["./portfolio", "serve", "--http=0.0.0.0:80", "--dir=/data", "--public=public"]
