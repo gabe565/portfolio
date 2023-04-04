@@ -24,7 +24,7 @@
     "bootstrap": "5.2.3",
     "pocketbase": "0.12.1",
     "sass": "1.59.3",
-    "unplugin-auto-import": "0.15.1",
+    "unplugin-auto-import": "0.15.2",
     "unplugin-vue-components": "0.24.1",
     "vite": "4.2.1",
     "vue": "3.2.47",
