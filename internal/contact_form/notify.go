@@ -2,13 +2,14 @@ package contact_form
 
 import (
 	_ "embed"
+	"html/template"
+	"net/mail"
+	"strings"
+
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/models"
 	"github.com/pocketbase/pocketbase/tools/mailer"
-	"html/template"
-	"net/mail"
-	"strings"
 )
 
 type NotifyData struct {

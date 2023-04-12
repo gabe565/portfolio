@@ -1,10 +1,11 @@
 package handlers
 
 import (
+	"os"
+
 	"github.com/labstack/echo/v5"
 	"github.com/pocketbase/pocketbase/apis"
 	flag "github.com/spf13/pflag"
-	"os"
 )
 
 var publicDir string

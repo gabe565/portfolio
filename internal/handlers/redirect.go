@@ -3,10 +3,11 @@ package handlers
 import (
 	"database/sql"
 	"errors"
+	"net/http"
+
 	"github.com/labstack/echo/v5"
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
-	"net/http"
 )
 
 func RedirectHandler(e *core.ServeEvent) echo.HandlerFunc {

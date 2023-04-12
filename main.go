@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+
 	"github.com/gabe565/portfolio/internal/contact_form"
 	"github.com/gabe565/portfolio/internal/handlers"
 	_ "github.com/gabe565/portfolio/migrations"
@@ -8,7 +10,6 @@ import (
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
-	"log"
 )
 
 func main() {
