@@ -1,17 +1,15 @@
 <template>
   <div>
-    <transition name="fade" appear>
-      <div
-        v-if="index !== null"
-        :key="index"
-        class="position-absolute vw-100 vh-100 top-0 opacity-50"
-        :style="{
-          backgroundImage: `url(${backgrounds[index]})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }"
-      ></div>
-    </transition>
+    <div>
+      <transition name="fade" appear>
+        <div
+          v-if="index !== null"
+          :key="index"
+          class="background-image position-absolute vw-100 vh-100 top-0"
+          :style="{ backgroundImage: `url(${backgrounds[index]})` }"
+        ></div>
+      </transition>
+    </div>
     <div
       class="row position-absolute g-0 align-items-center intro-body vw-100 vh-100"
     >
@@ -84,3 +82,11 @@ const stopTimeout = () => {
   startTimeout();
 })();
 </script>
+
+<style lang="scss" scoped>
+.background-image {
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+}
+</style>
