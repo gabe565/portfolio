@@ -14,8 +14,14 @@
       class="row position-absolute g-0 align-items-center intro-body vw-100 vh-100"
     >
       <div class="col-lg-8 mx-auto">
-        <h1 class="display-1">Gabe Cook</h1>
-        <h2 class="h5">DevOps Engineer / Software Developer</h2>
+        <transition name="slide-right-slow" appear>
+          <h1 class="display-1" style="transition-delay: 250ms">Gabe Cook</h1>
+        </transition>
+        <transition name="slide-right-slow" appear>
+          <h2 class="h5" style="transition-delay: 500ms">
+            DevOps Engineer / Software Developer
+          </h2>
+        </transition>
       </div>
     </div>
   </div>

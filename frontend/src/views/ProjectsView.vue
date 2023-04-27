@@ -18,75 +18,74 @@
           </div>
         </div>
       </div>
-      <transition-group
-        v-else
-        name="fade"
-        tag="div"
-        appear
-        class="row justify-content-center"
-      >
+      <div v-else class="row justify-content-center">
         <div v-if="error" class="col">
           <div class="alert alert-danger">
             {{ error }}
           </div>
         </div>
         <div
-          v-for="project in projects"
+          v-for="(project, i) in projects"
           v-else
           :key="`project-${project.name}`"
           class="col-10 col-lg-6 col-xl-4 pb-4"
         >
-          <section class="card text-white bg-dark border-dark h-100">
-            <template v-if="project.image">
-              <a
-                :href="project.url"
-                class="card-link overflow-hidden"
-                target="_blank"
-              >
-                <img
-                  :src="project.image"
-                  class="card-img-top"
-                  :alt="`Screenshot of ${project.name}`"
-                  :style="{ padding: `${project.image_padding}px` }"
-                />
-              </a>
-            </template>
-            <div class="card-body d-flex flex-column">
-              <h2 class="card-title h4">{{ project.name }}</h2>
-              <!-- eslint-disable vue/no-v-html -->
-              <p
-                class="card-description mb-auto text-start"
-                v-html="project.description"
-              />
-              <div>
-                <h3 class="sr-only">Tags</h3>
-                <span
-                  v-for="tag in project.expand.tags"
-                  :key="tag.id"
-                  class="badge rounded-pill mx-1"
-                  :class="{ 'bg-info': !tag.color }"
-                  :style="{ backgroundColor: tag.color }"
+          <transition name="fade" appear>
+            <section
+              class="card text-white bg-dark border-dark h-100"
+              :style="{ transitionDelay: `${i * 70}ms` }"
+            >
+              <template v-if="project.image">
+                <a
+                  :href="project.url"
+                  class="card-link overflow-hidden"
+                  target="_blank"
                 >
-                  {{ tag.title }}
-                </span>
-              </div>
-            </div>
-            <a :href="project.url" class="card-link" target="_blank">
-              <div class="card-footer">
-                <font-awesome-icon
-                  v-if="project.icon"
-                  :icon="project.icon"
-                  fixed-width
-                  class="px-1"
+                  <img
+                    :src="project.image"
+                    class="card-img-top"
+                    :alt="`Screenshot of ${project.name}`"
+                    :style="{ padding: `${project.image_padding}px` }"
+                  />
+                </a>
+              </template>
+              <div class="card-body d-flex flex-column">
+                <h2 class="card-title h4">{{ project.name }}</h2>
+                <!-- eslint-disable vue/no-v-html -->
+                <p
+                  class="card-description mb-auto text-start"
+                  v-html="project.description"
                 />
-                <span class="font-monospace">
-                  {{ project.pretty_url }}
-                </span>
+                <div>
+                  <h3 class="sr-only">Tags</h3>
+                  <span
+                    v-for="tag in project.expand.tags"
+                    :key="tag.id"
+                    class="badge rounded-pill mx-1"
+                    :class="{ 'bg-info': !tag.color }"
+                    :style="{ backgroundColor: tag.color }"
+                  >
+                    {{ tag.title }}
+                  </span>
+                </div>
               </div>
-            </a>
-          </section>
+              <a :href="project.url" class="card-link" target="_blank">
+                <div class="card-footer">
+                  <font-awesome-icon
+                    v-if="project.icon"
+                    :icon="project.icon"
+                    fixed-width
+                    class="px-1"
+                  />
+                  <span class="font-monospace">
+                    {{ project.pretty_url }}
+                  </span>
+                </div>
+              </a>
+            </section>
+          </transition>
         </div>
-      </transition-group>
+      </div>
     </div>
   </section>
 </template>
