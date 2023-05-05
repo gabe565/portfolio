@@ -4,6 +4,13 @@
     "local>gabe565/renovate-config",
     "local>gabe565/renovate-config:golang"
   ],
+  "packageRules": [
+    {
+      "matchDatasources": ["go"],
+      "matchPackageNames": ["github.com/labstack/echo/v5"],
+      "enabled": false
+    }
+  ],
   "hostRules": [
     {
       "matchHost": "https://npm.fontawesome.com/",
