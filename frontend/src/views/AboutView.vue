@@ -7,14 +7,14 @@
         </div>
       </div>
       <div class="row mb-3">
-        <div class="col-3 col-lg-2 mx-auto ms-lg-auto me-lg-0 mb-4 g-0">
-          <img
-            class="img-fluid rounded"
-            src="../assets/me.jpg"
-            alt="Photo of Gabe Cook"
-          />
-        </div>
-        <div class="col-lg-9 me-auto text-left">
+        <div class="col-auto me-auto text-start">
+          <div class="p-3 float-md-end d-block mx-auto" style="width: 190px">
+            <img
+              class="img-fluid rounded-4"
+              src="../assets/me.jpg"
+              alt="Gabe's Avatar"
+            />
+          </div>
           <p>Hi! I'm Gabe.</p>
           <p>
             I'm a DevOps Engineer and Software Developer based in Oklahoma City,
