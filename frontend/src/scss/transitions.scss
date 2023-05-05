@@ -5,6 +5,13 @@
     opacity: 0 !important;
 }
 
+.fade-in-enter-active {
+    transition: opacity .8s cubic-bezier(.55,0,.1,1);
+}
+.fade-in-enter-from, .fade-in-leave-to {
+    opacity: 0 !important;
+}
+
 .slide-right-enter-active, .slide-left-enter-active {
     transition: opacity .2s cubic-bezier(0.22, 0.61, 0.36, 1), transform .2s cubic-bezier(0.22, 0.61, 0.36, 1);
 }

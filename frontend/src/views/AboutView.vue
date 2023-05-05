@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="pt-page">
     <div class="container">
       <div class="row mb-4">
         <div class="col">

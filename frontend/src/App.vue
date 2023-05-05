@@ -11,7 +11,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const transitionName = ref("fade");
 const navbarShrink = ref(false);
-const minimal = ref(false);
+const minimal = ref(true);
 const showNav = ref(false);
 
 const router = useRouter();
@@ -150,40 +150,42 @@ const toggleNav = (show) => {
     @click="toggleNav(false)"
   />
 
-  <router-view
-    id="content"
-    v-slot="{ Component }"
-    class="text-center"
-    :class="{ 'content-section': !minimal }"
-  >
-    <transition :name="transitionName" mode="out-in" appear>
-      <keep-alive>
-        <component :is="Component" />
-      </keep-alive>
-    </transition>
-  </router-view>
+  <div class="d-flex flex-column min-vh-100">
+    <router-view id="content" v-slot="{ Component }" class="text-center">
+      <transition :name="transitionName" mode="out-in" appear>
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
 
-  <footer :class="{ 'opacity-0 pe-none': minimal }">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-sm text-sm-start" aria-hidden="true">
-          &lt;/ gabe.cook &gt;
+    <transition name="fade-in">
+      <footer v-show="!minimal" class="mt-auto">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-sm text-sm-start" aria-hidden="true">
+              &lt;/ gabe.cook &gt;
+            </div>
+            <div class="col-sm">
+              <a href="//github.com/gabe565/portfolio" target="_blank"
+                ><font-awesome-icon
+                  :icon="faGithub"
+                  fixed-width
+                ></font-awesome-icon
+                >View on GitHub</a
+              >
+            </div>
+            <div class="col-sm text-sm-end">
+              <a
+                href="//github.com/gabe565/portfolio/blob/master/LICENSE"
+                target="_blank"
+              >
+                &copy; {{ new Date().getFullYear() }} Gabe Cook
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="col-sm">
-          <a href="//github.com/gabe565/portfolio" target="_blank"
-            ><font-awesome-icon :icon="faGithub" fixed-width></font-awesome-icon
-            >View on GitHub</a
-          >
-        </div>
-        <div class="col-sm text-sm-end">
-          <a
-            href="//github.com/gabe565/portfolio/blob/master/LICENSE"
-            target="_blank"
-          >
-            &copy; {{ new Date().getFullYear() }} Gabe Cook
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
+      </footer>
+    </transition>
+  </div>
 </template>

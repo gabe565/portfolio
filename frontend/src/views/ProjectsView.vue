@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <div class="container">
+  <section class="pt-page">
+    <div class="container pb-5">
       <div class="row mb-4">
         <div class="col">
           <h1>Projects</h1>
