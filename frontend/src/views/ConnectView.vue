@@ -22,16 +22,6 @@
             <ul class="list-inline banner-social-buttons">
               <li class="list-inline-item">
                 <a
-                  href="/to/twitter"
-                  class="btn btn-outline-primary btn-lg"
-                  target="_blank"
-                >
-                  <font-awesome-icon :icon="faTwitter" fixed-width />
-                  <span class="network-name">Twitter</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a
                   href="/to/github"
                   class="btn btn-outline-primary btn-lg"
                   target="_blank"
@@ -168,11 +158,7 @@
 
 <script setup>
 import pb from "@/plugins/pocketbase";
-import {
-  faTwitter,
-  faGithub,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import {
   faAt,
   faComment,
