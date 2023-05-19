@@ -26,7 +26,7 @@
                   class="btn btn-outline-primary btn-lg"
                   target="_blank"
                 >
-                  <GitHubIcon class="icon-inline icon-fw me-2" />
+                  <SvgIcon :icon="GitHubIcon" class="me-1" fixed-width fill />
                   <span class="network-name">Github</span>
                 </a>
               </li>
@@ -36,7 +36,7 @@
                   class="btn btn-outline-primary btn-lg"
                   target="_blank"
                 >
-                  <LinkedinIcon class="icon-inline icon-fw me-2" />
+                  <SvgIcon :icon="LinkedinIcon" class="me-1" fixed-width fill />
                   <span class="network-name">LinkedIn</span>
                 </a>
               </li>
@@ -76,7 +76,7 @@
                   <label for="nameInput" class="form-label">Name</label>
                   <div class="input-group">
                     <div class="input-group-text">
-                      <AccountIcon class="icon-inline icon-fw" />
+                      <SvgIcon :icon="AccountIcon" fixed-width />
                     </div>
                     <input
                       id="nameInput"
@@ -96,7 +96,7 @@
                   >
                   <div class="input-group">
                     <div class="input-group-text">
-                      <AtIcon class="icon-inline icon-fw" />
+                      <SvgIcon :icon="AtIcon" fixed-width />
                     </div>
                     <input
                       id="emailInput"
@@ -114,7 +114,7 @@
                   <label for="messageInput" class="form-label">Message</label>
                   <div class="input-group">
                     <div class="input-group-text">
-                      <CommentIcon class="icon-inline icon-fw" />
+                      <SvgIcon :icon="CommentIcon" fixed-width />
                     </div>
                     <textarea
                       id="messageInput"
@@ -133,11 +133,13 @@
                 <!-- Button -->
                 <div class="form-group mb-3">
                   <button class="btn btn-outline-primary">
-                    <RefreshIcon
+                    <SvgIcon
                       v-if="loading"
-                      class="icon-inline icon-fw icon-spin"
+                      :icon="RefreshIcon"
+                      class="icon-spin"
+                      fixed-width
                     />
-                    <SendIcon v-else class="icon-inline icon-fw" />
+                    <SvgIcon v-else :icon="SendIcon" fixed-width />
                     Send
                   </button>
                 </div>

@@ -8,11 +8,18 @@
       :title="`${props.modelValue} star${props.modelValue === 1 ? '' : 's'}`"
     >
       <template v-for="n in props.total" :key="n">
-        <StarIcon
+        <SvgIcon
           v-if="n <= props.modelValue"
-          class="icon-inline icon-fill icon-fw"
+          :icon="StarIcon"
+          fixed-width
+          fill
         />
-        <StarIcon v-else class="icon-inline text-white opacity-15 icon-fw" />
+        <SvgIcon
+          v-else
+          :icon="StarIcon"
+          class="text-white opacity-15"
+          fixed-width
+        />
       </template>
     </span>
   </span>

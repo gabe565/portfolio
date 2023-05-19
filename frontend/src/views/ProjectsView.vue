@@ -71,10 +71,11 @@
               </div>
               <a :href="project.url" class="card-link" target="_blank">
                 <div class="card-footer">
-                  <component
-                    :is="project.icon"
+                  <SvgIcon
                     v-if="project.icon"
-                    class="icon-inline px-1"
+                    :icon="project.icon"
+                    v-bind="project.iconProps"
+                    class="px-1"
                   />
                   <span class="font-monospace">
                     {{ project.pretty_url }}
@@ -108,11 +109,16 @@ const fetchData = async () => {
       if (project.image) {
         image = pb.getFileUrl(project, project.image);
       }
+      let icon = GlobeIcon;
+      let iconProps;
+      if (project.url.match(/^https:\/\/github\.com/)) {
+        icon = GitHubIcon;
+        iconProps = { fill: true };
+      }
       return {
         ...project,
-        icon: project.url.match(/^https:\/\/github\.com/)
-          ? GitHubIcon
-          : GlobeIcon,
+        icon,
+        iconProps,
         pretty_url: project.url
           .replace(/^(\w+:)?\/\//, "")
           .replace(/^github\.com\//, ""),

@@ -79,7 +79,7 @@ const toggleNav = (show) => {
         aria-label="Toggle navigation"
         @click="toggleNav()"
       >
-        <MenuIcon class="icon-inline" />
+        <SvgIcon :icon="MenuIcon" />
         Menu
       </button>
       <div
@@ -94,7 +94,7 @@ const toggleNav = (show) => {
               class="nav-link rounded"
               @click="toggleNav(false)"
             >
-              <InfoIcon class="icon-inline" />
+              <SvgIcon :icon="InfoIcon" />
               About
             </router-link>
           </li>
@@ -104,7 +104,7 @@ const toggleNav = (show) => {
               class="nav-link rounded"
               @click="toggleNav(false)"
             >
-              <ListIcon class="icon-inline" />
+              <SvgIcon :icon="ListIcon" />
               Skills
             </router-link>
           </li>
@@ -114,7 +114,7 @@ const toggleNav = (show) => {
               class="nav-link rounded"
               @click="toggleNav(false)"
             >
-              <CodeIcon class="icon-inline" />
+              <SvgIcon :icon="CodeIcon" />
               Projects
             </router-link>
           </li>
@@ -124,7 +124,7 @@ const toggleNav = (show) => {
               class="nav-link rounded"
               @click="toggleNav(false)"
             >
-              <MailIcon class="icon-inline" />
+              <SvgIcon :icon="MailIcon" />
               Connect
             </router-link>
           </li>
@@ -159,8 +159,12 @@ const toggleNav = (show) => {
             </div>
             <div class="col-sm">
               <a href="//github.com/gabe565/portfolio" target="_blank"
-                ><GitHubIcon class="icon-inline icon-fw icon-fill me-1" />View
-                on GitHub</a
+                ><SvgIcon
+                  :icon="GitHubIcon"
+                  class="me-1"
+                  fixed-width
+                  fill
+                />View on GitHub</a
               >
             </div>
             <div class="col-sm text-sm-end">
