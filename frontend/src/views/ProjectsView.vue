@@ -57,7 +57,7 @@
                   v-html="project.description"
                 />
                 <div>
-                  <h3 class="sr-only">Tags</h3>
+                  <h3 class="visually-hidden">Tags</h3>
                   <span
                     v-for="tag in project.expand.tags"
                     :key="tag.id"
@@ -71,11 +71,10 @@
               </div>
               <a :href="project.url" class="card-link" target="_blank">
                 <div class="card-footer">
-                  <font-awesome-icon
+                  <component
+                    :is="project.icon"
                     v-if="project.icon"
-                    :icon="project.icon"
-                    fixed-width
-                    class="px-1"
+                    class="icon-inline px-1"
                   />
                   <span class="font-monospace">
                     {{ project.pretty_url }}
@@ -92,8 +91,8 @@
 
 <script setup>
 import pb from "@/plugins/pocketbase";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faGlobe } from "@fortawesome/pro-solid-svg-icons";
+import GitHubIcon from "feather-icons/dist/icons/github.svg";
+import GlobeIcon from "feather-icons/dist/icons/globe.svg";
 
 const projects = ref([]);
 const loading = ref(true);
@@ -111,7 +110,9 @@ const fetchData = async () => {
       }
       return {
         ...project,
-        icon: project.url.match(/^https:\/\/github\.com/) ? faGithub : faGlobe,
+        icon: project.url.match(/^https:\/\/github\.com/)
+          ? GitHubIcon
+          : GlobeIcon,
         pretty_url: project.url
           .replace(/^(\w+:)?\/\//, "")
           .replace(/^github\.com\//, ""),

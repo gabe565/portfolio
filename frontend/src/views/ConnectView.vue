@@ -26,7 +26,7 @@
                   class="btn btn-outline-primary btn-lg"
                   target="_blank"
                 >
-                  <font-awesome-icon :icon="faGithub" fixed-width />
+                  <GitHubIcon class="icon-inline icon-fw me-2" />
                   <span class="network-name">Github</span>
                 </a>
               </li>
@@ -36,7 +36,7 @@
                   class="btn btn-outline-primary btn-lg"
                   target="_blank"
                 >
-                  <font-awesome-icon :icon="faLinkedin" fixed-width />
+                  <LinkedinIcon class="icon-inline icon-fw me-2" />
                   <span class="network-name">LinkedIn</span>
                 </a>
               </li>
@@ -76,7 +76,7 @@
                   <label for="nameInput" class="form-label">Name</label>
                   <div class="input-group">
                     <div class="input-group-text">
-                      <font-awesome-icon :icon="faUserAlt" fixed-width />
+                      <AccountIcon class="icon-inline icon-fw" />
                     </div>
                     <input
                       id="nameInput"
@@ -96,7 +96,7 @@
                   >
                   <div class="input-group">
                     <div class="input-group-text">
-                      <font-awesome-icon :icon="faAt" fixed-width />
+                      <AtIcon class="icon-inline icon-fw" />
                     </div>
                     <input
                       id="emailInput"
@@ -114,7 +114,7 @@
                   <label for="messageInput" class="form-label">Message</label>
                   <div class="input-group">
                     <div class="input-group-text">
-                      <font-awesome-icon :icon="faComment" fixed-width />
+                      <CommentIcon class="icon-inline icon-fw" />
                     </div>
                     <textarea
                       id="messageInput"
@@ -133,17 +133,11 @@
                 <!-- Button -->
                 <div class="form-group mb-3">
                   <button class="btn btn-outline-primary">
-                    <font-awesome-icon
+                    <RefreshIcon
                       v-if="loading"
-                      :icon="faSync"
-                      fixed-width
-                      spin
+                      class="icon-inline icon-fw icon-spin"
                     />
-                    <font-awesome-icon
-                      v-else
-                      :icon="faPaperPlane"
-                      fixed-width
-                    />
+                    <SendIcon v-else class="icon-inline icon-fw" />
                     Send
                   </button>
                 </div>
@@ -158,14 +152,13 @@
 
 <script setup>
 import pb from "@/plugins/pocketbase";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import {
-  faAt,
-  faComment,
-  faSync,
-  faPaperPlane,
-  faUserAlt,
-} from "@fortawesome/pro-regular-svg-icons";
+import LinkedinIcon from "feather-icons/dist/icons/linkedin.svg";
+import GitHubIcon from "feather-icons/dist/icons/github.svg";
+import AccountIcon from "feather-icons/dist/icons/user.svg";
+import AtIcon from "feather-icons/dist/icons/at-sign.svg";
+import CommentIcon from "feather-icons/dist/icons/message-circle.svg";
+import SendIcon from "feather-icons/dist/icons/send.svg";
+import RefreshIcon from "feather-icons/dist/icons/refresh-cw.svg";
 
 const formData = ref({
   name: "",

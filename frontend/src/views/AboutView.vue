@@ -65,7 +65,7 @@
       </section>
     </div>
     <section>
-      <h2 class="h3 sr-only">Map of Oklahoma City</h2>
+      <h2 class="h3 visually-hidden">Map of Oklahoma City</h2>
       <GMapMap
         :center="mapData.center"
         :options="mapData.options"

@@ -9,9 +9,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    FontAwesomeIcon: typeof import('@fortawesome/vue-fontawesome')['FontAwesomeIcon']
-    FontAwesomeLayers: typeof import('@fortawesome/vue-fontawesome')['FontAwesomeLayers']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StarRating: typeof import('./src/components/StarRating.vue')['default']
   }
 }

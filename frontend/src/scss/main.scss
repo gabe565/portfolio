@@ -127,3 +127,35 @@ footer {
         height: 500px;
     }
 }
+
+.icon-inline {
+    display: inline-block;
+    height: 1em;
+    overflow: visible;
+    vertical-align: -0.125em;
+}
+
+.icon-fw {
+    width: 1.25em;
+    text-align: center;
+}
+
+.icon-fill {
+    fill: currentColor;
+}
+
+.icon-spin {
+    animation-name: icon-spin;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes icon-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,13 +1,11 @@
 <script setup>
 import { Collapse } from "bootstrap";
-import {
-  faBars,
-  faCode,
-  faEnvelope,
-  faInfoCircle,
-  faListUl,
-} from "@fortawesome/pro-solid-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import MenuIcon from "feather-icons/dist/icons/menu.svg";
+import InfoIcon from "feather-icons/dist/icons/info.svg";
+import ListIcon from "feather-icons/dist/icons/list.svg";
+import CodeIcon from "feather-icons/dist/icons/code.svg";
+import MailIcon from "feather-icons/dist/icons/mail.svg";
+import GitHubIcon from "feather-icons/dist/icons/github.svg";
 
 const transitionName = ref("fade");
 const navbarShrink = ref(false);
@@ -58,7 +56,9 @@ const toggleNav = (show) => {
 </script>
 
 <template>
-  <a class="sr-only-focusable btn btn-primary position-absolute" href="#content"
+  <a
+    class="visually-hidden-focusable btn btn-primary position-absolute"
+    href="#content"
     >Skip to main content</a
   >
 
@@ -69,7 +69,7 @@ const toggleNav = (show) => {
     <div class="container">
       <router-link to="/" class="navbar-brand" @click="toggleNav(false)">
         <span aria-hidden="true">&lt; gabe.cook &gt;</span>
-        <span class="sr-only">Gabe Cook</span>
+        <span class="visually-hidden">Gabe Cook</span>
       </router-link>
       <button
         class="navbar-toggler navbar-toggler-right"
@@ -79,7 +79,7 @@ const toggleNav = (show) => {
         aria-label="Toggle navigation"
         @click="toggleNav()"
       >
-        <font-awesome-icon :icon="faBars" fixed-width />
+        <MenuIcon class="icon-inline" />
         Menu
       </button>
       <div
@@ -94,10 +94,7 @@ const toggleNav = (show) => {
               class="nav-link rounded"
               @click="toggleNav(false)"
             >
-              <font-awesome-icon
-                :icon="faInfoCircle"
-                fixed-width
-              ></font-awesome-icon>
+              <InfoIcon class="icon-inline" />
               About
             </router-link>
           </li>
@@ -107,10 +104,7 @@ const toggleNav = (show) => {
               class="nav-link rounded"
               @click="toggleNav(false)"
             >
-              <font-awesome-icon
-                :icon="faListUl"
-                fixed-width
-              ></font-awesome-icon>
+              <ListIcon class="icon-inline" />
               Skills
             </router-link>
           </li>
@@ -120,7 +114,7 @@ const toggleNav = (show) => {
               class="nav-link rounded"
               @click="toggleNav(false)"
             >
-              <font-awesome-icon :icon="faCode" fixed-width></font-awesome-icon>
+              <CodeIcon class="icon-inline" />
               Projects
             </router-link>
           </li>
@@ -130,10 +124,7 @@ const toggleNav = (show) => {
               class="nav-link rounded"
               @click="toggleNav(false)"
             >
-              <font-awesome-icon
-                :icon="faEnvelope"
-                fixed-width
-              ></font-awesome-icon>
+              <MailIcon class="icon-inline" />
               Connect
             </router-link>
           </li>
@@ -168,11 +159,8 @@ const toggleNav = (show) => {
             </div>
             <div class="col-sm">
               <a href="//github.com/gabe565/portfolio" target="_blank"
-                ><font-awesome-icon
-                  :icon="faGithub"
-                  fixed-width
-                ></font-awesome-icon
-                >View on GitHub</a
+                ><GitHubIcon class="icon-inline icon-fw icon-fill me-1" />View
+                on GitHub</a
               >
             </div>
             <div class="col-sm text-sm-end">

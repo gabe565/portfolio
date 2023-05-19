@@ -59,43 +59,11 @@
                         {{ skill.title }}
                       </div>
                       <div class="col-auto">
-                        <div class="sr-only">{{ skill.rating }} of 5 stars</div>
-                        <div
-                          class="float-end"
-                          aria-hidden="true"
-                          :title="`${skill.rating} star${
-                            skill.rating === 1 ? '' : 's'
-                          }`"
-                        >
-                          <template v-for="n in 5" :key="n">
-                            <font-awesome-icon
-                              v-if="n <= skill.rating"
-                              :icon="fasStar"
-                              fixed-width
-                              class="text-primary"
-                            />
-                            <font-awesome-layers
-                              v-else-if="n === Math.ceil(skill.rating)"
-                              fixed-width
-                            >
-                              <font-awesome-icon
-                                :icon="faStarHalf"
-                                fixed-width
-                                class="text-primary"
-                              />
-                              <font-awesome-icon
-                                :icon="farStar"
-                                fixed-width
-                                class="text-white opacity-15"
-                              />
-                            </font-awesome-layers>
-                            <font-awesome-icon
-                              v-else
-                              :icon="farStar"
-                              fixed-width
-                              class="text-white opacity-15"
-                            />
-                          </template>
+                        <div class="float-end">
+                          <StarRating
+                            v-model="skill.rating"
+                            class="text-primary"
+                          />
                         </div>
                       </div>
                     </div>
@@ -116,11 +84,6 @@
 
 <script setup>
 import pb from "@/plugins/pocketbase";
-import {
-  faStar as fasStar,
-  faStarHalf,
-} from "@fortawesome/pro-solid-svg-icons";
-import { faStar as farStar } from "@fortawesome/pro-regular-svg-icons";
 
 const skills = ref([]);
 const error = ref(null);
