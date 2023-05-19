@@ -36,7 +36,7 @@ COPY frontend/ ./
 RUN npm run build
 
 
-FROM alpine
+FROM alpine:3.18
 WORKDIR /app
 
 RUN apk add --no-cache tzdata
