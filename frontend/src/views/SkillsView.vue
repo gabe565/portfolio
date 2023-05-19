@@ -41,8 +41,8 @@
             :key="i"
           >
             <div
-              class="col-sm-8 col-lg-4 mx-auto"
-              :class="[i === 0 ? 'ms-lg-auto me-lg-0' : 'me-lg-auto ms-lg-0']"
+              class="col-sm-8 col-lg-5 col-xl-4 mx-auto"
+              :class="[i === 0 ? 'ms-lg-auto me-lg-0' : 'me-md-auto ms-lg-0']"
             >
               <ul class="list-group list-group-inverse">
                 <li
