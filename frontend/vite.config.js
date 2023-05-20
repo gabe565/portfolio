@@ -21,13 +21,6 @@ export default defineConfig({
     }),
     Components({
       dts: true,
-      resolvers: [
-        (name) => {
-          if (name.match(/^FontAwesome/)) {
-            return { name, from: "@fortawesome/vue-fontawesome" };
-          }
-        },
-      ],
       types: [
         {
           from: "vue-router",
