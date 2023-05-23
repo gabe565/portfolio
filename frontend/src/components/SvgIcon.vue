@@ -13,7 +13,7 @@
 <script setup>
 const props = defineProps({
   icon: {
-    type: String,
+    type: Object,
     required: true,
   },
   fixedWidth: Boolean,
