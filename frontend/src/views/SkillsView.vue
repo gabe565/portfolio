@@ -8,10 +8,9 @@
       </div>
       <div class="row mb-4">
         <div class="col-md-9 mx-auto">
-          A list of skills and languages that I'm proficient in on a scale of
-          1-5 stars. Note that the scale is relative to the other languages that
-          I have used, so a 5 star rating means that I'm most familiar with that
-          language, not that I'm perfect at it.
+          A list of skills and languages that I'm proficient in on a scale of 1-5 stars. Note that
+          the scale is relative to the other languages that I have used, so a 5 star rating means
+          that I'm most familiar with that language, not that I'm perfect at it.
         </div>
       </div>
       <div v-if="loading" class="row">
@@ -45,25 +44,15 @@
               :class="[i === 0 ? 'ms-lg-auto me-lg-0' : 'me-md-auto ms-lg-0']"
             >
               <ul class="list-group list-group-inverse">
-                <li
-                  v-for="(skill, j) in chunk"
-                  :key="skill.title"
-                  class="list-group-item"
-                >
+                <li v-for="(skill, j) in chunk" :key="skill.title" class="list-group-item">
                   <transition name="fade" appear>
-                    <div
-                      class="row"
-                      :style="{ transitionDelay: `${i * 250 + j * 50}ms` }"
-                    >
+                    <div class="row" :style="{ transitionDelay: `${i * 250 + j * 50}ms` }">
                       <div class="col text-start">
                         {{ skill.title }}
                       </div>
                       <div class="col-auto">
                         <div class="float-end">
-                          <StarRating
-                            v-model="skill.rating"
-                            class="text-primary"
-                          />
+                          <StarRating v-model="skill.rating" class="text-primary" />
                         </div>
                       </div>
                     </div>

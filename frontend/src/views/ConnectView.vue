@@ -7,9 +7,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
-          Here are some ways to reach out or see what I'm up to!
-        </div>
+        <div class="col">Here are some ways to reach out or see what I'm up to!</div>
       </div>
       <section>
         <div class="row mt-4 mb-3">
@@ -21,21 +19,13 @@
           <div class="col-lg-8 mx-auto">
             <ul class="list-inline banner-social-buttons">
               <li class="list-inline-item">
-                <a
-                  href="/to/github"
-                  class="btn btn-outline-primary btn-lg"
-                  target="_blank"
-                >
+                <a href="/to/github" class="btn btn-outline-primary btn-lg" target="_blank">
                   <SvgIcon :icon="GitHubIcon" class="me-1" fixed-width fill />
                   <span class="network-name">Github</span>
                 </a>
               </li>
               <li class="list-inline-item">
-                <a
-                  href="/to/linkedin"
-                  class="btn btn-outline-primary btn-lg"
-                  target="_blank"
-                >
+                <a href="/to/linkedin" class="btn btn-outline-primary btn-lg" target="_blank">
                   <SvgIcon :icon="LinkedinIcon" class="me-1" fixed-width fill />
                   <span class="network-name">LinkedIn</span>
                 </a>
@@ -91,9 +81,7 @@
                 </div>
                 <!--Email-->
                 <div class="form-group mb-3">
-                  <label for="emailInput" class="form-label"
-                    >Email Address</label
-                  >
+                  <label for="emailInput" class="form-label">Email Address</label>
                   <div class="input-group">
                     <div class="input-group-text">
                       <SvgIcon :icon="AtIcon" fixed-width />
@@ -133,12 +121,7 @@
                 <!-- Button -->
                 <div class="form-group mb-3">
                   <button class="btn btn-outline-primary">
-                    <SvgIcon
-                      v-if="loading"
-                      :icon="RefreshIcon"
-                      class="icon-spin"
-                      fixed-width
-                    />
+                    <SvgIcon v-if="loading" :icon="RefreshIcon" class="icon-spin" fixed-width />
                     <SvgIcon v-else :icon="SendIcon" fixed-width />
                     Send
                   </button>

@@ -56,9 +56,7 @@ const toggleNav = (show) => {
 </script>
 
 <template>
-  <a
-    class="visually-hidden-focusable btn btn-primary position-absolute"
-    href="#content"
+  <a class="visually-hidden-focusable btn btn-primary position-absolute" href="#content"
     >Skip to main content</a
   >
 
@@ -82,48 +80,28 @@ const toggleNav = (show) => {
         <SvgIcon :icon="MenuIcon" />
         Menu
       </button>
-      <div
-        id="navbarResponsive"
-        ref="navbarResponsive"
-        class="collapse navbar-collapse"
-      >
+      <div id="navbarResponsive" ref="navbarResponsive" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <router-link
-              to="/about"
-              class="nav-link rounded"
-              @click="toggleNav(false)"
-            >
+            <router-link to="/about" class="nav-link rounded" @click="toggleNav(false)">
               <SvgIcon :icon="InfoIcon" />
               About
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link
-              to="/skills"
-              class="nav-link rounded"
-              @click="toggleNav(false)"
-            >
+            <router-link to="/skills" class="nav-link rounded" @click="toggleNav(false)">
               <SvgIcon :icon="ListIcon" />
               Skills
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link
-              to="/projects"
-              class="nav-link rounded"
-              @click="toggleNav(false)"
-            >
+            <router-link to="/projects" class="nav-link rounded" @click="toggleNav(false)">
               <SvgIcon :icon="CodeIcon" />
               Projects
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link
-              to="/connect"
-              class="nav-link rounded"
-              @click="toggleNav(false)"
-            >
+            <router-link to="/connect" class="nav-link rounded" @click="toggleNav(false)">
               <SvgIcon :icon="MailIcon" />
               Connect
             </router-link>
@@ -154,24 +132,14 @@ const toggleNav = (show) => {
       <footer v-show="!minimal" class="mt-auto">
         <div class="container">
           <div class="row text-center">
-            <div class="col-sm text-sm-start" aria-hidden="true">
-              &lt;/ gabe.cook &gt;
-            </div>
+            <div class="col-sm text-sm-start" aria-hidden="true">&lt;/ gabe.cook &gt;</div>
             <div class="col-sm">
               <a href="//github.com/gabe565/portfolio" target="_blank"
-                ><SvgIcon
-                  :icon="GitHubIcon"
-                  class="me-1"
-                  fixed-width
-                  fill
-                />View on GitHub</a
+                ><SvgIcon :icon="GitHubIcon" class="me-1" fixed-width fill />View on GitHub</a
               >
             </div>
             <div class="col-sm text-sm-end">
-              <a
-                href="//github.com/gabe565/portfolio/blob/master/LICENSE"
-                target="_blank"
-              >
+              <a href="//github.com/gabe565/portfolio/blob/master/LICENSE" target="_blank">
                 &copy; {{ new Date().getFullYear() }} Gabe Cook
               </a>
             </div>

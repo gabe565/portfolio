@@ -7,9 +7,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-8 mx-auto">
-          The page you requested was not found on this server.
-        </div>
+        <div class="col-lg-8 mx-auto">The page you requested was not found on this server.</div>
       </div>
     </div>
   </section>
