@@ -54,7 +54,7 @@ jobs:
       - name: Update backend
         run: |
           yampl --inplace \
-            --value tag="$GITHUB_REF_NAME" \
+            --value tag="${GITHUB_REF_NAME#v}" \
             fleet-infra/apps/gabernetes/portfolio/app/helmrelease.yaml
 
       - name: Commit changes
