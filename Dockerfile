@@ -36,7 +36,7 @@ COPY frontend/ ./
 RUN npm run build
 
 
-FROM alpine:3.18
+FROM alpine:3.18 as backend
 WORKDIR /app
 
 RUN apk add --no-cache tzdata
@@ -49,8 +49,11 @@ RUN addgroup -g "$GID" "$USERNAME" \
 
 RUN mkdir pb_data && chown 1000:1000 pb_data
 
-COPY --from=node-builder /app/dist ./public
 COPY --from=go-builder /app/portfolio ./
 
 USER $UID
 CMD ["./portfolio", "serve", "--http=0.0.0.0:80", "--dir=/data", "--public=public"]
+
+
+FROM backend as all-in-one
+COPY --from=node-builder /app/dist ./public

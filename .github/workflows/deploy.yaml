@@ -1,0 +1,72 @@
+name: Deploy
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
+      url:
+        type: string
+      bucket-name:
+        type: string
+        required: true
+    secrets:
+      aws-role-arn:
+        required: true
+      cloudfront-id:
+        required: true
+      infra-ssh-key:
+        required: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    concurrency: ${{ inputs.environment }}
+    environment:
+      name: ${{ inputs.environment }}
+      url: ${{ inputs.url }}
+    steps:
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.aws-role-arn }}
+          role-session-name: portfolio-ci
+          aws-region: us-east-2
+
+      - name: Checkout fleet-infra
+        uses: actions/checkout@v3
+        with:
+          repository: gabe565/fleet-infra
+          path: fleet-infra
+          ssh-key: ${{ secrets.infra-ssh-key }}
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+      - name: Setup yampl
+        uses: clevyr/setup-yampl-action@v1
+
+      - name: Update backend
+        run: |
+          yampl --inplace \
+            --value tag="$GITHUB_REF_NAME" \
+            fleet-infra/apps/gabernetes/portfolio/app/helmrelease.yaml
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        if: inputs.environment == 'prod'
+        with:
+          repository: fleet-infra
+          file_pattern: apps/gabernetes/portfolio/app/helmrelease.yaml
+          commit_message: ":arrow_up: (portfolio): Update image to ${{ github.ref_name }}"
+
+      - name: Deploy
+        run: aws s3 sync --delete --no-progress dist s3://${{ inputs.bucket-name }}
+
+      - name: Invalidate cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.cloudfront-id }} --paths '/*'

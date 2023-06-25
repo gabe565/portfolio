@@ -49,9 +49,10 @@ jobs:
           FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
       - run: npm --prefix frontend run lint
 
-  build:
-    name: Build Image
+  build-backend:
+    name: Build Backend Image
     runs-on: ubuntu-latest
+    needs: [backend-lint, backend-test, frontend-lint]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -86,6 +87,68 @@ jobs:
           push: ${{ github.secret_source == 'Actions' }}
           platforms: linux/amd64
           tags: ${{ steps.meta.outputs.tags }}
+          target: backend
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  build-frontend:
+    name: Build Frontend
+    runs-on: ubuntu-latest
+    needs: [backend-lint, backend-test, frontend-lint]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: frontend/.nvmrc
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install dependencies
+        run: npm --prefix=frontend install --prefer-offline --no-audit
+      - name: Build
+        env:
+          VITE_API_ADDRESS: https://api.gabecook.com
+          VITE_GOOGLE_API_KEY: ${{ secrets.VITE_GOOGLE_API_KEY }}
+        run: npm --prefix=frontend run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: frontend/dist
+
+  deploy-dev:
+    name: Deploy (dev)
+    needs: [build-backend, build-frontend]
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      id-token: write
+      contents: read
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      environment: dev
+      url: https://dev.gabecook.com
+      bucket-name: dev.gabecook.com
+    secrets:
+      aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
+      cloudfront-id: ${{ secrets.CLOUDFRONT_ID }}
+      infra-ssh-key: ${{ secrets.INFRA_SSH_KEY }}
+
+  deploy-prod:
+    name: Deploy (prod)
+    needs: [build-backend, build-frontend]
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      id-token: write
+      contents: read
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      environment: prod
+      url: https://gabecook.com
+      bucket-name: gabecook.com
+    secrets:
+      aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
+      cloudfront-id: ${{ secrets.CLOUDFRONT_ID }}
+      infra-ssh-key: ${{ secrets.INFRA_SSH_KEY }}
