@@ -19,7 +19,7 @@
     "bootstrap": "5.2.3",
     "feather-icons": "4.29.0",
     "pocketbase": "0.14.4",
-    "sass": "1.62.1",
+    "sass": "1.63.6",
     "unplugin-auto-import": "0.16.4",
     "unplugin-vue-components": "0.24.1",
     "vite": "4.3.9",
