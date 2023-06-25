@@ -13,7 +13,7 @@
   "dependencies": {
     "@fawmi/vue-google-maps": "0.9.79",
     "@fontsource/roboto-slab": "4.5.11",
-    "@popperjs/core": "2.11.7",
+    "@popperjs/core": "2.11.8",
     "@vitejs/plugin-vue": "4.2.3",
     "autoprefixer": "10.4.14",
     "bootstrap": "5.2.3",
