@@ -16,7 +16,7 @@ func main() {
 	app := pocketbase.New()
 
 	migratecmd.MustRegister(app, app.RootCmd, &migratecmd.Options{
-		Automigrate: true,
+		Automigrate: automigrateEnabled(),
 	})
 
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
