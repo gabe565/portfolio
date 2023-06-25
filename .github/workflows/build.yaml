@@ -126,6 +126,9 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    concurrency:
+      group: deploy-dev
+      cancel-in-progress: true
     uses: ./.github/workflows/deploy.yaml
     with:
       environment: dev
@@ -143,6 +146,9 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    concurrency:
+      group: deploy-prod
+      cancel-in-progress: true
     uses: ./.github/workflows/deploy.yaml
     with:
       environment: prod
