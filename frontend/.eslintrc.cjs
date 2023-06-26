@@ -12,7 +12,6 @@ module.exports = {
     "@vue/eslint-config-prettier/skip-formatting",
     "prettier",
     "plugin:prettier/recommended",
-    "./.eslintrc-auto-import.json",
   ],
   rules: {
     "no-unused-vars": ["error", { varsIgnorePattern: "^_", argsIgnorePattern: "^_" }],
@@ -21,5 +20,4 @@ module.exports = {
   parserOptions: {
     sourceType: "module",
   },
-  ignorePatterns: ["auto-imports.d.ts", "components.d.ts"],
 };

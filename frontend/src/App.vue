@@ -1,4 +1,6 @@
 <script setup>
+import { onMounted, onUnmounted, ref } from "vue";
+import { useRouter } from "vue-router";
 import { Collapse } from "bootstrap";
 import MenuIcon from "~icons/material-symbols/menu-rounded";
 import InfoIcon from "~icons/material-symbols/info";

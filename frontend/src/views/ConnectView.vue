@@ -136,6 +136,7 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import pb from "@/plugins/pocketbase";
 import LinkedinIcon from "~icons/simple-icons/linkedin";
 import GithubIcon from "~icons/simple-icons/github";
