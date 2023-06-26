@@ -66,11 +66,11 @@
               </div>
               <a :href="project.url" class="card-link" target="_blank">
                 <div class="card-footer">
-                  <SvgIcon
+                  <component
+                    :is="project.icon"
                     v-if="project.icon"
-                    :icon="project.icon"
-                    v-bind="project.iconProps"
                     class="px-1"
+                    style="font-size: 1.25em"
                   />
                   <span class="font-monospace">
                     {{ project.pretty_url }}
@@ -87,8 +87,8 @@
 
 <script setup>
 import pb from "@/plugins/pocketbase";
-import GitHubIcon from "feather-icons/dist/icons/github.svg";
-import GlobeIcon from "feather-icons/dist/icons/globe.svg";
+import GitHubIcon from "~icons/simple-icons/github";
+import GlobeIcon from "~icons/mdi/web";
 
 const projects = ref([]);
 const loading = ref(true);
@@ -105,15 +105,12 @@ const fetchData = async () => {
         image = pb.getFileUrl(project, project.image);
       }
       let icon = GlobeIcon;
-      let iconProps;
       if (project.url.match(/^https:\/\/github\.com/)) {
         icon = GitHubIcon;
-        iconProps = { fill: true };
       }
       return {
         ...project,
         icon,
-        iconProps,
         pretty_url: project.url.replace(/^(\w+:)?\/\//, "").replace(/^github\.com\//, ""),
         image,
         expand: {

@@ -1,11 +1,11 @@
 <script setup>
 import { Collapse } from "bootstrap";
-import MenuIcon from "feather-icons/dist/icons/menu.svg";
-import InfoIcon from "feather-icons/dist/icons/info.svg";
-import ListIcon from "feather-icons/dist/icons/list.svg";
-import CodeIcon from "feather-icons/dist/icons/code.svg";
-import MailIcon from "feather-icons/dist/icons/mail.svg";
-import GitHubIcon from "feather-icons/dist/icons/github.svg";
+import MenuIcon from "~icons/material-symbols/menu-rounded";
+import InfoIcon from "~icons/material-symbols/info";
+import ListIcon from "~icons/material-symbols/list-rounded";
+import CodeIcon from "~icons/material-symbols/code-rounded";
+import MailIcon from "~icons/material-symbols/mail-rounded";
+import GithubIcon from "~icons/simple-icons/github";
 
 const transitionName = ref("fade");
 const navbarShrink = ref(false);
@@ -77,32 +77,32 @@ const toggleNav = (show) => {
         aria-label="Toggle navigation"
         @click="toggleNav()"
       >
-        <SvgIcon :icon="MenuIcon" />
+        <menu-icon />
         Menu
       </button>
       <div id="navbarResponsive" ref="navbarResponsive" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <router-link to="/about" class="nav-link rounded" @click="toggleNav(false)">
-              <SvgIcon :icon="InfoIcon" />
+              <info-icon />
               About
             </router-link>
           </li>
           <li class="nav-item">
             <router-link to="/skills" class="nav-link rounded" @click="toggleNav(false)">
-              <SvgIcon :icon="ListIcon" />
+              <list-icon />
               Skills
             </router-link>
           </li>
           <li class="nav-item">
             <router-link to="/projects" class="nav-link rounded" @click="toggleNav(false)">
-              <SvgIcon :icon="CodeIcon" />
+              <code-icon />
               Projects
             </router-link>
           </li>
           <li class="nav-item">
             <router-link to="/connect" class="nav-link rounded" @click="toggleNav(false)">
-              <SvgIcon :icon="MailIcon" />
+              <mail-icon />
               Connect
             </router-link>
           </li>
@@ -135,7 +135,7 @@ const toggleNav = (show) => {
             <div class="col-sm text-sm-start" aria-hidden="true">&lt;/ gabe.cook &gt;</div>
             <div class="col-sm">
               <a href="//github.com/gabe565/portfolio" target="_blank"
-                ><SvgIcon :icon="GitHubIcon" class="me-1" fixed-width fill />View on GitHub</a
+                ><github-icon class="me-1" fixed-width fill />View on GitHub</a
               >
             </div>
             <div class="col-sm text-sm-end">

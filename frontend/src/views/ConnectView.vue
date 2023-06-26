@@ -20,13 +20,13 @@
             <ul class="list-inline banner-social-buttons">
               <li class="list-inline-item">
                 <a href="/to/github" class="btn btn-outline-primary btn-lg" target="_blank">
-                  <SvgIcon :icon="GitHubIcon" class="me-1" fixed-width fill />
+                  <github-icon class="me-1" fixed-width fill />
                   <span class="network-name">Github</span>
                 </a>
               </li>
               <li class="list-inline-item">
                 <a href="/to/linkedin" class="btn btn-outline-primary btn-lg" target="_blank">
-                  <SvgIcon :icon="LinkedinIcon" class="me-1" fixed-width fill />
+                  <linkedin-icon class="me-1" fixed-width fill />
                   <span class="network-name">LinkedIn</span>
                 </a>
               </li>
@@ -66,7 +66,7 @@
                   <label for="nameInput" class="form-label">Name</label>
                   <div class="input-group">
                     <div class="input-group-text">
-                      <SvgIcon :icon="AccountIcon" fixed-width />
+                      <account-icon fixed-width />
                     </div>
                     <input
                       id="nameInput"
@@ -84,7 +84,7 @@
                   <label for="emailInput" class="form-label">Email Address</label>
                   <div class="input-group">
                     <div class="input-group-text">
-                      <SvgIcon :icon="AtIcon" fixed-width />
+                      <at-icon fixed-width />
                     </div>
                     <input
                       id="emailInput"
@@ -102,7 +102,7 @@
                   <label for="messageInput" class="form-label">Message</label>
                   <div class="input-group">
                     <div class="input-group-text">
-                      <SvgIcon :icon="CommentIcon" fixed-width />
+                      <comment-icon fixed-width />
                     </div>
                     <textarea
                       id="messageInput"
@@ -121,8 +121,8 @@
                 <!-- Button -->
                 <div class="form-group mb-3">
                   <button class="btn btn-outline-primary">
-                    <SvgIcon v-if="loading" :icon="RefreshIcon" class="icon-spin" fixed-width />
-                    <SvgIcon v-else :icon="SendIcon" fixed-width />
+                    <refresh-icon v-if="loading" class="icon-spin" fixed-width />
+                    <send-icon v-else fixed-width />
                     Send
                   </button>
                 </div>
@@ -137,13 +137,13 @@
 
 <script setup>
 import pb from "@/plugins/pocketbase";
-import LinkedinIcon from "feather-icons/dist/icons/linkedin.svg";
-import GitHubIcon from "feather-icons/dist/icons/github.svg";
-import AccountIcon from "feather-icons/dist/icons/user.svg";
-import AtIcon from "feather-icons/dist/icons/at-sign.svg";
-import CommentIcon from "feather-icons/dist/icons/message-circle.svg";
-import SendIcon from "feather-icons/dist/icons/send.svg";
-import RefreshIcon from "feather-icons/dist/icons/refresh-cw.svg";
+import LinkedinIcon from "~icons/simple-icons/linkedin";
+import GithubIcon from "~icons/simple-icons/github";
+import AccountIcon from "~icons/material-symbols/person-rounded";
+import AtIcon from "~icons/material-symbols/alternate-email-rounded";
+import CommentIcon from "~icons/material-symbols/mode-comment-rounded";
+import SendIcon from "~icons/material-symbols/send-rounded";
+import RefreshIcon from "~icons/mdi/loading";
 
 const formData = ref({
   name: "",

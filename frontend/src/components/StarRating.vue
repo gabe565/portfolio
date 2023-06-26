@@ -6,15 +6,16 @@
       :title="`${props.modelValue} star${props.modelValue === 1 ? '' : 's'}`"
     >
       <template v-for="n in props.total" :key="n">
-        <SvgIcon v-if="n <= props.modelValue" :icon="StarIcon" fixed-width fill />
-        <SvgIcon v-else :icon="StarIcon" class="text-white opacity-15" fixed-width />
+        <star-filled-icon v-if="n <= props.modelValue" fixed-width fill />
+        <star-outline-icon v-else class="text-white opacity-15" fixed-width />
       </template>
     </span>
   </span>
 </template>
 
 <script setup>
-import StarIcon from "feather-icons/dist/icons/star.svg";
+import StarFilledIcon from "~icons/material-symbols/star-rounded";
+import StarOutlineIcon from "~icons/material-symbols/star-outline-rounded";
 
 const props = defineProps({
   modelValue: {
