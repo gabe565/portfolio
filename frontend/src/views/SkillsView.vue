@@ -75,8 +75,8 @@
 import pb from "@/plugins/pocketbase";
 
 const skills = ref([]);
-const error = ref(null);
 const loading = ref(true);
+const error = ref();
 
 const fetchData = async () => {
   try {
@@ -94,8 +94,8 @@ const fetchData = async () => {
         };
       })
       .filter(({ skills }) => skills);
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     error.value = "Failed to fetch skills. Please try again later.";
   } finally {
     loading.value = false;

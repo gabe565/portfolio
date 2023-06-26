@@ -90,7 +90,7 @@ import GlobeIcon from "feather-icons/dist/icons/globe.svg";
 
 const projects = ref([]);
 const loading = ref(true);
-const error = ref(null);
+const error = ref();
 
 const fetchData = async () => {
   try {
@@ -119,8 +119,8 @@ const fetchData = async () => {
         },
       };
     });
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     error.value = "Failed to fetch projects. Please try again later.";
   } finally {
     loading.value = false;
