@@ -25,8 +25,8 @@
 
 <script setup>
 import { onActivated, onDeactivated, ref } from "vue";
-import pb from "@/plugins/pocketbase";
-import loadImage from "@/util/loadImage";
+import pb from "../plugins/pocketbase";
+import loadImage from "../util/loadImage";
 
 const index = ref(null);
 let timeout = null;

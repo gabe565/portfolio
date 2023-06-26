@@ -137,7 +137,7 @@
 
 <script setup>
 import { ref } from "vue";
-import pb from "@/plugins/pocketbase";
+import pb from "../plugins/pocketbase";
 import LinkedinIcon from "~icons/simple-icons/linkedin";
 import GithubIcon from "~icons/simple-icons/github";
 import AccountIcon from "~icons/material-symbols/person-rounded";

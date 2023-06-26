@@ -87,7 +87,7 @@
 
 <script setup>
 import { ref } from "vue";
-import pb from "@/plugins/pocketbase";
+import pb from "../plugins/pocketbase";
 import GitHubIcon from "~icons/simple-icons/github";
 import GlobeIcon from "~icons/mdi/web";
 

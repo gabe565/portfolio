@@ -70,5 +70,5 @@
 </template>
 
 <script setup>
-import mapData from "@/data/mapOptions";
+import mapData from "../data/mapOptions";
 </script>

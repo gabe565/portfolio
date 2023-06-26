@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import VueGoogleMaps from "@fawmi/vue-google-maps";
 
-import "@/scss/main.scss";
+import "./scss/main.scss";
 
 createApp(App)
   .use(router)
