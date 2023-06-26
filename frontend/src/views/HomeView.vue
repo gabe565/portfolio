@@ -52,6 +52,11 @@ const fetchBackgrounds = async () => {
   } catch (error) {
     console.error(error);
   }
+  if (backgrounds.length === 0) {
+    backgrounds.push(
+      "https://images.unsplash.com/photo-1509910513818-4d13fdaf89c9?auto=compress,enhance,format&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    );
+  }
 };
 
 const nextBackground = async () => {
