@@ -7,160 +7,163 @@
 
 @import "transitions";
 
-body, html {
-    color: white;
+body,
+html {
+  color: white;
 
-    background: url('../assets/black-orchid.png') #222;
+  background: url("../assets/black-orchid.png") #222;
 
-    -webkit-tap-highlight-color: fade-out(white, .8);
+  -webkit-tap-highlight-color: fade-out(white, 0.8);
 }
 
 p {
-    font-size: 16px;
-    line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.5;
 
-    @include media-breakpoint-up(md) {
-        font-size: 18px;
-        line-height: 1.6;
-    }
+  @include media-breakpoint-up(md) {
+    font-size: 18px;
+    line-height: 1.6;
+  }
 }
 
 a {
-    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
-    color: lighten($primary, 7%);
-    &:focus,
-    &:hover {
-        text-decoration: none;
-        color: lighten($primary, 25%);
-    }
+  color: lighten($primary, 7%);
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    color: lighten($primary, 25%);
+  }
 }
 
 :not(input, textarea)::selection {
-    background: #fcfcfc;
-    background: fade-out(white, .8);
-    text-shadow: none;
+  background: #fcfcfc;
+  background: fade-out(white, 0.8);
+  text-shadow: none;
 }
 
 #app {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 nav.navbar {
-    background-color: transparent;
-    border-bottom: 1px solid transparent;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
 
-    .navbar-toggler {
-        background-color: rgba($gray-900, 0.45);
-        border: 1px solid white;
-        padding: 11px;
+  .navbar-toggler {
+    background-color: rgba($gray-900, 0.45);
+    border: 1px solid white;
+    padding: 11px;
 
-        font-size: 14px;
+    font-size: 14px;
+    color: white;
+  }
+
+  transition: background 0.3s ease-in-out, padding-top 0.3s ease-in-out,
+    padding-bottom 0.3s ease-in-out, border-bottom-color 0.3s ease-in-out;
+
+  @include media-breakpoint-down(md) {
+    &:has(.navbar-toggler[aria-expanded="true"]) {
+      background-color: rgba($gray-900, 0.85) !important;
+      border-bottom: 1px solid fade-out(white, 0.8);
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  .navbar-brand {
+    font-family: $font-family-serif;
+    font-weight: $font-weight-light;
+  }
+
+  .nav-item {
+    text-align: center;
+    margin: auto 10px;
+
+    a:hover,
+    a.active {
+      color: $white;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    &.navbar-shrink {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .nav-link.active {
+      background-color: rgba(white, 0.3);
+      outline: none;
+
+      &:hover {
         color: white;
+      }
     }
+  }
 
-    transition: background 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out, border-bottom-color 0.3s ease-in-out;
-
-    @include media-breakpoint-down(md) {
-        &:has(.navbar-toggler[aria-expanded=true]) {
-            background-color: rgba($gray-900, 0.85) !important;
-            border-bottom: 1px solid fade-out(white, .8);
-            backdrop-filter: blur(10px);
-        }
-    }
-
-    .navbar-brand {
-        font-family: $font-family-serif;
-        font-weight: $font-weight-light;
-    }
-
-    .nav-item {
-        text-align: center;
-        margin: auto 10px;
-
-        a:hover, a.active {
-            color: $white;
-        }
-    }
-
-    @include media-breakpoint-up(md) {
-        padding-top: 20px;
-        padding-bottom: 20px;
-
-        &.navbar-shrink {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
-        .nav-link.active {
-            background-color: rgba(white, .3);
-            outline: none;
-
-            &:hover {
-                color: white;
-            }
-        }
-    }
-
-    &.navbar-shrink:not(.minimal) {
-        background-color: rgba($gray-900, 0.65);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid fade-out(white, .8);
-    }
+  &.navbar-shrink:not(.minimal) {
+    background-color: rgba($gray-900, 0.65);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid fade-out(white, 0.8);
+  }
 }
 
 footer {
-    border-top: 1px solid fade-out(white, .7);
-    padding: 20px 0;
+  border-top: 1px solid fade-out(white, 0.7);
+  padding: 20px 0;
 
-    background-color: $gray-900;
+  background-color: $gray-900;
 }
 
 .pt-page {
-    padding-top: 100px;
+  padding-top: 100px;
 }
 
 .vue-map-container {
-    height: 300px;
+  height: 300px;
 
-    @include media-breakpoint-up(lg) {
-        height: 500px;
-    }
+  @include media-breakpoint-up(lg) {
+    height: 500px;
+  }
 }
 
 .icon-inline {
-    display: inline-block;
-    height: 1em;
-    overflow: visible;
-    vertical-align: -0.125em;
+  display: inline-block;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
 }
 
 .icon-fw {
-    width: 1.25em;
-    text-align: center;
+  width: 1.25em;
+  text-align: center;
 }
 
 .icon-fill {
-    fill: currentColor;
+  fill: currentColor;
 }
 
 .icon-spin {
-    animation-name: icon-spin;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+  animation-name: icon-spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 @keyframes icon-spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 svg {
-    vertical-align: middle;
-    transform: translateY(-5%);
+  vertical-align: middle;
+  transform: translateY(-5%);
 }
