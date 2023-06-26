@@ -21,7 +21,7 @@
         </div>
       </div>
       <div v-if="error" class="col">
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" role="alert">
           {{ error }}
         </div>
       </div>

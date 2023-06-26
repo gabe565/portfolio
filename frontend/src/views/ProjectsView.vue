@@ -20,7 +20,7 @@
       </div>
       <div v-else class="row justify-content-center">
         <div v-if="error" class="col">
-          <div class="alert alert-danger">
+          <div class="alert alert-danger" role="alert">
             {{ error }}
           </div>
         </div>
@@ -51,15 +51,17 @@
                 <p class="card-description mb-auto text-start" v-html="project.description" />
                 <div>
                   <h3 class="visually-hidden">Tags</h3>
-                  <span
-                    v-for="tag in project.expand.tags"
-                    :key="tag.id"
-                    class="badge rounded-pill mx-1"
-                    :class="{ 'bg-info': !tag.color }"
-                    :style="{ backgroundColor: tag.color }"
-                  >
-                    {{ tag.title }}
-                  </span>
+                  <ul class="tags">
+                    <li
+                      v-for="tag in project.expand.tags"
+                      :key="tag.id"
+                      class="badge rounded-pill mx-1"
+                      :class="{ 'bg-info': !tag.color }"
+                      :style="{ backgroundColor: tag.color }"
+                    >
+                      {{ tag.title }}
+                    </li>
+                  </ul>
                 </div>
               </div>
               <a :href="project.url" class="card-link" target="_blank">
@@ -129,3 +131,10 @@ const fetchData = async () => {
 
 fetchData();
 </script>
+
+<style scoped lang="scss">
+.tags {
+  margin-bottom: 0;
+  padding-left: 0;
+}
+</style>

@@ -54,10 +54,10 @@
             >
               <fieldset>
                 <div class="col mb-3">
-                  <div v-if="error" class="alert alert-danger">
+                  <div v-if="error" class="alert alert-danger" role="alert">
                     Failed to send message. Please try again later.
                   </div>
-                  <div v-else-if="success" class="alert alert-success">
+                  <div v-else-if="success" class="alert alert-success" role="alert">
                     Your message has been sent successfully. Thank you!
                   </div>
                 </div>
