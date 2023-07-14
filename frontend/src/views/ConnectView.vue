@@ -20,7 +20,7 @@
             <ul class="list-inline banner-social-buttons">
               <li class="list-inline-item">
                 <a
-                  :href="`${ApiAddress}/to/github`"
+                  :href="ApiPath('/to/github')"
                   class="btn btn-outline-primary btn-lg"
                   target="_blank"
                 >
@@ -30,7 +30,7 @@
               </li>
               <li class="list-inline-item">
                 <a
-                  :href="`${ApiAddress}/to/linkedin`"
+                  :href="ApiPath('/to/linkedin')"
                   class="btn btn-outline-primary btn-lg"
                   target="_blank"
                 >
@@ -55,7 +55,7 @@
               ref="form"
               data-focus="false"
               method="post"
-              :action="`${ApiAddress}/api/mail`"
+              :action="ApiPath('/api/mail')"
               role="form"
               novalidate
               @submit.prevent="submit"
@@ -153,7 +153,7 @@ import AtIcon from "~icons/material-symbols/alternate-email-rounded";
 import CommentIcon from "~icons/material-symbols/mode-comment-rounded";
 import SendIcon from "~icons/material-symbols/send-rounded";
 import RefreshIcon from "~icons/mdi/loading";
-import { ApiAddress } from "../config/api";
+import { ApiPath } from "../config/api";
 
 const formData = ref({
   name: "",

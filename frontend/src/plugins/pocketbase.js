@@ -1,6 +1,6 @@
 import PocketBase from "pocketbase";
-import { ApiAddress } from "../config/api";
+import { ApiPath } from "../config/api";
 
-const pb = new PocketBase(ApiAddress);
+const pb = new PocketBase(ApiPath());
 
 export default pb;

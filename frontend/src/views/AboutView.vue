@@ -43,14 +43,14 @@
         <div class="row g-0 mb-3 justify-content-center">
           <div class="col-auto">
             <img
-              :src="`${ApiAddress}/api/github-stats/stats`"
+              :src="ApiPath('/api/github-stats/stats')"
               alt="Gabe Cook's GitHub stats"
               style="min-height: 195px"
             />
           </div>
           <div class="col-auto">
             <img
-              :src="`${ApiAddress}/api/github-stats/top-langs`"
+              :src="ApiPath('/api/github-stats/top-langs')"
               alt="Most Used Languages"
               style="min-height: 165px"
             />
@@ -71,5 +71,5 @@
 
 <script setup>
 import mapData from "../data/mapOptions";
-import { ApiAddress } from "../config/api";
+import { ApiPath } from "../config/api";
 </script>
