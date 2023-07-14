@@ -19,13 +19,21 @@
           <div class="col-lg-8 mx-auto">
             <ul class="list-inline banner-social-buttons">
               <li class="list-inline-item">
-                <a href="/to/github" class="btn btn-outline-primary btn-lg" target="_blank">
+                <a
+                  :href="`${ApiAddress}/to/github`"
+                  class="btn btn-outline-primary btn-lg"
+                  target="_blank"
+                >
                   <github-icon class="me-1" fixed-width fill />
                   <span class="network-name">Github</span>
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="/to/linkedin" class="btn btn-outline-primary btn-lg" target="_blank">
+                <a
+                  :href="`${ApiAddress}/to/linkedin`"
+                  class="btn btn-outline-primary btn-lg"
+                  target="_blank"
+                >
                   <linkedin-icon class="me-1" fixed-width fill />
                   <span class="network-name">LinkedIn</span>
                 </a>
@@ -47,7 +55,7 @@
               ref="form"
               data-focus="false"
               method="post"
-              action="/api/mail"
+              :action="`${ApiAddress}/api/mail`"
               role="form"
               novalidate
               @submit.prevent="submit"
@@ -145,6 +153,7 @@ import AtIcon from "~icons/material-symbols/alternate-email-rounded";
 import CommentIcon from "~icons/material-symbols/mode-comment-rounded";
 import SendIcon from "~icons/material-symbols/send-rounded";
 import RefreshIcon from "~icons/mdi/loading";
+import { ApiAddress } from "../config/api";
 
 const formData = ref({
   name: "",
