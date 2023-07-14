@@ -42,10 +42,18 @@
         </div>
         <div class="row g-0 mb-3 justify-content-center">
           <div class="col-auto">
-            <img :src="githubStatsUrl" alt="Gabe Cook's GitHub stats" style="min-height: 195px" />
+            <img
+              :src="`${ApiAddress}/api/github-stats/stats`"
+              alt="Gabe Cook's GitHub stats"
+              style="min-height: 195px"
+            />
           </div>
           <div class="col-auto">
-            <img :src="topLangsUrl" alt="Most Used Languages" style="min-height: 165px" />
+            <img
+              :src="`${ApiAddress}/api/github-stats/top-langs`"
+              alt="Most Used Languages"
+              style="min-height: 165px"
+            />
           </div>
         </div>
       </section>
@@ -63,8 +71,5 @@
 
 <script setup>
 import mapData from "../data/mapOptions";
-
-const githubStatsUrl = `${import.meta.env.VITE_API_ADDRESS || ""}/api/github-stats/stats`;
-
-const topLangsUrl = `${import.meta.env.VITE_API_ADDRESS || ""}/api/github-stats/top-langs`;
+import { ApiAddress } from "../config/api";
 </script>

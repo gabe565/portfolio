@@ -1,5 +1,6 @@
 import PocketBase from "pocketbase";
+import { ApiAddress } from "../config/api";
 
-const pb = new PocketBase(import.meta.env.VITE_API_ADDRESS || "/");
+const pb = new PocketBase(ApiAddress);
 
 export default pb;
