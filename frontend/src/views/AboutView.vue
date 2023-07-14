@@ -42,18 +42,10 @@
         </div>
         <div class="row g-0 mb-3 justify-content-center">
           <div class="col-auto">
-            <img
-              src="https://github-readme-stats.vercel.app/api?username=gabe565&show_icons=true&theme=transparent&hide_border=true&count_private=true"
-              alt="Gabe Cook's GitHub stats"
-              style="min-height: 195px"
-            />
+            <img :src="githubStatsUrl" alt="Gabe Cook's GitHub stats" style="min-height: 195px" />
           </div>
           <div class="col-auto">
-            <img
-              src="https://github-readme-stats.vercel.app/api/top-langs?username=gabe565&theme=transparent&hide_border=true&layout=compact"
-              alt="Most Used Languages"
-              style="min-height: 165px"
-            />
+            <img :src="topLangsUrl" alt="Most Used Languages" style="min-height: 165px" />
           </div>
         </div>
       </section>
@@ -71,4 +63,8 @@
 
 <script setup>
 import mapData from "../data/mapOptions";
+
+const githubStatsUrl = `${import.meta.env.VITE_API_ADDRESS || ""}/api/github-stats/stats`;
+
+const topLangsUrl = `${import.meta.env.VITE_API_ADDRESS || ""}/api/github-stats/top-langs`;
 </script>
