@@ -20,6 +20,7 @@ func CacheResponse(c echo.Context, cacheVal []byte, sourceUrl string) error {
 	}
 
 	c.Response().Header().Set("Content-Type", resp.Header.Get("Content-Type"))
+	c.Response().Header().Set("Cache-Control", resp.Header.Get("Cache-Control"))
 
 	if _, err := io.Copy(c.Response(), resp.Body); err != nil {
 		return err
