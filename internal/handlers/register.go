@@ -7,8 +7,12 @@ import (
 )
 
 func RegisterLocalHandlers(e *core.ServeEvent, app core.App) error {
+	e.Router.HEAD("/*", StaticHandler())
 	e.Router.GET("/*", StaticHandler())
+
 	e.Router.GET("/to/:handle", RedirectHandler(e), apis.ActivityLogger(app))
+
 	github_readme_stats.RegisterRoutes(e)
+
 	return nil
 }
