@@ -1,7 +1,6 @@
 package github_readme_stats
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -64,8 +63,6 @@ func UpdateReadmeStatsCache() error {
 	}
 
 	ReadmeStatsCache = dump
-
-	fmt.Println("Update cache")
 
 	return nil
 }
