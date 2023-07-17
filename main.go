@@ -4,11 +4,9 @@ import (
 	"log"
 
 	"github.com/gabe565/portfolio/internal/contact_form"
-	"github.com/gabe565/portfolio/internal/github_readme_stats"
 	"github.com/gabe565/portfolio/internal/handlers"
 	_ "github.com/gabe565/portfolio/migrations"
 	"github.com/pocketbase/pocketbase"
-	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
 )
@@ -21,10 +19,7 @@ func main() {
 	})
 
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
-		e.Router.GET("/*", handlers.StaticHandler())
-		e.Router.GET("/to/:handle", handlers.RedirectHandler(e), apis.ActivityLogger(app))
-		github_readme_stats.RegisterRoutes(e)
-		return nil
+		return handlers.RegisterLocalHandlers(e, app)
 	})
 
 	app.OnModelAfterCreate("contact_form").Add(contact_form.Notify(app))
