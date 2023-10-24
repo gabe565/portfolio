@@ -25,7 +25,7 @@ RUN <<EOT
 EOT
 
 
-FROM --platform=$BUILDPLATFORM node:18-alpine AS node-builder
+FROM --platform=$BUILDPLATFORM node:20-alpine AS node-builder
 WORKDIR /app
 
 COPY frontend/package.json frontend/package-lock.json frontend/.npmrc ./
