@@ -41,12 +41,12 @@ jobs:
         run: |
           yampl --inplace \
             --value tag="${GITHUB_REF_NAME#v}" \
-            fleet-infra/apps/gabernetes/portfolio/app/helmrelease.yaml
+            fleet-infra/apps/portfolio/app/helmrelease.yaml
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         if: inputs.environment == 'prod'
         with:
           repository: fleet-infra
-          file_pattern: apps/gabernetes/portfolio/app/helmrelease.yaml
+          file_pattern: apps/portfolio/app/helmrelease.yaml
           commit_message: ":arrow_up: (portfolio): Update image to ${{ github.ref_name }}"
