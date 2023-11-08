@@ -49,4 +49,4 @@ jobs:
         with:
           repository: fleet-infra
           file_pattern: apps/portfolio/app/helmrelease.yaml
-          commit_message: ":arrow_up: (portfolio): Update image to ${{ github.ref_name }}"
+          commit_message: "chore(portfolio): Update image tag to ${{ github.ref_name }}"
