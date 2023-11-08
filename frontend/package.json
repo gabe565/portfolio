@@ -14,7 +14,7 @@
     "@fawmi/vue-google-maps": "0.9.79",
     "@fontsource/roboto-slab": "5.0.15",
     "@iconify-json/material-symbols": "1.1.61",
-    "@iconify-json/mdi": "1.1.54",
+    "@iconify-json/mdi": "1.1.55",
     "@iconify-json/simple-icons": "1.1.77",
     "@popperjs/core": "2.11.8",
     "@vitejs/plugin-vue": "4.4.0",
