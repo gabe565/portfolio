@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@fawmi/vue-google-maps": "0.9.79",
-    "@fontsource/roboto-slab": "5.0.15",
+    "@fontsource/roboto-slab": "5.0.17",
     "@iconify-json/material-symbols": "1.1.61",
     "@iconify-json/mdi": "1.1.54",
     "@iconify-json/simple-icons": "1.1.77",
