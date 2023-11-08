@@ -8,14 +8,7 @@ on:
         required: true
       url:
         type: string
-      bucket-name:
-        type: string
-        required: true
     secrets:
-      aws-role-arn:
-        required: true
-      cloudfront-id:
-        required: true
       infra-ssh-key:
         required: true
 
@@ -28,13 +21,6 @@ jobs:
       name: ${{ inputs.environment }}
       url: ${{ inputs.url }}
     steps:
-      - name: Configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.aws-role-arn }}
-          role-session-name: portfolio-ci
-          aws-region: us-east-2
-
       - name: Checkout fleet-infra
         uses: actions/checkout@v4
         with:
@@ -64,9 +50,3 @@ jobs:
           repository: fleet-infra
           file_pattern: apps/gabernetes/portfolio/app/helmrelease.yaml
           commit_message: ":arrow_up: (portfolio): Update image to ${{ github.ref_name }}"
-
-      - name: Deploy
-        run: aws s3 sync --delete --no-progress dist s3://${{ inputs.bucket-name }}
-
-      - name: Invalidate cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.cloudfront-id }} --paths '/*'
