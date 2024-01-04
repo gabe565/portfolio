@@ -21,11 +21,11 @@ jobs:
       name: ${{ inputs.environment }}
       url: ${{ inputs.url }}
     steps:
-      - name: Checkout fleet-infra
+      - name: Checkout home-ops
         uses: actions/checkout@v4
         with:
-          repository: gabe565/fleet-infra
-          path: fleet-infra
+          repository: gabe565/home-ops
+          path: home-ops
           ssh-key: ${{ secrets.infra-ssh-key }}
 
       - name: Download artifact
@@ -41,12 +41,12 @@ jobs:
         run: |
           yampl --inplace \
             --value tag="${GITHUB_REF_NAME#v}" \
-            fleet-infra/apps/portfolio/app/helmrelease.yaml
+            home-ops/kubernetes/apps/portfolio/app/helmrelease.yaml
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         if: inputs.environment == 'prod'
         with:
-          repository: fleet-infra
-          file_pattern: apps/portfolio/app/helmrelease.yaml
+          repository: home-ops
+          file_pattern: kubernetes/kubernetes/apps/portfolio/app/helmrelease.yaml
           commit_message: "chore(portfolio): Update image tag to ${{ github.ref_name }}"
