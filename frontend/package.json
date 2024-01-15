@@ -15,7 +15,7 @@
     "@fontsource/roboto-slab": "5.0.17",
     "@iconify-json/material-symbols": "1.1.70",
     "@iconify-json/mdi": "1.1.55",
-    "@iconify-json/simple-icons": "1.1.77",
+    "@iconify-json/simple-icons": "1.1.88",
     "@popperjs/core": "2.11.8",
     "@vitejs/plugin-vue": "4.4.0",
     "autoprefixer": "10.4.16",
