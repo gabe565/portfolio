@@ -24,7 +24,7 @@
     "sass": "1.69.5",
     "unplugin-icons": "0.18.2",
     "vite": "4.5.0",
-    "vue": "3.3.8",
+    "vue": "3.4.13",
     "vue-router": "4.2.5"
   },
   "devDependencies": {
