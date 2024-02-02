@@ -13,7 +13,7 @@
   "dependencies": {
     "@fawmi/vue-google-maps": "0.9.79",
     "@fontsource/roboto-slab": "5.0.18",
-    "@iconify-json/material-symbols": "1.1.70",
+    "@iconify-json/material-symbols": "1.1.72",
     "@iconify-json/mdi": "1.1.64",
     "@iconify-json/simple-icons": "1.1.88",
     "@popperjs/core": "2.11.8",
