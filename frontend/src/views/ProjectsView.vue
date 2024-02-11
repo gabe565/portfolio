@@ -86,12 +86,12 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, shallowRef } from "vue";
 import pb from "../plugins/pocketbase";
 import GitHubIcon from "~icons/simple-icons/github";
 import GlobeIcon from "~icons/mdi/web";
 
-const projects = ref([]);
+const projects = shallowRef([]);
 const loading = ref(true);
 const error = ref();
 
