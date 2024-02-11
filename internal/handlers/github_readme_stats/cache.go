@@ -13,7 +13,9 @@ func init() {
 		timer := time.NewTimer(0)
 		for range timer.C {
 			timer.Reset(4 * time.Hour)
-			if err := UpdateReadmeStatsCache(); err != nil {
+			if b, err := UpdateCache(ReadmeStatsUrl); err == nil {
+				ReadmeStatsCache = b
+			} else {
 				log.Println(err)
 			}
 		}
@@ -23,7 +25,9 @@ func init() {
 		timer := time.NewTimer(0)
 		for range timer.C {
 			timer.Reset(4 * time.Hour)
-			if err := UpdateTopLangsCache(); err != nil {
+			if b, err := UpdateCache(TopLangsUrl); err == nil {
+				TopLangsCache = b
+			} else {
 				log.Println(err)
 			}
 		}
@@ -44,40 +48,14 @@ var (
 	TopLangsCache []byte
 )
 
-func UpdateReadmeStatsCache() error {
-	resp, err := http.Get(ReadmeStatsUrl)
+func UpdateCache(url string) ([]byte, error) {
+	resp, err := http.Get(url)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	defer func(Body io.ReadCloser) {
 		_ = Body.Close()
 	}(resp.Body)
 
-	dump, err := httputil.DumpResponse(resp, true)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	ReadmeStatsCache = dump
-
-	return nil
-}
-
-func UpdateTopLangsCache() error {
-	resp, err := http.Get(TopLangsUrl)
-	if err != nil {
-		return err
-	}
-	defer func(Body io.ReadCloser) {
-		_ = Body.Close()
-	}(resp.Body)
-
-	dump, err := httputil.DumpResponse(resp, true)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	TopLangsCache = dump
-
-	return nil
+	return httputil.DumpResponse(resp, true)
 }
