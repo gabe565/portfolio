@@ -6,7 +6,7 @@ require (
 	github.com/labstack/echo/v5 v5.0.0-20230722203903-ec5b858dab61
 	github.com/meyskens/go-turnstile v0.0.0-20230622160222-89160e594ca1
 	github.com/pocketbase/dbx v1.10.1
-	github.com/pocketbase/pocketbase v0.21.1
+	github.com/pocketbase/pocketbase v0.21.3
 	github.com/spf13/pflag v1.0.5
 )
 
