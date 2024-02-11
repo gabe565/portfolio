@@ -8,7 +8,7 @@ import (
 )
 
 func CacheResponse(c echo.Context, data []byte, sourceUrl string) error {
-	if data == nil {
+	if len(data) == 0 {
 		return c.Redirect(http.StatusTemporaryRedirect, sourceUrl)
 	}
 
