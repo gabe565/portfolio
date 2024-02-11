@@ -35,10 +35,6 @@ func init() {
 	}()
 }
 
-type CacheEntry struct {
-	Headers http.Header
-}
-
 var (
 	ReadmeStatsUrl   = "https://github-readme-stats.vercel.app/api?username=gabe565&show_icons=true&theme=transparent&hide_border=true&count_private=true"
 	ReadmeStatsCache []byte
