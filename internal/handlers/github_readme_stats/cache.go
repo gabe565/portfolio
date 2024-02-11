@@ -4,15 +4,16 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"net/http/httputil"
 	"time"
 )
+
+var UpdateDuration = 4 * time.Hour
 
 func init() {
 	go func() {
 		timer := time.NewTimer(0)
 		for range timer.C {
-			timer.Reset(4 * time.Hour)
+			timer.Reset(UpdateDuration)
 			if b, err := UpdateCache(ReadmeStatsUrl); err == nil {
 				ReadmeStatsCache = b
 			} else {
@@ -24,7 +25,7 @@ func init() {
 	go func() {
 		timer := time.NewTimer(0)
 		for range timer.C {
-			timer.Reset(4 * time.Hour)
+			timer.Reset(UpdateDuration)
 			if b, err := UpdateCache(TopLangsUrl); err == nil {
 				TopLangsCache = b
 			} else {
@@ -57,5 +58,5 @@ func UpdateCache(url string) ([]byte, error) {
 		_ = Body.Close()
 	}(resp.Body)
 
-	return httputil.DumpResponse(resp, true)
+	return io.ReadAll(resp.Body)
 }
