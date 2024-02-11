@@ -1,6 +1,7 @@
 package github_readme_stats
 
 import (
+	"errors"
 	"io"
 	"log"
 	"net/http"
@@ -18,11 +19,11 @@ func init() {
 var (
 	ReadmeStatsUrl   = "https://github-readme-stats.vercel.app/api?username=gabe565&show_icons=true&theme=transparent&hide_border=true&count_private=true"
 	ReadmeStatsCache []byte
-)
 
-var (
 	TopLangsUrl   = "https://github-readme-stats.vercel.app/api/top-langs?username=gabe565&theme=transparent&hide_border=true&layout=compact"
 	TopLangsCache []byte
+
+	ErrInvalidResponse = errors.New("invalid response")
 )
 
 func UpdateCache(url string) ([]byte, error) {
@@ -33,6 +34,10 @@ func UpdateCache(url string) ([]byte, error) {
 	defer func(Body io.ReadCloser) {
 		_ = Body.Close()
 	}(resp.Body)
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, ErrInvalidResponse
+	}
 
 	return io.ReadAll(resp.Body)
 }
