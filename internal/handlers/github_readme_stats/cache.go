@@ -10,11 +10,9 @@ import (
 
 func init() {
 	go func() {
-		if err := UpdateReadmeStatsCache(); err != nil {
-			log.Println(err)
-		}
-		ticker := time.NewTicker(4 * time.Hour)
-		for range ticker.C {
+		timer := time.NewTimer(0)
+		for range timer.C {
+			timer.Reset(4 * time.Hour)
 			if err := UpdateReadmeStatsCache(); err != nil {
 				log.Println(err)
 			}
@@ -22,11 +20,9 @@ func init() {
 	}()
 
 	go func() {
-		if err := UpdateTopLangsCache(); err != nil {
-			log.Println(err)
-		}
-		ticker := time.NewTicker(4 * time.Hour)
-		for range ticker.C {
+		timer := time.NewTimer(0)
+		for range timer.C {
+			timer.Reset(4 * time.Hour)
 			if err := UpdateTopLangsCache(); err != nil {
 				log.Println(err)
 			}
