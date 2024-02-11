@@ -10,7 +10,7 @@ import (
 )
 
 func CacheResponse(c echo.Context, cacheVal []byte, sourceUrl string) error {
-	if ReadmeStatsCache == nil {
+	if cacheVal == nil {
 		return c.Redirect(http.StatusTemporaryRedirect, sourceUrl)
 	}
 
