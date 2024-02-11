@@ -126,6 +126,7 @@
                     ></textarea>
                   </div>
                 </div>
+                <div ref="captcha" class="mb-3" style="height: 65px" />
                 <!-- Button -->
                 <div class="form-group mb-3">
                   <button class="btn btn-outline-primary">
@@ -144,7 +145,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onActivated, onMounted, ref } from "vue";
 import pb from "../plugins/pocketbase";
 import LinkedinIcon from "~icons/simple-icons/linkedin";
 import GithubIcon from "~icons/simple-icons/github";
@@ -154,6 +155,12 @@ import CommentIcon from "~icons/material-symbols/mode-comment-rounded";
 import SendIcon from "~icons/material-symbols/send-rounded";
 import RefreshIcon from "~icons/mdi/loading";
 import { ApiPath } from "../config/api";
+import {
+  loadTurnstile,
+  TurnstileEnabled,
+  TurnstileKey,
+  TurnstileReady,
+} from "../plugins/turnstile";
 
 const formData = ref({
   name: "",
@@ -166,6 +173,7 @@ const success = ref(false);
 const loading = ref(false);
 
 const form = ref(null);
+let captchaValue;
 
 const submit = async () => {
   const valid = form.value.checkValidity();
@@ -174,7 +182,9 @@ const submit = async () => {
     loading.value = true;
     const wait = new Promise((resolve) => setTimeout(resolve, 1000));
     try {
-      await pb.collection("contact_form").create(formData.value);
+      await pb.collection("contact_form").create(formData.value, {
+        headers: { "X-Captcha": captchaValue },
+      });
       await wait;
       success.value = true;
     } catch (e) {
@@ -185,4 +195,28 @@ const submit = async () => {
     }
   }
 };
+
+const captcha = ref(null);
+
+if (TurnstileEnabled) {
+  let captchaId;
+
+  onMounted(async () => {
+    loadTurnstile();
+
+    await TurnstileReady;
+    captchaId = window.turnstile.render(captcha.value, {
+      sitekey: TurnstileKey,
+      theme: "dark",
+      action: "contact",
+      callback: (token) => (captchaValue = token),
+    });
+  });
+
+  onActivated(() => {
+    if (captchaId) {
+      window.turnstile.reset(captchaId);
+    }
+  });
+}
 </script>

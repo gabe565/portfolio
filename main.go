@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"github.com/gabe565/portfolio/internal/captcha"
 	"github.com/gabe565/portfolio/internal/contact_form"
 	"github.com/gabe565/portfolio/internal/handlers"
 	_ "github.com/gabe565/portfolio/migrations"
@@ -22,6 +23,7 @@ func main() {
 		return handlers.RegisterLocalHandlers(e, app)
 	})
 
+	app.OnRecordBeforeCreateRequest("contact_form").Add(captcha.Verify)
 	app.OnModelAfterCreate("contact_form").Add(contact_form.Notify(app))
 
 	if err := app.Start(); err != nil {
