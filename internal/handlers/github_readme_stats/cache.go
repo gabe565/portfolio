@@ -5,34 +5,14 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	flag "github.com/spf13/pflag"
 )
 
-var UpdateDuration = 4 * time.Hour
+var UpdateDuration time.Duration
 
 func init() {
-	go func() {
-		timer := time.NewTimer(0)
-		for range timer.C {
-			timer.Reset(UpdateDuration)
-			if b, err := UpdateCache(ReadmeStatsUrl); err == nil {
-				ReadmeStatsCache = b
-			} else {
-				log.Println(err)
-			}
-		}
-	}()
-
-	go func() {
-		timer := time.NewTimer(0)
-		for range timer.C {
-			timer.Reset(UpdateDuration)
-			if b, err := UpdateCache(TopLangsUrl); err == nil {
-				TopLangsCache = b
-			} else {
-				log.Println(err)
-			}
-		}
-	}()
+	flag.DurationVar(&UpdateDuration, "readme-stats-interval", 4*time.Hour, "GitHub readme stats update interval")
 }
 
 var (
@@ -55,4 +35,24 @@ func UpdateCache(url string) ([]byte, error) {
 	}(resp.Body)
 
 	return io.ReadAll(resp.Body)
+}
+
+func beginUpdater() {
+	timer := time.NewTimer(0)
+
+	for range timer.C {
+		timer.Reset(UpdateDuration)
+
+		if b, err := UpdateCache(ReadmeStatsUrl); err == nil {
+			ReadmeStatsCache = b
+		} else {
+			log.Println(err)
+		}
+
+		if b, err := UpdateCache(TopLangsUrl); err == nil {
+			TopLangsCache = b
+		} else {
+			log.Println(err)
+		}
+	}
 }
