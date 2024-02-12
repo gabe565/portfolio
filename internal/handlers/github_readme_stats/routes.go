@@ -1,25 +1,43 @@
 package github_readme_stats
 
 import (
+	"net/url"
+
 	"github.com/pocketbase/pocketbase/core"
-	flag "github.com/spf13/pflag"
 )
 
-func RegisterRoutes(e *core.ServeEvent) {
-	updateInterval, err := flag.CommandLine.GetDuration(ReadmeStatsIntervalFlag)
+func RegisterRoutes(e *core.ServeEvent) error {
+	parsedUrl, err := url.Parse(sourceUrl)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
-	NewCache(
-		"/api/github-stats/stats",
-		"https://github-readme-stats.vercel.app/api?username=gabe565&show_icons=true&theme=transparent&hide_border=true&count_private=true",
-		updateInterval,
-	).RegisterRoutes(e)
+	userUrl, err := formatUrl(parsedUrl, "api", userParams)
+	if err != nil {
+		return err
+	}
+	NewCache("/api/github-stats/stats", userUrl, interval).RegisterRoutes(e)
 
-	NewCache(
-		"/api/github-stats/top-langs",
-		"https://github-readme-stats.vercel.app/api/top-langs?username=gabe565&theme=transparent&hide_border=true&layout=compact",
-		updateInterval,
-	).RegisterRoutes(e)
+	langsUrl, err := formatUrl(parsedUrl, "api/top-langs", langsParams)
+	if err != nil {
+		return err
+	}
+	NewCache("/api/github-stats/top-langs", langsUrl, interval).RegisterRoutes(e)
+
+	return nil
+}
+
+func formatUrl(src *url.URL, parse string, params map[string]string) (string, error) {
+	parsed, err := src.Parse(parse)
+	if err != nil {
+		return parsed.String(), err
+	}
+
+	q := parsed.Query()
+	for k, v := range params {
+		q.Set(k, v)
+	}
+	parsed.RawQuery = q.Encode()
+
+	return parsed.String(), nil
 }

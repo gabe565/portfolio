@@ -12,7 +12,9 @@ func RegisterLocalHandlers(e *core.ServeEvent, app core.App) error {
 
 	e.Router.GET("/to/:handle", RedirectHandler(e), apis.ActivityLogger(app))
 
-	github_readme_stats.RegisterRoutes(e)
+	if err := github_readme_stats.RegisterRoutes(e); err != nil {
+		return err
+	}
 
 	return nil
 }
