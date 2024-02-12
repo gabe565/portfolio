@@ -70,11 +70,13 @@ func (c *Cache) Update() error {
 }
 
 func (c *Cache) beginUpdate() {
-	timer := time.NewTimer(0)
-	defer timer.Stop()
+	if err := c.Update(); err != nil {
+		log.Println(err)
+	}
 
-	for range timer.C {
-		timer.Reset(c.interval)
+	ticker := time.NewTicker(c.interval)
+	defer ticker.Stop()
+	for range ticker.C {
 		if err := c.Update(); err != nil {
 			log.Println(err)
 		}
