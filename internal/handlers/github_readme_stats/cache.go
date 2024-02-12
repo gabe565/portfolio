@@ -5,58 +5,77 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
-	flag "github.com/spf13/pflag"
+	"github.com/labstack/echo/v5"
+	"github.com/pocketbase/pocketbase/core"
 )
 
-var UpdateDuration time.Duration
-
-func init() {
-	flag.DurationVar(&UpdateDuration, "readme-stats-interval", 4*time.Hour, "GitHub readme stats update interval")
+func NewCache(endpoint, sourceUrl string, interval time.Duration) *Cache {
+	c := Cache{
+		endpoint:  endpoint,
+		sourceUrl: sourceUrl,
+		interval:  interval,
+	}
+	go c.beginUpdate()
+	return &c
 }
 
-var (
-	ReadmeStatsUrl   = "https://github-readme-stats.vercel.app/api?username=gabe565&show_icons=true&theme=transparent&hide_border=true&count_private=true"
-	ReadmeStatsCache []byte
+type Cache struct {
+	endpoint  string
+	sourceUrl string
+	interval  time.Duration
+	data      []byte
+}
 
-	TopLangsUrl   = "https://github-readme-stats.vercel.app/api/top-langs?username=gabe565&theme=transparent&hide_border=true&layout=compact"
-	TopLangsCache []byte
+func (c *Cache) Handler(ctx echo.Context) error {
+	if len(c.data) == 0 {
+		return ctx.Redirect(http.StatusTemporaryRedirect, c.sourceUrl)
+	}
 
-	ErrInvalidResponse = errors.New("invalid response")
-)
+	ctx.Response().Header().Set("Content-Type", "image/svg+xml; charset=utf-8")
+	ctx.Response().Header().Set("Cache-Control", "max-age="+strconv.Itoa(int(c.interval.Seconds())))
+	_, err := ctx.Response().Write(c.data)
+	return err
+}
 
-func UpdateCache(url string) ([]byte, error) {
-	resp, err := http.Get(url)
+func (c *Cache) RegisterRoutes(e *core.ServeEvent) {
+	e.Router.HEAD(c.endpoint, c.Handler)
+	e.Router.GET(c.endpoint, c.Handler)
+}
+
+var ErrInvalidResponse = errors.New("invalid response")
+
+func (c *Cache) Update() error {
+	resp, err := http.Get(c.sourceUrl)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	defer func(Body io.ReadCloser) {
 		_ = Body.Close()
 	}(resp.Body)
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, ErrInvalidResponse
+		return ErrInvalidResponse
 	}
 
-	return io.ReadAll(resp.Body)
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	c.data = b
+	return nil
 }
 
-func beginUpdater() {
+func (c *Cache) beginUpdate() {
 	timer := time.NewTimer(0)
+	defer timer.Stop()
 
 	for range timer.C {
-		timer.Reset(UpdateDuration)
-
-		if b, err := UpdateCache(ReadmeStatsUrl); err == nil {
-			ReadmeStatsCache = b
-		} else {
-			log.Println(err)
-		}
-
-		if b, err := UpdateCache(TopLangsUrl); err == nil {
-			TopLangsCache = b
-		} else {
+		timer.Reset(c.interval)
+		if err := c.Update(); err != nil {
 			log.Println(err)
 		}
 	}
