@@ -5,7 +5,8 @@
 </h1>
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/gabe565/portfolio)](https://github.com/gabe565/portfolio/releases)
-[![Docker Build](https://github.com/gabe565/portfolio/actions/workflows/build.yaml/badge.svg)](https://github.com/gabe565/portfolio/actions/workflows/build.yaml)  
+[![Docker Build](https://github.com/gabe565/portfolio/actions/workflows/build.yaml/badge.svg)](https://github.com/gabe565/portfolio/actions/workflows/build.yaml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gabe565_portfolio&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=gabe565_portfolio)  
 _My personal portfolio website_
 
 </div>
