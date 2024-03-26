@@ -129,6 +129,8 @@ jobs:
       url: https://gabecook.com
     secrets:
       infra-ssh-key: ${{ secrets.INFRA_SSH_KEY }}
+      cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      cloudflare-account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
   release:
     name: Release

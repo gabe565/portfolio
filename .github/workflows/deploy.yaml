@@ -11,6 +11,10 @@ on:
     secrets:
       infra-ssh-key:
         required: true
+      cloudflare-api-token:
+        required: false
+      cloudflare-account-id:
+        required: false
 
 jobs:
   deploy:
@@ -50,3 +54,15 @@ jobs:
           repository: home-ops
           file_pattern: kubernetes/apps/portfolio/app/helmrelease.yaml
           commit_message: "chore(portfolio): Update image tag to ${{ github.ref_name }}"
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        if: inputs.environment == 'prod'
+        with:
+          apiToken: ${{ secrets.cloudflare-api-token }}
+          accountId: ${{ secrets.cloudflare-account-id }}
+          projectName: gabecook
+          directory: dist
+          gitHubToken: ${{ github.token }}
+          branch: main
+          wranglerVersion: '3'
