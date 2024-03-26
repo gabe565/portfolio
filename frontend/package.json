@@ -19,7 +19,7 @@
     "@popperjs/core": "2.11.8",
     "@types/cloudflare-turnstile": "0.1.4",
     "@vitejs/plugin-vue": "5.0.4",
-    "autoprefixer": "10.4.17",
+    "autoprefixer": "10.4.19",
     "bootstrap": "5.3.3",
     "pocketbase": "0.21.1",
     "sass": "1.72.0",
