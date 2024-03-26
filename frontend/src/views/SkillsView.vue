@@ -85,6 +85,7 @@ const fetchData = async () => {
     const response = await pb.collection("skill_headings").getFullList({
       expand: "skills_via_heading",
       sort: "order,title",
+      fields: "title,expand.skills_via_heading.title,expand.skills_via_heading.rating",
     });
     skills.value = response
       .map(({ title, expand }) => {

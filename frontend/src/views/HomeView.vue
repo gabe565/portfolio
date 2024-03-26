@@ -45,7 +45,9 @@ onDeactivated(() => {
 let backgrounds = [];
 const fetchBackgrounds = async () => {
   try {
-    const response = await pb.collection("backgrounds").getFullList();
+    const response = await pb.collection("backgrounds").getFullList({
+      fields: "url",
+    });
     backgrounds = response
       .map((background) => ({ sortKey: Math.random(), background }))
       .sort((a, b) => a.sortKey - b.sortKey)

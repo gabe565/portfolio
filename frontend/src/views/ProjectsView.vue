@@ -99,6 +99,7 @@ const fetchData = async () => {
     const response = await pb.collection("projects").getFullList({
       sort: "-priority,created",
       expand: "tags",
+      fields: "collectionId,id,name,url,description,image,expand.tags.title,expand.tags.color",
     });
     projects.value = response.map((project) => {
       let image = "";
