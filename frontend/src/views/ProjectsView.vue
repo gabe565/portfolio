@@ -98,6 +98,7 @@ const error = ref();
 const fetchData = async () => {
   try {
     const response = await pb.collection("projects").getFullList({
+      sort: "-priority,created",
       expand: "tags",
     });
     projects.value = response.map((project) => {
