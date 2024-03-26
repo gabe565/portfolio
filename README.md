@@ -4,6 +4,7 @@
   Portfolio
 </h1>
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/gabe565/portfolio)](https://github.com/gabe565/portfolio/releases)
 [![Docker Build](https://github.com/gabe565/portfolio/actions/workflows/build.yaml/badge.svg)](https://github.com/gabe565/portfolio/actions/workflows/build.yaml)  
 _My personal portfolio website_
 
