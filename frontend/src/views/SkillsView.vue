@@ -84,9 +84,9 @@ const fetchData = async () => {
   try {
     const response = await pb.collection("skill_headings").getFullList({
       expand: "skills_via_heading",
+      sort: "order,title",
     });
     skills.value = response
-      .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title))
       .map(({ title, expand }) => {
         return {
           title: title,
