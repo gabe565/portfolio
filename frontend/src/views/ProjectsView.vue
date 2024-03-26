@@ -41,7 +41,6 @@
                     :src="project.image"
                     class="card-img-top"
                     :alt="`Screenshot of ${project.name}`"
-                    :style="{ padding: `${project.image_padding}px` }"
                   />
                 </a>
               </template>
