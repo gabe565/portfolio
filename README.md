@@ -4,8 +4,7 @@
   Portfolio
 </h1>
 
-[![Docker Build](https://github.com/gabe565/portfolio/actions/workflows/build.yaml/badge.svg)](https://github.com/gabe565/portfolio/actions/workflows/build.yaml)
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/gabe565)](https://artifacthub.io/packages/helm/gabe565/portfolio)  
+[![Docker Build](https://github.com/gabe565/portfolio/actions/workflows/build.yaml/badge.svg)](https://github.com/gabe565/portfolio/actions/workflows/build.yaml)  
 _My personal portfolio website_
 
 </div>
