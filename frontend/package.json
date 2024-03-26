@@ -13,9 +13,9 @@
   "dependencies": {
     "@fawmi/vue-google-maps": "0.9.79",
     "@fontsource/roboto-slab": "5.0.18",
-    "@iconify-json/material-symbols": "1.1.72",
+    "@iconify-json/material-symbols": "1.1.76",
     "@iconify-json/mdi": "1.1.64",
-    "@iconify-json/simple-icons": "1.1.91",
+    "@iconify-json/simple-icons": "1.1.97",
     "@popperjs/core": "2.11.8",
     "@types/cloudflare-turnstile": "0.1.4",
     "@vitejs/plugin-vue": "5.0.4",
