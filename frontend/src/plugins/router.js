@@ -5,6 +5,7 @@ import SkillsView from "../views/SkillsView.vue";
 import ProjectsView from "../views/ProjectsView.vue";
 import ConnectView from "../views/ConnectView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
+import { ApiPath } from "../config/api";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +35,12 @@ const router = createRouter({
       path: "/connect",
       component: ConnectView,
       meta: { title: "Connect" },
+    },
+    {
+      path: "/_",
+      redirect() {
+        window.location.href = ApiPath("/_");
+      },
     },
     {
       path: "/:wildcard(.*)",
