@@ -1,4 +1,4 @@
-export const TurnstileKey = import.meta.env.VITE_TURNSTILE_KEY;
+export const TurnstileKey = import.meta.env.VITE_TURNSTILE_KEY || "1x00000000000000000000AA";
 export const TurnstileEnabled = TurnstileKey !== undefined;
 export const TurnstileReady = new Promise((resolve) => {
   window.onloadTurnstileCallback = resolve;

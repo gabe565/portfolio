@@ -13,10 +13,15 @@ import (
 var turnstileSecret string
 
 func Flags(cmd *cobra.Command) {
+	defaultTurnstileSecret := "1x0000000000000000000000000000000AA"
+	if env := os.Getenv("TURNSTILE_SECRET"); env != "" {
+		defaultTurnstileSecret = env
+	}
+
 	cmd.PersistentFlags().StringVar(
 		&turnstileSecret,
 		"turnstile-secret",
-		os.Getenv("TURNSTILE_SECRET"),
+		defaultTurnstileSecret,
 		"Turnstile captcha secret key",
 	)
 }
