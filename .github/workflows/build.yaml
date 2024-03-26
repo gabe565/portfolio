@@ -108,6 +108,7 @@ jobs:
         env:
           VITE_API_ADDRESS: https://api.gabecook.com
           VITE_GOOGLE_API_KEY: ${{ secrets.VITE_GOOGLE_API_KEY }}
+          VITE_TURNSTILE_KEY: ${{ secrets.VITE_TURNSTILE_KEY }}
         run: npm --prefix=frontend run build
       - name: Upload artifact
         uses: actions/upload-artifact@v4
