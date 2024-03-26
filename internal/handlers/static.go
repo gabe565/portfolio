@@ -5,13 +5,14 @@ import (
 
 	"github.com/labstack/echo/v5"
 	"github.com/pocketbase/pocketbase/apis"
-	flag "github.com/spf13/pflag"
+	"github.com/spf13/cobra"
 )
 
+//nolint:gochecknoglobals
 var publicDir string
 
-func init() {
-	flag.StringVar(&publicDir, "public", "frontend/dist", "Public directory")
+func Flags(cmd *cobra.Command) {
+	cmd.PersistentFlags().StringVar(&publicDir, "public", "frontend/dist", "Public directory")
 }
 
 func StaticHandler() echo.HandlerFunc {

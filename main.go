@@ -4,8 +4,9 @@ import (
 	"log"
 
 	"github.com/gabe565/portfolio/internal/captcha"
-	"github.com/gabe565/portfolio/internal/contact_form"
+	"github.com/gabe565/portfolio/internal/contactform"
 	"github.com/gabe565/portfolio/internal/handlers"
+	"github.com/gabe565/portfolio/internal/handlers/githubstats"
 	_ "github.com/gabe565/portfolio/migrations"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
@@ -14,6 +15,9 @@ import (
 
 func main() {
 	app := pocketbase.New()
+	handlers.Flags(app.RootCmd)
+	captcha.Flags(app.RootCmd)
+	githubstats.Flags(app.RootCmd)
 
 	migratecmd.MustRegister(app, app.RootCmd, migratecmd.Config{
 		Automigrate: automigrateEnabled(),
@@ -24,7 +28,7 @@ func main() {
 	})
 
 	app.OnRecordBeforeCreateRequest("contact_form").Add(captcha.Verify)
-	app.OnModelAfterCreate("contact_form").Add(contact_form.Notify(app))
+	app.OnModelAfterCreate("contact_form").Add(contactform.Notify(app))
 
 	if err := app.Start(); err != nil {
 		log.Fatal(err)

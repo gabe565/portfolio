@@ -1,6 +1,7 @@
-package github_readme_stats
+package githubstats
 
 import (
+	"context"
 	"errors"
 	"io"
 	"log"
@@ -12,10 +13,10 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func NewCache(endpoint, sourceUrl string, interval time.Duration) *Cache {
+func NewCache(endpoint, sourceURL string, interval time.Duration) *Cache {
 	c := Cache{
 		endpoint:  endpoint,
-		sourceUrl: sourceUrl,
+		sourceURL: sourceURL,
 		interval:  interval,
 	}
 	go c.beginUpdate()
@@ -24,14 +25,14 @@ func NewCache(endpoint, sourceUrl string, interval time.Duration) *Cache {
 
 type Cache struct {
 	endpoint  string
-	sourceUrl string
+	sourceURL string
 	interval  time.Duration
 	data      []byte
 }
 
 func (c *Cache) Handler(ctx echo.Context) error {
 	if len(c.data) == 0 {
-		return ctx.Redirect(http.StatusTemporaryRedirect, c.sourceUrl)
+		return ctx.Redirect(http.StatusTemporaryRedirect, c.sourceURL)
 	}
 
 	ctx.Response().Header().Set("Content-Type", "image/svg+xml; charset=utf-8")
@@ -48,13 +49,21 @@ func (c *Cache) RegisterRoutes(e *core.ServeEvent) {
 var ErrInvalidResponse = errors.New("invalid response")
 
 func (c *Cache) Update() error {
-	resp, err := http.Get(c.sourceUrl)
+	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
+	defer cancel()
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, c.sourceURL, nil)
 	if err != nil {
 		return err
 	}
-	defer func(Body io.ReadCloser) {
-		_ = Body.Close()
-	}(resp.Body)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	if resp.StatusCode != http.StatusOK {
 		return ErrInvalidResponse

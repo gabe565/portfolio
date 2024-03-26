@@ -1,4 +1,4 @@
-package contact_form
+package contactform
 
 import (
 	_ "embed"
@@ -13,7 +13,7 @@ import (
 )
 
 type NotifyData struct {
-	AppUrl  string
+	AppURL  string
 	Sender  *mail.Address
 	Message string
 }
@@ -45,7 +45,7 @@ func Notify(app *pocketbase.PocketBase) func(e *core.ModelEvent) error {
 
 		var buf strings.Builder
 		data := NotifyData{
-			AppUrl: app.Settings().Meta.AppUrl,
+			AppURL: app.Settings().Meta.AppUrl,
 			Sender: &mail.Address{
 				Name:    record.GetString("name"),
 				Address: record.GetString("email"),

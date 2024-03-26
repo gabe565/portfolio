@@ -6,13 +6,14 @@ import (
 
 	"github.com/meyskens/go-turnstile"
 	"github.com/pocketbase/pocketbase/core"
-	flag "github.com/spf13/pflag"
+	"github.com/spf13/cobra"
 )
 
+//nolint:gochecknoglobals
 var turnstileSecret string
 
-func init() {
-	flag.StringVar(
+func Flags(cmd *cobra.Command) {
+	cmd.PersistentFlags().StringVar(
 		&turnstileSecret,
 		"turnstile-secret",
 		os.Getenv("TURNSTILE_SECRET"),

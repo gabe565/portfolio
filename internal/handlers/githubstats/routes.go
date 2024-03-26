@@ -1,4 +1,4 @@
-package github_readme_stats
+package githubstats
 
 import (
 	"net/url"
@@ -7,27 +7,27 @@ import (
 )
 
 func RegisterRoutes(e *core.ServeEvent) error {
-	parsedUrl, err := url.Parse(sourceUrl)
+	parsedURL, err := url.Parse(sourceURL)
 	if err != nil {
 		return err
 	}
 
-	userUrl, err := formatUrl(parsedUrl, "api", userParams)
+	userURL, err := formatURL(parsedURL, "api", userParams)
 	if err != nil {
 		return err
 	}
-	NewCache("/api/github-stats/stats", userUrl, interval).RegisterRoutes(e)
+	NewCache("/api/github-stats/stats", userURL, interval).RegisterRoutes(e)
 
-	langsUrl, err := formatUrl(parsedUrl, "api/top-langs", langsParams)
+	langsURL, err := formatURL(parsedURL, "api/top-langs", langsParams)
 	if err != nil {
 		return err
 	}
-	NewCache("/api/github-stats/top-langs", langsUrl, interval).RegisterRoutes(e)
+	NewCache("/api/github-stats/top-langs", langsURL, interval).RegisterRoutes(e)
 
 	return nil
 }
 
-func formatUrl(src *url.URL, parse string, params map[string]string) (string, error) {
+func formatURL(src *url.URL, parse string, params map[string]string) (string, error) {
 	parsed, err := src.Parse(parse)
 	if err != nil {
 		return parsed.String(), err
