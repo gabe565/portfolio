@@ -83,14 +83,14 @@ const error = ref();
 const fetchData = async () => {
   try {
     const response = await pb.collection("skill_headings").getFullList({
-      expand: "skills(heading)",
+      expand: "skills_via_heading",
     });
     skills.value = response
       .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title))
       .map(({ title, expand }) => {
         return {
           title: title,
-          skills: expand["skills(heading)"]?.sort(
+          skills: expand["skills_via_heading"]?.sort(
             (a, b) => b.rating - a.rating || a.title.localeCompare(b.title),
           ),
         };
