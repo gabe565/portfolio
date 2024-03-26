@@ -115,20 +115,6 @@ jobs:
           name: dist
           path: frontend/dist
 
-  deploy-dev:
-    name: Deploy (dev)
-    needs: [backend-lint, backend-test, frontend-lint, build-backend, build-frontend]
-    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
-    concurrency:
-      group: deploy-dev
-      cancel-in-progress: true
-    uses: ./.github/workflows/deploy.yaml
-    with:
-      environment: dev
-      url: https://dev.gabecook.com
-    secrets:
-      infra-ssh-key: ${{ secrets.INFRA_SSH_KEY }}
-
   deploy-prod:
     name: Deploy (prod)
     needs: [backend-lint, backend-test, frontend-lint, build-backend, build-frontend]
