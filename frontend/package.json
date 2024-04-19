@@ -17,7 +17,7 @@
     "@iconify-json/mdi": "1.1.64",
     "@iconify-json/simple-icons": "1.1.97",
     "@popperjs/core": "2.11.8",
-    "@types/cloudflare-turnstile": "0.1.4",
+    "@types/cloudflare-turnstile": "0.1.5",
     "@vitejs/plugin-vue": "5.0.4",
     "autoprefixer": "10.4.19",
     "bootstrap": "5.3.3",
