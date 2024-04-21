@@ -79,9 +79,9 @@ require (
 	google.golang.org/grpc v1.62.1 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	modernc.org/gc/v3 v3.0.0-20240304020402-f0dba7c97c2b // indirect
-	modernc.org/libc v1.47.0 // indirect
+	modernc.org/libc v1.50.2 // indirect
 	modernc.org/mathutil v1.6.0 // indirect
-	modernc.org/memory v1.7.2 // indirect
+	modernc.org/memory v1.8.0 // indirect
 	modernc.org/sqlite v1.29.5 // indirect
 	modernc.org/strutil v1.2.0 // indirect
 	modernc.org/token v1.1.0 // indirect
