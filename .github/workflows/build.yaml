@@ -50,6 +50,8 @@ jobs:
   build-backend:
     name: Build Backend Image
     runs-on: ubuntu-latest
+    outputs:
+      digest: ${{ steps.docker_build.outputs.digest }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -127,6 +129,7 @@ jobs:
     with:
       environment: prod
       url: https://gabecook.com
+      digest: ${{ needs.build-backend.outputs.digest }}
     secrets:
       infra-ssh-key: ${{ secrets.INFRA_SSH_KEY }}
       cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}

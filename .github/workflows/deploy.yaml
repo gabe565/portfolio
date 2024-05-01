@@ -8,6 +8,8 @@ on:
         required: true
       url:
         type: string
+      digest:
+        type: string
     secrets:
       infra-ssh-key:
         required: true
@@ -44,7 +46,8 @@ jobs:
       - name: Update backend
         run: |
           yampl --inplace \
-            --value tag="${GITHUB_REF_NAME#v}" \
+            --value=tag="${GITHUB_REF_NAME#v}" \
+            --value=digest="${{ inputs.digest }}" \
             home-ops/kubernetes/apps/portfolio/app/helmrelease.yaml
 
       - name: Commit changes
