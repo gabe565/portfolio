@@ -129,6 +129,7 @@ jobs:
     with:
       environment: prod
       url: https://gabecook.com
+      path: ${{ vars.path }}
       digest: ${{ needs.build-backend.outputs.digest }}
     secrets:
       infra-ssh-key: ${{ secrets.INFRA_SSH_KEY }}

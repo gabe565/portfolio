@@ -8,6 +8,8 @@ on:
         required: true
       url:
         type: string
+      path:
+        type: string
       digest:
         type: string
     secrets:
@@ -48,7 +50,7 @@ jobs:
           yampl --inplace \
             --value=tag="${GITHUB_REF_NAME#v}" \
             --value=digest="${{ inputs.digest }}" \
-            home-ops/kubernetes/apps/portfolio/app/helmrelease.yaml
+            "home-ops/${{ inputs.path }}"
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
