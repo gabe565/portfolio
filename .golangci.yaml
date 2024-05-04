@@ -21,10 +21,10 @@ linters:
     - decorder
     - dupl
     - durationcheck
+    - err113
     - errcheck
     - errname
     - errorlint
-    - execinquery
     - exportloopref
     - forbidigo
     - gci
@@ -37,7 +37,6 @@ linters:
     - gocritic
     - gocyclo
     - godox
-    - goerr113
     - gofumpt
     - goheader
     - goimports
