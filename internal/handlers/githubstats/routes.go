@@ -1,12 +1,13 @@
 package githubstats
 
 import (
+	"context"
 	"net/url"
 
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func RegisterRoutes(e *core.ServeEvent) error {
+func RegisterRoutes(ctx context.Context, e *core.ServeEvent) error {
 	parsedURL, err := url.Parse(sourceURL)
 	if err != nil {
 		return err
@@ -16,28 +17,28 @@ func RegisterRoutes(e *core.ServeEvent) error {
 	if err != nil {
 		return err
 	}
-	NewCache("/api/github-stats/stats", userURL, interval).RegisterRoutes(e)
+	NewCache(ctx, "/api/github-stats/stats", userURL, interval).RegisterRoutes(e)
 
 	langsURL, err := formatURL(parsedURL, "api/top-langs", langsParams)
 	if err != nil {
 		return err
 	}
-	NewCache("/api/github-stats/top-langs", langsURL, interval).RegisterRoutes(e)
+	NewCache(ctx, "/api/github-stats/top-langs", langsURL, interval).RegisterRoutes(e)
 
 	return nil
 }
 
-func formatURL(src *url.URL, parse string, params map[string]string) (string, error) {
-	parsed, err := src.Parse(parse)
+func formatURL(src *url.URL, path string, params map[string]string) (string, error) {
+	u, err := src.Parse(path)
 	if err != nil {
-		return parsed.String(), err
+		return "", err
 	}
 
-	q := parsed.Query()
+	q := u.Query()
 	for k, v := range params {
 		q.Set(k, v)
 	}
-	parsed.RawQuery = q.Encode()
+	u.RawQuery = q.Encode()
 
-	return parsed.String(), nil
+	return u.String(), nil
 }

@@ -13,13 +13,13 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func NewCache(endpoint, sourceURL string, interval time.Duration) *Cache {
+func NewCache(ctx context.Context, endpoint, sourceURL string, interval time.Duration) *Cache {
 	c := Cache{
 		endpoint:  endpoint,
 		sourceURL: sourceURL,
 		interval:  interval,
 	}
-	go c.beginUpdate()
+	c.beginUpdate(ctx)
 	return &c
 }
 
@@ -48,8 +48,8 @@ func (c *Cache) RegisterRoutes(e *core.ServeEvent) {
 
 var ErrInvalidResponse = errors.New("invalid response")
 
-func (c *Cache) Update() error {
-	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
+func (c *Cache) Update(ctx context.Context) error {
+	ctx, cancel := context.WithTimeout(ctx, 60*time.Second)
 	defer cancel()
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, c.sourceURL, nil)
@@ -78,16 +78,23 @@ func (c *Cache) Update() error {
 	return nil
 }
 
-func (c *Cache) beginUpdate() {
-	if err := c.Update(); err != nil {
-		log.Println(err)
-	}
-
-	ticker := time.NewTicker(c.interval)
-	defer ticker.Stop()
-	for range ticker.C {
-		if err := c.Update(); err != nil {
+func (c *Cache) beginUpdate(ctx context.Context) {
+	go func() {
+		if err := c.Update(ctx); err != nil {
 			log.Println(err)
 		}
-	}
+
+		ticker := time.NewTicker(c.interval)
+		defer ticker.Stop()
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			case <-ticker.C:
+				if err := c.Update(ctx); err != nil {
+					log.Println(err)
+				}
+			}
+		}
+	}()
 }

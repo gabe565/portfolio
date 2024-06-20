@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 
 	"github.com/gabe565/portfolio/internal/captcha"
@@ -23,8 +24,15 @@ func main() {
 		Automigrate: automigrateEnabled(),
 	})
 
+	ctx, cancel := context.WithCancel(context.Background())
+
+	app.OnTerminate().Add(func(_ *core.TerminateEvent) error {
+		cancel()
+		return nil
+	})
+
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
-		return handlers.RegisterLocalHandlers(e, app)
+		return handlers.RegisterLocalHandlers(ctx, e, app)
 	})
 
 	app.OnRecordBeforeCreateRequest("contact_form").Add(captcha.Verify)
