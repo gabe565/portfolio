@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"sync"
 	"time"
 
 	"github.com/labstack/echo/v5"
@@ -28,9 +29,13 @@ type Cache struct {
 	sourceURL string
 	interval  time.Duration
 	data      []byte
+	mu        sync.RWMutex
 }
 
 func (c *Cache) Handler(ctx echo.Context) error {
+	c.mu.RLock()
+	defer c.mu.RUnlock()
+
 	if len(c.data) == 0 {
 		return ctx.Redirect(http.StatusTemporaryRedirect, c.sourceURL)
 	}
@@ -74,6 +79,8 @@ func (c *Cache) Update(ctx context.Context) error {
 		return err
 	}
 
+	c.mu.Lock()
+	defer c.mu.Unlock()
 	c.data = b
 	return nil
 }
