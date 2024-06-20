@@ -57,7 +57,7 @@ jobs:
         if: inputs.environment == 'prod'
         with:
           repository: home-ops
-          file_pattern: kubernetes/apps/portfolio/app/helmrelease.yaml
+          file_pattern: ${{ inputs.path }}
           commit_message: "chore(portfolio): Update image tag to ${{ github.ref_name }}"
 
       - name: Publish to Cloudflare Pages
