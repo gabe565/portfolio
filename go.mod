@@ -7,7 +7,7 @@ require (
 	github.com/meyskens/go-turnstile v0.0.0-20230622160222-89160e594ca1
 	github.com/pocketbase/dbx v1.10.1
 	github.com/pocketbase/pocketbase v0.22.6
-	github.com/spf13/cobra v1.8.0
+	github.com/spf13/cobra v1.8.1
 )
 
 require (
