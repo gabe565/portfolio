@@ -3,6 +3,7 @@ package githubstats
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -51,7 +52,7 @@ func (c *Cache) RegisterRoutes(e *core.ServeEvent) {
 	e.Router.GET(c.endpoint, c.Handler)
 }
 
-var ErrInvalidResponse = errors.New("invalid response")
+var ErrUpstreamRequest = errors.New("upstream request failed")
 
 func (c *Cache) Update(ctx context.Context) error {
 	ctx, cancel := context.WithTimeout(ctx, 60*time.Second)
@@ -71,7 +72,7 @@ func (c *Cache) Update(ctx context.Context) error {
 	}()
 
 	if resp.StatusCode != http.StatusOK {
-		return ErrInvalidResponse
+		return fmt.Errorf("%w: %s", ErrUpstreamRequest, resp.Status)
 	}
 
 	b, err := io.ReadAll(resp.Body)
