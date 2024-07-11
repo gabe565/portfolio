@@ -27,11 +27,13 @@ func NewCache(ctx context.Context, endpoint, sourceURL string, interval time.Dur
 }
 
 type Cache struct {
-	endpoint  string
-	sourceURL string
-	interval  time.Duration
-	data      []byte
-	mu        sync.RWMutex
+	endpoint     string
+	sourceURL    string
+	interval     time.Duration
+	lastModified time.Time
+	etag         string
+	data         []byte
+	mu           sync.RWMutex
 }
 
 func (c *Cache) Handler(ctx echo.Context) error {
@@ -44,7 +46,8 @@ func (c *Cache) Handler(ctx echo.Context) error {
 
 	ctx.Response().Header().Set("Content-Type", "image/svg+xml; charset=utf-8")
 	ctx.Response().Header().Set("Cache-Control", "max-age="+strconv.Itoa(int(c.interval.Seconds())))
-	http.ServeContent(ctx.Response().Writer, ctx.Request(), "", time.Time{}, bytes.NewReader(c.data))
+	ctx.Response().Header().Set("ETag", c.etag)
+	http.ServeContent(ctx.Response().Writer, ctx.Request(), "", c.lastModified, bytes.NewReader(c.data))
 	return nil
 }
 
@@ -69,11 +72,17 @@ func (c *Cache) Update(ctx context.Context) error {
 		return err
 	}
 	defer func() {
+		_, _ = io.Copy(io.Discard, resp.Body)
 		_ = resp.Body.Close()
 	}()
 
 	if resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("%w: %s", ErrUpstreamRequest, resp.Status)
+	}
+
+	etag := resp.Header.Get("ETag")
+	if etag != "" && etag == c.etag {
+		return nil
 	}
 
 	b, err := io.ReadAll(resp.Body)
@@ -84,6 +93,8 @@ func (c *Cache) Update(ctx context.Context) error {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	c.data = b
+	c.lastModified = time.Now()
+	c.etag = etag
 	return nil
 }
 
