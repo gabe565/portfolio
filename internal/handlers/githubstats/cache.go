@@ -1,6 +1,7 @@
 package githubstats
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"fmt"
@@ -43,8 +44,8 @@ func (c *Cache) Handler(ctx echo.Context) error {
 
 	ctx.Response().Header().Set("Content-Type", "image/svg+xml; charset=utf-8")
 	ctx.Response().Header().Set("Cache-Control", "max-age="+strconv.Itoa(int(c.interval.Seconds())))
-	_, err := ctx.Response().Write(c.data)
-	return err
+	http.ServeContent(ctx.Response().Writer, ctx.Request(), "", time.Time{}, bytes.NewReader(c.data))
+	return nil
 }
 
 func (c *Cache) RegisterRoutes(e *core.ServeEvent) {
