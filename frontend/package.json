@@ -14,7 +14,7 @@
   "dependencies": {
     "@fawmi/vue-google-maps": "0.9.79",
     "@fontsource/zilla-slab": "5.0.13",
-    "@iconify-json/material-symbols": "1.1.83",
+    "@iconify-json/material-symbols": "1.1.84",
     "@iconify-json/mdi": "1.1.67",
     "@iconify-json/simple-icons": "1.1.109",
     "@popperjs/core": "2.11.8",
