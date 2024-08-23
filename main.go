@@ -26,6 +26,7 @@ func main() {
 	})
 
 	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
 
 	app.OnTerminate().Add(func(_ *core.TerminateEvent) error {
 		cancel()
@@ -42,6 +43,6 @@ func main() {
 
 	if err := app.Start(); err != nil {
 		slog.Error("PocketBase returned an error", "error", err)
-		os.Exit(1)
+		os.Exit(1) //nolint:gocritic
 	}
 }
