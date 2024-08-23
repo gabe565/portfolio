@@ -2,7 +2,8 @@ package main
 
 import (
 	"context"
-	"log"
+	"log/slog"
+	"os"
 
 	"github.com/gabe565/portfolio/internal/captcha"
 	"github.com/gabe565/portfolio/internal/contactform"
@@ -32,6 +33,7 @@ func main() {
 	})
 
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
+		slog.SetDefault(app.Logger())
 		return handlers.RegisterLocalHandlers(ctx, e, app)
 	})
 
@@ -39,6 +41,7 @@ func main() {
 	app.OnModelAfterCreate("contact_form").Add(contactform.Notify(app))
 
 	if err := app.Start(); err != nil {
-		log.Fatal(err)
+		slog.Error("PocketBase returned an error", "error", err)
+		os.Exit(1)
 	}
 }

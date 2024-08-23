@@ -6,7 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log"
+	"log/slog"
 	"net/http"
 	"strconv"
 	"sync"
@@ -101,7 +101,7 @@ func (c *Cache) Update(ctx context.Context) error {
 func (c *Cache) beginUpdate(ctx context.Context) {
 	go func() {
 		if err := c.Update(ctx); err != nil {
-			log.Println(err)
+			slog.Error("Failed to update GitHub stats", "error", err)
 		}
 
 		ticker := time.NewTicker(c.interval)
@@ -112,7 +112,7 @@ func (c *Cache) beginUpdate(ctx context.Context) {
 				return
 			case <-ticker.C:
 				if err := c.Update(ctx); err != nil {
-					log.Println(err)
+					slog.Error("Failed to update GitHub stats", "error", err)
 				}
 			}
 		}
