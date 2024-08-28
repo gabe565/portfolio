@@ -23,7 +23,7 @@
     "autoprefixer": "10.4.20",
     "bootstrap": "5.3.3",
     "plausible-tracker": "0.3.9",
-    "pocketbase": "0.21.4",
+    "pocketbase": "0.21.5",
     "sass": "1.77.8",
     "unplugin-icons": "0.19.2",
     "vite": "5.4.2",
