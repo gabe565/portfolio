@@ -28,7 +28,7 @@
     "unplugin-icons": "0.19.2",
     "vite": "5.4.2",
     "vue": "3.4.38",
-    "vue-router": "4.4.3"
+    "vue-router": "4.4.5"
   },
   "devDependencies": {
     "@eslint/js": "9.9.1",
