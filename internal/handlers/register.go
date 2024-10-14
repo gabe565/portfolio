@@ -3,7 +3,7 @@ package handlers
 import (
 	"context"
 
-	"github.com/gabe565/portfolio/internal/handlers/githubstats"
+	"gabe565.com/portfolio/internal/handlers/githubstats"
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 )

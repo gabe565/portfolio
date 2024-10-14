@@ -1,4 +1,4 @@
-module github.com/gabe565/portfolio
+module gabe565.com/portfolio
 
 go 1.23.0
 
