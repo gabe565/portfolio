@@ -3,23 +3,19 @@ package migrations
 import (
 	"encoding/json"
 
-	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/daos"
+	"github.com/pocketbase/pocketbase/core"
 	m "github.com/pocketbase/pocketbase/migrations"
-	"github.com/pocketbase/pocketbase/models/schema"
 )
 
 func init() {
-	m.Register(func(db dbx.Builder) error {
-		dao := daos.New(db)
-
-		collection, err := dao.FindCollectionByNameOrId("a3ukxinbygb6okj")
+	m.Register(func(app core.App) error {
+		collection, err := app.FindCollectionByNameOrId("a3ukxinbygb6okj")
 		if err != nil {
 			return err
 		}
 
 		// add
-		new_color := &schema.SchemaField{}
+		new_color := &core.TextField{}
 		json.Unmarshal([]byte(`{
 			"system": false,
 			"id": "qmk7gf66",
@@ -33,20 +29,18 @@ func init() {
 				"pattern": ""
 			}
 		}`), new_color)
-		collection.Schema.AddField(new_color)
+		collection.Fields.Add(new_color)
 
-		return dao.SaveCollection(collection)
-	}, func(db dbx.Builder) error {
-		dao := daos.New(db)
-
-		collection, err := dao.FindCollectionByNameOrId("a3ukxinbygb6okj")
+		return app.Save(collection)
+	}, func(app core.App) error {
+		collection, err := app.FindCollectionByNameOrId("a3ukxinbygb6okj")
 		if err != nil {
 			return err
 		}
 
 		// remove
-		collection.Schema.RemoveField("qmk7gf66")
+		collection.Fields.RemoveById("qmk7gf66")
 
-		return dao.SaveCollection(collection)
+		return app.Save(collection)
 	})
 }

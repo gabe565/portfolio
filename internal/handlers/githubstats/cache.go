@@ -12,7 +12,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/labstack/echo/v5"
 	"github.com/pocketbase/pocketbase/core"
 )
 
@@ -36,18 +35,18 @@ type Cache struct {
 	mu           sync.RWMutex
 }
 
-func (c *Cache) Handler(ctx echo.Context) error {
+func (c *Cache) Handler(e *core.RequestEvent) error {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
 
 	if len(c.data) == 0 {
-		return ctx.Redirect(http.StatusTemporaryRedirect, c.sourceURL)
+		return e.Redirect(http.StatusTemporaryRedirect, c.sourceURL)
 	}
 
-	ctx.Response().Header().Set("Content-Type", "image/svg+xml; charset=utf-8")
-	ctx.Response().Header().Set("Cache-Control", "max-age="+strconv.Itoa(int(c.interval.Seconds())))
-	ctx.Response().Header().Set("ETag", c.etag)
-	http.ServeContent(ctx.Response().Writer, ctx.Request(), "", c.lastModified, bytes.NewReader(c.data))
+	e.Response.Header().Set("Content-Type", "image/svg+xml; charset=utf-8")
+	e.Response.Header().Set("Cache-Control", "max-age="+strconv.Itoa(int(c.interval.Seconds())))
+	e.Response.Header().Set("ETag", c.etag)
+	http.ServeContent(e.Response, e.Request, "", c.lastModified, bytes.NewReader(c.data))
 	return nil
 }
 

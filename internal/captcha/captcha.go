@@ -28,12 +28,12 @@ func Flags(cmd *cobra.Command) {
 
 var ErrInvalidCaptcha = errors.New("invalid captcha")
 
-func Verify(e *core.RecordCreateEvent) error {
+func Verify(e *core.RecordRequestEvent) error {
 	if turnstileSecret != "" {
 		ts := turnstile.New(turnstileSecret)
-		val := e.HttpContext.Request().Header.Get("X-Captcha")
+		val := e.Request.Header.Get("X-Captcha")
 
-		resp, err := ts.Verify(val, e.HttpContext.RealIP())
+		resp, err := ts.Verify(val, e.RealIP())
 		if err != nil {
 			return err
 		}
@@ -42,5 +42,5 @@ func Verify(e *core.RecordCreateEvent) error {
 			return ErrInvalidCaptcha
 		}
 	}
-	return nil
+	return e.Next()
 }

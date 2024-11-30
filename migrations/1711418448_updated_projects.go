@@ -3,23 +3,19 @@ package migrations
 import (
 	"encoding/json"
 
-	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/daos"
+	"github.com/pocketbase/pocketbase/core"
 	m "github.com/pocketbase/pocketbase/migrations"
-	"github.com/pocketbase/pocketbase/models/schema"
 )
 
 func init() {
-	m.Register(func(db dbx.Builder) error {
-		dao := daos.New(db);
-
-		collection, err := dao.FindCollectionByNameOrId("iowdsbt17krdtf0")
+	m.Register(func(app core.App) error {
+		collection, err := app.FindCollectionByNameOrId("iowdsbt17krdtf0")
 		if err != nil {
 			return err
 		}
 
 		// add
-		new_priority := &schema.SchemaField{}
+		new_priority := &core.NumberField{}
 		if err := json.Unmarshal([]byte(`{
 			"system": false,
 			"id": "qyhpws8u",
@@ -36,20 +32,18 @@ func init() {
 		}`), new_priority); err != nil {
 			return err
 		}
-		collection.Schema.AddField(new_priority)
+		collection.Fields.Add(new_priority)
 
-		return dao.SaveCollection(collection)
-	}, func(db dbx.Builder) error {
-		dao := daos.New(db);
-
-		collection, err := dao.FindCollectionByNameOrId("iowdsbt17krdtf0")
+		return app.Save(collection)
+	}, func(app core.App) error {
+		collection, err := app.FindCollectionByNameOrId("iowdsbt17krdtf0")
 		if err != nil {
 			return err
 		}
 
 		// remove
-		collection.Schema.RemoveField("qyhpws8u")
+		collection.Fields.RemoveById("qyhpws8u")
 
-		return dao.SaveCollection(collection)
+		return app.Save(collection)
 	})
 }

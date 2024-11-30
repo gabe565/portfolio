@@ -3,26 +3,22 @@ package migrations
 import (
 	"encoding/json"
 
-	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/daos"
+	"github.com/pocketbase/pocketbase/core"
 	m "github.com/pocketbase/pocketbase/migrations"
-	"github.com/pocketbase/pocketbase/models/schema"
 )
 
 func init() {
-	m.Register(func(db dbx.Builder) error {
-		dao := daos.New(db)
-
-		collection, err := dao.FindCollectionByNameOrId("iowdsbt17krdtf0")
+	m.Register(func(app core.App) error {
+		collection, err := app.FindCollectionByNameOrId("iowdsbt17krdtf0")
 		if err != nil {
 			return err
 		}
 
 		// remove
-		collection.Schema.RemoveField("kgl3tdra")
+		collection.Fields.RemoveById("kgl3tdra")
 
 		// add
-		new_image := &schema.SchemaField{}
+		new_image := &core.FileField{}
 		json.Unmarshal([]byte(`{
 			"system": false,
 			"id": "9wstjysn",
@@ -43,19 +39,17 @@ func init() {
 				"thumbs": []
 			}
 		}`), new_image)
-		collection.Schema.AddField(new_image)
+		collection.Fields.Add(new_image)
 
-		return dao.SaveCollection(collection)
-	}, func(db dbx.Builder) error {
-		dao := daos.New(db)
-
-		collection, err := dao.FindCollectionByNameOrId("iowdsbt17krdtf0")
+		return app.Save(collection)
+	}, func(app core.App) error {
+		collection, err := app.FindCollectionByNameOrId("iowdsbt17krdtf0")
 		if err != nil {
 			return err
 		}
 
 		// add
-		del_image_path := &schema.SchemaField{}
+		del_image_path := &core.TextField{}
 		json.Unmarshal([]byte(`{
 			"system": false,
 			"id": "kgl3tdra",
@@ -69,11 +63,11 @@ func init() {
 				"pattern": ""
 			}
 		}`), del_image_path)
-		collection.Schema.AddField(del_image_path)
+		collection.Fields.Add(del_image_path)
 
 		// remove
-		collection.Schema.RemoveField("9wstjysn")
+		collection.Fields.RemoveById("9wstjysn")
 
-		return dao.SaveCollection(collection)
+		return app.Save(collection)
 	})
 }

@@ -28,18 +28,21 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	app.OnTerminate().Add(func(_ *core.TerminateEvent) error {
+	app.OnTerminate().BindFunc(func(e *core.TerminateEvent) error {
 		cancel()
-		return nil
+		return e.Next()
 	})
 
-	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
+	app.OnServe().BindFunc(func(e *core.ServeEvent) error {
 		slog.SetDefault(app.Logger())
-		return handlers.RegisterLocalHandlers(ctx, e, app)
+		if err := handlers.RegisterLocalHandlers(ctx, e); err != nil {
+			return err
+		}
+		return e.Next()
 	})
 
-	app.OnRecordBeforeCreateRequest("contact_form").Add(captcha.Verify)
-	app.OnModelAfterCreate("contact_form").Add(contactform.Notify(app))
+	app.OnRecordCreateRequest("contact_form").BindFunc(captcha.Verify)
+	app.OnModelAfterCreateSuccess("contact_form").BindFunc(contactform.Notify(app))
 
 	if err := app.Start(); err != nil {
 		slog.Error("PocketBase returned an error", "error", err)

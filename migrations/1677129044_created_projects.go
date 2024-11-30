@@ -3,14 +3,12 @@ package migrations
 import (
 	"encoding/json"
 
-	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/daos"
+	"github.com/pocketbase/pocketbase/core"
 	m "github.com/pocketbase/pocketbase/migrations"
-	"github.com/pocketbase/pocketbase/models"
 )
 
 func init() {
-	m.Register(func(db dbx.Builder) error {
+	m.Register(func(app core.App) error {
 		jsonData := `{
 			"id": "iowdsbt17krdtf0",
 			"created": "2023-02-23 05:10:44.112Z",
@@ -92,20 +90,18 @@ func init() {
 			"options": {}
 		}`
 
-		collection := &models.Collection{}
+		collection := &core.Collection{}
 		if err := json.Unmarshal([]byte(jsonData), &collection); err != nil {
 			return err
 		}
 
-		return daos.New(db).SaveCollection(collection)
-	}, func(db dbx.Builder) error {
-		dao := daos.New(db)
-
-		collection, err := dao.FindCollectionByNameOrId("iowdsbt17krdtf0")
+		return app.Save(collection)
+	}, func(app core.App) error {
+		collection, err := app.FindCollectionByNameOrId("iowdsbt17krdtf0")
 		if err != nil {
 			return err
 		}
 
-		return dao.DeleteCollection(collection)
+		return app.Delete(collection)
 	})
 }

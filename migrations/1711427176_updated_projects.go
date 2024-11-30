@@ -3,35 +3,29 @@ package migrations
 import (
 	"encoding/json"
 
-	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/daos"
+	"github.com/pocketbase/pocketbase/core"
 	m "github.com/pocketbase/pocketbase/migrations"
-	"github.com/pocketbase/pocketbase/models/schema"
 )
 
 func init() {
-	m.Register(func(db dbx.Builder) error {
-		dao := daos.New(db);
-
-		collection, err := dao.FindCollectionByNameOrId("iowdsbt17krdtf0")
+	m.Register(func(app core.App) error {
+		collection, err := app.FindCollectionByNameOrId("iowdsbt17krdtf0")
 		if err != nil {
 			return err
 		}
 
 		// remove
-		collection.Schema.RemoveField("dmz2guhd")
+		collection.Fields.RemoveById("dmz2guhd")
 
-		return dao.SaveCollection(collection)
-	}, func(db dbx.Builder) error {
-		dao := daos.New(db);
-
-		collection, err := dao.FindCollectionByNameOrId("iowdsbt17krdtf0")
+		return app.Save(collection)
+	}, func(app core.App) error {
+		collection, err := app.FindCollectionByNameOrId("iowdsbt17krdtf0")
 		if err != nil {
 			return err
 		}
 
 		// add
-		del_image_padding := &schema.SchemaField{}
+		del_image_padding := &core.NumberField{}
 		if err := json.Unmarshal([]byte(`{
 			"system": false,
 			"id": "dmz2guhd",
@@ -48,8 +42,8 @@ func init() {
 		}`), del_image_padding); err != nil {
 			return err
 		}
-		collection.Schema.AddField(del_image_padding)
+		collection.Fields.Add(del_image_padding)
 
-		return dao.SaveCollection(collection)
+		return app.Save(collection)
 	})
 }
