@@ -84,6 +84,13 @@ func (c *Cache) Update(ctx context.Context) error {
 		return nil
 	}
 
+	lastModified := time.Now()
+	if ageStr := resp.Header.Get("Age"); ageStr != "" {
+		if age, err := strconv.Atoi(ageStr); err == nil {
+			lastModified = lastModified.Add(-time.Duration(age) * time.Second)
+		}
+	}
+
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return err
@@ -92,7 +99,7 @@ func (c *Cache) Update(ctx context.Context) error {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	c.data = b
-	c.lastModified = time.Now()
+	c.lastModified = lastModified
 	c.etag = etag
 	return nil
 }
