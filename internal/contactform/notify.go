@@ -35,7 +35,7 @@ func Notify(app *pocketbase.PocketBase) func(e *core.ModelEvent) error {
 			})
 		}
 
-		t, err := template.New("contact_form_notify").Parse(notifyTmpl)
+		t, err := template.New("").Parse(notifyTmpl)
 		if err != nil {
 			return err
 		}
