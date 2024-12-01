@@ -8,6 +8,7 @@ import (
 	"io"
 	"log/slog"
 	"net/http"
+	"slices"
 	"strconv"
 	"sync"
 	"time"
@@ -95,6 +96,7 @@ func (c *Cache) Update(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
+	b = slices.Clip(b)
 
 	c.mu.Lock()
 	defer c.mu.Unlock()
