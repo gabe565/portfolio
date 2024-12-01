@@ -67,6 +67,10 @@ func (c *Cache) Update(ctx context.Context) error {
 		return err
 	}
 
+	if c.etag != "" {
+		req.Header.Set("If-None-Match", c.etag)
+	}
+
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return err
@@ -76,7 +80,11 @@ func (c *Cache) Update(ctx context.Context) error {
 		_ = resp.Body.Close()
 	}()
 
-	if resp.StatusCode != http.StatusOK {
+	switch resp.StatusCode {
+	case http.StatusOK:
+	case http.StatusNotModified:
+		return nil
+	default:
 		return fmt.Errorf("%w: %s", ErrUpstreamRequest, resp.Status)
 	}
 
