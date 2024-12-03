@@ -6,6 +6,7 @@ require (
 	github.com/meyskens/go-turnstile v0.0.0-20230622160222-89160e594ca1
 	github.com/pocketbase/pocketbase v0.23.3
 	github.com/spf13/cobra v1.8.1
+	github.com/spf13/pflag v1.0.5
 )
 
 require (
@@ -51,7 +52,6 @@ require (
 	github.com/pocketbase/dbx v1.10.1 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
 	github.com/spf13/cast v1.7.0 // indirect
-	github.com/spf13/pflag v1.0.5 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	gocloud.dev v0.40.0 // indirect
 	golang.org/x/crypto v0.29.0 // indirect

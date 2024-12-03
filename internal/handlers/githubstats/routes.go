@@ -4,26 +4,27 @@ import (
 	"context"
 	"net/url"
 
+	"gabe565.com/portfolio/internal/config"
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func RegisterRoutes(ctx context.Context, e *core.ServeEvent) error {
-	parsedURL, err := url.Parse(sourceURL)
+func RegisterRoutes(ctx context.Context, conf *config.Config, e *core.ServeEvent) error {
+	parsedURL, err := url.Parse(conf.GitHubStats.SourceURL)
 	if err != nil {
 		return err
 	}
 
-	userURL, err := formatURL(parsedURL, "api", userParams)
+	userURL, err := formatURL(parsedURL, "api", conf.GitHubStats.UserParams)
 	if err != nil {
 		return err
 	}
-	NewCache(ctx, "/api/github-stats/stats", userURL, interval).RegisterRoutes(e)
+	NewCache(ctx, "/api/github-stats/stats", userURL, conf.GitHubStats.Interval).RegisterRoutes(e)
 
-	langsURL, err := formatURL(parsedURL, "api/top-langs", langsParams)
+	langsURL, err := formatURL(parsedURL, "api/top-langs", conf.GitHubStats.LangsParams)
 	if err != nil {
 		return err
 	}
-	NewCache(ctx, "/api/github-stats/top-langs", langsURL, interval).RegisterRoutes(e)
+	NewCache(ctx, "/api/github-stats/top-langs", langsURL, conf.GitHubStats.Interval).RegisterRoutes(e)
 
 	return nil
 }
