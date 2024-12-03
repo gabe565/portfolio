@@ -9,7 +9,7 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func RedirectHandler() func(*core.RequestEvent) error {
+func Redirect() func(*core.RequestEvent) error {
 	return func(e *core.RequestEvent) error {
 		handle := e.Request.PathValue("handle")
 

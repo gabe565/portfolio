@@ -8,9 +8,9 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func RegisterLocalHandlers(ctx context.Context, conf *config.Config, e *core.ServeEvent) error {
-	e.Router.GET("/{path...}", StaticHandler(conf))
-	e.Router.GET("/to/{handle}", RedirectHandler())
+func Register(ctx context.Context, conf *config.Config, e *core.ServeEvent) error {
+	e.Router.GET("/{path...}", Static(conf))
+	e.Router.GET("/to/{handle}", Redirect())
 	if err := githubstats.RegisterRoutes(ctx, conf, e); err != nil {
 		return err
 	}

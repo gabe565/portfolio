@@ -42,7 +42,7 @@ func main() {
 		app.OnRecordCreateRequest("contact_form").BindFunc(captcha.Verify(conf))
 		app.OnModelAfterCreateSuccess("contact_form").BindFunc(contactform.Notify(app))
 
-		if err := handlers.RegisterLocalHandlers(ctx, conf, e); err != nil {
+		if err := handlers.Register(ctx, conf, e); err != nil {
 			return err
 		}
 
