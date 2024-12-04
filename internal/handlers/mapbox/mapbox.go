@@ -12,6 +12,7 @@ import (
 	"path"
 	"path/filepath"
 	"strconv"
+	"sync"
 	"time"
 
 	"gabe565.com/portfolio/internal/config"
@@ -81,11 +82,20 @@ func (c *Client) FetchAll(ctx context.Context) error {
 		"xxl": {"1280x500@2x", "gabe565/cm49gy50a014k01qr2sjoc52o", 8.5},
 	}
 	var errs []error
+	var wg sync.WaitGroup
+	var mu sync.Mutex
 	for name, req := range reqs {
-		if err := c.fetchMap(ctx, name, req); err != nil {
-			errs = append(errs, err)
-		}
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			if err := c.fetchMap(ctx, name, req); err != nil {
+				mu.Lock()
+				errs = append(errs, err)
+				mu.Unlock()
+			}
+		}()
 	}
+	wg.Wait()
 	return errors.Join(errs...)
 }
 
