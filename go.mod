@@ -1,6 +1,6 @@
 module gabe565.com/portfolio
 
-go 1.23.0
+go 1.23.4
 
 require (
 	github.com/meyskens/go-turnstile v0.0.0-20230622160222-89160e594ca1
