@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	FlagPublicDir = "public-dir"
+	FlagPublic = "public"
 
 	FlagMapToken = "mapbox-token"
 
@@ -19,7 +19,7 @@ const (
 
 func (c *Config) RegisterFlags(cmd *cobra.Command) {
 	fs := cmd.PersistentFlags()
-	fs.StringVar(&c.PublicDir, FlagPublicDir, c.PublicDir, "Public directory")
+	fs.StringVar(&c.PublicDir, FlagPublic, c.PublicDir, "Public directory")
 
 	fs.StringVar(&c.Map.Token, FlagMapToken, c.Map.Token, "Mapbox access token")
 
