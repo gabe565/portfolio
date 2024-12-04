@@ -76,9 +76,11 @@ func (c *Client) FetchAll(ctx context.Context) error {
 	defer cancel()
 
 	reqs := map[string]FetchRequest{
-		"sm":  {"640x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9.5},
-		"lg":  {"1280x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9.5},
-		"xl":  {"1280x500", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
+		"xs":  {"575x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
+		"sm":  {"767x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
+		"md":  {"991x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
+		"lg":  {"1280x500", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
+		"xl":  {"1280x500@2x", "gabe565/cm49gy50a014k01qr2sjoc52o", 9},
 		"xxl": {"1280x500@2x", "gabe565/cm49gy50a014k01qr2sjoc52o", 8.5},
 	}
 	var errs []error
