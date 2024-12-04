@@ -12,9 +12,6 @@ export default defineConfig({
       autoInstall: true,
     }),
   ],
-  optimizeDeps: {
-    include: ["@fawmi/vue-google-maps", "fast-deep-equal"],
-  },
   css: {
     postcss: {
       plugins: [autoprefixer({})],

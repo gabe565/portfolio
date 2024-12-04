@@ -7,6 +7,8 @@ import (
 const (
 	FlagPublicDir = "public-dir"
 
+	FlagMapToken = "mapbox-token"
+
 	FlagTurnstileSecret = "turnstile-secret"
 
 	FlagStatsInterval    = "stats-interval"
@@ -18,6 +20,8 @@ const (
 func (c *Config) RegisterFlags(cmd *cobra.Command) {
 	fs := cmd.PersistentFlags()
 	fs.StringVar(&c.PublicDir, FlagPublicDir, c.PublicDir, "Public directory")
+
+	fs.StringVar(&c.Map.Token, FlagMapToken, c.Map.Token, "Mapbox access token")
 
 	fs.StringVar(&c.Turnstile.Secret, FlagTurnstileSecret, c.Turnstile.Secret, "Turnstile captcha secret key")
 

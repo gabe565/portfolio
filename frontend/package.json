@@ -12,7 +12,6 @@
     "format": "prettier . --write --ignore-path .gitignore"
   },
   "dependencies": {
-    "@fawmi/vue-google-maps": "0.9.79",
     "@fontsource/zilla-slab": "5.0.14",
     "@iconify-json/material-symbols": "1.1.89",
     "@iconify-json/mdi": "1.1.68",

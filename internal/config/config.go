@@ -4,8 +4,15 @@ import "time"
 
 type Config struct {
 	PublicDir   string
+	Map         Map
 	Turnstile   Turnstile
 	GitHubStats GitHubStats
+}
+
+type Map struct {
+	Token string
+	Lat   float64
+	Lon   float64
 }
 
 type Turnstile struct {
@@ -22,6 +29,10 @@ type GitHubStats struct {
 func New() *Config {
 	return &Config{
 		PublicDir: "frontend/dist",
+		Map: Map{
+			Lat: 35.505,
+			Lon: -97.4997,
+		},
 		Turnstile: Turnstile{
 			Secret: "1x0000000000000000000000000000000AA",
 		},

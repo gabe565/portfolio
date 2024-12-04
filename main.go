@@ -9,6 +9,8 @@ import (
 	"gabe565.com/portfolio/internal/config"
 	"gabe565.com/portfolio/internal/contactform"
 	"gabe565.com/portfolio/internal/handlers"
+	"gabe565.com/portfolio/internal/handlers/githubstats"
+	"gabe565.com/portfolio/internal/handlers/mapbox"
 	_ "gabe565.com/portfolio/migrations"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
@@ -42,8 +44,20 @@ func main() {
 		app.OnRecordCreateRequest("contact_form").BindFunc(captcha.Verify(conf))
 		app.OnModelAfterCreateSuccess("contact_form").BindFunc(contactform.Notify(app))
 
-		if err := handlers.Register(ctx, conf, e); err != nil {
+		e.Router.GET("/{path...}", handlers.Static(conf))
+		e.Router.GET("/to/{handle}", handlers.Redirect())
+
+		if err := githubstats.RegisterRoutes(ctx, conf, e); err != nil {
 			return err
+		}
+
+		if conf.Map.Token != "" {
+			mapClient, err := mapbox.New(ctx, app, conf)
+			if err != nil {
+				return err
+			}
+
+			e.Router.GET("/map/{path...}", mapClient.Handler())
 		}
 
 		return e.Next()

@@ -60,16 +60,16 @@
     </div>
     <section>
       <h2 class="h3 visually-hidden">Map of Oklahoma City</h2>
-      <GMapMap
-        :center="mapData.center"
-        :options="mapData.options"
-        style="width: 100%; height: 100%"
-      ></GMapMap>
+      <picture>
+        <source :srcset="ApiPath('/map/sm.png')" media="(max-width: 575px)" />
+        <source :srcset="ApiPath('/map/lg.png')" media="(max-width: 991px)" />
+        <source :srcset="ApiPath('/map/xl.png')" media="(max-width: 1199px)" />
+        <img :src="ApiPath(`/map/xxl.png`)" alt="Map" class="map" />
+      </picture>
     </section>
   </section>
 </template>
 
 <script setup>
-import mapData from "../data/mapOptions";
 import { ApiPath } from "../config/api";
 </script>
