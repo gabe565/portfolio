@@ -45,6 +45,7 @@
             <img
               :src="ApiPath('/api/github-stats/stats')"
               alt="Gabe Cook's GitHub stats"
+              class="mw-100"
               style="min-height: 195px"
             />
           </div>
@@ -52,6 +53,7 @@
             <img
               :src="ApiPath('/api/github-stats/top-langs')"
               alt="Most Used Languages"
+              class="mw-100"
               style="min-height: 165px"
             />
           </div>
