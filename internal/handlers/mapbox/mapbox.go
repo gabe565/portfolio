@@ -51,18 +51,15 @@ type FetchRequest struct {
 
 func (c *Client) beginFetch(ctx context.Context) {
 	go func() {
-		if err := c.FetchAll(ctx); err != nil {
-			slog.Error("Failed to download map", "error", err)
-		}
-
-		ticker := time.NewTicker(24 * time.Hour)
-		defer ticker.Stop()
+		timer := time.NewTimer(0)
+		defer timer.Stop()
 
 		for {
 			select {
 			case <-ctx.Done():
 				return
-			case <-ticker.C:
+			case <-timer.C:
+				timer.Reset(24 * time.Hour)
 				if err := c.FetchAll(ctx); err != nil {
 					slog.Error("Failed to download map", "error", err)
 				}

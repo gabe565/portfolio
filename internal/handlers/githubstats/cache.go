@@ -116,17 +116,15 @@ func (c *Cache) Update(ctx context.Context) error {
 
 func (c *Cache) beginUpdate(ctx context.Context) {
 	go func() {
-		if err := c.Update(ctx); err != nil {
-			slog.Error("Failed to update GitHub stats", "error", err)
-		}
+		timer := time.NewTimer(0)
+		defer timer.Stop()
 
-		ticker := time.NewTicker(c.interval)
-		defer ticker.Stop()
 		for {
 			select {
 			case <-ctx.Done():
 				return
-			case <-ticker.C:
+			case <-timer.C:
+				timer.Reset(c.interval)
 				if err := c.Update(ctx); err != nil {
 					slog.Error("Failed to update GitHub stats", "error", err)
 				}
