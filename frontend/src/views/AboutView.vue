@@ -63,12 +63,12 @@
     <section>
       <h2 class="h3 visually-hidden">Map of Oklahoma City</h2>
       <picture>
-        <source :srcset="ApiPath('/map/xs.png')" media="(max-width: 575px)" />
-        <source :srcset="ApiPath('/map/sm.png')" media="(max-width: 767px)" />
-        <source :srcset="ApiPath('/map/md.png')" media="(max-width: 991px)" />
-        <source :srcset="ApiPath('/map/lg.png')" media="(max-width: 1399px)" />
-        <source :srcset="ApiPath('/map/xl.png')" media="(max-width: 2000px)" />
-        <source :srcset="ApiPath('/map/xxl.png')" />
+        <source :srcset="ApiPath('/map/xxl.png')" media="(min-width: 2000px)" />
+        <source :srcset="ApiPath('/map/xl.png')" media="(min-width: 1400px)" />
+        <source :srcset="ApiPath('/map/lg.png')" media="(min-width: 992px)" />
+        <source :srcset="ApiPath('/map/md.png')" media="(min-width: 768px)" />
+        <source :srcset="ApiPath('/map/sm.png')" media="(min-width: 576px)" />
+        <source :srcset="ApiPath('/map/xs.png')" />
         <img :src="ApiPath(`/map/lg.png`)" alt="Map" class="map" />
       </picture>
     </section>
