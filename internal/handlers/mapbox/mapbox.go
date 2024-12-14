@@ -69,9 +69,6 @@ func (c *Client) beginFetch(ctx context.Context) {
 }
 
 func (c *Client) FetchAll(ctx context.Context) error {
-	ctx, cancel := context.WithTimeout(ctx, 5*time.Minute)
-	defer cancel()
-
 	reqs := map[string]FetchRequest{
 		"xs":  {"575x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
 		"sm":  {"767x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
@@ -117,6 +114,9 @@ func (c *Client) buildURL(conf FetchRequest) *url.URL {
 var ErrFetchFailed = errors.New("failed to fetch map")
 
 func (c *Client) fetchMap(ctx context.Context, name string, conf FetchRequest) error {
+	ctx, cancel := context.WithTimeout(ctx, 60*time.Second)
+	defer cancel()
+
 	u := c.buildURL(conf)
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, u.String(), nil)
