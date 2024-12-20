@@ -13,6 +13,7 @@ import (
 	"gabe565.com/portfolio/internal/handlers/mapbox"
 	_ "gabe565.com/portfolio/migrations"
 	"github.com/pocketbase/pocketbase"
+	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
 )
@@ -43,6 +44,13 @@ func main() {
 
 		app.OnRecordCreateRequest("contact_form").BindFunc(captcha.Verify(conf))
 		app.OnModelAfterCreateSuccess("contact_form").BindFunc(contactform.Notify(app))
+
+		e.Router.BindFunc(func(e *core.RequestEvent) error {
+			if e.Request.URL.Path == "/api/health" {
+				return apis.SkipSuccessActivityLog().Func(e)
+			}
+			return e.Next()
+		})
 
 		e.Router.GET("/{path...}", handlers.Static(conf))
 		e.Router.GET("/to/{handle}", handlers.Redirect())
