@@ -73,8 +73,8 @@
 
 <script setup>
 import { ref } from "vue";
-import pb from "../plugins/pocketbase";
 import StarRating from "../components/StarRating.vue";
+import pb from "../plugins/pocketbase";
 
 const skills = ref([]);
 const loading = ref(true);

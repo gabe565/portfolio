@@ -14,8 +14,8 @@
 </template>
 
 <script setup>
-import StarFilledIcon from "~icons/material-symbols/star-rounded";
 import StarOutlineIcon from "~icons/material-symbols/star-outline-rounded";
+import StarFilledIcon from "~icons/material-symbols/star-rounded";
 
 const props = defineProps({
   modelValue: {

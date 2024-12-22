@@ -87,8 +87,8 @@
 <script setup>
 import { ref, shallowRef } from "vue";
 import pb from "../plugins/pocketbase";
-import GitHubIcon from "~icons/simple-icons/github";
 import GlobeIcon from "~icons/mdi/web";
+import GitHubIcon from "~icons/simple-icons/github";
 
 const projects = shallowRef([]);
 const loading = ref(true);

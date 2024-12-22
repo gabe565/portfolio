@@ -1,12 +1,12 @@
 <script setup>
+import { Collapse } from "bootstrap";
 import { onMounted, onUnmounted, ref } from "vue";
 import { useRouter } from "vue-router";
-import { Collapse } from "bootstrap";
-import MenuIcon from "~icons/material-symbols/menu-rounded";
+import CodeIcon from "~icons/material-symbols/code-rounded";
 import InfoIcon from "~icons/material-symbols/info";
 import ListIcon from "~icons/material-symbols/list-rounded";
-import CodeIcon from "~icons/material-symbols/code-rounded";
 import MailIcon from "~icons/material-symbols/mail-rounded";
+import MenuIcon from "~icons/material-symbols/menu-rounded";
 import GithubIcon from "~icons/simple-icons/github";
 
 const transitionName = ref("fade");

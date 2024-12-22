@@ -146,21 +146,21 @@
 
 <script setup>
 import { onActivated, onMounted, ref } from "vue";
-import pb from "../plugins/pocketbase";
-import LinkedinIcon from "~icons/simple-icons/linkedin";
-import GithubIcon from "~icons/simple-icons/github";
-import AccountIcon from "~icons/material-symbols/person-rounded";
-import AtIcon from "~icons/material-symbols/alternate-email-rounded";
-import CommentIcon from "~icons/material-symbols/mode-comment-rounded";
-import SendIcon from "~icons/material-symbols/send-rounded";
-import RefreshIcon from "~icons/mdi/loading";
 import { ApiPath } from "../config/api";
+import pb from "../plugins/pocketbase";
 import {
-  loadTurnstile,
   TurnstileEnabled,
   TurnstileKey,
   TurnstileReady,
+  loadTurnstile,
 } from "../plugins/turnstile";
+import AtIcon from "~icons/material-symbols/alternate-email-rounded";
+import CommentIcon from "~icons/material-symbols/mode-comment-rounded";
+import AccountIcon from "~icons/material-symbols/person-rounded";
+import SendIcon from "~icons/material-symbols/send-rounded";
+import RefreshIcon from "~icons/mdi/loading";
+import GithubIcon from "~icons/simple-icons/github";
+import LinkedinIcon from "~icons/simple-icons/linkedin";
 
 const formData = ref({
   name: "",
