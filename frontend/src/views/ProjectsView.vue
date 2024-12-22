@@ -104,7 +104,7 @@ const fetchData = async () => {
     projects.value = response.map((project) => {
       let image = "";
       if (project.image) {
-        image = pb.getFileUrl(project, project.image);
+        image = pb.files.getURL(project, project.image);
       }
       let icon = GlobeIcon;
       if (project.url.match(/^https:\/\/github\.com/)) {
