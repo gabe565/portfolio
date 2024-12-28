@@ -52,7 +52,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.title && to.meta.title !== "Home") {
-    document.title = to.meta.title + " | " + " Gabe Cook";
+    document.title = to.meta.title + " · " + " Gabe Cook";
   } else {
     document.title = "Gabe Cook";
   }
