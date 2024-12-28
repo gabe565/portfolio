@@ -10,6 +10,17 @@ import SkillsView from "../views/SkillsView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   linkActiveClass: "active",
+  scrollBehavior(to, from, savedPosition) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (savedPosition) {
+          resolve(savedPosition);
+        } else {
+          resolve({ top: 0 });
+        }
+      }, 200);
+    });
+  },
   routes: [
     {
       path: "/",
