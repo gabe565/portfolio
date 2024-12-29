@@ -78,7 +78,7 @@ router.afterEach((to, from) => {
       <footer v-if="!minimal" class="w-full">
         <footer-map />
         <div
-          class="footer gap-y-5 sm:grid-flow-col bg-neutral text-neutral-content p-10 justify-center sm:justify-between items-center shadow-inner"
+          class="footer gap-y-5 sm:grid-flow-col bg-base-200 dark:bg-neutral p-10 justify-center sm:justify-between items-center shadow-inner"
         >
           <div class="font-display font-medium text-xl" aria-hidden="true">
             &lt;/ gabe.cook &gt;
