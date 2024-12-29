@@ -2,13 +2,10 @@
   <div
     class="flex flex-col absolute justify-center text-center z-10 w-full h-full text-black dark:text-white"
     v-bind="$attrs"
+    @click="nextBackground(true)"
   >
     <transition name="slide-right-slow" appear>
-      <h1
-        class="font-display font-light text-5xl sm:text-7xl"
-        style="transition-delay: 250ms"
-        @click="nextBackground"
-      >
+      <h1 class="font-display font-light text-5xl sm:text-7xl" style="transition-delay: 250ms">
         Gabe Cook
       </h1>
     </transition>
@@ -71,7 +68,7 @@ const fetchBackgrounds = async () => {
   }
 };
 
-const nextBackground = async () => {
+const nextBackground = async (resetTimeout = false) => {
   const newIndex = (index.value + 1) % backgrounds.length;
   try {
     await loadImage(backgrounds[newIndex]);
@@ -79,9 +76,13 @@ const nextBackground = async () => {
   } catch (error) {
     console.error(error);
   }
+  if (resetTimeout) {
+    startTimeout();
+  }
 };
 
 const startTimeout = () => {
+  stopTimeout();
   timeout = setTimeout(async () => {
     await nextBackground();
     startTimeout();
@@ -97,7 +98,6 @@ const stopTimeout = () => {
 
 (async () => {
   await fetchBackgrounds();
-  await nextBackground();
-  startTimeout();
+  await nextBackground(true);
 })();
 </script>
