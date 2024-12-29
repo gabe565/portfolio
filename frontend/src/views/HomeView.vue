@@ -69,12 +69,14 @@ const fetchBackgrounds = async () => {
 };
 
 const nextBackground = async (resetTimeout = false) => {
-  const newIndex = (index.value + 1) % backgrounds.length;
-  try {
-    await loadImage(backgrounds[newIndex]);
-    index.value = newIndex;
-  } catch (error) {
-    console.error(error);
+  if (backgrounds.length !== 0) {
+    const newIndex = (index.value + 1) % backgrounds.length;
+    try {
+      await loadImage(backgrounds[newIndex]);
+      index.value = newIndex;
+    } catch (error) {
+      console.error(error);
+    }
   }
   if (resetTimeout) {
     startTimeout();
