@@ -52,7 +52,8 @@ router.afterEach((to, from) => {
           <span class="sr-only">Main menu</span>
         </summary>
         <main-menu
-          class="dropdown-content bg-base-200 bg-opacity-80 overflow-hidden rounded-box z-40 mt-3 w-52 p-2 shadow-xl before:backdrop-blur before:backdrop-hack"
+          class="dropdown-content bg-base-200 bg-opacity-20 overflow-hidden rounded-box z-40 mt-3 w-52 p-2 shadow-xl before:backdrop-blur before:backdrop-hack"
+          :class="{ 'bg-opacity-80': !minimal }"
           @click="showNav = false"
         />
       </details>
