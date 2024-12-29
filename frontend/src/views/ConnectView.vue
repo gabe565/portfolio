@@ -145,6 +145,11 @@ const submit = async () => {
       });
       await wait;
       success.value = true;
+      formData.value = {
+        name: "",
+        email: "",
+        message: "",
+      };
     } catch (e) {
       console.error(e);
       error.value = e;
