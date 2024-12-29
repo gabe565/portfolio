@@ -12,7 +12,7 @@
     "format": "prettier . --write --ignore-path .gitignore"
   },
   "dependencies": {
-    "@fontsource/zilla-slab": "5.1.0",
+    "@fontsource/zilla-slab": "5.1.1",
     "@iconify-json/material-symbols": "1.2.12",
     "@iconify-json/mdi": "1.2.2",
     "@iconify-json/simple-icons": "1.2.17",
