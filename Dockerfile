@@ -29,7 +29,6 @@ FROM --platform=$BUILDPLATFORM node:22-alpine AS node-builder
 WORKDIR /app
 
 COPY frontend/package.json frontend/package-lock.json frontend/.npmrc ./
-ARG FONTAWESOME_NPM_AUTH_TOKEN
 RUN npm ci
 
 COPY frontend/ ./

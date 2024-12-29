@@ -43,8 +43,6 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
       - name: Install dependencies
         run: npm --prefix frontend install --prefer-offline --no-audit
-        env:
-          FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
       - run: npm --prefix frontend run lint
 
   build-backend:
