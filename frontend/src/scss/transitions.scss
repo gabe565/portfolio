@@ -17,12 +17,14 @@
 
 .slide-right-enter-active,
 .slide-left-enter-active {
-  transition: opacity 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+  transition:
+    opacity 0.2s cubic-bezier(0.22, 0.61, 0.36, 1),
     transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .slide-right-leave-active,
 .slide-left-leave-active {
-  transition: opacity 0.2s cubic-bezier(0.55, 0.06, 0.68, 0.19),
+  transition:
+    opacity 0.2s cubic-bezier(0.55, 0.06, 0.68, 0.19),
     transform 0.2s cubic-bezier(0.55, 0.06, 0.68, 0.19);
 }
 .slide-left-enter-from,
@@ -38,12 +40,14 @@
 
 .slide-right-slow-enter-active,
 .slide-left-slow-enter-active {
-  transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1),
+  transition:
+    opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1),
     transform 1s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 .slide-right-slow-leave-active,
 .slide-left-slow-leave-active {
-  transition: opacity 1s cubic-bezier(0.55, 0.06, 0.68, 0.19),
+  transition:
+    opacity 1s cubic-bezier(0.55, 0.06, 0.68, 0.19),
     transform 1s cubic-bezier(0.55, 0.06, 0.68, 0.19);
 }
 .slide-left-slow-enter-from,

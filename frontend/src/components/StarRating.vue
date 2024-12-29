@@ -1,9 +1,10 @@
 <template>
   <span>
-    <span class="visually-hidden">{{ props.modelValue }} of {{ props.total }} stars</span>
+    <span class="sr-only">{{ props.modelValue }} of {{ props.total }} stars</span>
     <span
       aria-hidden="true"
       :title="`${props.modelValue} star${props.modelValue === 1 ? '' : 's'}`"
+      class="whitespace-nowrap"
     >
       <template v-for="n in props.total" :key="n">
         <star-filled-icon v-if="n <= props.modelValue" fixed-width fill />
@@ -28,9 +29,3 @@ const props = defineProps({
   },
 });
 </script>
-
-<style scoped>
-svg {
-  height: 1.15em;
-}
-</style>

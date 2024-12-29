@@ -1,16 +1,12 @@
 <script setup>
-import { Collapse } from "bootstrap";
-import { onMounted, onUnmounted, ref } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
-import CodeIcon from "~icons/material-symbols/code-rounded";
-import InfoIcon from "~icons/material-symbols/info";
-import ListIcon from "~icons/material-symbols/list-rounded";
-import MailIcon from "~icons/material-symbols/mail-rounded";
+import FooterMap from "@/components/FooterMap.vue";
+import MainMenu from "@/components/MainMenu.vue";
 import MenuIcon from "~icons/material-symbols/menu-rounded";
 import GithubIcon from "~icons/simple-icons/github";
 
 const transitionName = ref("fade");
-const navbarShrink = ref(false);
 const minimal = ref(true);
 const showNav = ref(false);
 
@@ -23,106 +19,53 @@ router.afterEach((to, from) => {
     transitionName.value = fromIndex < toIndex ? "slide-left" : "slide-right";
   }
 
+  showNav.value = false;
   minimal.value = to.path === "/";
 });
-
-let collapse = null;
-const navbarResponsive = ref(null);
-onMounted(() => {
-  window.addEventListener("scroll", onScroll);
-  collapse = new Collapse(navbarResponsive.value, {
-    toggle: showNav.value,
-  });
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", onScroll);
-});
-
-const onScroll = () => {
-  navbarShrink.value = window.scrollY > 0;
-};
-
-const toggleNav = (show) => {
-  if (show === undefined) {
-    show = !showNav.value;
-  }
-  if (show) {
-    collapse.show();
-    showNav.value = true;
-  } else {
-    collapse.hide();
-    showNav.value = false;
-  }
-};
 </script>
 
 <template>
-  <a class="visually-hidden-focusable btn btn-primary position-absolute" href="#content"
-    >Skip to main content</a
-  >
+  <div class="flex flex-col place-items-center min-h-[100vh] overflow-x-hidden">
+    <a class="sr-only focus:not-sr-only btn btn-primary z-50" href="#content"
+      >Skip to main content</a
+    >
 
-  <nav
-    class="navbar navbar-expand-md fixed-top navbar-dark"
-    :class="{ 'navbar-shrink': navbarShrink }"
-  >
-    <div class="container">
-      <router-link to="/" class="navbar-brand" @click="toggleNav(false)">
-        <span aria-hidden="true">&lt; gabe.cook &gt;</span>
-        <span class="visually-hidden">Gabe Cook</span>
-      </router-link>
-      <button
-        class="navbar-toggler navbar-toggler-right"
-        type="button"
-        aria-controls="navbarResponsive"
-        :aria-expanded="showNav"
-        aria-label="Toggle navigation"
-        @click="toggleNav()"
-      >
-        <menu-icon />
-        Menu
-      </button>
-      <div id="navbarResponsive" ref="navbarResponsive" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <router-link to="/about" class="nav-link rounded" @click="toggleNav(false)">
-              <info-icon />
-              About
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/skills" class="nav-link rounded" @click="toggleNav(false)">
-              <list-icon />
-              Skills
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/projects" class="nav-link rounded" @click="toggleNav(false)">
-              <code-icon />
-              Projects
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/connect" class="nav-link rounded" @click="toggleNav(false)">
-              <mail-icon />
-              Connect
-            </router-link>
-          </li>
-        </ul>
+    <nav
+      class="navbar fixed z-30 border-white border-b border-opacity-5 bg-base-200 bg-opacity-20 shadow-xl transition duration-700 before:backdrop-blur before:backdrop-hack"
+      :class="{
+        'bg-opacity-80': !minimal,
+        'shadow-transparent': minimal,
+      }"
+    >
+      <div class="flex-1">
+        <router-link to="/" class="btn btn-ghost font-display font-medium text-xl">
+          <span aria-hidden="true">&lt; gabe.cook &gt;</span>
+          <span class="sr-only">Gabe Cook</span>
+        </router-link>
       </div>
-    </div>
-  </nav>
 
-  <div
-    v-if="showNav"
-    class="position-absolute w-100 h-100 opacity-0"
-    aria-hidden="true"
-    style="z-index: 1000"
-    @click="toggleNav(false)"
-  />
+      <main-menu class="menu-horizontal hidden md:flex gap-2" />
 
-  <div class="d-flex flex-column min-vh-100">
-    <router-view id="content" v-slot="{ Component }" class="text-center">
+      <details class="flex-none md:hidden dropdown dropdown-end" :open="showNav">
+        <summary class="btn btn-square btn-ghost" @click.prevent="showNav = !showNav">
+          <menu-icon />
+          <span class="sr-only">Main menu</span>
+        </summary>
+        <main-menu
+          class="dropdown-content bg-base-200 bg-opacity-80 overflow-hidden rounded-box z-40 mt-3 w-52 p-2 shadow-xl before:backdrop-blur before:backdrop-hack"
+          @click="showNav = false"
+        />
+      </details>
+    </nav>
+
+    <div
+      v-if="showNav"
+      class="absolute w-full h-full opacity-0 z-20"
+      aria-hidden="true"
+      @click="showNav = false"
+    />
+
+    <router-view id="content" v-slot="{ Component }" class="flex-grow pt-32 pb-10 px-5 sm:px-10">
       <transition :name="transitionName" mode="out-in" appear>
         <keep-alive>
           <component :is="Component" />
@@ -130,21 +73,30 @@ const toggleNav = (show) => {
       </transition>
     </router-view>
 
-    <transition name="fade-in">
-      <footer v-show="!minimal" class="mt-auto">
-        <div class="container">
-          <div class="row text-center">
-            <div class="col-sm text-sm-start" aria-hidden="true">&lt;/ gabe.cook &gt;</div>
-            <div class="col-sm">
-              <a href="//github.com/gabe565/portfolio" target="_blank"
-                ><github-icon class="me-1" fixed-width fill />View on GitHub</a
-              >
-            </div>
-            <div class="col-sm text-sm-end">
-              <a href="//github.com/gabe565/portfolio/blob/master/LICENSE" target="_blank">
-                &copy; {{ new Date().getFullYear() }} Gabe Cook
-              </a>
-            </div>
+    <div class="flex-grow" />
+    <transition name="fade">
+      <footer v-if="!minimal" class="w-full">
+        <footer-map />
+        <div
+          class="footer gap-y-5 sm:grid-flow-col bg-neutral text-neutral-content p-10 justify-center sm:justify-between items-center shadow-inner"
+        >
+          <div class="font-display font-medium text-xl" aria-hidden="true">
+            &lt;/ gabe.cook &gt;
+          </div>
+          <div>
+            <a href="//github.com/gabe565/portfolio" target="_blank" class="link link-hover">
+              <github-icon />
+              Source on GitHub
+            </a>
+          </div>
+          <div>
+            <a
+              href="//github.com/gabe565/portfolio/blob/master/LICENSE"
+              target="_blank"
+              class="link link-hover"
+            >
+              &copy; {{ new Date().getFullYear() }} Gabe Cook
+            </a>
           </div>
         </div>
       </footer>

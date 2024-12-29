@@ -70,12 +70,18 @@ func (c *Client) beginFetch(ctx context.Context) {
 
 func (c *Client) FetchAll(ctx context.Context) error {
 	reqs := map[string]FetchRequest{
-		"xs":  {"575x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
-		"sm":  {"767x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
-		"md":  {"991x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
-		"lg":  {"1280x500", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
-		"xl":  {"1280x500@2x", "gabe565/cm49gy50a014k01qr2sjoc52o", 9},
-		"xxl": {"1280x500@2x", "gabe565/cm49gy50a014k01qr2sjoc52o", 8.5},
+		"xs-dark":   {"575x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
+		"sm-dark":   {"767x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
+		"md-dark":   {"991x300", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
+		"lg-dark":   {"1280x500", "gabe565/cm495kfdx00ip01rz7eifbthx", 9},
+		"xl-dark":   {"1280x500@2x", "gabe565/cm49gy50a014k01qr2sjoc52o", 9},
+		"xxl-dark":  {"1280x500@2x", "gabe565/cm49gy50a014k01qr2sjoc52o", 8.5},
+		"xs-light":  {"575x300", "gabe565/cm57tug1s00no01s21bcp0oca", 9},
+		"sm-light":  {"767x300", "gabe565/cm57tug1s00no01s21bcp0oca", 9},
+		"md-light":  {"991x300", "gabe565/cm57tug1s00no01s21bcp0oca", 9},
+		"lg-light":  {"1280x500", "gabe565/cm57tug1s00no01s21bcp0oca", 9},
+		"xl-light":  {"1280x500@2x", "gabe565/cm57txloc00oa01s865iw5sr1", 9},
+		"xxl-light": {"1280x500@2x", "gabe565/cm57txloc00oa01s865iw5sr1", 8.5},
 	}
 	var errs []error
 	var wg sync.WaitGroup
