@@ -36,7 +36,7 @@ COPY frontend/ ./
 RUN npm run build
 
 
-FROM alpine:3.21 as backend
+FROM alpine:3.21 AS backend
 WORKDIR /app
 
 RUN apk add --no-cache tzdata
@@ -55,5 +55,5 @@ USER $UID
 CMD ["./portfolio", "serve", "--http=0.0.0.0:80", "--dir=/data", "--public=public"]
 
 
-FROM backend as all-in-one
+FROM backend AS all-in-one
 COPY --from=node-builder /app/dist ./public
