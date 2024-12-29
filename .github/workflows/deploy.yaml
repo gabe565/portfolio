@@ -47,9 +47,9 @@ jobs:
 
       - name: Update backend
         run: |
-          yampl --inplace --fail \
-            --value=tag="${GITHUB_REF_NAME#v}" \
-            --value=digest="${{ inputs.digest }}" \
+          yampl --inplace \
+            --var=tag="${GITHUB_REF_NAME#v}" \
+            --var=digest="${{ inputs.digest }}" \
             "home-ops/${{ inputs.path }}"
 
       - name: Commit changes
