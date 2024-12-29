@@ -1,94 +1,78 @@
 <template>
-  <section class="pt-page">
-    <div class="container pb-5">
-      <div class="row mb-4">
-        <div class="col">
-          <h1>Projects</h1>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <p>Here are some of my best projects!</p>
-        </div>
-      </div>
-      <div v-if="loading" class="row">
-        <div class="col">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
-      </div>
-      <div v-else class="row justify-content-center">
-        <div v-if="error" class="col">
-          <div class="alert alert-danger" role="alert">
-            {{ error }}
-          </div>
-        </div>
-        <div
-          v-for="(project, i) in projects"
-          v-else
-          :key="`project-${project.name}`"
-          class="col-10 col-lg-6 col-xl-4 pb-4"
+  <section class="container text-center space-y-4">
+    <h1 class="font-display font-medium text-4xl">Projects</h1>
+    <p>Here are some of my best projects!</p>
+    <div v-if="loading">
+      <loading-icon class="inline" />
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div v-else-if="error" class="alert alert-error max-w-3xl place-self-center" role="alert">
+      <error-icon />
+      {{ error }}
+    </div>
+    <div v-else class="grid gap-7 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+      <transition
+        v-for="(project, i) in projects"
+        :key="`project-${project.name}`"
+        name="fade"
+        appear
+      >
+        <section
+          class="card shadow-xl dark:shadow-2xl flex flex-auto"
+          :style="{ transitionDelay: `${i * 70}ms` }"
         >
-          <transition name="fade" appear>
-            <section
-              class="card text-white bg-dark border-dark h-100"
-              :style="{ transitionDelay: `${i * 70}ms` }"
-            >
-              <template v-if="project.image">
-                <a :href="project.url" class="card-link overflow-hidden" target="_blank">
-                  <img
-                    :src="project.image"
-                    class="card-img-top"
-                    :alt="`Screenshot of ${project.name}`"
-                  />
-                </a>
-              </template>
-              <div class="card-body d-flex flex-column">
-                <h2 class="card-title h4">{{ project.name }}</h2>
-                <!-- eslint-disable vue/no-v-html -->
-                <p class="card-description mb-auto text-start" v-html="project.description" />
-                <div>
-                  <h3 class="visually-hidden">Tags</h3>
-                  <ul class="tags">
-                    <li
-                      v-for="tag in project.expand.tags"
-                      :key="tag.id"
-                      class="badge rounded-pill mx-1"
-                      :class="{ 'bg-info': !tag.color }"
-                      :style="{ backgroundColor: tag.color }"
-                    >
-                      {{ tag.title }}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <a :href="project.url" class="card-link" target="_blank">
-                <div class="card-footer">
-                  <component
-                    :is="project.icon"
-                    v-if="project.icon"
-                    class="px-1"
-                    style="font-size: 1.25em"
-                  />
-                  <span class="font-monospace">
-                    {{ project.pretty_url }}
-                  </span>
-                </div>
-              </a>
-            </section>
-          </transition>
-        </div>
-      </div>
+          <figure v-if="project.image">
+            <a :href="project.url" class="overflow-hidden w-full" target="_blank">
+              <img :src="project.image" class="w-full" :alt="`Screenshot of ${project.name}`" />
+            </a>
+          </figure>
+          <div class="card-body text-start">
+            <h2 class="card-title">{{ project.name }}</h2>
+            <!-- eslint-disable vue/no-v-html -->
+            <p class="card-description mt-auto" v-html="project.description" />
+          </div>
+          <div class="pb-4">
+            <h3 class="sr-only">Tags</h3>
+            <ul class="list-none">
+              <li
+                v-for="tag in project.expand.tags"
+                :key="tag.id"
+                class="badge badge-outline mx-1 text-white"
+                :style="{ color: tag.color }"
+              >
+                {{ tag.title }}
+              </li>
+            </ul>
+          </div>
+
+          <a
+            :href="project.url"
+            class="btn dark:bg-neutral btn-block rounded-t-none border-0 border-t"
+            target="_blank"
+          >
+            <component
+              :is="project.icon"
+              v-if="project.icon"
+              class="px-1"
+              style="font-size: 1.25em"
+            />
+            <span class="font-mono">
+              {{ project.pretty_url }}
+            </span>
+          </a>
+        </section>
+      </transition>
     </div>
   </section>
 </template>
 
 <script setup>
 import { ref, shallowRef } from "vue";
-import pb from "../plugins/pocketbase";
+import pb from "@/plugins/pocketbase";
+import ErrorIcon from "~icons/material-symbols/error-outline-rounded";
 import GlobeIcon from "~icons/mdi/web";
 import GitHubIcon from "~icons/simple-icons/github";
+import LoadingIcon from "~icons/svg-spinners/ring-resize";
 
 const projects = shallowRef([]);
 const loading = ref(true);
@@ -107,7 +91,7 @@ const fetchData = async () => {
         image = pb.files.getURL(project, project.image);
       }
       let icon = GlobeIcon;
-      if (project.url.match(/^https:\/\/github\.com/)) {
+      if (project.url.startsWith("https://github.com/")) {
         icon = GitHubIcon;
       }
       return {
@@ -130,10 +114,3 @@ const fetchData = async () => {
 
 fetchData();
 </script>
-
-<style scoped lang="scss">
-.tags {
-  margin-bottom: 0;
-  padding-left: 0;
-}
-</style>

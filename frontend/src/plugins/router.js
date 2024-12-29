@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { ApiPath } from "../config/api";
-import AboutView from "../views/AboutView.vue";
-import ConnectView from "../views/ConnectView.vue";
-import HomeView from "../views/HomeView.vue";
-import NotFoundView from "../views/NotFoundView.vue";
-import ProjectsView from "../views/ProjectsView.vue";
-import SkillsView from "../views/SkillsView.vue";
+import { ApiPath } from "@/config/api";
+import AboutView from "@/views/AboutView.vue";
+import ConnectView from "@/views/ConnectView.vue";
+import HomeView from "@/views/HomeView.vue";
+import NotFoundView from "@/views/NotFoundView.vue";
+import ProjectsView from "@/views/ProjectsView.vue";
+import SkillsView from "@/views/SkillsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

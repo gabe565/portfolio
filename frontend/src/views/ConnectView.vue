@@ -1,166 +1,115 @@
 <template>
-  <section class="pt-page">
-    <div class="container pb-5">
-      <div class="row mb-4">
-        <div class="col">
-          <h1>Connect</h1>
-        </div>
+  <section class="container max-w-2xl text-center space-y-4">
+    <h1 class="font-display font-medium text-4xl">Connect</h1>
+    <div>Here are some ways to reach out or see what I'm up to!</div>
+    <h2 class="font-medium text-2xl">Accounts</h2>
+    <ul class="flex flex-row gap-3 list-none justify-center">
+      <li>
+        <a :href="ApiPath('/to/github')" class="btn btn-primary" target="_blank">
+          <github-icon />
+          Github
+        </a>
+      </li>
+      <li>
+        <a :href="ApiPath('/to/linkedin')" class="btn btn-primary" target="_blank">
+          <linkedin-icon />
+          LinkedIn
+        </a>
+      </li>
+    </ul>
+
+    <h2 class="font-medium text-2xl">Contact</h2>
+    <form
+      id="needs-validation"
+      ref="form"
+      data-focus="false"
+      method="post"
+      :action="ApiPath('/api/mail')"
+      role="form"
+      novalidate
+      class="flex flex-col gap-3 [&.validate_.input:has(input:invalid)]:input-error [&.validate_textarea:invalid]:input-error"
+      @submit.prevent="submit"
+    >
+      <div v-if="error" class="alert alert-error" role="alert">
+        <error-icon />
+        {{ error }}
       </div>
-      <div class="row">
-        <div class="col">Here are some ways to reach out or see what I'm up to!</div>
+      <div v-else-if="success" class="alert alert-success" role="alert">
+        <check-icon />
+        Your message has been sent successfully. Thank you!
       </div>
-      <section>
-        <div class="row mt-4 mb-3">
-          <div class="col">
-            <h2 class="h3">Accounts</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <ul class="list-inline banner-social-buttons">
-              <li class="list-inline-item">
-                <a
-                  :href="ApiPath('/to/github')"
-                  class="btn btn-outline-primary btn-lg"
-                  target="_blank"
-                >
-                  <github-icon class="me-1" fixed-width fill />
-                  <span class="network-name">Github</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a
-                  :href="ApiPath('/to/linkedin')"
-                  class="btn btn-outline-primary btn-lg"
-                  target="_blank"
-                >
-                  <linkedin-icon class="me-1" fixed-width fill />
-                  <span class="network-name">LinkedIn</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div class="row mt-4 mb-1">
-          <div class="col">
-            <h2 class="h3">Contact</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <form
-              id="needs-validation"
-              ref="form"
-              data-focus="false"
-              method="post"
-              :action="ApiPath('/api/mail')"
-              role="form"
-              novalidate
-              @submit.prevent="submit"
-            >
-              <fieldset>
-                <div class="col mb-3">
-                  <div v-if="error" class="alert alert-danger" role="alert">
-                    Failed to send message. Please try again later.
-                  </div>
-                  <div v-else-if="success" class="alert alert-success" role="alert">
-                    Your message has been sent successfully. Thank you!
-                  </div>
-                </div>
-                <!--Name-->
-                <div class="form-group mb-3">
-                  <label for="nameInput" class="form-label">Name</label>
-                  <div class="input-group">
-                    <div class="input-group-text">
-                      <account-icon fixed-width />
-                    </div>
-                    <input
-                      id="nameInput"
-                      v-model="formData.name"
-                      name="name"
-                      placeholder="Jane Doe"
-                      class="form-control"
-                      type="text"
-                      required
-                    />
-                  </div>
-                </div>
-                <!--Email-->
-                <div class="form-group mb-3">
-                  <label for="emailInput" class="form-label">Email Address</label>
-                  <div class="input-group">
-                    <div class="input-group-text">
-                      <at-icon fixed-width />
-                    </div>
-                    <input
-                      id="emailInput"
-                      v-model="formData.email"
-                      name="email"
-                      placeholder="name@example.com"
-                      class="form-control"
-                      type="email"
-                      required
-                    />
-                  </div>
-                </div>
-                <!--Message-->
-                <div class="form-group mb-3">
-                  <label for="messageInput" class="form-label">Message</label>
-                  <div class="input-group">
-                    <div class="input-group-text">
-                      <comment-icon fixed-width />
-                    </div>
-                    <textarea
-                      id="messageInput"
-                      v-model="formData.message"
-                      class="form-control vertical"
-                      name="text"
-                      required
-                      style="min-height: 62px"
-                      @input="
-                        $event.target.style.height = '';
-                        $event.target.style.height = `${$event.target.scrollHeight}px`;
-                      "
-                    ></textarea>
-                  </div>
-                </div>
-                <div ref="captcha" class="mb-3" style="height: 65px" />
-                <!-- Button -->
-                <div class="form-group mb-3">
-                  <button class="btn btn-outline-primary">
-                    <refresh-icon v-if="loading" class="icon-spin" fixed-width />
-                    <send-icon v-else fixed-width />
-                    Send
-                  </button>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-      </section>
-    </div>
+
+      <div class="join join-vertical md:join-horizontal">
+        <!--Name-->
+        <label class="input input-bordered join-item flex items-center gap-2 w-full">
+          <account-icon />
+          <span class="sr-only">Name</span>
+          <input
+            v-model="formData.name"
+            name="name"
+            placeholder="Name"
+            class="grow"
+            type="text"
+            required
+          />
+        </label>
+
+        <!--Email-->
+        <label class="input input-bordered join-item flex items-center gap-2 w-full">
+          <at-icon />
+          <span class="sr-only">Email</span>
+          <input
+            id="emailInput"
+            v-model="formData.email"
+            name="email"
+            placeholder="Email"
+            class="grow"
+            type="email"
+            required
+          />
+        </label>
+      </div>
+
+      <!--Message-->
+      <label class="form-control">
+        <span class="sr-only">Message</span>
+        <textarea
+          id="messageInput"
+          v-model="formData.message"
+          class="textarea textarea-bordered max-h-96"
+          name="text"
+          required
+          placeholder="Message"
+          :style="{ height: textareaHeight }"
+          @input="textareaInput"
+        />
+      </label>
+
+      <div ref="captcha" class="h-[65px]" />
+
+      <!-- Button -->
+      <button class="btn btn-primary place-self-center">
+        <loading-icon v-if="loading" />
+        <send-icon v-else />
+        Send
+      </button>
+    </form>
   </section>
 </template>
 
 <script setup>
-import { onActivated, onMounted, ref } from "vue";
-import { ApiPath } from "../config/api";
-import pb from "../plugins/pocketbase";
-import {
-  TurnstileEnabled,
-  TurnstileKey,
-  TurnstileReady,
-  loadTurnstile,
-} from "../plugins/turnstile";
+import { nextTick, onActivated, onMounted, ref } from "vue";
+import { ApiPath } from "@/config/api";
+import pb from "@/plugins/pocketbase";
+import { TurnstileEnabled, TurnstileKey, TurnstileReady, loadTurnstile } from "@/plugins/turnstile";
 import AtIcon from "~icons/material-symbols/alternate-email-rounded";
-import CommentIcon from "~icons/material-symbols/mode-comment-rounded";
+import CheckIcon from "~icons/material-symbols/check-circle-outline-rounded";
+import ErrorIcon from "~icons/material-symbols/error-outline-rounded";
 import AccountIcon from "~icons/material-symbols/person-rounded";
 import SendIcon from "~icons/material-symbols/send-rounded";
-import RefreshIcon from "~icons/mdi/loading";
 import GithubIcon from "~icons/simple-icons/github";
 import LinkedinIcon from "~icons/simple-icons/linkedin";
+import LoadingIcon from "~icons/svg-spinners/ring-resize";
 
 const formData = ref({
   name: "",
@@ -173,13 +122,22 @@ const success = ref(false);
 const loading = ref(false);
 
 const form = ref(null);
+const textareaHeight = ref(null);
 let captchaValue;
+
+const textareaInput = async ($event) => {
+  textareaHeight.value = "";
+  await nextTick();
+  textareaHeight.value = `${$event.target.scrollHeight + 2}px`;
+};
 
 const submit = async () => {
   const valid = form.value.checkValidity();
-  form.value.classList.add("was-validated");
   if (valid) {
     loading.value = true;
+    form.value.classList.remove("validate");
+    success.value = false;
+    error.value = null;
     const wait = new Promise((resolve) => setTimeout(resolve, 1000));
     try {
       await pb.collection("contact_form").create(formData.value, {
@@ -193,6 +151,9 @@ const submit = async () => {
     } finally {
       loading.value = false;
     }
+  } else {
+    form.value.classList.add("validate");
+    error.value = Error("Please fix invalid fields");
   }
 };
 
@@ -207,7 +168,6 @@ if (TurnstileEnabled) {
     await TurnstileReady;
     captchaId = window.turnstile.render(captcha.value, {
       sitekey: TurnstileKey,
-      theme: "dark",
       action: "contact",
       callback: (token) => (captchaValue = token),
     });
