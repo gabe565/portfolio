@@ -23,7 +23,7 @@
         <div
           v-if="active && index !== null"
           :key="index"
-          class="absolute top-0 w-full h-full bg-cover bg-center opacity-70 dark:opacity-40"
+          class="absolute top-0 w-full h-full bg-cover bg-center opacity-50 dark:opacity-40"
           :style="{ backgroundImage: `url(${backgrounds[index]})` }"
         />
       </teleport>
