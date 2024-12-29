@@ -25,7 +25,7 @@ router.afterEach((to, from) => {
 </script>
 
 <template>
-  <div class="flex flex-col place-items-center min-h-[100vh] overflow-x-hidden">
+  <div class="flex flex-col place-items-center min-h-lvh overflow-x-hidden">
     <a class="sr-only focus:not-sr-only btn btn-primary z-50" href="#content"
       >Skip to main content</a
     >
