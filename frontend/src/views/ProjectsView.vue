@@ -27,7 +27,12 @@
             </a>
           </figure>
           <div class="card-body text-start">
-            <h2 class="card-title">{{ project.name }}</h2>
+            <div class="flex flex-wrap items-center gap-2">
+              <h2 class="card-title">{{ project.name }}</h2>
+              <div v-if="project.archived" class="badge badge-outline badge-sm text-yellow-600">
+                Archived
+              </div>
+            </div>
             <!-- eslint-disable vue/no-v-html -->
             <p class="card-description mt-auto" v-html="project.description" />
           </div>
@@ -81,9 +86,10 @@ const error = ref();
 const fetchData = async () => {
   try {
     const response = await pb.collection("projects").getFullList({
-      sort: "-priority,created",
+      sort: "archived,-priority,created",
       expand: "tags",
-      fields: "collectionId,id,name,url,description,image,expand.tags.title,expand.tags.color",
+      fields:
+        "collectionId,id,name,url,description,image,archived,expand.tags.title,expand.tags.color",
     });
     projects.value = response.map((project) => {
       let image = "";
