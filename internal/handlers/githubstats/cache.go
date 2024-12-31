@@ -45,7 +45,7 @@ func (c *Cache) Handler(e *core.RequestEvent) error {
 	}
 
 	e.Response.Header().Set("Content-Type", "image/svg+xml; charset=utf-8")
-	e.Response.Header().Set("Cache-Control", "max-age="+strconv.Itoa(int(c.interval.Seconds())))
+	e.Response.Header().Set("Cache-Control", "public, max-age="+strconv.Itoa(int(c.interval.Seconds()))+", must-revalidate")
 	e.Response.Header().Set("ETag", c.etag)
 	http.ServeContent(e.Response, e.Request, "", c.lastModified, bytes.NewReader(c.data))
 	return nil
