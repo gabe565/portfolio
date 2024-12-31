@@ -29,18 +29,20 @@ func New(ctx context.Context, app *pocketbase.PocketBase, conf *config.Config) (
 	}
 
 	h := &Client{
-		config: conf,
-		app:    app,
-		dir:    dir,
+		config:   conf,
+		app:      app,
+		dir:      dir,
+		interval: 24 * time.Hour,
 	}
 	h.beginFetch(ctx)
 	return h, nil
 }
 
 type Client struct {
-	config *config.Config
-	app    *pocketbase.PocketBase
-	dir    string
+	config   *config.Config
+	app      *pocketbase.PocketBase
+	dir      string
+	interval time.Duration
 }
 
 type FetchRequest struct {
@@ -59,7 +61,7 @@ func (c *Client) beginFetch(ctx context.Context) {
 			case <-ctx.Done():
 				return
 			case <-timer.C:
-				timer.Reset(24 * time.Hour)
+				timer.Reset(c.interval)
 				if err := c.FetchAll(ctx); err != nil {
 					slog.Error("Failed to download map", "error", err)
 				}
@@ -187,5 +189,9 @@ func (c *Client) fetchMap(ctx context.Context, name string, conf FetchRequest) e
 }
 
 func (c *Client) Handler() func(e *core.RequestEvent) error {
-	return apis.Static(os.DirFS(c.dir), false)
+	handler := apis.Static(os.DirFS(c.dir), false)
+	return func(e *core.RequestEvent) error {
+		e.Response.Header().Set("Cache-Control", "public, max-age="+strconv.Itoa(int(c.interval.Seconds()))+", must-revalidate")
+		return handler(e)
+	}
 }
