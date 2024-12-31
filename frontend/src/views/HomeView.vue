@@ -4,12 +4,12 @@
     v-bind="$attrs"
     @click="nextBackground(true)"
   >
-    <transition name="slide-right-slow" appear>
+    <transition name="title-slide" appear>
       <h1 class="font-display font-light text-5xl sm:text-7xl" style="transition-delay: 250ms">
         Gabe Cook
       </h1>
     </transition>
-    <transition name="slide-right-slow" appear>
+    <transition name="title-slide" appear>
       <h2 class="font-light sm:text-2xl" style="transition-delay: 500ms">
         DevOps Engineer / Software Developer
       </h2>
