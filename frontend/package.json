@@ -23,7 +23,7 @@
     "autoprefixer": "10.4.20",
     "daisyui": "4.12.23",
     "plausible-tracker": "0.3.9",
-    "pocketbase": "0.24.0",
+    "pocketbase": "0.25.0",
     "postcss": "8.4.49",
     "sass-embedded": "1.83.0",
     "tailwindcss": "3.4.17",
