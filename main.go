@@ -30,16 +30,14 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	app.OnTerminate().BindFunc(func(e *core.TerminateEvent) error {
-		cancel()
+	app.OnBootstrap().BindFunc(func(e *core.BootstrapEvent) error {
+		if err := conf.Load(app.RootCmd); err != nil {
+			return err
+		}
 		return e.Next()
 	})
 
 	app.OnServe().BindFunc(func(e *core.ServeEvent) error {
-		if err := conf.Load(app.RootCmd); err != nil {
-			return err
-		}
-
 		slog.SetDefault(app.Logger())
 
 		app.OnRecordCreateRequest("contact_form").BindFunc(captcha.Verify(conf))
@@ -68,6 +66,11 @@ func main() {
 			e.Router.GET("/map/{path...}", mapClient.Handler())
 		}
 
+		return e.Next()
+	})
+
+	app.OnTerminate().BindFunc(func(e *core.TerminateEvent) error {
+		cancel()
 		return e.Next()
 	})
 
