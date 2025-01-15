@@ -99,9 +99,6 @@
 
 <script setup>
 import { nextTick, onActivated, onMounted, ref } from "vue";
-import { ApiPath } from "@/config/api";
-import pb from "@/plugins/pocketbase";
-import { TurnstileEnabled, TurnstileKey, TurnstileReady, loadTurnstile } from "@/plugins/turnstile";
 import AtIcon from "~icons/material-symbols/alternate-email-rounded";
 import CheckIcon from "~icons/material-symbols/check-circle-outline-rounded";
 import ErrorIcon from "~icons/material-symbols/error-outline-rounded";
@@ -110,6 +107,9 @@ import SendIcon from "~icons/material-symbols/send-rounded";
 import GithubIcon from "~icons/simple-icons/github";
 import LinkedinIcon from "~icons/simple-icons/linkedin";
 import LoadingIcon from "~icons/svg-spinners/ring-resize";
+import { ApiPath } from "@/config/api";
+import pb from "@/plugins/pocketbase";
+import { TurnstileEnabled, TurnstileKey, TurnstileReady, loadTurnstile } from "@/plugins/turnstile";
 
 const formData = ref({
   name: "",

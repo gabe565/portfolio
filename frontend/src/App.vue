@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import FooterMap from "@/components/FooterMap.vue";
-import MainMenu from "@/components/MainMenu.vue";
 import MenuIcon from "~icons/material-symbols/menu-rounded";
 import GithubIcon from "~icons/simple-icons/github";
+import FooterMap from "@/components/FooterMap.vue";
+import MainMenu from "@/components/MainMenu.vue";
 
 const transitionName = ref("fade");
 const minimal = ref(true);

@@ -73,11 +73,11 @@
 
 <script setup>
 import { ref, shallowRef } from "vue";
-import pb from "@/plugins/pocketbase";
 import ErrorIcon from "~icons/material-symbols/error-outline-rounded";
 import GlobeIcon from "~icons/mdi/web";
 import GitHubIcon from "~icons/simple-icons/github";
 import LoadingIcon from "~icons/svg-spinners/ring-resize";
+import pb from "@/plugins/pocketbase";
 
 const projects = shallowRef([]);
 const loading = ref(true);

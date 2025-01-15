@@ -45,10 +45,10 @@
 
 <script setup>
 import { ref } from "vue";
-import StarRating from "@/components/StarRating.vue";
-import pb from "@/plugins/pocketbase";
 import ErrorIcon from "~icons/material-symbols/error-outline-rounded";
 import LoadingIcon from "~icons/svg-spinners/ring-resize";
+import StarRating from "@/components/StarRating.vue";
+import pb from "@/plugins/pocketbase";
 
 const skills = ref([]);
 const loading = ref(true);
