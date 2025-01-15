@@ -6,8 +6,8 @@
       scale is relative to the other languages that I have used, so a 5 star rating means that I'm
       most familiar with that language, not that I'm perfect at it.
     </div>
-    <div v-if="loading">
-      <loading-icon class="inline" />
+    <div v-if="loading" class="h-screen">
+      <loading-icon />
       <span class="sr-only">Loading...</span>
     </div>
     <div v-else-if="error" class="alert alert-error" role="alert">

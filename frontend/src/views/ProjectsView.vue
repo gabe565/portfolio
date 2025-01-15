@@ -2,8 +2,8 @@
   <section class="container text-center space-y-4">
     <h1 class="font-display font-medium text-4xl">Projects</h1>
     <p>Here are some of my best projects!</p>
-    <div v-if="loading">
-      <loading-icon class="inline" />
+    <div v-if="loading" class="h-screen">
+      <loading-icon />
       <span class="sr-only">Loading...</span>
     </div>
     <div v-else-if="error" class="alert alert-error max-w-3xl place-self-center" role="alert">
