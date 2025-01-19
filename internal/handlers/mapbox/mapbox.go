@@ -16,6 +16,7 @@ import (
 	"time"
 
 	"gabe565.com/portfolio/internal/config"
+	"gabe565.com/utils/must"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
@@ -28,21 +29,26 @@ func New(ctx context.Context, app *pocketbase.PocketBase, conf *config.Config) (
 		return nil, err
 	}
 
-	h := &Client{
-		config:   conf,
-		app:      app,
-		dir:      dir,
-		interval: 24 * time.Hour,
+	c := &Client{
+		config: conf,
+		app:    app,
+		dir:    dir,
 	}
-	h.beginFetch(ctx)
-	return h, nil
+
+	must.Must(c.RegisterCron(ctx, app, ""))
+	go func() {
+		if err := c.FetchAll(ctx); err != nil {
+			slog.Error("Failed to download map", "error", err)
+		}
+	}()
+
+	return c, nil
 }
 
 type Client struct {
-	config   *config.Config
-	app      *pocketbase.PocketBase
-	dir      string
-	interval time.Duration
+	config *config.Config
+	app    *pocketbase.PocketBase
+	dir    string
 }
 
 type FetchRequest struct {
@@ -51,23 +57,12 @@ type FetchRequest struct {
 	Zoom  float64
 }
 
-func (c *Client) beginFetch(ctx context.Context) {
-	go func() {
-		timer := time.NewTimer(0)
-		defer timer.Stop()
-
-		for {
-			select {
-			case <-ctx.Done():
-				return
-			case <-timer.C:
-				timer.Reset(c.interval)
-				if err := c.FetchAll(ctx); err != nil {
-					slog.Error("Failed to download map", "error", err)
-				}
-			}
+func (c *Client) RegisterCron(ctx context.Context, app *pocketbase.PocketBase, id string) error {
+	return app.Cron().Add("updateMaps"+id, "0 0 * * *", func() {
+		if err := c.FetchAll(ctx); err != nil {
+			slog.Error("Failed to download map", "error", err)
 		}
-	}()
+	})
 }
 
 func (c *Client) FetchAll(ctx context.Context) error {
@@ -191,7 +186,7 @@ func (c *Client) fetchMap(ctx context.Context, name string, conf FetchRequest) e
 func (c *Client) Handler() func(e *core.RequestEvent) error {
 	handler := apis.Static(os.DirFS(c.dir), false)
 	return func(e *core.RequestEvent) error {
-		e.Response.Header().Set("Cache-Control", "public, max-age="+strconv.Itoa(int(c.interval.Seconds()))+", must-revalidate")
+		e.Response.Header().Set("Cache-Control", "public, max-age=86400, must-revalidate")
 		return handler(e)
 	}
 }

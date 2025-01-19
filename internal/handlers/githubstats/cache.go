@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"log/slog"
 	"net/http"
 	"slices"
 	"strconv"
@@ -16,20 +15,12 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func NewCache(ctx context.Context, endpoint, sourceURL string, interval time.Duration) *Cache {
-	c := Cache{
-		endpoint:  endpoint,
-		sourceURL: sourceURL,
-		interval:  interval,
-	}
-	c.beginUpdate(ctx)
-	return &c
+func NewCache(sourceURL string) *Cache {
+	return &Cache{sourceURL: sourceURL}
 }
 
 type Cache struct {
-	endpoint     string
 	sourceURL    string
-	interval     time.Duration
 	lastModified time.Time
 	etag         string
 	data         []byte
@@ -45,15 +36,16 @@ func (c *Cache) Handler(e *core.RequestEvent) error {
 	}
 
 	e.Response.Header().Set("Content-Type", "image/svg+xml; charset=utf-8")
-	e.Response.Header().Set("Cache-Control", "public, max-age="+strconv.Itoa(int(c.interval.Seconds()))+", must-revalidate")
+	e.Response.Header().Set("Cache-Control", "public, max-age=86400, must-revalidate")
 	e.Response.Header().Set("ETag", c.etag)
 	http.ServeContent(e.Response, e.Request, "", c.lastModified, bytes.NewReader(c.data))
 	return nil
 }
 
-func (c *Cache) RegisterRoutes(e *core.ServeEvent) {
-	e.Router.HEAD(c.endpoint, c.Handler)
-	e.Router.GET(c.endpoint, c.Handler)
+func (c *Cache) RegisterRoutes(e *core.ServeEvent, endpoint string) *Cache {
+	e.Router.HEAD(endpoint, c.Handler)
+	e.Router.GET(endpoint, c.Handler)
+	return c
 }
 
 var ErrUpstreamRequest = errors.New("upstream request failed")
@@ -112,23 +104,4 @@ func (c *Cache) Update(ctx context.Context) error {
 	c.lastModified = lastModified
 	c.etag = etag
 	return nil
-}
-
-func (c *Cache) beginUpdate(ctx context.Context) {
-	go func() {
-		timer := time.NewTimer(0)
-		defer timer.Stop()
-
-		for {
-			select {
-			case <-ctx.Done():
-				return
-			case <-timer.C:
-				timer.Reset(c.interval)
-				if err := c.Update(ctx); err != nil {
-					slog.Error("Failed to update GitHub stats", "error", err)
-				}
-			}
-		}
-	}()
 }

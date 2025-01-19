@@ -26,7 +26,7 @@ func (c *Config) RegisterFlags(cmd *cobra.Command) {
 	fs.StringVar(&c.Turnstile.Secret, FlagTurnstileSecret, c.Turnstile.Secret, "Turnstile captcha secret key")
 
 	fs.DurationVar(&c.GitHubStats.Interval, FlagStatsInterval, c.GitHubStats.Interval, "GitHub readme stats update interval")
-	fs.StringVar(&c.GitHubStats.SourceURL, FlagStatsSource, c.GitHubStats.SourceURL, "GitHub readme stats source URL")
+	fs.Var(&c.GitHubStats.SourceURL, FlagStatsSource, "GitHub readme stats source URL")
 	fs.StringToStringVar(&c.GitHubStats.UserParams, FlagStatsUserParams, c.GitHubStats.UserParams, "GitHub readme stats params")
 	fs.StringToStringVar(&c.GitHubStats.LangsParams, FlagStatsLangsParams, c.GitHubStats.LangsParams, "GitHub readme stats top-langs params")
 }

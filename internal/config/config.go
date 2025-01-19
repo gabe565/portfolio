@@ -1,6 +1,9 @@
 package config
 
-import "time"
+import (
+	"net/url"
+	"time"
+)
 
 type Config struct {
 	PublicDir   string
@@ -21,7 +24,7 @@ type Turnstile struct {
 
 type GitHubStats struct {
 	Interval    time.Duration
-	SourceURL   string
+	SourceURL   URL
 	UserParams  map[string]string
 	LangsParams map[string]string
 }
@@ -37,8 +40,13 @@ func New() *Config {
 			Secret: "1x0000000000000000000000000000000AA",
 		},
 		GitHubStats: GitHubStats{
-			Interval:  4 * time.Hour,
-			SourceURL: "https://github-readme-stats.vercel.app",
+			Interval: 4 * time.Hour,
+			SourceURL: URL{
+				&url.URL{
+					Scheme: "https",
+					Host:   "github-readme-stats.vercel.app",
+				},
+			},
 			UserParams: map[string]string{
 				"username":      "gabe565",
 				"show_icons":    "true",

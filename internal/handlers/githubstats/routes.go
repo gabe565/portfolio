@@ -2,6 +2,7 @@ package githubstats
 
 import (
 	"context"
+	"log/slog"
 	"net/url"
 
 	"gabe565.com/portfolio/internal/config"
@@ -9,30 +10,35 @@ import (
 )
 
 func RegisterRoutes(ctx context.Context, conf *config.Config, e *core.ServeEvent) error {
-	parsedURL, err := url.Parse(conf.GitHubStats.SourceURL)
-	if err != nil {
-		return err
+	stats := NewCache(
+		formatURL(conf.GitHubStats.SourceURL.URL, "api", conf.GitHubStats.UserParams),
+	).RegisterRoutes(e, "/api/github-stats/stats")
+
+	topLangs := NewCache(
+		formatURL(conf.GitHubStats.SourceURL.URL, "api/top-langs", conf.GitHubStats.LangsParams),
+	).RegisterRoutes(e, "/api/github-stats/top-langs")
+
+	update := func() {
+		go func() {
+			if err := stats.Update(ctx); err != nil {
+				slog.Error("Failed to update GitHub stats", "error", err)
+			}
+		}()
+		go func() {
+			if err := topLangs.Update(ctx); err != nil {
+				slog.Error("Failed to update GitHub top langs", "error", err)
+			}
+		}()
 	}
 
-	userURL, err := formatURL(parsedURL, "api", conf.GitHubStats.UserParams)
-	if err != nil {
-		return err
-	}
-	NewCache(ctx, "/api/github-stats/stats", userURL, conf.GitHubStats.Interval).RegisterRoutes(e)
-
-	langsURL, err := formatURL(parsedURL, "api/top-langs", conf.GitHubStats.LangsParams)
-	if err != nil {
-		return err
-	}
-	NewCache(ctx, "/api/github-stats/top-langs", langsURL, conf.GitHubStats.Interval).RegisterRoutes(e)
-
-	return nil
+	go update()
+	return e.App.Cron().Add("updateGitHubStats", "0 */4 * * *", update)
 }
 
-func formatURL(src *url.URL, path string, params map[string]string) (string, error) {
+func formatURL(src *url.URL, path string, params map[string]string) string {
 	u, err := src.Parse(path)
 	if err != nil {
-		return "", err
+		panic(err)
 	}
 
 	q := u.Query()
@@ -41,5 +47,5 @@ func formatURL(src *url.URL, path string, params map[string]string) (string, err
 	}
 	u.RawQuery = q.Encode()
 
-	return u.String(), nil
+	return u.String()
 }
