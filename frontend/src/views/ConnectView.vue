@@ -5,13 +5,13 @@
     <h2 class="font-medium text-2xl">Accounts</h2>
     <ul class="flex flex-row gap-3 list-none justify-center">
       <li>
-        <a :href="ApiPath('/to/github')" class="btn btn-primary" target="_blank">
+        <a :href="ApiPath('/api/to/github')" class="btn btn-primary" target="_blank">
           <github-icon />
           Github
         </a>
       </li>
       <li>
-        <a :href="ApiPath('/to/linkedin')" class="btn btn-primary" target="_blank">
+        <a :href="ApiPath('/api/to/linkedin')" class="btn btn-primary" target="_blank">
           <linkedin-icon />
           LinkedIn
         </a>

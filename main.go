@@ -51,7 +51,7 @@ func main() {
 		})
 
 		e.Router.GET("/{path...}", handlers.Static(conf))
-		e.Router.GET("/to/{handle}", handlers.Redirect())
+		e.Router.GET("/api/to/{handle}", handlers.Redirect())
 
 		if err := githubstats.RegisterRoutes(ctx, conf, e); err != nil {
 			return err
@@ -63,7 +63,7 @@ func main() {
 				return err
 			}
 
-			e.Router.GET("/map/{path...}", mapClient.Handler())
+			e.Router.GET("/api/map/{path...}", mapClient.Handler())
 		}
 
 		return e.Next()
