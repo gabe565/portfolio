@@ -11,11 +11,11 @@ import (
 
 func RegisterRoutes(ctx context.Context, conf *config.Config, e *core.ServeEvent) error {
 	stats := NewCache(
-		formatURL(conf.GitHubStats.SourceURL.URL, "api", conf.GitHubStats.UserParams),
+		formatURL(conf.GitHubStats.SourceURL.URL, "api", userParams(conf.GitHubStats.Username)),
 	).RegisterRoutes(e, "/api/github-stats/stats")
 
 	topLangs := NewCache(
-		formatURL(conf.GitHubStats.SourceURL.URL, "api/top-langs", conf.GitHubStats.LangsParams),
+		formatURL(conf.GitHubStats.SourceURL.URL, "api/top-langs", langsParams(conf.GitHubStats.Username)),
 	).RegisterRoutes(e, "/api/github-stats/top-langs")
 
 	update := func() {
@@ -48,4 +48,24 @@ func formatURL(src *url.URL, path string, params map[string]string) string {
 	u.RawQuery = q.Encode()
 
 	return u.String()
+}
+
+func userParams(username string) map[string]string {
+	return map[string]string{
+		"username":      username,
+		"show_icons":    "true",
+		"theme":         "transparent",
+		"hide_border":   "true",
+		"count_private": "true",
+	}
+}
+
+func langsParams(username string) map[string]string {
+	return map[string]string{
+		"username":      username,
+		"show_icons":    "true",
+		"theme":         "transparent",
+		"hide_border":   "true",
+		"count_private": "true",
+	}
 }

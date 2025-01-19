@@ -11,10 +11,9 @@ const (
 
 	FlagTurnstileSecret = "turnstile-secret"
 
-	FlagStatsInterval    = "stats-interval"
-	FlagStatsSource      = "stats-source"
-	FlagStatsUserParams  = "stats-user-params"
-	FlagStatsLangsParams = "stats-langs-params"
+	FlagStatsInterval = "stats-interval"
+	FlagStatsSource   = "stats-source"
+	FlagStatsUsername = "stats-username"
 )
 
 func (c *Config) RegisterFlags(cmd *cobra.Command) {
@@ -27,6 +26,5 @@ func (c *Config) RegisterFlags(cmd *cobra.Command) {
 
 	fs.DurationVar(&c.GitHubStats.Interval, FlagStatsInterval, c.GitHubStats.Interval, "GitHub readme stats update interval")
 	fs.Var(&c.GitHubStats.SourceURL, FlagStatsSource, "GitHub readme stats source URL")
-	fs.StringToStringVar(&c.GitHubStats.UserParams, FlagStatsUserParams, c.GitHubStats.UserParams, "GitHub readme stats params")
-	fs.StringToStringVar(&c.GitHubStats.LangsParams, FlagStatsLangsParams, c.GitHubStats.LangsParams, "GitHub readme stats top-langs params")
+	fs.StringVar(&c.GitHubStats.Username, FlagStatsUsername, c.GitHubStats.Username, "GitHub username to use for stats")
 }

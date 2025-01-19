@@ -23,10 +23,9 @@ type Turnstile struct {
 }
 
 type GitHubStats struct {
-	Interval    time.Duration
-	SourceURL   URL
-	UserParams  map[string]string
-	LangsParams map[string]string
+	Interval  time.Duration
+	SourceURL URL
+	Username  string
 }
 
 func New() *Config {
@@ -47,20 +46,7 @@ func New() *Config {
 					Host:   "github-readme-stats.vercel.app",
 				},
 			},
-			UserParams: map[string]string{
-				"username":      "gabe565",
-				"show_icons":    "true",
-				"theme":         "transparent",
-				"hide_border":   "true",
-				"count_private": "true",
-			},
-			LangsParams: map[string]string{
-				"username":      "gabe565",
-				"show_icons":    "true",
-				"theme":         "transparent",
-				"hide_border":   "true",
-				"count_private": "true",
-			},
+			Username: "gabe565",
 		},
 	}
 }
