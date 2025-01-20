@@ -8,6 +8,7 @@ require (
 	github.com/pocketbase/pocketbase v0.24.4
 	github.com/spf13/cobra v1.8.1
 	github.com/spf13/pflag v1.0.5
+	github.com/tdewolff/minify/v2 v2.21.3
 )
 
 require (
@@ -53,6 +54,7 @@ require (
 	github.com/pocketbase/dbx v1.11.0 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
 	github.com/spf13/cast v1.7.1 // indirect
+	github.com/tdewolff/parse/v2 v2.7.19 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	gocloud.dev v0.40.0 // indirect
 	golang.org/x/crypto v0.32.0 // indirect

@@ -13,6 +13,9 @@ import (
 	"time"
 
 	"github.com/pocketbase/pocketbase/core"
+	"github.com/tdewolff/minify/v2"
+	"github.com/tdewolff/minify/v2/css"
+	"github.com/tdewolff/minify/v2/svg"
 )
 
 func NewCache(sourceURL string) *Cache {
@@ -92,15 +95,21 @@ func (c *Cache) Update(ctx context.Context) error {
 		}
 	}
 
-	b, err := io.ReadAll(resp.Body)
-	if err != nil {
+	m := minify.New()
+	m.AddFunc("image/svg+xml", svg.Minify)
+	m.AddFunc("text/css", css.Minify)
+
+	c.mu.RLock()
+	buf := bytes.NewBuffer(make([]byte, 0, max(len(c.data), 2048)))
+	c.mu.RUnlock()
+
+	if err := m.Minify("image/svg+xml", buf, resp.Body); err != nil {
 		return err
 	}
-	b = slices.Clip(b)
 
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	c.data = b
+	c.data = slices.Clip(buf.Bytes())
 	c.lastModified = lastModified
 	c.etag = etag
 	return nil
