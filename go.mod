@@ -3,10 +3,10 @@ module gabe565.com/portfolio
 go 1.24.0
 
 require (
-	gabe565.com/utils v0.0.0-20241213205714-152b8de1d3fe
+	gabe565.com/utils v0.0.0-20250225060243-a5332a333cd9
 	github.com/meyskens/go-turnstile v0.0.0-20230622160222-89160e594ca1
 	github.com/pocketbase/pocketbase v0.25.8
-	github.com/spf13/cobra v1.8.1
+	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.6
 	github.com/tdewolff/minify/v2 v2.21.3
 )
