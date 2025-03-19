@@ -17,6 +17,10 @@
   @apply bg-white/20;
 }
 
+p a:not(.btn) {
+  @apply link link-hover text-blue-500 dark:text-blue-400
+}
+
 svg.icon {
   @apply inline;
 }

@@ -13,8 +13,8 @@
           up-to-date with the latest technologies. I specialize in building robust systems using
           Golang and Vue.js, and I enjoy exploring new ideas and tinkering with self-hosted home
           infrastructure. My
-          <router-link to="/projects" class="link link-hover">project</router-link> page showcases
-          some of my most notable works.
+          <router-link to="/projects">project</router-link>
+          page showcases some of my most notable works.
         </p>
         <p>
           To ensure efficient development and deployment, I utilize containers, GitHub Actions,
