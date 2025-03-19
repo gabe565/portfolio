@@ -25,7 +25,7 @@
         <li
           v-for="(skill, i) in skills"
           :key="skill.title"
-          class="border-white border-opacity-10 px-8 py-3"
+          class="border-black/10 dark:border-white/10 px-8 py-3"
           :class="{ 'md:border-r': i < skills.length / 2 }"
         >
           <transition name="fade" appear>
