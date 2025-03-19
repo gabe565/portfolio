@@ -34,7 +34,7 @@
               :style="{ transitionDelay: `${i * 40}ms` }"
             >
               <div>{{ skill.title }}</div>
-              <StarRating v-model="skill.rating" class="text-primary" />
+              <StarRating v-model="skill.rating" class="text-blue-500 dark:text-blue-400" />
             </div>
           </transition>
         </li>
