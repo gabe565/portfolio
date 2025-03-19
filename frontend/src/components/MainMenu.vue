@@ -1,25 +1,25 @@
 <template>
   <ul class="menu">
     <li>
-      <router-link to="/about">
+      <router-link to="/about" active-class="menu-active">
         <info-icon />
         About
       </router-link>
     </li>
     <li>
-      <router-link to="/skills">
+      <router-link to="/skills" active-class="menu-active">
         <list-icon />
         Skills
       </router-link>
     </li>
     <li>
-      <router-link to="/projects">
+      <router-link to="/projects" active-class="menu-active">
         <code-icon />
         Projects
       </router-link>
     </li>
     <li>
-      <router-link to="/connect">
+      <router-link to="/connect" active-class="menu-active">
         <mail-icon />
         Connect
       </router-link>

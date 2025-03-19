@@ -8,7 +8,7 @@
     >
       <template v-for="n in props.total" :key="n">
         <star-filled-icon v-if="n <= props.modelValue" fixed-width fill />
-        <star-outline-icon v-else class="text-white opacity-15" fixed-width />
+        <star-outline-icon v-else class="text-black dark:text-white opacity-15" fixed-width />
       </template>
     </span>
   </span>
