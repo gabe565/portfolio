@@ -1,4 +1,3 @@
-import daisyui from "daisyui";
 import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
@@ -9,5 +8,4 @@ export default {
       display: ['"Zilla Slab"', ...defaultTheme.fontFamily.sans],
     },
   },
-  plugins: [daisyui],
 };

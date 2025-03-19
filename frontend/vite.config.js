@@ -1,7 +1,6 @@
+import tailwindcss from "@tailwindcss/vite";
 import vue from "@vitejs/plugin-vue";
-import autoprefixer from "autoprefixer";
 import { URL, fileURLToPath } from "node:url";
-import tailwindcss from "tailwindcss";
 import Icons from "unplugin-icons/vite";
 import { defineConfig } from "vite";
 
@@ -14,12 +13,8 @@ export default defineConfig({
       autoInstall: true,
       defaultClass: "icon",
     }),
+    tailwindcss(),
   ],
-  css: {
-    postcss: {
-      plugins: [tailwindcss(), autoprefixer()],
-    },
-  },
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
