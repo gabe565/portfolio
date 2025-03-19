@@ -41,7 +41,9 @@ router.afterEach((to, from) => {
         </router-link>
       </div>
 
-      <main-menu class="menu-horizontal hidden md:flex gap-2" />
+      <transition name="fade">
+        <main-menu v-if="!minimal" class="menu-horizontal hidden md:flex gap-2" />
+      </transition>
 
       <details class="flex-none md:hidden dropdown dropdown-end" :open="showNav">
         <summary class="btn btn-square btn-ghost" @click.prevent="showNav = !showNav">

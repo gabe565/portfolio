@@ -1,19 +1,26 @@
 <template>
   <div
-    class="flex flex-col absolute justify-center text-center z-10 w-full h-full text-black dark:text-white"
+    class="flex flex-col absolute justify-center items-center text-center z-10 w-full h-full text-black dark:text-white"
     v-bind="$attrs"
     @click="nextBackground(true)"
   >
-    <transition name="title-slide" appear>
-      <h1 class="font-display font-light text-5xl sm:text-7xl" style="transition-delay: 250ms">
-        Gabe Cook
-      </h1>
-    </transition>
-    <transition name="title-slide" appear>
-      <h2 class="font-light sm:text-2xl" style="transition-delay: 500ms">
-        DevOps Engineer / Software Developer
-      </h2>
-    </transition>
+    <div
+      class="flex flex-col items-center gap-5 card bg-base-100/40 p-5 card-border border-white/5 backdrop-blur shadow-md"
+    >
+      <transition name="title-slide" appear>
+        <h1 class="font-display font-light text-5xl sm:text-6xl" style="transition-delay: 250ms">
+          Gabe Cook
+        </h1>
+      </transition>
+      <transition name="title-slide" appear>
+        <h2 class="font-light sm:text-lg" style="transition-delay: 500ms">
+          DevOps Engineer / Software Developer
+        </h2>
+      </transition>
+      <transition name="title-slide" appear>
+        <main-menu class="sm:menu-horizontal gap-3 sm:gap-0" style="transition-delay: 750ms" />
+      </transition>
+    </div>
 
     <teleport to="body">
       <transition name="fade" appear>
@@ -26,7 +33,7 @@
         <div
           v-if="active && index !== null"
           :key="index"
-          class="absolute top-0 w-full h-lvh bg-cover bg-center opacity-65 dark:opacity-50"
+          class="absolute top-0 w-full h-lvh bg-cover bg-center opacity-80"
           :style="{ backgroundImage: `url(${backgrounds[index]})` }"
         />
       </transition>
@@ -36,6 +43,7 @@
 
 <script setup>
 import { onActivated, onDeactivated, ref } from "vue";
+import MainMenu from "@/components/MainMenu.vue";
 import pb from "@/plugins/pocketbase";
 import loadImage from "@/util/loadImage";
 
