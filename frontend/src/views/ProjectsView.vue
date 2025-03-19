@@ -18,18 +18,25 @@
         appear
       >
         <section
-          class="card shadow-xl dark:shadow-2xl flex flex-auto"
+          class="card bg-base-100 card-border border-base-300 flex flex-auto"
           :style="{ transitionDelay: `${i * 70}ms` }"
         >
-          <figure v-if="project.image">
+          <figure v-if="project.image" class="p-2">
             <a :href="project.url" class="overflow-hidden w-full" target="_blank">
-              <img :src="project.image" class="w-full" :alt="`Screenshot of ${project.name}`" />
+              <img
+                :src="project.image"
+                class="w-full rounded-[calc(var(--radius-box)-.5rem)]"
+                :alt="`Screenshot of ${project.name}`"
+              />
             </a>
           </figure>
           <div class="card-body text-start">
             <div class="flex flex-wrap items-center gap-2">
               <h2 class="card-title">{{ project.name }}</h2>
-              <div v-if="project.archived" class="badge badge-outline badge-sm text-yellow-600">
+              <div
+                v-if="project.archived"
+                class="badge bg-transparent text-yellow-600 border-yellow-600 badge-sm"
+              >
                 Archived
               </div>
             </div>
@@ -42,8 +49,8 @@
               <li
                 v-for="tag in project.expand.tags"
                 :key="tag.id"
-                class="badge badge-outline mx-1 text-white"
-                :style="{ color: tag.color }"
+                class="badge badge-outline mx-1"
+                :style="{ '--badge-color': tag.color }"
               >
                 {{ tag.title }}
               </li>
@@ -52,7 +59,7 @@
 
           <a
             :href="project.url"
-            class="btn dark:bg-neutral btn-block rounded-t-none border-0 border-t"
+            class="btn btn-soft m-2 rounded-[calc(var(--radius-box)-.5rem)]"
             target="_blank"
           >
             <component

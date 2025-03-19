@@ -3,7 +3,7 @@ import { ApiPath } from "@/config/api.js";
 </script>
 
 <template>
-  <picture class="w-full">
+  <picture>
     <source
       :srcset="ApiPath('/api/map/xxl-dark.png')"
       media="(min-width: 2000px) and (prefers-color-scheme: dark)"

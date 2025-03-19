@@ -1,0 +1,40 @@
+@import "@fontsource/zilla-slab/latin-300.css";
+@import "@fontsource/zilla-slab/latin-500.css";
+@import "./transitions.css";
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  --font-display: 'Zilla Slab', sans-serif;
+}
+
+:root {
+  --radius-box: 1rem;
+  --radius-field: 0.5rem;
+}
+
+:not(input, textarea)::selection {
+  @apply bg-white/20;
+}
+
+svg.icon {
+  @apply inline;
+}
+
+/*
+  Chromium browsers don't render nested backdrop filters.
+  As a workaround, add 'before:' to the outer filter, along with 'before:backdrop-hack':
+
+    <div class="before:backdrop-blur-md before:backdrop-hack>
+      <div class="backdrop-blur-md"></div>
+    </div>
+
+  See https://stackoverflow.com/a/76207141.
+*/
+@utility backdrop-hack {
+  @apply absolute inset-0 -z-10;
+}
+
+.badge {
+  @apply rounded-full;
+}

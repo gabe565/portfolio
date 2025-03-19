@@ -76,7 +76,7 @@
         <textarea
           id="messageInput"
           v-model="formData.message"
-          class="textarea textarea-bordered max-h-96"
+          class="textarea textarea-bordered max-h-96 w-full"
           name="text"
           required
           placeholder="Message"

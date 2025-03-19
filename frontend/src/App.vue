@@ -25,17 +25,14 @@ router.afterEach((to, from) => {
 </script>
 
 <template>
-  <div class="flex flex-col place-items-center min-h-lvh overflow-x-hidden">
+  <div class="flex flex-col place-items-center min-h-lvh bg-base-200 overflow-x-hidden">
     <a class="sr-only focus:not-sr-only btn btn-primary z-50" href="#content"
       >Skip to main content</a
     >
 
     <nav
-      class="navbar fixed z-30 border-white border-b border-opacity-5 bg-base-200 bg-opacity-20 shadow-xl transition duration-700 before:backdrop-blur before:backdrop-hack"
-      :class="{
-        'bg-opacity-80': !minimal,
-        'shadow-transparent': minimal,
-      }"
+      class="navbar fixed z-30 border-white/5 border-b shadow-md transition duration-700 before:backdrop-blur before:backdrop-hack"
+      :class="[minimal ? 'bg-base-200/40' : 'bg-base-200/80']"
     >
       <div class="flex-1">
         <router-link to="/" class="btn btn-ghost font-display font-medium text-xl">
@@ -52,8 +49,8 @@ router.afterEach((to, from) => {
           <span class="sr-only">Main menu</span>
         </summary>
         <main-menu
-          class="dropdown-content bg-base-200 bg-opacity-20 overflow-hidden rounded-box z-40 mt-3 w-52 p-2 shadow-xl before:backdrop-blur before:backdrop-hack"
-          :class="{ 'bg-opacity-80': !minimal }"
+          class="dropdown-content overflow-hidden rounded-box z-40 mt-3 w-52 p-2 gap-3 shadow-md before:backdrop-blur before:backdrop-hack"
+          :class="[minimal ? 'bg-base-200/40' : 'bg-base-200/80']"
           @click="showNav = false"
         />
       </details>
@@ -83,7 +80,7 @@ router.afterEach((to, from) => {
       <footer v-if="!minimal" class="w-full">
         <footer-map />
         <div
-          class="footer gap-y-5 sm:grid-flow-col bg-base-200 dark:bg-neutral p-10 justify-center sm:justify-between items-center shadow-inner"
+          class="footer gap-y-5 sm:grid-flow-col bg-base-100 p-10 justify-center sm:justify-between items-center inset-shadow-sm"
         >
           <div class="font-display font-medium text-xl" aria-hidden="true">
             &lt;/ gabe.cook &gt;
