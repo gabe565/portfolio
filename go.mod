@@ -3,7 +3,7 @@ module gabe565.com/portfolio
 go 1.24.1
 
 require (
-	gabe565.com/utils v0.0.0-20250225060243-a5332a333cd9
+	gabe565.com/utils v0.0.0-20250302063333-ede73b14282c
 	github.com/meyskens/go-turnstile v0.0.0-20230622160222-89160e594ca1
 	github.com/pocketbase/pocketbase v0.25.8
 	github.com/spf13/cobra v1.9.1
