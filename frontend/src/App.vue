@@ -88,7 +88,7 @@ router.afterEach((to, from) => {
             &lt;/ gabe.cook &gt;
           </div>
           <div>
-            <a href="//github.com/gabe565/portfolio" target="_blank" class="link link-hover">
+            <a href="//github.com/gabe565/portfolio" target="_blank" class="btn btn-ghost">
               <github-icon />
               Source on GitHub
             </a>
@@ -97,7 +97,7 @@ router.afterEach((to, from) => {
             <a
               href="//github.com/gabe565/portfolio/blob/master/LICENSE"
               target="_blank"
-              class="link link-hover"
+              class="btn btn-ghost"
             >
               &copy; {{ new Date().getFullYear() }} Gabe Cook
             </a>
