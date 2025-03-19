@@ -1,12 +1,13 @@
 <template>
-  <div class="flex flex-col w-full">
-    <section class="container flex-grow max-w-7xl mx-auto text-center space-y-4">
-      <h1 class="font-display font-medium text-4xl">About</h1>
+  <section class="container max-w-5xl mx-auto text-center space-y-7">
+    <h1 class="font-display font-medium text-4xl">About</h1>
+    <portfolio-card>
       <div class="text-start space-y-4">
         <div class="p-3 md:float-end block mx-auto" style="width: 190px">
-          <img class="rounded-lg" src="@/assets/me.jpg" alt="Gabe's Avatar" />
+          <img class="rounded-lg" :src="headerImage" alt="Gabe's Avatar" />
         </div>
-        <p>Hi! I'm Gabe.</p>
+
+        <p class="text-lg">Hi! I'm Gabe.</p>
         <p>
           I'm a DevOps Engineer and Software Developer based in Oklahoma City, Oklahoma, USA. I'm
           passionate about automating processes, crafting innovative solutions, and staying
@@ -27,26 +28,25 @@
           <router-link to="/connect">Feel free to reach out!</router-link>
         </p>
       </div>
+    </portfolio-card>
 
-      <h2 class="font-medium text-2xl">Stats</h2>
-      <div class="flex flex-col md:flex-row justify-center items-center">
-        <img
-          :src="ApiPath('/api/github-stats/stats')"
-          alt="Gabe Cook's GitHub stats"
-          class="mw-100"
-          style="min-height: 195px"
-        />
-        <img
-          :src="ApiPath('/api/github-stats/top-langs')"
-          alt="Most Used Languages"
-          class="mw-100"
-          style="min-height: 165px"
-        />
-      </div>
-    </section>
-  </div>
+    <div class="flex flex-wrap gap-7 w-full justify-center">
+      <img
+        :src="ApiPath('/api/github-stats/stats')"
+        alt="Gabe Cook's GitHub stats"
+        class="card bg-base-100 card-border border-base-300 shadow-xs"
+      />
+      <img
+        :src="ApiPath('/api/github-stats/top-langs')"
+        alt="Most Used Languages"
+        class="card bg-base-100 card-border border-base-300 shadow-xs"
+      />
+    </div>
+  </section>
 </template>
 
 <script setup>
+import headerImage from "@/assets/me.jpg";
+import PortfolioCard from "@/components/PortfolioCard.vue";
 import { ApiPath } from "@/config/api";
 </script>

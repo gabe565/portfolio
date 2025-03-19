@@ -1,5 +1,5 @@
 <template>
-  <section class="container text-center space-y-4">
+  <section class="container text-center space-y-7">
     <h1 class="font-display font-medium text-4xl">Projects</h1>
     <p>Here are some of my best projects!</p>
     <div v-if="loading" class="h-screen">
@@ -17,62 +17,56 @@
         name="fade"
         appear
       >
-        <section
-          class="card bg-base-100 card-border border-base-300 flex flex-auto"
+        <portfolio-card
           :style="{ transitionDelay: `${i * 70}ms` }"
+          :title="project.name"
+          :description="project.description"
+          :header-image="project.image"
+          :header-alt="`Screenshot of ${project.name}`"
+          :header-url="project.url"
+          description-html
         >
-          <figure v-if="project.image" class="p-2">
-            <a :href="project.url" class="overflow-hidden w-full" target="_blank">
-              <img
-                :src="project.image"
-                class="w-full rounded-[calc(var(--radius-box)-.5rem)]"
-                :alt="`Screenshot of ${project.name}`"
-              />
-            </a>
-          </figure>
-          <div class="card-body text-start">
-            <div class="flex flex-wrap items-center gap-2">
-              <h2 class="card-title">{{ project.name }}</h2>
-              <div
-                v-if="project.archived"
-                class="badge bg-transparent text-yellow-600 border-yellow-600 badge-sm"
-              >
-                Archived
-              </div>
+          <template #title-append>
+            <div
+              v-if="project.archived"
+              class="badge bg-transparent text-yellow-600 border-yellow-600 badge-sm"
+            >
+              Archived
             </div>
-            <!-- eslint-disable vue/no-v-html -->
-            <p class="card-description mt-auto" v-html="project.description" />
-          </div>
-          <div class="pb-4">
-            <h3 class="sr-only">Tags</h3>
-            <ul class="list-none">
-              <li
-                v-for="tag in project.expand.tags"
-                :key="tag.id"
-                class="badge badge-outline mx-1"
-                :style="{ '--badge-color': tag.color }"
-              >
-                {{ tag.title }}
-              </li>
-            </ul>
-          </div>
+          </template>
 
-          <a
-            :href="project.url"
-            class="btn btn-soft m-2 rounded-[calc(var(--radius-box)-.5rem)]"
-            target="_blank"
-          >
-            <component
-              :is="project.icon"
-              v-if="project.icon"
-              class="px-1"
-              style="font-size: 1.25em"
-            />
-            <span class="font-mono">
-              {{ project.pretty_url }}
-            </span>
-          </a>
-        </section>
+          <template #footer>
+            <div class="pb-4">
+              <h3 class="sr-only">Tags</h3>
+              <ul class="list-none">
+                <li
+                  v-for="tag in project.expand.tags"
+                  :key="tag.id"
+                  class="badge badge-outline mx-1"
+                  :style="{ '--badge-color': tag.color }"
+                >
+                  {{ tag.title }}
+                </li>
+              </ul>
+            </div>
+
+            <a
+              :href="project.url"
+              class="btn btn-soft m-2 rounded-[calc(var(--radius-box)-.5rem)]"
+              target="_blank"
+            >
+              <component
+                :is="project.icon"
+                v-if="project.icon"
+                class="px-1"
+                style="font-size: 1.25em"
+              />
+              <span class="font-mono">
+                {{ project.pretty_url }}
+              </span>
+            </a>
+          </template>
+        </portfolio-card>
       </transition>
     </div>
   </section>
@@ -84,6 +78,7 @@ import ErrorIcon from "~icons/material-symbols/error-outline-rounded";
 import GlobeIcon from "~icons/mdi/web";
 import GitHubIcon from "~icons/simple-icons/github";
 import LoadingIcon from "~icons/svg-spinners/ring-resize";
+import PortfolioCard from "@/components/PortfolioCard.vue";
 import pb from "@/plugins/pocketbase";
 
 const projects = shallowRef([]);

@@ -1,5 +1,5 @@
 <template>
-  <section class="container max-w-3xl text-center space-y-4">
+  <section class="container max-w-3xl text-center space-y-7">
     <h1 class="font-display font-medium text-4xl">Skills</h1>
     <div>
       A list of skills and languages that I'm proficient in on a scale of 1-5 stars. Note that the
@@ -14,8 +14,11 @@
       <error-icon />
       {{ error }}
     </div>
-    <section v-for="{ title, skills } in skills" v-else :key="title" class="mb-4 space-y-4">
-      <h2 class="font-medium text-xl">{{ title }}</h2>
+    <portfolio-card v-for="{ title, skills } in skills" v-else :key="title" class="mb-7">
+      <template #title>
+        <h2 class="card-title self-center">{{ title }}</h2>
+      </template>
+
       <ul
         class="grid grid-flow-row md:grid-flow-col auto-cols-fr list-none text-left"
         :style="{
@@ -39,7 +42,7 @@
           </transition>
         </li>
       </ul>
-    </section>
+    </portfolio-card>
   </section>
 </template>
 
@@ -47,6 +50,7 @@
 import { ref } from "vue";
 import ErrorIcon from "~icons/material-symbols/error-outline-rounded";
 import LoadingIcon from "~icons/svg-spinners/ring-resize";
+import PortfolioCard from "@/components/PortfolioCard.vue";
 import StarRating from "@/components/StarRating.vue";
 import pb from "@/plugins/pocketbase";
 
