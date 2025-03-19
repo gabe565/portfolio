@@ -15,16 +15,22 @@
       </h2>
     </transition>
 
-    <transition name="fade" appear>
-      <teleport to="body">
+    <teleport to="body">
+      <transition name="fade" appear>
+        <div
+          v-if="active && index !== null"
+          class="absolute top-0 w-full h-lvh bg-white dark:bg-black"
+        />
+      </transition>
+      <transition name="fade" appear>
         <div
           v-if="active && index !== null"
           :key="index"
-          class="absolute top-0 w-full h-lvh bg-cover bg-center opacity-50 dark:opacity-40"
+          class="absolute top-0 w-full h-lvh bg-cover bg-center opacity-65 dark:opacity-50"
           :style="{ backgroundImage: `url(${backgrounds[index]})` }"
         />
-      </teleport>
-    </transition>
+      </transition>
+    </teleport>
   </div>
 </template>
 
