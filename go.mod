@@ -1,6 +1,6 @@
 module gabe565.com/portfolio
 
-go 1.24.0
+go 1.24.1
 
 require (
 	gabe565.com/utils v0.0.0-20250225060243-a5332a333cd9
