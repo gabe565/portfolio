@@ -11,6 +11,6 @@ _My personal portfolio website_
 
 </div>
 
-My personal portfolio website powered by [PocketBase](https://pocketbase.io) and [Vue.js](https://vuejs.org).
+My personal portfolio website powered by [PocketBase](https://pocketbase.io), [Vue.js](https://vuejs.org), [Tailwind CSS](https://tailwindcss.com), and [daisyUI](https://daisyui.com).
 
 View the live site at <https://gabecook.com>.
