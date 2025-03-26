@@ -23,29 +23,29 @@ const router = createRouter({
   },
   routes: [
     {
+      name: "Home",
       path: "/",
       component: HomeView,
-      meta: { title: "Home" },
     },
     {
+      name: "About",
       path: "/about",
       component: AboutView,
-      meta: { title: "About" },
     },
     {
+      name: "Skills",
       path: "/skills",
       component: SkillsView,
-      meta: { title: "Skills" },
     },
     {
+      name: "Projects",
       path: "/projects",
       component: ProjectsView,
-      meta: { title: "Projects" },
     },
     {
+      name: "Connect",
       path: "/connect",
       component: ConnectView,
-      meta: { title: "Connect" },
     },
     {
       path: "/_",
@@ -54,16 +54,16 @@ const router = createRouter({
       },
     },
     {
+      name: "Not Found",
       path: "/:wildcard(.*)",
       component: NotFoundView,
-      meta: { title: "Not Found" },
     },
   ],
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.title && to.meta.title !== "Home") {
-    document.title = to.meta.title + " · " + " Gabe Cook";
+  if (to.name && to.name !== "Home") {
+    document.title = to.name + " · " + " Gabe Cook";
   } else {
     document.title = "Gabe Cook";
   }
