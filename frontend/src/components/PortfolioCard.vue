@@ -1,20 +1,22 @@
 <template>
   <section class="card bg-base-100 card-border border-base-300 flex flex-auto shadow-xs">
-    <figure v-if="headerImage" class="p-2">
-      <a v-if="headerLink" :href="headerLink" class="overflow-hidden w-full" target="_blank">
+    <slot name="header">
+      <figure v-if="headerImage" class="p-2">
+        <a v-if="headerLink" :href="headerLink" class="overflow-hidden w-full" target="_blank">
+          <img
+            :src="headerImage"
+            class="w-full rounded-[calc(var(--radius-box)-.5rem)]"
+            :alt="headerAlt"
+          />
+        </a>
         <img
+          v-else
           :src="headerImage"
           class="w-full rounded-[calc(var(--radius-box)-.5rem)]"
           :alt="headerAlt"
         />
-      </a>
-      <img
-        v-else
-        :src="headerImage"
-        class="w-full rounded-[calc(var(--radius-box)-.5rem)]"
-        :alt="headerAlt"
-      />
-    </figure>
+      </figure>
+    </slot>
 
     <div class="card-body text-start">
       <slot name="title">
