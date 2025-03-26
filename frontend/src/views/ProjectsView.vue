@@ -10,7 +10,7 @@
       <error-icon />
       {{ error }}
     </div>
-    <div v-else class="grid gap-7 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+    <div v-else class="grid gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-stretch">
       <transition
         v-for="(project, i) in projects"
         :key="`project-${project.name}`"
