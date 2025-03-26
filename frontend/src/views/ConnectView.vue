@@ -3,21 +3,24 @@
     <h1 class="font-display font-medium text-4xl">Connect</h1>
     <div>Here are some ways to reach out or see what I'm up to!</div>
 
-    <portfolio-card title="Accounts">
-      <ul class="flex flex-row gap-3 list-none justify-center">
-        <li>
-          <a :href="ApiPath('/api/to/github')" class="btn btn-primary" target="_blank">
-            <github-icon />
-            Github
-          </a>
-        </li>
-        <li>
-          <a :href="ApiPath('/api/to/linkedin')" class="btn btn-primary" target="_blank">
-            <linkedin-icon />
-            LinkedIn
-          </a>
-        </li>
-      </ul>
+    <portfolio-card>
+      <div class="flex flex-row flex-wrap gap-4 justify-end">
+        <h2 class="card-title grow">Accounts</h2>
+        <ul class="flex flex-row flex-wrap gap-3 list-none justify-center">
+          <li>
+            <a :href="ApiPath('/api/to/github')" class="btn btn-primary" target="_blank">
+              <github-icon />
+              Github
+            </a>
+          </li>
+          <li>
+            <a :href="ApiPath('/api/to/linkedin')" class="btn btn-primary" target="_blank">
+              <linkedin-icon />
+              LinkedIn
+            </a>
+          </li>
+        </ul>
+      </div>
     </portfolio-card>
 
     <portfolio-card title="Contact">
