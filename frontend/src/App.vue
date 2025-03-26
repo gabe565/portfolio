@@ -65,11 +65,7 @@ router.afterEach((to, from) => {
       @click="showNav = false"
     />
 
-    <router-view
-      id="content"
-      v-slot="{ Component }"
-      class="flex-grow pt-24 md:pt-32 pb-10 px-5 sm:px-10"
-    >
+    <router-view id="content" v-slot="{ Component }" class="flex-grow pt-24 pb-10 px-5 sm:px-10">
       <transition :name="transitionName" mode="out-in" appear>
         <keep-alive>
           <component :is="Component" />
