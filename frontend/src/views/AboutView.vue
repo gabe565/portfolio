@@ -7,7 +7,7 @@
           <img class="rounded-lg" :src="headerImage" alt="Gabe's Avatar" />
         </div>
 
-        <p class="text-lg">Hi! I'm Gabe.</p>
+        <p class="card-title">Hi! I'm Gabe.</p>
         <p>
           I'm a DevOps Engineer and Software Developer based in Oklahoma City, Oklahoma, USA. I'm
           passionate about automating processes, crafting innovative solutions, and staying
