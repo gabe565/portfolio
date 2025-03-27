@@ -2,7 +2,7 @@
   <div
     class="flex flex-col absolute justify-center items-center text-center z-10 w-full h-full text-black dark:text-white"
     v-bind="$attrs"
-    @click="nextBackground(true)"
+    @click="resume"
   >
     <div
       class="flex flex-col items-center gap-5 card bg-base-100/40 p-5 card-border border-white/5 backdrop-blur shadow-md"
@@ -25,13 +25,13 @@
     <teleport to="body">
       <transition name="fade" appear>
         <div
-          v-if="active && index !== null"
+          v-if="isMounted && index !== null"
           class="absolute top-0 w-full h-lvh bg-white dark:bg-black"
         />
       </transition>
       <transition name="fade" appear>
         <div
-          v-if="active && index !== null"
+          v-if="isMounted && index !== null"
           :key="index"
           class="absolute top-0 w-full h-lvh bg-cover bg-center opacity-80"
           :style="{ backgroundImage: `url(${backgrounds[index]})` }"
@@ -42,78 +42,64 @@
 </template>
 
 <script setup>
+import { useAsyncState, useIntervalFn } from "@vueuse/core";
 import { onActivated, onDeactivated, ref } from "vue";
 import MainMenu from "@/components/MainMenu.vue";
 import pb from "@/plugins/pocketbase";
 import loadImage from "@/util/loadImage";
 
 const index = ref(null);
-let timeout = null;
-const active = ref(true);
+const isMounted = ref(true);
 const transitionName = ref("fade");
+
+let pause, resume;
 
 onActivated(() => {
   transitionName.value = "fade";
-  active.value = true;
-  if (index.value !== null && !timeout) {
-    startTimeout();
+  isMounted.value = true;
+  if (index.value !== null) {
+    resume();
   }
 });
 
 onDeactivated(() => {
   transitionName.value = "slide-left";
-  active.value = false;
-  stopTimeout();
-  nextBackground();
+  isMounted.value = false;
+  pause();
 });
 
-let backgrounds = [];
-const fetchBackgrounds = async () => {
-  try {
-    const response = await pb.collection("backgrounds").getFullList({
-      fields: "url",
-    });
-    backgrounds = response
-      .map((background) => ({ sortKey: Math.random(), background }))
-      .sort((a, b) => a.sortKey - b.sortKey)
-      .map(({ background }) => background.url);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const nextBackground = async (resetTimeout = false) => {
-  if (backgrounds.length !== 0) {
-    const newIndex = (index.value + 1) % backgrounds.length;
+const { state: backgrounds } = useAsyncState(
+  async () => {
     try {
-      await loadImage(backgrounds[newIndex]);
-      index.value = newIndex;
+      const response = await pb.collection("backgrounds").getFullList({
+        fields: "url",
+      });
+      return response
+        .map((background) => ({ sortKey: Math.random(), background }))
+        .sort((a, b) => a.sortKey - b.sortKey)
+        .map(({ background }) => background.url);
     } catch (error) {
       console.error(error);
+      throw "Failed to fetch backgrounds. Please try again later.";
     }
-  }
-  if (resetTimeout) {
-    startTimeout();
-  }
-};
+  },
+  [],
+  { onSuccess: () => resume() },
+);
 
-const startTimeout = () => {
-  stopTimeout();
-  timeout = setTimeout(async () => {
-    await nextBackground();
-    startTimeout();
-  }, 7500);
-};
-
-const stopTimeout = () => {
-  if (timeout) {
-    clearTimeout(timeout);
-  }
-  timeout = null;
-};
-
-(async () => {
-  await fetchBackgrounds();
-  await nextBackground(true);
-})();
+({ pause, resume } = useIntervalFn(
+  async () => {
+    if (backgrounds.value.length !== 0) {
+      const newIndex = (index.value + 1) % backgrounds.value.length;
+      try {
+        await loadImage(backgrounds.value[newIndex]);
+        index.value = newIndex;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+  7500,
+  { immediate: false, immediateCallback: true },
+));
 </script>

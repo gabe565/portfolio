@@ -6,7 +6,7 @@
       scale is relative to the other languages that I have used, so a 5 star rating means that I'm
       most familiar with that language, not that I'm perfect at it.
     </div>
-    <div v-if="loading" class="h-screen">
+    <div v-if="isLoading" class="h-screen">
       <loading-icon />
       <span class="sr-only">Loading...</span>
     </div>
@@ -14,7 +14,7 @@
       <error-icon />
       {{ error }}
     </div>
-    <portfolio-card v-for="{ title, skills } in skills" v-else :key="title" class="mb-7">
+    <portfolio-card v-for="{ title, skills } in state" v-else :key="title" class="mb-7">
       <template #title>
         <h2 class="card-title self-center">{{ title }}</h2>
       </template>
@@ -47,25 +47,22 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { useAsyncState } from "@vueuse/core";
 import ErrorIcon from "~icons/material-symbols/error-outline-rounded";
 import LoadingIcon from "~icons/svg-spinners/ring-resize";
 import PortfolioCard from "@/components/PortfolioCard.vue";
 import StarRating from "@/components/StarRating.vue";
 import pb from "@/plugins/pocketbase";
 
-const skills = ref([]);
-const loading = ref(true);
-const error = ref();
-
-const fetchData = async () => {
+const { state, isLoading, error } = useAsyncState(async () => {
   try {
     const response = await pb.collection("skill_headings").getFullList({
       expand: "skills_via_heading",
       sort: "order,title",
       fields: "title,expand.skills_via_heading.title,expand.skills_via_heading.rating",
     });
-    skills.value = response
+
+    return response
       .map(({ title, expand }) => {
         return {
           title: title,
@@ -77,11 +74,7 @@ const fetchData = async () => {
       .filter(({ skills }) => skills);
   } catch (err) {
     console.error(err);
-    error.value = "Failed to fetch skills. Please try again later.";
-  } finally {
-    loading.value = false;
+    throw "Failed to fetch skills. Please try again later.";
   }
-};
-
-fetchData();
+});
 </script>

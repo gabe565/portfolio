@@ -2,7 +2,7 @@
   <section class="container text-center space-y-7">
     <h1 class="font-display font-medium text-4xl">Projects</h1>
     <p>Here are some of my best projects!</p>
-    <div v-if="loading" class="h-screen">
+    <div v-if="isLoading" class="h-screen">
       <loading-icon />
       <span class="sr-only">Loading...</span>
     </div>
@@ -11,12 +11,7 @@
       {{ error }}
     </div>
     <div v-else class="grid gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-stretch">
-      <transition
-        v-for="(project, i) in projects"
-        :key="`project-${project.name}`"
-        name="fade"
-        appear
-      >
+      <transition v-for="(project, i) in state" :key="`project-${project.name}`" name="fade" appear>
         <portfolio-card
           :style="{ transitionDelay: `${i * 70}ms` }"
           :title="project.name"
@@ -73,7 +68,7 @@
 </template>
 
 <script setup>
-import { ref, shallowRef } from "vue";
+import { useAsyncState } from "@vueuse/core";
 import ErrorIcon from "~icons/material-symbols/error-outline-rounded";
 import GlobeIcon from "~icons/mdi/web";
 import GitHubIcon from "~icons/simple-icons/github";
@@ -81,11 +76,7 @@ import LoadingIcon from "~icons/svg-spinners/ring-resize";
 import PortfolioCard from "@/components/PortfolioCard.vue";
 import pb from "@/plugins/pocketbase";
 
-const projects = shallowRef([]);
-const loading = ref(true);
-const error = ref();
-
-const fetchData = async () => {
+const { state, isLoading, error } = useAsyncState(async () => {
   try {
     const response = await pb.collection("projects").getFullList({
       sort: "archived,-priority,created",
@@ -93,7 +84,8 @@ const fetchData = async () => {
       fields:
         "collectionId,id,name,url,description,image,archived,expand.tags.title,expand.tags.color",
     });
-    projects.value = response.map((project) => {
+
+    return response.map((project) => {
       let image = "";
       if (project.image) {
         image = pb.files.getURL(project, project.image);
@@ -114,11 +106,7 @@ const fetchData = async () => {
     });
   } catch (err) {
     console.error(err);
-    error.value = "Failed to fetch projects. Please try again later.";
-  } finally {
-    loading.value = false;
+    throw "Failed to fetch projects. Please try again later.";
   }
-};
-
-fetchData();
+}, {});
 </script>

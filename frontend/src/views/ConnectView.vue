@@ -33,6 +33,7 @@
         role="form"
         novalidate
         class="flex flex-col gap-3 [&.validate_.input:has(input:invalid)]:input-error [&.validate_textarea:invalid]:input-error"
+        :class="{ validate: !formValid }"
         @submit.prevent="submit"
       >
         <div v-if="error" class="alert alert-error" role="alert">
@@ -50,7 +51,7 @@
             <account-icon />
             <span class="sr-only">Name</span>
             <input
-              v-model="formData.name"
+              v-model="name"
               name="name"
               placeholder="Name"
               class="grow"
@@ -65,7 +66,7 @@
             <span class="sr-only">Email</span>
             <input
               id="emailInput"
-              v-model="formData.email"
+              v-model="email"
               name="email"
               placeholder="Email"
               class="grow"
@@ -80,17 +81,16 @@
           <span class="sr-only">Message</span>
           <textarea
             id="messageInput"
-            v-model="formData.message"
-            class="textarea textarea-bordered max-h-96 w-full"
+            ref="textarea"
+            v-model="message"
+            class="textarea textarea-bordered max-h-96 w-full resize-none"
             name="text"
             required
             placeholder="Message"
-            :style="{ height: textareaHeight }"
-            @input="textareaInput"
           />
         </label>
 
-        <div ref="captcha" class="self-center h-[65px]" />
+        <div v-if="TurnstileEnabled" ref="captcha" class="self-center h-[65px]" />
 
         <!-- Button -->
         <button class="btn btn-primary self-end">
@@ -104,7 +104,8 @@
 </template>
 
 <script setup>
-import { nextTick, onActivated, onMounted, ref } from "vue";
+import { useTextareaAutosize } from "@vueuse/core";
+import { onActivated, onDeactivated, ref } from "vue";
 import AtIcon from "~icons/material-symbols/alternate-email-rounded";
 import CheckIcon from "~icons/material-symbols/check-circle-outline-rounded";
 import ErrorIcon from "~icons/material-symbols/error-outline-rounded";
@@ -116,47 +117,47 @@ import LoadingIcon from "~icons/svg-spinners/ring-resize";
 import PortfolioCard from "@/components/PortfolioCard.vue";
 import { ApiPath } from "@/config/api";
 import pb from "@/plugins/pocketbase";
-import { TurnstileEnabled, TurnstileKey, TurnstileReady, loadTurnstile } from "@/plugins/turnstile";
+import { TurnstileEnabled, TurnstileKey, TurnstileReady, useTurnstile } from "@/plugins/turnstile";
 
-const formData = ref({
-  name: "",
-  email: "",
-  message: "",
-});
+const name = ref("");
+const email = ref("");
 
 const error = ref(null);
 const success = ref(false);
 const loading = ref(false);
 
 const form = ref(null);
-const textareaHeight = ref(null);
+const formValid = ref(true);
 let captchaValue;
 
-const textareaInput = async ($event) => {
-  textareaHeight.value = "";
-  await nextTick();
-  textareaHeight.value = `${$event.target.scrollHeight + 2}px`;
-};
+const { textarea, input: message } = useTextareaAutosize();
 
 const submit = async () => {
-  const valid = form.value.checkValidity();
-  if (valid) {
+  formValid.value = form.value.checkValidity();
+  if (formValid.value) {
     loading.value = true;
-    form.value.classList.remove("validate");
     success.value = false;
     error.value = null;
+
+    const params = {
+      name: name.value,
+      email: email.value,
+      message: message.value,
+    };
     const wait = new Promise((resolve) => setTimeout(resolve, 1000));
+
     try {
-      await pb.collection("contact_form").create(formData.value, {
-        headers: { "X-Captcha": captchaValue },
-      });
-      await wait;
+      await Promise.all([
+        pb.collection("contact_form").create(params, {
+          headers: { "X-Captcha": captchaValue },
+        }),
+        wait,
+      ]);
+
+      name.value = "";
+      email.value = "";
+      message.value = "";
       success.value = true;
-      formData.value = {
-        name: "",
-        email: "",
-        message: "",
-      };
     } catch (e) {
       console.error(e);
       error.value = e;
@@ -164,31 +165,25 @@ const submit = async () => {
       loading.value = false;
     }
   } else {
-    form.value.classList.add("validate");
     error.value = Error("Please fix invalid fields");
   }
 };
 
 const captcha = ref(null);
-
 if (TurnstileEnabled) {
-  let captchaId;
+  useTurnstile();
 
-  onMounted(async () => {
-    loadTurnstile();
-
+  onActivated(async () => {
     await TurnstileReady;
-    captchaId = window.turnstile.render(captcha.value, {
+    window.turnstile.render(captcha.value, {
       sitekey: TurnstileKey,
       action: "contact",
       callback: (token) => (captchaValue = token),
     });
   });
 
-  onActivated(() => {
-    if (captchaId) {
-      window.turnstile.reset(captchaId);
-    }
+  onDeactivated(() => {
+    window.turnstile.remove();
   });
 }
 </script>
