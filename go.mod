@@ -8,7 +8,7 @@ require (
 	github.com/pocketbase/pocketbase v0.26.6
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.6
-	github.com/tdewolff/minify/v2 v2.22.2
+	github.com/tdewolff/minify/v2 v2.22.4
 )
 
 require (
