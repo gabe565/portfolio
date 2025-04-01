@@ -21,7 +21,7 @@ func Redirect() func(*core.RequestEvent) error {
 			return err
 		}
 
-		url := record.Get("url").(string)
+		url := record.GetString("url")
 		return e.Redirect(http.StatusTemporaryRedirect, url)
 	}
 }

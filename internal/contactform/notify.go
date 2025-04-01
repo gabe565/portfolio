@@ -40,7 +40,7 @@ func Notify(app *pocketbase.PocketBase) func(e *core.ModelEvent) error {
 			return err
 		}
 
-		record := e.Model.(*core.Record)
+		record := e.Model.(*core.Record) //nolint:errcheck
 
 		var buf strings.Builder
 		data := NotifyData{
