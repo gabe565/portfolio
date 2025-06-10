@@ -53,7 +53,7 @@ jobs:
             "home-ops/${{ inputs.path }}"
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         if: inputs.environment == 'prod'
         with:
           repository: home-ops
