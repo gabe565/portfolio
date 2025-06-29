@@ -33,7 +33,7 @@ RUN --mount=type=cache,target=/root/.cache \
   pnpm run build
 
 
-FROM alpine:3.21 AS backend
+FROM alpine:3.22 AS backend
 WORKDIR /app
 
 RUN apk add --no-cache tzdata
