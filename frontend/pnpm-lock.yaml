@@ -45,8 +45,8 @@ importers:
         specifier: 0.3.9
         version: 0.3.9
       pocketbase:
-        specifier: 0.25.2
-        version: 0.25.2
+        specifier: 0.26.2
+        version: 0.26.2
       tailwindcss:
         specifier: 4.0.17
         version: 4.0.17
@@ -1093,8 +1093,8 @@ packages:
     resolution: {integrity: sha512-hMhneYm3GCPyQon88SZrVJx+LlqhM1kZFQbuAgXPoh/Az2YvO1B6bitT9qlhpiTdJlsT5lsr3gPmzoVjb5CDXA==}
     engines: {node: '>=10'}
 
-  pocketbase@0.25.2:
-    resolution: {integrity: sha512-ONZl1+qHJMnhR2uacBlBJ90lm7njtL/zy0606+1ROfK9hSL4LRBRc8r89rMcNRzPzRqCNyoFTh2Qg/lYXdEC1w==}
+  pocketbase@0.26.2:
+    resolution: {integrity: sha512-WA8EOBc3QnSJh8rJ3iYoi9DmmPOMFIgVfAmIGux7wwruUEIzXgvrO4u0W2htfQjGIcyezJkdZOy5Xmh7SxAftw==}
 
   postcss-selector-parser@6.1.2:
     resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
@@ -2181,7 +2181,7 @@ snapshots:
 
   plausible-tracker@0.3.9: {}
 
-  pocketbase@0.25.2: {}
+  pocketbase@0.26.2: {}
 
   postcss-selector-parser@6.1.2:
     dependencies:
