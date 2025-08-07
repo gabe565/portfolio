@@ -8,7 +8,7 @@ require (
 	github.com/pocketbase/pocketbase v0.26.6
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.6
-	github.com/tdewolff/minify/v2 v2.22.4
+	github.com/tdewolff/minify/v2 v2.23.11
 )
 
 require (
@@ -30,7 +30,7 @@ require (
 	github.com/pocketbase/dbx v1.11.0 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
 	github.com/spf13/cast v1.7.1 // indirect
-	github.com/tdewolff/parse/v2 v2.7.21 // indirect
+	github.com/tdewolff/parse/v2 v2.8.2-0.20250806174018-50048bb39781 // indirect
 	golang.org/x/crypto v0.36.0 // indirect
 	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
 	golang.org/x/image v0.25.0 // indirect
