@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@fontsource/zilla-slab':
-        specifier: 5.2.5
-        version: 5.2.5
+        specifier: 5.3.0
+        version: 5.3.0
       '@iconify-json/material-symbols':
         specifier: 1.2.17
         version: 1.2.17
@@ -323,8 +323,8 @@ packages:
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@fontsource/zilla-slab@5.2.5':
-    resolution: {integrity: sha512-5cmKZbe3aVOuH1C+ogzToEyVgJwKgBYF9RCnbze1LL3wRN0BvzLnToo1fa/1bMyqh+CDvVVXBdYS5Etbr8U0Dg==}
+  '@fontsource/zilla-slab@5.3.0':
+    resolution: {integrity: sha512-xbdDx5OESJDQqp3GIp4pjBgI+qpcg4AxnHLN15ekfJbG+ZYaOXg3uBjDpYlkuPQpey91afxHBNaqZgzluJ2FWA==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -796,6 +796,7 @@ packages:
   eslint@9.23.0:
     resolution: {integrity: sha512-jV7AbNoFPAY1EkFYpLq5bslU9NLNO8xnEeQXwErNibVryjk67wHVmddTBilc5srIttJDBrB0eMHKZBFbSIABCw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -1092,6 +1093,7 @@ packages:
   plausible-tracker@0.3.9:
     resolution: {integrity: sha512-hMhneYm3GCPyQon88SZrVJx+LlqhM1kZFQbuAgXPoh/Az2YvO1B6bitT9qlhpiTdJlsT5lsr3gPmzoVjb5CDXA==}
     engines: {node: '>=10'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   pocketbase@0.25.2:
     resolution: {integrity: sha512-ONZl1+qHJMnhR2uacBlBJ90lm7njtL/zy0606+1ROfK9hSL4LRBRc8r89rMcNRzPzRqCNyoFTh2Qg/lYXdEC1w==}
@@ -1467,7 +1469,7 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@fontsource/zilla-slab@5.2.5': {}
+  '@fontsource/zilla-slab@5.3.0': {}
 
   '@humanfs/core@0.19.1': {}
 
