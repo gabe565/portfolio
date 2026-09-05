@@ -39,8 +39,8 @@ importers:
         specifier: 13.0.0
         version: 13.0.0(vue@3.5.13)
       daisyui:
-        specifier: 5.0.9
-        version: 5.0.9
+        specifier: 5.7.27
+        version: 5.7.27
       plausible-tracker:
         specifier: 0.3.9
         version: 0.3.9
@@ -718,8 +718,8 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
-  daisyui@5.0.9:
-    resolution: {integrity: sha512-RsaehHh45f+0shWgZZaOY09/8eOae2voRsqJCD71j9yrnYgcke0Nj5ys0ZxrW4SPcc4+q96kWyJu0Z8P1zZdoA==}
+  daisyui@5.7.27:
+    resolution: {integrity: sha512-Je10yYK7UFJYyLSQrIxhFmpwX+86gXdNTnfNkA1jlev7j9oz3QrqioEQ6/0JYOvYPs5NYH4aaJ+X35/N80G/xg==}
 
   debug@4.4.0:
     resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
@@ -796,6 +796,7 @@ packages:
   eslint@9.23.0:
     resolution: {integrity: sha512-jV7AbNoFPAY1EkFYpLq5bslU9NLNO8xnEeQXwErNibVryjk67wHVmddTBilc5srIttJDBrB0eMHKZBFbSIABCw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -1092,6 +1093,7 @@ packages:
   plausible-tracker@0.3.9:
     resolution: {integrity: sha512-hMhneYm3GCPyQon88SZrVJx+LlqhM1kZFQbuAgXPoh/Az2YvO1B6bitT9qlhpiTdJlsT5lsr3gPmzoVjb5CDXA==}
     engines: {node: '>=10'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   pocketbase@0.25.2:
     resolution: {integrity: sha512-ONZl1+qHJMnhR2uacBlBJ90lm7njtL/zy0606+1ROfK9hSL4LRBRc8r89rMcNRzPzRqCNyoFTh2Qg/lYXdEC1w==}
@@ -1817,7 +1819,7 @@ snapshots:
 
   csstype@3.1.3: {}
 
-  daisyui@5.0.9: {}
+  daisyui@5.7.27: {}
 
   debug@4.4.0:
     dependencies:
