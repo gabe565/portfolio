@@ -28,7 +28,7 @@ jobs:
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858 # v3.29.0
+      uses: github/codeql-action/init@3ea06614dafe36dec890db3446326e0d40ce53d4 # v3.38.1
       with:
         languages: ${{ matrix.language }}
 
@@ -39,7 +39,7 @@ jobs:
         go-version-file: go.mod
 
     - name: Autobuild
-      uses: github/codeql-action/autobuild@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858 # v3.29.0
+      uses: github/codeql-action/autobuild@3ea06614dafe36dec890db3446326e0d40ce53d4 # v3.38.1
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858 # v3.29.0
+      uses: github/codeql-action/analyze@3ea06614dafe36dec890db3446326e0d40ce53d4 # v3.38.1
